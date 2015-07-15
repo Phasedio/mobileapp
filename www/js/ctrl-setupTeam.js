@@ -1,3 +1,10 @@
-angular.module('starter.controllers', [])
 
-.controller('SetupTeamCtrl', function($scope) {});
+
+app.controller('SetupTeamCtrl', function($scope,$state,Auth) {
+
+  $scope.loginTeam = function(){
+    Auth.newTeam = false;
+    $state.go('loginTeamName');
+  }
+
+});

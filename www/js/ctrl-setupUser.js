@@ -1,3 +1,5 @@
-angular.module('starter.controllers', [])
+'use strict';
 
-.controller('SetupUserCtrl', function($scope) {});
+app.controller('SetupUserCtrl', function($scope) {
+  
+});
