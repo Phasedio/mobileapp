@@ -1,14 +1,15 @@
 
 
-app.controller('LoginUserDetailsCtrl', function($scope,Auth) {
+app.controller('LoginUserDetailsCtrl', function($scope,Auth,$state) {
 
   $scope.regPerson = function(user){
-    user.name = "brian";
-    Auth.register(user).then(function() {
-        console.log(Auth.user);
-      }, function(err) {
-          alert(err);
-      });
+    Auth.login(user).then(function() {
+                console.log('login done');
+                $state.go('updateStatus');
+            });
+  }
+  $scope.makeAccount = function(){
+    $state.go('setupUser');
   }
 
 });

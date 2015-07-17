@@ -9,7 +9,7 @@ app.controller('LoginTeamNameCtrl', function($scope,$state,Auth,FURL, $firebaseA
 
   };
   $scope.makeTeam = function(){
-    Auth.newTeam = true;
+    Auth.newTeam = 1;
     $state.go('setupTeam');
   }
 

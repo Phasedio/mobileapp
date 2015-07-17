@@ -120,7 +120,26 @@ app.run(function($ionicPlatform) {
         controller: 'SetupUserCtrl'
       }
     }
-  });
+  })
+  .state('updateStatus', {
+    url: '/updateStatus',
+    views: {
+      'phased': {
+        templateUrl: 'templates/update-compose.html',
+        controller: 'updateStatusCtrl'
+      }
+    }
+  })
+  .state('teamArea', {
+    url: '/teamArea',
+    views: {
+      'phased': {
+        templateUrl: 'templates/team-area.html',
+        controller: 'teamCtrl'
+      }
+    }
+  })
+  ;
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('loginTeamName');

@@ -1,4 +1,4 @@
-app.factory('Auth', function(FURL,$firebaseAuth,$firebase) {
+app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q) {
 
   var ref = new Firebase(FURL);
     var auth = $firebaseAuth(ref);
@@ -22,27 +22,19 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase) {
             var profileRef = ref.child('profile');
             return profileRef.child(uid).set(profile);
         },
-        createTeam: function(name){
-          var teamRef = ref.child('team');
-          return teamRef.child(name).set({
-            'members': []
-          });
-        },
-
         login: function(user) {
-            team = user.team;
-            // Send Errors
-            console.log(team);
+            team = Auth.team;
+
             return auth.$authWithPassword(
-                {email: user.email, password: user.password}
-            );
+              {email: user.email, password: user.password});
         },
         register : function(user) {
-            team = user.team;
+            team = Auth.team;
             return auth.$createUser({email: user.email, password: user.password}).then(function() {
                 return Auth.login(user);
             })
                 .then(function(data) {
+
                     return Auth.createProfile(data.uid, user);
                 });
         },
@@ -61,8 +53,9 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase) {
 
     auth.$onAuth(function(authData) {
         if (authData) {
+          makeTeam(team,authData.uid);
           console.log('Auth complete!');
-            // angular.copy(authData, Auth.user);
+            angular.copy(authData, Auth.user);
             // Auth.user.profile = $firebase(ref.child('profile').child(authData.uid)).$asObject();
             // console.log(Auth.user.profile);
             // //Check if UID is not on t
@@ -120,7 +113,29 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase) {
             // }
         }
     });
+    function makeTeam(name,id){
+      if(Auth.newTeam){
+        console.log('MAKING A NEW TEAM');
+        var teamRef = ref.child('team');
+        var k = {};
+        k[id]=true;
+        teamRef.child(name).set({member:k});
+        return true;
+      }else{
+        // Team validation
+        ref.child('team').child(name).child('member').once('value',function(data){
+          console.log(data);
+          data = data.val();
+          console.log(data);
+          if(data[id]){
+            console.log('you are allowed');
+          }else{
+            console.log('YOU SHALL NOT PASS!');
+          }
+        })
+      }
 
+    }
     function get_gravatar(email, size) {
         email = email.toLowerCase();
 

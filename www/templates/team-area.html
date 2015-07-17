@@ -1,0 +1,15 @@
+<ion-view view-title="update status">
+  <ion-content class="">
+    <div class="row">
+      <div class="ph-logo">
+      </div>
+    </div>
+    <div class="list">
+      <a ng-repeat="member in team | orderBy : 'time':true" class="item item-thumbnail-left" href="#">
+        <img src="{{member.gravatar}}">
+        <h2>{{member.task}}</h2>
+        <p>{{member.time}}</p>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

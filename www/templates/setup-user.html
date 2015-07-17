@@ -5,21 +5,36 @@
       </div>
     </div>
     <div class="row">
-      <h1>Create a Phased.io Account</h1>
-      <h2>Enter your <strong>email address</strong></h2>
+      <div class="col-100">
+        <h1 align="center">Phased.io</h1>
+        <h2 align="center">Enter your email address and password</h2>
+      </div>
     </div>
-    <div class="row">
-      <form ng-submit="" novalidate="">
-        <input type="email">
-        <p><small>Don't worry about the password for now we will send you an email with it soon</small></p>
-        <input type="submit">
+
+      <form ng-submit="regPerson(user)" novalidate="">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" ng-model="user.name" placeholder="name">
+          </label>
+          <label class="item item-input">
+            <input type="email" ng-model="user.email" placeholder="email">
+          </label>
+          <label class="item item-input">
+            <input type="password" ng-model="user.password" placeholder="password">
+          </label>
+        </div>
+        <input type="submit" class="button button-block button-royal">
       </form>
+
+    <div class="row">
+      <div class="col-100">
+        <h2 align="center">Already have a Phased account?</h2>
+      </div>
     </div>
     <div class="row">
-      <h2>Have an account?</h2>
-    </div>
-    <div class="row">
-      <h2><a href=""><strong>Login here</strong></a></h2>
+      <div class="col-100">
+        <h2 align="center"><a href="" ng-click="makeAccount()"><strong>Login here</strong></a></h2>
+      <div class="col-100">
     </div>
   </ion-content>
 </ion-view>

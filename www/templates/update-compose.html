@@ -1,0 +1,21 @@
+<ion-view view-title="update status">
+  <ion-content class="">
+    <div class="row">
+      <div class="ph-logo">
+      </div>
+    </div>
+    <form ng-submit="submitStatus(updateStatus)" novalidate>
+      <div class="list">
+        <label class="item item-input">
+          <textarea ng-model="updateStatus" placeholder="What are you doing?"></textarea>
+        </label>
+      </div>
+      <div>
+        <button class="button button-light">weather</button>
+        <button class="button button-light"><i class="ion-location"></i></button>
+        <button class="button button-light"><i class="ion-camera"></i></button>
+        <input type="submit" class="button button-light ion-checkmark-round" value="">
+      </div>
+    </form>
+  </ion-content>
+</ion-view>
