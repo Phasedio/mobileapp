@@ -1,7 +1,8 @@
 app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
   $scope.team = [];
 
-   new Firebase(FURL + 'team/' + Auth.team + '/activities').on('value', function(users) {
+   new Firebase(FURL + 'team/' + Auth.team + '/task').on('value', function(users) {
+     $scope.team = [];
      users = users.val();
      console.log(users);
      var teamUID = Object.keys(users);
@@ -10,6 +11,9 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
             getTeamMember(teamUID[i], users);
         }
    });
+   $scope.compose = function(){
+     $state.go('updateStatus');
+   }
 
    function getTeamMember(memberID, users){
      //console.log(users);

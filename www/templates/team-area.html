@@ -1,4 +1,4 @@
-<ion-view view-title="update status">
+<ion-view view-title="update status" hide-nav-bar="true">
   <ion-content class="">
     <div class="row">
       <div class="ph-logo">
@@ -10,6 +10,9 @@
         <h2>{{member.task}}</h2>
         <p>{{member.time}}</p>
       </a>
+    </div>
+    <div class="bar bar-footer">
+      <button class="button button-clear pull-right" ng-click="compose()"><i class="ion-compose"></i></button>
     </div>
   </ion-content>
 </ion-view>

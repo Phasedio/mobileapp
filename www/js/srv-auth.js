@@ -1,4 +1,4 @@
-app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q) {
+app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistory) {
 
   var ref = new Firebase(FURL);
     var auth = $firebaseAuth(ref);
@@ -52,10 +52,31 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q) {
     };
 
     auth.$onAuth(function(authData) {
+      if (authData) {
+         console.log("Logged in as:", authData.uid);
+         ref.child('profile').child(authData.uid).once('value',function(data){
+           data = data.val();
+           console.log(data);
+           Auth.team = data.curTeam;
+           makeTeam(Auth.team,authData.uid);
+           console.log('Auth complete!');
+             angular.copy(authData, Auth.user);
+           var thePlace = $ionicHistory.currentView().stateName;
+           if(thePlace == 'teamArea' || thePlace == 'updateStatus'){
+
+           }else{
+             $state.go('updateStatus');
+           }
+         })
+
+       } else {
+         console.log("Logged out");
+         console.log($ionicHistory.currentView().stateName);
+         $state.go('loginTeamName');
+       }
+      console.log(authData);
         if (authData) {
-          makeTeam(team,authData.uid);
-          console.log('Auth complete!');
-            angular.copy(authData, Auth.user);
+
             // Auth.user.profile = $firebase(ref.child('profile').child(authData.uid)).$asObject();
             // console.log(Auth.user.profile);
             // //Check if UID is not on t
@@ -123,7 +144,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q) {
         return true;
       }else{
         // Team validation
-        ref.child('team').child(name).child('member').once('value',function(data){
+        ref.child('team').child(name).child('members').once('value',function(data){
           console.log(data);
           data = data.val();
           console.log(data);

@@ -10,7 +10,7 @@ var app =  angular.module('starter', [
   'starter.controllers',
   'starter.services',
   'firebase'
-]).constant('FURL', 'https://phasedapi.firebaseio.com/');
+]).constant('FURL', 'https://phaseddev.firebaseio.com/');
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
