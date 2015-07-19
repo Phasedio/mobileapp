@@ -1,0 +1,25 @@
+<ion-view view-title="update status" hide-nav-bar="true">
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button" ng-click="goBack()"><</button>
+    </div>
+    <h1 class="title">{{team}}!</h1>
+
+  </ion-header-bar>
+  <ion-content class="">
+    <form ng-submit="submitStatus(updateStatus)" novalidate>
+      <div class="list">
+        <ul>
+          <li>{{statusInfo.name}}</li>
+          <li>{{statusInfo.city}}</li>
+          <li>{{statusInfo.time}}</li>
+          <li>{{statusInfo.weather}}</li>
+          <li>{{statusInfo.location.lat}}</li>
+          <li>{{statusInfo.location.long}}</li>
+          <li><img src="{{statusInfo.gravatar}}"></li>
+        </ul>
+      </div>
+
+    </form>
+  </ion-content>
+</ion-view>

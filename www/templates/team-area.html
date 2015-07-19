@@ -1,18 +1,56 @@
-<ion-view view-title="update status" hide-nav-bar="true">
-  <ion-content class="">
-    <div class="row">
-      <div class="ph-logo">
+<ion-side-menus>
+  <!-- Center content -->
+  <!-- <ion-side-menu-content ng-controller="ContentController">
+  </ion-side-menu-content> -->
+
+  <!-- Left menu -->
+  <ion-side-menu side="left">
+    <header class="bar bar-header bar-stable">
+      <h1 class="title">Left</h1>
+    </header>
+    <ion-content class="has-header">
+      <ion-list>
+        <ion-item nav-clear menu-close href="">
+          uitstartup
+        </ion-item>
+        <ion-item nav-clear menu-close href="">
+          phasedio
+        </ion-item>
+        <ion-item nav-clear menu-close href="">
+          brian
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+
+  <!-- Right menu -->
+
+  <ion-side-menu-content>
+  <!-- Main content, usually <ion-nav-view> -->
+    <ion-header-bar align-title="left" class="bar-positive">
+      <div class="buttons">
+        <button class="button icon ion-navicon button-clear " menu-toggle></button>
       </div>
-    </div>
-    <div class="list">
-      <a ng-repeat="member in team | orderBy : 'time':true" class="item item-thumbnail-left" href="#">
-        <img src="{{member.gravatar}}">
-        <h2>{{member.task}}</h2>
-        <p>{{member.time}}</p>
-      </a>
-    </div>
-    <div class="bar bar-footer">
-      <button class="button button-clear pull-right" ng-click="compose()"><i class="ion-compose"></i></button>
-    </div>
-  </ion-content>
-</ion-view>
+      <h1 class="title">{{teamName}}</h1>
+
+    </ion-header-bar>
+    <ion-content class="">
+      <div class="list">
+        <a ng-repeat="member in team | orderBy : 'time':true" class="item item-thumbnail-left" href="" ng-click="seeStatus(member.uid)">
+          <img src="{{member.gravatar}}">
+          <h2>{{member.task}}</h2>
+          <p>{{member.time}}</p>
+        </a>
+      </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-assertive">
+      <div class="buttons">
+        <button class="button button-clear pull-right" ng-click="compose()"><i class="ion-compose"></i></button>
+      </div>
+    </ion-footer-bar>
+  </ion-side-menu-content>
+</ion-side-menus>
+<!-- <ion-view view-title="update status" hide-nav-bar="true">
+
+
+</ion-view> -->

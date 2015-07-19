@@ -1,5 +1,6 @@
-app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistory) {
+app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform) {
 
+  //$ionicAppProvider.identify();
   var ref = new Firebase(FURL);
     var auth = $firebaseAuth(ref);
     var team = '';
@@ -57,6 +58,12 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
          ref.child('profile').child(authData.uid).once('value',function(data){
            data = data.val();
            console.log(data);
+
+           $ionicUser.identify({
+            user_id: authData.uid,
+            name: data.name
+          });
+          regUser();
            Auth.team = data.curTeam;
            makeTeam(Auth.team,authData.uid);
            console.log('Auth complete!');
@@ -67,7 +74,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
            }else{
              $state.go('updateStatus');
            }
-         })
+         });
 
        } else {
          console.log("Logged out");
@@ -75,64 +82,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
          $state.go('loginTeamName');
        }
       console.log(authData);
-        if (authData) {
 
-            // Auth.user.profile = $firebase(ref.child('profile').child(authData.uid)).$asObject();
-            // console.log(Auth.user.profile);
-            // //Check if UID is not on t
-            // // IF user is just opening a new tab then have the system pull the last team
-            // if (team == '') {
-            //     console.log('cant find team!!');
-            //     var userref = new Firebase(FURL + 'profile/' + Auth.user.profile.$id);
-            //     userref.once("value", function(data) {
-            //         var z = data.val();
-            //         Auth.team = z.curTeam;
-            //         team = Auth.team;
-            //         console.log(team);
-            //     });
-            //
-            // }else if (team != '') {
-            //     new Firebase(FURL + 'team').once('value', function(snap) {
-            //     var teamRef = snap.val();
-            //     if (teamRef[team]) {
-            //         //Team exists does the user?
-            //         if (teamRef[team].members[Auth.user.profile.$id]) {
-            //             //Team member is allowed continue with sign in
-            //             var profileRef = $firebase(ref.child('profile/' + Auth.user.profile.$id));
-            //             return profileRef.$set('curTeam', team);
-            //
-            //         } else {
-            //             // Check the allowed email list to see if this is the users first time
-            //             var teamEmails = Object.keys(teamRef[team].allowedUsers);
-            //             for (var i = 0; i < teamEmails.length; i++) {
-            //                 console.log('is '+ Auth.user.profile.email + ' this ' + teamRef[team].allowedUsers[teamEmails[i]]);
-            //                 if (Auth.user.profile.email == teamRef[team].allowedUsers[teamEmails[i]]) {
-            //                     //Allow user in
-            //                     var memberRef = new Firebase(FURL + 'team/' + team + '/members');
-            //                     memberRef.child(Auth.user.profile.$id).set(true);
-            //                     var memberRef = new Firebase(FURL + 'profile/' + Auth.user.profile.$id);
-            //                     return memberRef.child('curTeam').set(team);
-            //
-            //                 }
-            //             }
-            //             // No match was found unAuth user.
-            //             // Member is denied access to group
-            //             // auth.$unauth();
-            //             //alert('You are not allowed in this group, logging you out');
-            //         }
-            //     }else {
-            //         // Team name doesn't exist
-            //         //auth.$unauth();
-            //         alert('Team does not exist, why not register? logging you out');
-            //     }
-            // });
-            // }else {
-            //     if (Auth.user && Auth.user.profile) {
-            //         Auth.user.profile.$destroy();
-            //     }
-            //     angular.copy({}, Auth.user);
-            // }
-        }
     });
     function makeTeam(name,id){
       if(Auth.newTeam){
@@ -156,6 +106,21 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
         })
       }
 
+    }
+
+    function regUser(){
+      $ionicPlatform.ready(function() {
+      $ionicPush.register({
+          canShowAlert: false, //Should new pushes show an alert on your screen?
+          canSetBadge: true, //Should new pushes be allowed to update app icon badges?
+          canPlaySound: false, //Should notifications be allowed to play a sound?
+          canRunActionsOnWake: true, // Whether to run auto actions outside the app,
+          onNotification: function(notification) {
+            // Called for each notification.
+            return true;
+          }
+        });
+      });
     }
     function get_gravatar(email, size) {
         email = email.toLowerCase();

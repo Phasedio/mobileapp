@@ -7,13 +7,27 @@
 // 'starter.controllers' is found in controllers.js
 var app =  angular.module('starter', [
   'ionic',
+  'ngCordova',
+  'ionic.service.core',
+  'ionic.service.push',
   'starter.controllers',
   'starter.services',
   'firebase'
 ]).constant('FURL', 'https://phaseddev.firebaseio.com/');
 
+app.config(['$ionicAppProvider', function($ionicAppProvider) {
+  // Identify app
+  $ionicAppProvider.identify({
+    // The App ID for the server
+    app_id: '32c45998',
+    // The API key all services will use for this app
+    api_key: '62e4043cdea5ff673f4a6dd3e752325ca57996fec97ffedc',
+    dev_push: true
+  });
+}]);
+
 app.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -23,8 +37,8 @@ app.run(function($ionicPlatform) {
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
-  });
-})
+  })
+
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -136,6 +150,15 @@ app.run(function($ionicPlatform) {
       'phased': {
         templateUrl: 'templates/team-area.html',
         controller: 'teamCtrl'
+      }
+    }
+  })
+  .state('viewStatus', {
+    url: '/viewStatus/:uid',
+    views: {
+      'phased': {
+        templateUrl: 'templates/status-view.html',
+        controller: 'viewStatusCtrl'
       }
     }
   })
