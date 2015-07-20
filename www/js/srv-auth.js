@@ -10,6 +10,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
         user:{},
 
         team:'',
+        memberOf : '',
         newTeam:false,
 
         createProfile: function(uid, user) {
@@ -55,9 +56,27 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
     auth.$onAuth(function(authData) {
       if (authData) {
          console.log("Logged in as:", authData.uid);
+         //Check permitted teams
+         // Does the user account have any teams in the 'teams' area of their profile?
+         // If so save those teams to mem and continue
+         // If not save nothing
          ref.child('profile').child(authData.uid).once('value',function(data){
            data = data.val();
            console.log(data);
+           // Check permitted teams
+           // Does the user account have any teams in the 'teams' area of their profile?
+           if (data.teams){
+             // If so save those teams to mem and continue
+             var keys = Object.keys(data.teams);
+             var tn = [];
+             for(var i = 0; i < keys.length; i++){
+               tn.push(data.teams[keys[i]]);
+             }
+              Auth.memberOf = tn;
+           }else{
+             // If not save nothing
+
+           }
 
            $ionicUser.identify({
             user_id: authData.uid,

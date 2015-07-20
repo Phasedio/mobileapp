@@ -1,17 +1,10 @@
 app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
   $scope.team = [];
   $scope.teamName = Auth.team;
+  $scope.teamsAvail = Auth.memberOf;
 
-   new Firebase(FURL + 'team/' + Auth.team + '/task').on('value', function(users) {
-     $scope.team = [];
-     users = users.val();
-     console.log(users);
-     var teamUID = Object.keys(users);
+   checkStatus();
 
-        for (var i = 0; i < teamUID.length; i++) {
-            getTeamMember(teamUID[i], users);
-        }
-   });
    $scope.compose = function(){
      $state.go('updateStatus');
    }
@@ -23,6 +16,34 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
      }else{
        $state.go('viewStatus',{uid:id});
      }
+   }
+
+   $scope.switchTeam = function(team){
+     //double check that user is allowed in team area
+     var refs = new Firebase(FURL);
+     refs.child('team').child(team).child('members').once('value',function(data){
+       data = data.val();
+       if(data[Auth.user.uid]){
+         //User is allowed in
+         $scope.team = [];
+         Auth.team = team;
+         $scope.teamName = Auth.team;
+         checkStatus();
+
+       }
+     })
+   }
+   function checkStatus(){
+     new Firebase(FURL + 'team/' + Auth.team + '/task').on('value', function(users) {
+       $scope.team = [];
+       users = users.val();
+       console.log(users);
+       var teamUID = Object.keys(users);
+
+          for (var i = 0; i < teamUID.length; i++) {
+              getTeamMember(teamUID[i], users);
+          }
+     });
    }
    function getTeamMember(memberID, users){
      //console.log(users);
@@ -46,5 +67,5 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
 
 app.controller('ContentController', function($scope,Auth,$state,FURL) {
 
-  
+
 });
