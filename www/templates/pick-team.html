@@ -1,0 +1,19 @@
+<ion-view view-title="pickteam" hide-nav-bar="true">
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <!-- <button class="button" ng-click="goBack()"><</button> -->
+    </div>
+    <h1 class="title">Team selection</h1>
+
+  </ion-header-bar>
+  <ion-content class="">
+    <ion-list>
+      <ion-item nav-clear menu-close href="" ng-repeat="team in teamsAvail" ng-click="switchTeam(team);">
+        {{team}}{{team == $parent.teamName ? '*': ''}}
+      </ion-item>
+      <ion-item nav-clear menu-close href="" ng-click="createTeam()">
+        Create new team
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

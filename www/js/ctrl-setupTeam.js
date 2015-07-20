@@ -3,9 +3,8 @@
 app.controller('SetupTeamCtrl', function($scope,$state,Auth) {
 
   $scope.enterTeam = function(team){
-    Auth.team = team.name;
-    console.log(Auth.team);
-    $state.go('loginUserDetails');
+    Auth.createTeam(team.name,Auth.user.uid);
+
 
   };
 

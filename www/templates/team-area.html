@@ -13,6 +13,12 @@
         <ion-item nav-clear menu-close href="" ng-repeat="team in teamsAvail" ng-click="switchTeam(team);">
           {{team}}{{team == $parent.teamName ? '*': ''}}
         </ion-item>
+        <ion-item nav-clear menu-close href="" >
+          Create new team
+        </ion-item>
+        <ion-item nav-clear menu-close href="" ng-click="signOut();">
+          Log out
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>

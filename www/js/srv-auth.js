@@ -50,11 +50,17 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
         signedIn: function() {
             return !!Auth.user.provider;
         },
-        team : 'd'
+        createTeam : function(name,uid){
+          Auth.newTeam = true;
+          makeTeam(name,uid);
+          $state.go('teamArea');
+
+        }
     };
 
     auth.$onAuth(function(authData) {
       if (authData) {
+        angular.copy(authData, Auth.user);
          console.log("Logged in as:", authData.uid);
          //Check permitted teams
          // Does the user account have any teams in the 'teams' area of their profile?
@@ -73,6 +79,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
                tn.push(data.teams[keys[i]]);
              }
               Auth.memberOf = tn;
+              console.log(Auth.memberOf);
            }else{
              // If not save nothing
 
@@ -83,22 +90,29 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
             name: data.name
           });
           regUser();
-           Auth.team = data.curTeam;
-           makeTeam(Auth.team,authData.uid);
-           console.log('Auth complete!');
-             angular.copy(authData, Auth.user);
-           var thePlace = $ionicHistory.currentView().stateName;
-           if(thePlace == 'teamArea' || thePlace == 'updateStatus'){
+          //if no curTeam existes pop user to default picker
+          if(!data.curTeam){
+            // go to default picker
+            $state.go('pickTeam');
+          }else{
+            Auth.team = data.curTeam;
+            makeTeam(Auth.team,authData.uid);
+            console.log('Auth complete!');
 
-           }else{
-             $state.go('updateStatus');
-           }
+            var thePlace = $ionicHistory.currentView().stateName;
+            if(thePlace == 'teamArea' || thePlace == 'updateStatus'){
+
+            }else{
+              $state.go('updateStatus');
+            }
+          }
+
          });
 
        } else {
          console.log("Logged out");
          console.log($ionicHistory.currentView().stateName);
-         $state.go('loginTeamName');
+         $state.go('loginUserDetails');
        }
       console.log(authData);
 
@@ -106,10 +120,12 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
     function makeTeam(name,id){
       if(Auth.newTeam){
         console.log('MAKING A NEW TEAM');
+        console.log(name + id);
         var teamRef = ref.child('team');
         var k = {};
         k[id]=true;
-        teamRef.child(name).set({member:k});
+        teamRef.child(name).child('members').child(id).set(true);
+        ref.child('profile').child(id).child('teams').push(name);
         return true;
       }else{
         // Team validation

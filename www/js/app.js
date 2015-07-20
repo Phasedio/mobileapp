@@ -117,6 +117,15 @@ app.run(function($ionicPlatform) {
       }
     }
   })
+  .state('pickTeam', {
+    url: '/pickTeam',
+    views: {
+      'phased': {
+        templateUrl: 'templates/pick-team.html',
+        controller: 'PickTeamCtrl'
+      }
+    }
+  })
   .state('setupTeam', {
     url: '/setupTeam',
     views: {
@@ -165,6 +174,6 @@ app.run(function($ionicPlatform) {
   ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('loginTeamName');
+  $urlRouterProvider.otherwise('loginUserDetails');
 
 });
