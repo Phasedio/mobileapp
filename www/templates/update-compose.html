@@ -1,26 +1,26 @@
 <ion-view view-title="update status" hide-nav-bar="true">
-  <ion-header-bar align-title="left" class="bar-positive">
+  <ion-header-bar align-title="center" class="bar-phased compose">
     <div class="buttons">
-      <button class="button" ng-click="goBack()"><</button>
+      <button class="button" ng-click="goBack()"><i class="icon-back" style="color:#fff;"></i></button>
     </div>
-    <h1 class="title">{{team}}!</h1>
+    <h1 class="title" >{{team}}</h1>
 
   </ion-header-bar>
-  <ion-content class="">
-    <form ng-submit="submitStatus(updateStatus)" novalidate>
+  <ion-content class="compose">
+    <form ng-submit="submitStatus(updateStatus)" name="statusUpdate" novalidate>
       <div class="list">
         <label class="item item-input">
           <textarea ng-model="updateStatus" placeholder="What are you doing?"></textarea>
         </label>
-        <div>{{city}}</div>
-        <div>{{weather}}</div>
-      </div>
-      <div>
-        <button type="button" class="button button-light" ng-click="getWeather()">weather</button>
-        <button type="button" class="button button-light" ng-click="getLocation()"><i class="ion-location"></i></button>
-        <button class="button button-light"><i class="ion-camera"></i></button>
-        <button type="submit" class="button button-light " ><i class="ion-checkmark-round"></i></button>
       </div>
     </form>
   </ion-content>
+
+  <ion-footer-bar class="compose">
+    <button class="button button-light"><i class="ph-icon icon-camera"></i></button>
+    <button type="button" class="button button-light" ng-click="getWeather()"><img src="img/weather.svg" height="35px" width="35px">{{weather}}</button>
+    <button type="button" class="button button-light" ng-click="getLocation()"><i id="loc" class="ph-icon icon-map"></i>&nbsp;{{city}}</button>
+    <button type="submit" class="button button-light " style="float:right;" ><i class="ph-icon icon-check"></i></button>
+
+  </ion-footer-bar>
 </ion-view>

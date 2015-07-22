@@ -25,7 +25,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
    $scope.switchTeam = function(team){
      //double check that user is allowed in team area
 
-     refs.child('team').child(team).child('members').once('value',function(data){
+     ref.child('team').child(team).child('members').once('value',function(data){
        data = data.val();
        if(data[Auth.user.uid]){
          //User is allowed in
@@ -37,6 +37,11 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
        }
      })
    }
+
+   $scope.addMember = function(){
+     $state.go();
+   }
+
    function checkStatus(){
      new Firebase(FURL + 'team/' + Auth.team + '/task').on('value', function(users) {
        $scope.team = [];
@@ -70,6 +75,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
                $scope.$apply();
            });
    }
+
 });
 
 app.controller('ContentController', function($scope,Auth,$state,FURL) {

@@ -1,0 +1,22 @@
+.compose{
+  .item{
+    border-color: transparent;
+  }
+  textarea{
+    margin-top: 1.5rem;
+    border: none;
+    outline: none;
+    min-height: 75vh;
+    font-size: 1.5rem;
+    font-family: $regFont;
+    color:#000;
+    line-height: 1;
+  }
+  .button{
+    color:$grey;
+    border: none;
+  }
+  .ph-icon{
+    font-size: 35px;
+  }
+}

@@ -1,13 +1,14 @@
 <ion-view view-title="LoginUserDetails" hide-nav-bar="true">
-  <ion-content class="padding">
+  <ion-content class="padding login">
     <div class="row">
-      <div class="ph-logo">
+      <div class="col">
+        <img src="img/phased-logo.svg" height="150px" width="150px" style="display:block;margin:0 auto;">
       </div>
     </div>
     <div class="row">
-      <div class="col-100">
+      <div class="col">
         <h1 align="center">Phased.io</h1>
-        <h2 align="center">Enter your email address and password</h2>
+        <h4 align="center">Enter your <strong>email address</strong> and <strong>password</strong></h4>
       </div>
     </div>
 
@@ -20,18 +21,18 @@
             <input type="password" ng-model="user.password" placeholder="password">
           </label>
         </div>
-        <input type="submit" class="button button-block button-royal">
+        <input type="submit" class="button button-block button-phased">
       </form>
 
     <div class="row">
-      <div class="col-100">
-        <h2 align="center">Need to create an account?</h2>
+      <div class="col">
+        <h4 align="center">Need to create an account?</h4>
       </div>
     </div>
     <div class="row">
-      <div class="col-100">
-        <h2 align="center"><a href="" ng-click="makeAccount()"><strong>Make one here</strong></a></h2>
-      <div class="col-100">
+      <div class="col">
+        <h4 align="center"><a href="" ng-click="makeAccount()" style="text-align:center;"><strong>Make one here</strong></a></h4>
+      <div class="col">
     </div>
   </ion-content>
 </ion-view>

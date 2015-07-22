@@ -1,0 +1,23 @@
+.login{
+  background: $background;
+  h1,h2,h3,h4,h5,h6{
+    color: #fff;
+  }
+  input[type='email'],input[type='password']{
+    background: transparent;
+    font-family: AvenirNext-DemiBold;
+    width: 250px;
+    text-align: center;
+    border: none;
+    color:#fff;
+  }
+  .item{
+    background: transparent;
+    border-color: transparent;
+    border: 1px solid white;
+  }
+  a{
+    text-decoration: none;
+    color: white;
+  }
+}

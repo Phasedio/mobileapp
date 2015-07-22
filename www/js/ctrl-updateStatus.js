@@ -10,13 +10,20 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
   $scope.goBack = function(){
     $state.go('teamArea');
   }
-  
+
   $scope.getLocation = function(){
     if ($scope.lat){
+
+      document.getElementById("loc").className =
+        document.getElementById("loc").className.replace( /(?:^|\s)active(?!\S)/g , '' );
+
+
       $scope.lat ='';
       $scope.long ='';
       $scope.city = '';
     }else{
+      var ic = document.getElementById('loc');
+      ic.className = ic.className + " active";
       navigator.geolocation.getCurrentPosition(function(location){
         console.log(location);
         $scope.lat =location.coords.latitude;

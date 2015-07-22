@@ -5,10 +5,10 @@
 
   <!-- Left menu -->
   <ion-side-menu side="left">
-    <header class="bar bar-header bar-stable">
-      <h1 class="title">Left</h1>
+    <header class="bar bar-header bar-phased">
+      <h1 class="title">Menu</h1>
     </header>
-    <ion-content class="has-header">
+    <ion-content class="has-header bg-darkGrey">
       <ion-list>
         <ion-item nav-clear menu-close href="" ng-repeat="team in teamsAvail" ng-click="switchTeam(team);">
           {{team}}{{team == $parent.teamName ? '*': ''}}
@@ -27,7 +27,7 @@
 
   <ion-side-menu-content>
   <!-- Main content, usually <ion-nav-view> -->
-    <ion-header-bar align-title="left" class="bar-positive">
+    <ion-header-bar align-title="center" class="bar-phased">
       <div class="buttons">
         <button class="button icon ion-navicon button-clear " menu-toggle></button>
       </div>
