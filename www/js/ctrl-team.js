@@ -5,7 +5,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
   var ref = new Firebase(FURL);
 
    checkStatus();
-
+   
    $scope.compose = function(){
      $state.go('updateStatus');
    }
@@ -39,7 +39,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
    }
 
    $scope.addMember = function(){
-     $state.go();
+     $state.go('memberAdd');
    }
 
    function checkStatus(){

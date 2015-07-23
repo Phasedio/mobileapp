@@ -1,0 +1,36 @@
+<ion-view view-title="LoginUserDetails" hide-nav-bar="true">
+  <ion-content class="padding login">
+    <div class="row">
+      <div class="col">
+        <img src="img/phased-logo.svg" height="150px" width="150px" style="display:block;margin:0 auto;">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1 align="center">Send invites to your Phased.io team</h1>
+        <h4 align="center">Enter a <strong>email address</strong></h4>
+      </div>
+    </div>
+
+      <form ng-submit="addMembers(user)" novalidate="">
+        <div class="list">
+          <label class="item item-input">
+            <input type="email" ng-model="user.email" placeholder="email">
+          </label>
+
+        </div>
+        <input type="submit" class="button button-block button-phased">
+      </form>
+
+    <div class="row">
+      <div class="col">
+        <h4 align="center">Need to create an account?</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        
+      <div class="col">
+    </div>
+  </ion-content>
+</ion-view>

@@ -171,6 +171,15 @@ app.run(function($ionicPlatform) {
       }
     }
   })
+  .state('memberAdd', {
+    url: '/memberAdd',
+    views: {
+      'phased': {
+        templateUrl: 'templates/member-add.html',
+        controller: 'memberAddCtrl'
+      }
+    }
+  })
   ;
 
   // if none of the above states are matched, use this as the fallback
