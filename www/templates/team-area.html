@@ -34,25 +34,30 @@
       <h1 class="title">{{teamName}}</h1>
 
     </ion-header-bar>
-    <ion-content class="">
+    <ion-content class="team">
       <div class="list">
         <a ng-repeat="member in team | orderBy : 'time':true" class="item item-thumbnail-left" href="" ng-click="seeStatus(member.uid)">
           <img src="{{member.gravatar}}">
           <h2>{{member.task}}</h2>
-          <p>{{member.time}}</p>
+          <p am-time-ago="member.time"></p>
         </a>
-        <a class="item" href="" ng-click="addMember()">
+        <a class="item more-margin" href="" ng-click="addMember()">
 
           <h2>Add Member</h2>
 
         </a>
       </div>
+
+
     </ion-content>
-    <ion-footer-bar align-title="left" class="bar-assertive">
+    <div class="actionHolder">
+      <button class="button button-compose" ng-click="compose()"><i class="ion-compose"></i></button>
+    </div>
+    <!-- <ion-footer-bar align-title="left" class="bar-none team">
       <div class="buttons">
-        <button class="button button-clear pull-right" ng-click="compose()"><i class="ion-compose"></i></button>
+
       </div>
-    </ion-footer-bar>
+    </ion-footer-bar> -->
   </ion-side-menu-content>
 </ion-side-menus>
 <!-- <ion-view view-title="update status" hide-nav-bar="true">

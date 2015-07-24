@@ -9480,6 +9480,10 @@ h1, h2, h3, h4, h5, h6 {
 .bg-darkGrey {
   background: #777677; }
 
+.bar-none {
+  border: none;
+  background-color: transparent; }
+
 .login {
   background: #187e83; }
   .login h1, .login h2, .login h3, .login h4, .login h5, .login h6 {
@@ -9515,3 +9519,27 @@ h1, h2, h3, h4, h5, h6 {
   border: none; }
 .compose .ph-icon {
   font-size: 35px; }
+
+.team .more-margin {
+  margin-bottom: 6rem; }
+
+.actionHolder {
+  position: fixed;
+  width: 100%;
+  margin-bottom: 1rem;
+  bottom: 0; }
+
+.button-compose {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: block;
+  margin: 0 auto;
+  background-color: #187e83;
+  color: #fff;
+  text-align: center;
+  border-radius: 1000px;
+  border-color: transparent;
+  font-size: 1.6rem;
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5); }

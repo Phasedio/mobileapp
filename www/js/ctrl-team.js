@@ -5,7 +5,8 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
   var ref = new Firebase(FURL);
 
    checkStatus();
-   
+   moment().format();
+
    $scope.compose = function(){
      $state.go('updateStatus');
    }

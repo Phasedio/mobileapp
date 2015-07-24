@@ -7,20 +7,20 @@
 
   </ion-header-bar>
   <ion-content class="compose">
-    <form ng-submit="submitStatus(updateStatus)" name="statusUpdate" novalidate>
+
       <div class="list">
         <label class="item item-input">
-          <textarea ng-model="updateStatus" placeholder="What are you doing?"></textarea>
+          <textarea ng-model="$parent.updateStatus" placeholder="What are you doing?"></textarea>
         </label>
       </div>
-    </form>
+
   </ion-content>
 
   <ion-footer-bar class="compose">
     <button class="button button-light"><i class="ph-icon icon-camera"></i></button>
     <button type="button" class="button button-light" ng-click="getWeather()"><img src="img/weather.svg" height="35px" width="35px">{{weather}}</button>
     <button type="button" class="button button-light" ng-click="getLocation()"><i id="loc" class="ph-icon icon-map"></i>&nbsp;{{city}}</button>
-    <button type="submit" class="button button-light " style="float:right;" ><i class="ph-icon icon-check"></i></button>
+    <button type="submit" class="button button-light " style="float:right;" ng-click="submitStatus(updateStatus)"><i class="ph-icon icon-check"></i></button>
 
   </ion-footer-bar>
 </ion-view>

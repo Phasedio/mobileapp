@@ -12,6 +12,7 @@ var app =  angular.module('starter', [
   'ionic.service.push',
   'starter.controllers',
   'starter.services',
+  'angularMoment',
   'firebase'
 ]).constant('FURL', 'https://phaseddev.firebaseio.com/');
 

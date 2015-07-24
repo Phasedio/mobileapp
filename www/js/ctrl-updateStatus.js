@@ -50,7 +50,11 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
     }
   };
 
+
   $scope.submitStatus = function(update){
+    console.log(update);
+    console.log($scope.updateStatus);
+    update = $scope.updateStatus;
     var team = Auth.team;
     var weather,city,lat,long;
     weather = $scope.weather != '' ? $scope.weather : 0;
@@ -73,6 +77,7 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
     console.log(status);
     teamRef.child('team').child(team).child('task').child(Auth.user.uid).set(status);
     console.log('status set');
+    $scope.updateStatus = '';
     $state.go('teamArea');
   }
 
