@@ -1,6 +1,7 @@
 .compose{
   .item{
-    border-color: transparent;
+    border-color: transparent!important;
+    background-color: transparent!important;
   }
   textarea{
     margin-top: 1.5rem;
@@ -11,6 +12,7 @@
     font-family: $regFont;
     color:#000;
     line-height: 1;
+    background-color: transparent;
   }
   .button{
     color:$grey;

@@ -17,7 +17,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
             var profile = {
                 name:user.name,
                 email:user.email,
-                gravatar: get_gravatar(user.email, 40),
+                gravatar: get_gravatar(user.email, 100),
                 activities : {}
             };
 

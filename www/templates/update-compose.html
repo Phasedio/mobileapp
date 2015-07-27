@@ -1,23 +1,26 @@
 <ion-view view-title="update status" hide-nav-bar="true">
   <ion-header-bar align-title="center" class="bar-phased compose">
     <div class="buttons">
-      <button class="button" ng-click="goBack()"><i class="icon-back" style="color:#fff;"></i></button>
+      <button class="button" ng-click="goBack()" nav-direction="back"><i class="icon-back" style="color:#fff;"></i></button>
     </div>
     <h1 class="title" >{{team}}</h1>
 
   </ion-header-bar>
-  <ion-content class="compose">
+  <ion-content class="compose" style="background:url('{{bgPhoto}}') no-repeat center center fixed; -webkit-background-size: cover;-moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 
       <div class="list">
         <label class="item item-input">
-          <textarea ng-model="$parent.updateStatus" placeholder="What are you doing?"></textarea>
+          <textarea id="photoHolder" ng-model="$parent.updateStatus" placeholder="What are you doing?" ></textarea>
         </label>
       </div>
+      <form>
+        <input type="file" name="file" ng-model="$parent.photo" id="photo">
+      </form>
 
   </ion-content>
 
   <ion-footer-bar class="compose">
-    <button class="button button-light"><i class="ph-icon icon-camera"></i></button>
+    <button type="button" class="button button-light" ng-click="takePhoto()"><i id="ph" class="ph-icon icon-camera"></i></button>
     <button type="button" class="button button-light" ng-click="getWeather()"><img src="img/weather.svg" height="35px" width="35px">{{weather}}</button>
     <button type="button" class="button button-light" ng-click="getLocation()"><i id="loc" class="ph-icon icon-map"></i>&nbsp;{{city}}</button>
     <button type="submit" class="button button-light " style="float:right;" ng-click="submitStatus(updateStatus)"><i class="ph-icon icon-check"></i></button>

@@ -27,6 +27,28 @@ app.config(['$ionicAppProvider', function($ionicAppProvider) {
   });
 }]);
 
+app.config(function($compileProvider){
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+});
+
+app.factory('Cameraz', ['$q', function($q) {
+
+  return {
+    getPicture: function(options) {
+      var q = $q.defer();
+
+      navigator.camera.getPicture(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    }
+  }
+}]);
+
 app.run(function($ionicPlatform) {
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

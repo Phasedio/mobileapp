@@ -1,25 +1,35 @@
 <ion-view view-title="update status" hide-nav-bar="true">
-  <ion-header-bar align-title="left" class="bar-phased">
-    <div class="buttons">
-      <button class="button" ng-click="goBack()"><</button>
-    </div>
-    <h1 class="title">{{team}}!</h1>
 
-  </ion-header-bar>
-  <ion-content class="">
-    <form ng-submit="submitStatus(updateStatus)" novalidate>
-      <div class="list">
-        <ul>
-          <li>{{statusInfo.name}}</li>
-          <li>{{statusInfo.city}}</li>
-          <li>{{statusInfo.time}}</li>
-          <li>{{statusInfo.weather}}</li>
-          <li>{{statusInfo.location.lat}}</li>
-          <li>{{statusInfo.location.long}}</li>
-          <li><img src="{{statusInfo.gravatar}}"></li>
-        </ul>
+  <ion-content class="viewStat" style="background-color:{{bgColor}}">
+    <div class="row">
+      <div class="col">
+        <button class="button bar-none" ng-click="goBack()" nav-direction="back" style="color:#fff;"><i class="icon-back"></i></button>
       </div>
-
-    </form>
+      <div class="col">
+      </div>
+      <div class="col">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="dp-user" style="background:url('{{statusInfo.gravatar}}') "></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1 align="center">{{statusInfo.name}}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3 align="center">{{statusInfo.task}}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3 align="center">{{statusInfo.weather}}</h3>
+        <h3 align="center">{{statusInfo.city}}</h3>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

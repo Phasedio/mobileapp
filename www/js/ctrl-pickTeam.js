@@ -20,4 +20,5 @@ app.controller('PickTeamCtrl', function($scope,Auth,$state,FURL) {
   $scope.createTeam = function(){
     $state.go('setupTeam');
   }
+  
 });

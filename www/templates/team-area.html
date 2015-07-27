@@ -10,7 +10,7 @@
     </header>
     <ion-content class="has-header bg-darkGrey">
       <ion-list>
-        <ion-item nav-clear menu-close href="" ng-repeat="team in teamsAvail" ng-click="switchTeam(team);">
+        <ion-item nav-clear menu-close href="" ng-repeat="team in teamsAvail" ng-click="switchTeam(team);" >
           {{team}}{{team == $parent.teamName ? '*': ''}}
         </ion-item>
         <ion-item nav-clear menu-close href="" >
@@ -36,10 +36,13 @@
     </ion-header-bar>
     <ion-content class="team">
       <div class="list">
-        <a ng-repeat="member in team | orderBy : 'time':true" class="item item-thumbnail-left" href="" ng-click="seeStatus(member.uid)">
+        <a nav-direction="forward" on-tap="onTap(seeStatus(member.uid))" id="{{member.uid}}" on-swipe-left="nudge(member.uid)" ng-repeat="member in team | orderBy : 'time':true" style="{{member.photo}}" class="item item-thumbnail-left team-member">
           <img src="{{member.gravatar}}">
-          <h2>{{member.task}}</h2>
+          <h1>{{member.task}}</h1>
           <p am-time-ago="member.time"></p>
+          <div id="{{member.uid}}-nudge" class="nudge nudgeHidden">
+            <h2>Nudge sent to {{member.name}}</h2>
+          </div>
         </a>
         <a class="item more-margin" href="" ng-click="addMember()">
 
@@ -51,7 +54,7 @@
 
     </ion-content>
     <div class="actionHolder">
-      <button class="button button-compose" ng-click="compose()"><i class="ion-compose"></i></button>
+      <button class="button button-compose" ng-click="compose()" nav-direction="forward" ><i class="ion-compose"></i></button>
     </div>
     <!-- <ion-footer-bar align-title="left" class="bar-none team">
       <div class="buttons">

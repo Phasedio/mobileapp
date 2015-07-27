@@ -5,6 +5,9 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
   $scope.city = '';
   $scope.lat = '';
   $scope.long = '';
+  $scope.bgPhoto = '';
+  $scope.photo ='';
+
 
 
   $scope.goBack = function(){
@@ -49,6 +52,38 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
       });
     }
   };
+  $scope.takePhoto = function (){
+    var ic = document.getElementById('ph');
+    ic.className = ic.className + " active";
+
+    var cameraOptions = {
+       quality : 100,
+       targetWidth: 375,
+       targetHeight: 667,
+       allowEdit : false,
+       encodingType: Camera.EncodingType.JPEG,
+       destinationType : Camera.DestinationType.DATA_URL,
+       sourceType : Camera.PictureSourceType.CAMERA
+     };
+    navigator.camera.getPicture(function(imageURI) {
+
+      alert(imageURI);
+      //$scope.data.imageURI = data;
+      $scope.bgPhoto = 'data:image/jpeg;base64,'+imageURI;
+      // var blob = dataURItoBlob(imageURI);
+
+      // $scope.photo = $scope.bgPhoto;
+      // alert($scope.photo);
+      $scope.$apply();
+
+
+      }, function(err) {
+
+        // Ruh-roh, something bad happened
+        alert('KAAAAAHHHNNNN');
+
+      }, cameraOptions);
+  }
 
 
   $scope.submitStatus = function(update){
@@ -56,17 +91,19 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
     console.log($scope.updateStatus);
     update = $scope.updateStatus;
     var team = Auth.team;
-    var weather,city,lat,long;
+    var weather,city,lat,long,photo;
     weather = $scope.weather != '' ? $scope.weather : 0;
     city = $scope.city ? $scope.city : 0;
     lat = $scope.lat ? $scope.lat : 0;
     long = $scope.long ? $scope.long : 0;
+    photo = $scope.bgPhoto ? $scope.bgPhoto : 0;
     var status = {
       name: update,
       time: new Date().getTime(),
       user:Auth.user.uid,
       city:city,
       weather:weather,
+      photo : photo,
       location:{
         lat : lat,
         long : long
