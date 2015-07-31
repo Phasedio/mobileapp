@@ -1,4 +1,4 @@
-<ion-view view-title="LoginUserDetails" hide-nav-bar="true">
+<ion-view view-title="LoginUserDetails" hide-nav-bar="true" cache-view="false">
   <ion-content class="padding login">
     <div class="row">
       <div class="col">
@@ -12,7 +12,7 @@
       </div>
     </div>
 
-      <form ng-submit="regPerson(user)" novalidate="">
+      <form name="userForm" ng-submit="regPerson(user)" novalidate>
         <div class="list">
           <label class="item item-input">
             <input type="email" ng-model="user.email" placeholder="email">

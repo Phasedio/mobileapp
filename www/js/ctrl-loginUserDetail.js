@@ -2,8 +2,12 @@
 
 app.controller('LoginUserDetailsCtrl', function($scope,Auth,$state) {
 
+  var oriPerson = angular.copy($scope.user);
+
   $scope.regPerson = function(user){
     Auth.login(user).then(function() {
+      $scope.user = angular.copy(oriPerson);
+      $scope.userForm.$setPristine();
                 console.log('login done');
                 $state.go('updateStatus');
             });
@@ -12,4 +16,7 @@ app.controller('LoginUserDetailsCtrl', function($scope,Auth,$state) {
     $state.go('setupUser');
   }
 
+  $scope.$on('$ionicView.leave', function(){
+
+  });
 });

@@ -41,6 +41,9 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
                 });
         },
         logout: function() {
+            auth.memberOf = '';
+            auth.user = {};
+            auth.newTeam = false;
             auth.$unauth();
         },
         changePassword : function(user) {
@@ -119,7 +122,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
 
     });
 
-    
+
 
     function makeTeam(name,id){
       if(Auth.newTeam){
@@ -140,6 +143,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
           if(data[id]){
             console.log('you are allowed');
           }else{
+            alert('you are not allowed in this group');
             console.log('YOU SHALL NOT PASS!');
           }
         })
