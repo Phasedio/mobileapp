@@ -10,7 +10,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
         user:{},
 
         team:'',
-        memberOf : '',
+        memberOf : [],
         newTeam:false,
 
         createProfile: function(uid, user) {
@@ -97,6 +97,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
           //if no curTeam existes pop user to default picker
           if(!data.curTeam){
             // go to default picker
+            getInvitedTeams(authData.uid);
             $state.go('pickTeam');
           }else{
             Auth.team = data.curTeam;
@@ -123,7 +124,32 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
     });
 
 
+    function getInvitedTeams(id){
+      // go get users email
+      ref.child('profile').child(id).child('email').once('value',function(data){
+        var email = data.val();
+        // check all the profile in waiting accounts
+        ref.child('profile-in-waiting').once('value',function(data){
+          data = data.val();
+          theKeys = Object.keys(data);
+          for(var i = 0; i < theKeys.length; i++){
+            if(data[theKeys[i]].email == email){
+              // if there is an account assign all the teams there to user
 
+              //get all teams and set membership
+              teamKey = Object.keys(data[theKeys[i]].teams);
+              for(var r = 0; r < teamKey.length; r++){
+                ref.child('team').child(data[theKeys[i]].teams[teamKey[r]]).child('members').child(id).set(true);
+                Auth.memberOf.push(data[theKeys[i]].teams[teamKey[r]]);
+              }
+              ref.child('profile-in-waiting').child(theKeys[i]).remove();
+                //destroy profile in waiting for user.
+            }
+          }
+        });
+      });
+        // else continue blank
+    }
     function makeTeam(name,id){
       if(Auth.newTeam){
         console.log('MAKING A NEW TEAM');
