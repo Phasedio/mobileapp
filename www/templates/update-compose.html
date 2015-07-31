@@ -13,17 +13,13 @@
           <textarea id="photoHolder" ng-model="$parent.updateStatus" placeholder="What are you doing?" ></textarea>
         </label>
       </div>
-      <form>
-        <input type="file" name="file" ng-model="$parent.photo" id="photo">
-      </form>
 
   </ion-content>
-
-  <ion-footer-bar class="compose">
+  <div class="bar bar-footer compose">
     <button type="button" class="button button-light" ng-click="takePhoto()"><i id="ph" class="ph-icon icon-camera"></i></button>
-    <button type="button" class="button button-light" ng-click="getWeather()"><img src="img/weather.svg" height="35px" width="35px">{{weather}}</button>
+    <button type="button" class="button button-light" ng-click="getWeather()"><img src="{{weatherIcon}}" height="35px" width="35px">{{weather}}</button>
     <button type="button" class="button button-light" ng-click="getLocation()"><i id="loc" class="ph-icon icon-map"></i>&nbsp;{{city}}</button>
     <button type="submit" class="button button-light " style="float:right;" ng-click="submitStatus(updateStatus)"><i class="ph-icon icon-check"></i></button>
+  </div>
 
-  </ion-footer-bar>
 </ion-view>

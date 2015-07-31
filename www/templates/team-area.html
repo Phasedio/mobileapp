@@ -36,7 +36,7 @@
     </ion-header-bar>
     <ion-content class="team">
       <div class="list">
-        <a nav-direction="forward" on-tap="onTap(seeStatus(member.uid))" id="{{member.uid}}" on-swipe-left="nudge(member.uid)" ng-repeat="member in team | orderBy : 'time':true" style="{{member.photo}}" class="item item-thumbnail-left team-member">
+        <a nav-direction="forward" on-tap="onTap(seeStatus({{member}}))" id="{{member.uid}}" on-swipe-left="nudge(member.uid)" ng-repeat="member in team | orderBy : 'time':true" style="{{member.photo}}" class="item item-thumbnail-left team-member" ng-class="{photoAdded:member.photo}">
           <img src="{{member.gravatar}}">
           <h1>{{member.task}}</h1>
           <p am-time-ago="member.time"></p>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="41px" height="41px" viewBox="0 0 41 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>cloudy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="cloudy" sketch:type="MSArtboardGroup">
+            <g id="05" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
+                <rect id="Rectangle" sketch:type="MSShapeGroup" x="0" y="0" width="39" height="39"></rect>
+                <path d="M6.51445008,27.768 L6.51444444,27.768 C3.05223271,27.768 0.245555556,24.9613228 0.245555556,21.4991111 C0.245555556,18.0368994 3.05223271,15.2302222 6.51444444,15.2302222 C6.52405885,15.2302222 6.53366821,15.2302439 6.54327246,15.2302871 C6.97586238,8.55223132 12.2289813,3.588 19.0522222,3.588 C23.9013272,3.588 28.2556918,6.86794537 29.9472307,11.6821763 C30.1932679,11.6595592 30.4425063,11.648 30.6944444,11.648 C35.1458595,11.648 38.7544444,15.2565849 38.7544444,19.708 C38.7544444,23.8567092 35.6199556,27.2733192 31.59,27.7188082 L31.59,27.768" id="cloud" stroke="#777677" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <path d="M7.77111111,35.178 C5.20237337,35.178 3.12,33.0956266 3.12,30.5268889 C3.12,27.9581512 5.20237337,25.8757778 7.77111111,25.8757778 C7.77824438,25.8757778 7.7853739,25.8757938 7.79249964,25.8758259 C8.11345345,20.9211394 12.0109287,17.238 17.0733333,17.238 C20.6710564,17.238 23.901714,19.6715079 25.1567267,23.2433566 C25.3392704,23.2265762 25.5241892,23.218 25.7111111,23.218 C29.0137739,23.218 31.6911111,25.8953372 31.6911111,29.198 C31.6911111,32.2760745 29.3655226,34.8109788 26.3755556,35.1415029 L26.3755556,35.178 L7.77111663,35.178 Z" id="cloud-copy" stroke="#777677" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

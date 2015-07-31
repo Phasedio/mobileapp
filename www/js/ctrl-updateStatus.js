@@ -7,6 +7,7 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
   $scope.long = '';
   $scope.bgPhoto = '';
   $scope.photo ='';
+  $scope.weatherIcon = 'img/weather.svg';
 
 
 
@@ -47,7 +48,8 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
         console.log(location);
         $http.get('https://api.forecast.io/forecast/fa3fa1922cbe995e6a83904c27835e45/'+location.coords.latitude+','+location.coords.longitude+'').success(function(data){
           console.log(data);
-          $scope.weather = data.currently.summary;
+          $scope.weatherIcon = getWeatherIcon(data.currently.icon);
+          //$scope.weather = data.currently.summary;
         });
       });
     }
@@ -66,17 +68,8 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
        sourceType : Camera.PictureSourceType.CAMERA
      };
     navigator.camera.getPicture(function(imageURI) {
-
-      alert(imageURI);
-      //$scope.data.imageURI = data;
       $scope.bgPhoto = 'data:image/jpeg;base64,'+imageURI;
-      // var blob = dataURItoBlob(imageURI);
-
-      // $scope.photo = $scope.bgPhoto;
-      // alert($scope.photo);
       $scope.$apply();
-
-
       }, function(err) {
 
         // Ruh-roh, something bad happened
@@ -92,7 +85,7 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
     update = $scope.updateStatus;
     var team = Auth.team;
     var weather,city,lat,long,photo;
-    weather = $scope.weather != '' ? $scope.weather : 0;
+    weather = $scope.weatherIcon != '' ? $scope.weatherIcon : 0;
     city = $scope.city ? $scope.city : 0;
     lat = $scope.lat ? $scope.lat : 0;
     long = $scope.long ? $scope.long : 0;
@@ -113,9 +106,43 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
     var teamRef = new Firebase(FURL);
     console.log(status);
     teamRef.child('team').child(team).child('task').child(Auth.user.uid).set(status);
+    teamRef.child('team').child(team).child('all').push(status);
     console.log('status set');
     $scope.updateStatus = '';
     $state.go('teamArea');
+  }
+
+
+  function getWeatherIcon(icon){
+    var final;
+    switch (icon) {
+      case 'clear-day':
+      case 'clear-night':
+          final = 'img/sunny.svg'
+        break;
+      case 'rain':
+        final = 'img/rain.svg';
+        break;
+      case 'snow':
+      case 'sleet':
+          final = 'img/snow.svg';
+          break;
+      case 'wind':
+      case 'cloudy':
+            final = "img/cloudy.svg";
+            break;
+      case 'thunderstorm':
+      case 'tornado':
+              final = 'thunder.svg';
+              break;
+      case 'partly-cloudy-day':
+      case 'partly-cloudy-night':
+              final = 'img/partly-cloudy.svg';
+              break;
+      default:
+          final = 'img/partly-cloudy.svg';
+    }
+    return final;
   }
 
 });

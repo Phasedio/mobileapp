@@ -56,6 +56,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
           $state.go('teamArea');
 
         }
+
     };
 
     auth.$onAuth(function(authData) {
@@ -117,6 +118,9 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
       console.log(authData);
 
     });
+
+    
+
     function makeTeam(name,id){
       if(Auth.newTeam){
         console.log('MAKING A NEW TEAM');

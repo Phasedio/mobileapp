@@ -1,11 +1,20 @@
 .viewStat{
   .dp-user{
-    width: 5rem;
-    height: 5rem;
+    width: 8rem;
+    height: 8rem;
     margin: 0 auto;
     display: block;
+
+    border: 1px solid #fff;
+    border-radius: 100px;
   }
   h1,h2,h3,h4,h5,h6{
     color:#fff;
+  }
+  object{
+    path{
+      color:#fff!important;
+      background-color: #fff!important;
+    }
   }
 }

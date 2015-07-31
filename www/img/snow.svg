@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="41px" height="41px" viewBox="0 0 41 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>snow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="snow" sketch:type="MSArtboardGroup">
+            <g id="07" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
+                <rect id="Rectangle-1" sketch:type="MSShapeGroup" x="0" y="0" width="39" height="39"></rect>
+                <path d="M7.02,24.96 C3.57374316,24.96 0.78,22.1662568 0.78,18.72 C0.78,15.2737432 3.57374316,12.48 7.02,12.48 C7.02715214,12.48 7.03430147,12.480012 7.04144797,12.4800361 C7.41057461,5.79848397 12.4981278,0.78 18.72,0.78 C23.7009164,0.78 27.954871,3.99624309 29.6430173,8.70721416 C30.1451625,8.62344522 30.6651972,8.58 31.2,8.58 C35.3332121,8.58 39,12.2467879 39,17.16 C39,21.2932121 35.3332121,24.96 31.2,24.96 L7.02,24.96 Z" id="cloud" stroke="#777677" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                <g id="snow" transform="translate(5.460000, 23.400000)" fill="#777677" sketch:type="MSShapeGroup">
+                    <circle id="1" cx="2.34" cy="5.46" r="2.34"></circle>
+                    <circle id="2" cx="5.46" cy="13.26" r="2.34"></circle>
+                    <circle id="3" cx="11.7" cy="7.8" r="2.34"></circle>
+                    <circle id="4" cx="17.94" cy="2.34" r="2.34"></circle>
+                    <circle id="5" cx="20.28" cy="10.92" r="2.34"></circle>
+                    <circle id="6" cx="26.52" cy="5.46" r="2.34"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

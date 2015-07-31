@@ -1,7 +1,7 @@
 app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams) {
   $scope.team = Auth.team;
 
-  var member = $stateParams.uid;
+  var member = angular.fromJson($stateParams.uid);
   console.log(member);
   var statusRef = new Firebase(FURL);
   var statusInfo = {};
@@ -15,28 +15,35 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams) 
     '#4CAF50',
     '#8BC34A'
   ];
-  $scope.bgColor = colors[4];
 
 
-  statusRef.child('team').child(Auth.team).child('task').child(member).on('value',function(data){
-    data = data.val();
+
+
+    data = member;
     statusInfo.city = data.city ? data.city : '';
     statusInfo.location = data.location ? data.location : '';
-    statusInfo.task = data.name ? data.name :'';
+    statusInfo.task = data.task ? data.task :'';
     statusInfo.time = data.time ? data.time : '';
     statusInfo.weather = data.weather ? data.weather : '';
-    console.log(statusInfo);
-    statusRef.child('profile').child(member).on('value',function(data){
-      data = data.val();
-      statusInfo.name = data.name;
-      statusInfo.gravatar = data.gravatar;
-      console.log(statusInfo);
-      $scope.statusInfo = statusInfo;
-    });
-  });
+    statusInfo.name = data.name;
+    statusInfo.gravatar = data.gravatar;
+    $scope.statusInfo = statusInfo;
+
+    if(data.photo){
+      $scope.bgColor = data.photo;
+      $scope.filter = "background:rgba(0,0,0,0.5)";
+    }else{
+      $scope.bgColor = "background:" + colors[4];
+      $scope.filter = ''
+    }
+
+    //weather
+
 
   $scope.goBack = function(){
     $state.go('teamArea');
   }
+
+  
 
 });

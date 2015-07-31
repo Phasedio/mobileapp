@@ -15,7 +15,8 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
      $state.go('updateStatus');
    }
    $scope.seeStatus = function(id){
-     console.log(Auth.user);
+     console.log(id);
+     id = angular.toJson(id);
      if(id == Auth.user.uid){
        //show users own profile!
        $state.go('viewStatus',{uid:id});
@@ -82,12 +83,27 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
                var pic,style;
                if(users[memberID].photo){
                 style = "background:url("+users[memberID].photo+") no-repeat center center fixed; -webkit-background-size: cover;-moz-background-size: cover; -o-background-size: cover; background-size: cover";
-               }
+              }else{
+                var colors = [
+                  '#0288D1',
+                  '#03A9F4',
+                  '#E040FB',
+                  '#673AB7',
+                  '#009688',
+                  '#388E3C',
+                  '#4CAF50',
+                  '#8BC34A'
+                ];
+                var rand = colors[Math.floor(Math.random() * colors.length)];
+                style = "background:"+rand;
+              }
                var teamMember = {
                    name : p.name,
                    gravatar : p.gravatar,
                    task : users[memberID].name,
                    time : users[memberID].time,
+                   weather:users[memberID].weather,
+                   city:users[memberID].city,
                    uid : memberID,
                    photo:style
                };
@@ -96,13 +112,6 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
            });
    }
 
-
-   // Amazon stuff
-   $scope.creds          = {
-       access_key: 'AKIAILCKFOBMOM3QQGSQ',
-       secret_key: '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',
-       bucket : 'phasedstorage'
-   };
 
    function getPhoto(file){
      AWS.config.update({ accessKeyId: $scope.creds.access_key, secretAccessKey: $scope.creds.secret_key });

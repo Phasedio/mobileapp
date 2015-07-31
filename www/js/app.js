@@ -51,6 +51,11 @@ app.factory('Cameraz', ['$q', function($q) {
 
 app.run(function($ionicPlatform) {
 
+  $ionicPlatform.ready(function() {
+
+    initPushwoosh();
+
+    });
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -131,6 +136,15 @@ app.run(function($ionicPlatform) {
       }
     }
   })
+  .state('splash', {
+    url: '/splash',
+    views: {
+      'phased': {
+        templateUrl: 'templates/splash.html',
+        controller: 'LoginTeamNameCtrl'
+      }
+    }
+  })
   .state('loginUserDetails', {
     url: '/loginUserDetails',
     views: {
@@ -206,6 +220,6 @@ app.run(function($ionicPlatform) {
   ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('loginUserDetails');
+  $urlRouterProvider.otherwise('splash');
 
 });

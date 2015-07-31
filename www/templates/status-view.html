@@ -1,34 +1,37 @@
 <ion-view view-title="update status" hide-nav-bar="true">
 
-  <ion-content class="viewStat" style="background-color:{{bgColor}}">
-    <div class="row">
-      <div class="col">
-        <button class="button bar-none" ng-click="goBack()" nav-direction="back" style="color:#fff;"><i class="icon-back"></i></button>
+  <ion-content class="viewStat" style="{{bgColor}}">
+    <div style="width:100%; height:100vh; {{filter}}" >
+      <div class="row">
+        <div class="col">
+          <button class="button bar-none" ng-click="goBack()" nav-direction="back" style="background-color:transparent;"><i class="icon-back" style="color:#fff;"></i></button>
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
       </div>
-      <div class="col">
+      <div class="row">
+        <div class="col">
+          <div class="dp-user" style="background:url('{{statusInfo.gravatar}}');   background-size: cover; "></div>
+        </div>
       </div>
-      <div class="col">
+      <div class="row">
+        <div class="col">
+          <h1 align="center">{{statusInfo.name}}</h1>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="dp-user" style="background:url('{{statusInfo.gravatar}}') "></div>
+      <div class="row">
+        <div class="col">
+          <h3 align="center">{{statusInfo.task}}</h3>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h1 align="center">{{statusInfo.name}}</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h3 align="center">{{statusInfo.task}}</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h3 align="center">{{statusInfo.weather}}</h3>
-        <h3 align="center">{{statusInfo.city}}</h3>
+      <div class="row">
+        <div class="col">
+          <img src='{{statusInfo.weather}}'>
+          <object type="image/svg+xml" data="{{statusInfo.weather}}" class="logo" color="#fff" width="150px" height="150px"></object>
+          <h3 align="center">{{statusInfo.city}}</h3>
+        </div>
       </div>
     </div>
   </ion-content>

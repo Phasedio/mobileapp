@@ -9485,6 +9485,15 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   background-color: transparent; }
 
+.photoAdded {
+  color: #fff !important; }
+  .photoAdded h1, .photoAdded h2, .photoAdded h3, .photoAdded h4, .photoAdded h5, .photoAdded h6, .photoAdded i, .photoAdded button {
+    color: #fff !important; }
+  .photoAdded button i {
+    color: #fff !important; }
+  .photoAdded p {
+    color: #eee; }
+
 .login {
   background: #187e83; }
   .login h1, .login h2, .login h3, .login h4, .login h5, .login h6 {
@@ -9522,6 +9531,13 @@ h1, h2, h3, h4, h5, h6 {
   border: none; }
 .compose .ph-icon {
   font-size: 35px; }
+
+.bar-footer.compose {
+  background: transparent;
+  border-top: none; }
+  .bar-footer.compose button {
+    background: transparent;
+    border: transparent; }
 
 .team .more-margin {
   margin-bottom: 6rem; }
@@ -9578,9 +9594,14 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5); }
 
 .viewStat .dp-user {
-  width: 5rem;
-  height: 5rem;
+  width: 8rem;
+  height: 8rem;
   margin: 0 auto;
-  display: block; }
+  display: block;
+  border: 1px solid #fff;
+  border-radius: 100px; }
 .viewStat h1, .viewStat h2, .viewStat h3, .viewStat h4, .viewStat h5, .viewStat h6 {
   color: #fff; }
+.viewStat object path {
+  color: #fff !important;
+  background-color: #fff !important; }
