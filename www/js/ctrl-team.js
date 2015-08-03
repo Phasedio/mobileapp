@@ -62,7 +62,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
      new Firebase(FURL + 'team/' + Auth.team + '/task').on('value', function(users) {
        $scope.team = [];
        users = users.val();
-       console.log(users);
+       //console.log(users);
        if(users){
          var teamUID = Object.keys(users);
 
@@ -77,9 +77,9 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
      //console.log(users);
        var userrefs = new Firebase(FURL + 'profile/' + memberID);
        userrefs.once("value", function(data) {
-               console.log(memberID);
+               //console.log(memberID);
                var p = data.val();
-               console.log(p);
+               //console.log(p);
                var pic,style;
                if(users[memberID].photo){
                 style = "background:url("+users[memberID].photo+") no-repeat center center fixed; -webkit-background-size: cover;-moz-background-size: cover; -o-background-size: cover; background-size: cover";

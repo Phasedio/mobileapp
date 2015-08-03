@@ -1,5 +1,61 @@
 app.controller('memberAddCtrl', function($scope,Auth,$state,FURL) {
+  console.log(Auth.user);
+  var user;
+
+
+
   var ref = new Firebase(FURL);
+  ref.child('profile').child(Auth.user.uid).once('value',function(data){
+    user = data.val();
+  });
+
+  var msg = {
+    "template_name" : 'invite',
+    "template_content": [
+
+        {
+          "name":'team_name',
+          "content":Auth.team
+        },
+        {
+          "name":'inviter_name',
+          "content":user.name
+        },
+        {
+          "name":'inviter_email',
+          "content":user.email
+        }
+
+    ],
+    "message" : {
+      "from_email" : 'brian@phased.io',
+      "from_name" : "Brian",
+      'subject' : user.name+" has invited you to " + Auth.team,
+      'global_merge_vars' : [
+        {
+          "name":'team_name',
+          "content":Auth.team
+        },
+        {
+          "name":'inviter_name',
+          "content":user.name
+        },
+        {
+          "name":'inviter_email',
+          "content":user.email
+        }
+      ],
+      'to' : [
+        {
+          'email' : names.email
+        }
+      ]
+    }
+  };
+
+  console.log(user);
+
+
   $scope.addMembers = function(names){
     // grab all users and see if they match an email in the system
     console.log('test');
@@ -37,7 +93,7 @@ app.controller('memberAddCtrl', function($scope,Auth,$state,FURL) {
               var userTeams = Object.keys(data[selectedUID[y]].teams);
               var profileOfUser = data[selectedUID[y]];
               var change = false;
-              
+
               for(var u = 0; u < userTeams.length; u++){
                 if(profileOfUser.teams[userTeams[u]] == Auth.team){
                   break;
@@ -49,19 +105,42 @@ app.controller('memberAddCtrl', function($scope,Auth,$state,FURL) {
               if(change){
                 //push new team to member
                 ref.child('profile-in-waiting').child(selectedUID[y]).child('teams').push(Auth.team);
+                sendTheMail(msg);
                 break;
               }
-
-
             }
           }
           if(!thisSet){
             ref.child('profile-in-waiting').push({teams : { 0 : Auth.team},email : names.email});
+
+
+            sendTheMail(msg);
           }
-          });
-        }
         });
-
       }
-
     });
+
+  }
+
+
+  //Send Mandrill Email
+
+    // Create a function to log the response from the Mandrill API
+    function sendTheMail(p) {
+            var m = new mandrill.Mandrill('B0N7XKd4RDy6Q7nWP2eFAA');
+            // Send the email!
+            console.log('Sending mails');
+            m.messages.sendTemplate(p, function(res) {
+                log(res);
+            }, function(err) {
+                log(err);
+            });
+        };
+    //Mandrill responce handler
+    function log(obj) {
+        console.log('Handling response');
+        console.log(obj);
+        //$('#response').text(JSON.stringify(obj));
+    };
+
+});
