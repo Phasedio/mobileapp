@@ -1,4 +1,4 @@
-app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
+app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform) {
   $scope.team = [];
   $scope.teamName = Auth.team;
   $scope.teamsAvail = Auth.memberOf;
@@ -6,6 +6,11 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
     $scope.team = [];
     checkStatus();
   });
+
+  if(!Auth.isReg){
+    Auth.regUsers();
+    Auth.isReg = 1;
+  }
   var ref = new Firebase(FURL);
 
    checkStatus();
@@ -127,6 +132,9 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL) {
        }
      })
    }
+
+
+
 
 });
 

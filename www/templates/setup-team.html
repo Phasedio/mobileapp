@@ -1,34 +1,38 @@
 <ion-view view-title="LoginTeamName" hide-nav-bar="true">
-  <ion-content class="padding">
+  <ion-content class="padding login">
     <div class="row">
-      <div class="ph-logo">
+      <div class="col">
+        <img src="img/phased-logo.svg" height="150px" width="150px" style="display:block;margin:0 auto;">
       </div>
     </div>
     <div class="row">
-      <div class="col-100">
+      <div class="col">
         <h1 align="center">Phased.io</h1>
         <h2 align="center">Enter your team's name</h2>
       </div>
     </div>
-
-      <form ng-submit="enterTeam(team)" novalidate="">
-        <div class="list">
-          <label class="item item-input">
-            <input type="text" ng-model="team.name" placeholder="team name">
-          </label>
-        </div>
-        <input type="submit" class="button button-block button-royal">
-      </form>
+    <div class="row">
+      <div class="col">
+        <form ng-submit="enterTeam(team)" novalidate="">
+          <div class="list">
+            <label class="item item-input">
+              <input type="text" ng-model="team.name" placeholder="team name">
+            </label>
+          </div>
+          <input type="submit" class="button button-block button-royal">
+        </form>
+      </div>
+    </div>
 
     <div class="row">
-      <div class="col-100">
+      <div class="col">
         <h2 align="center">Trying to login to a team?</h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-100">
+      <div class="col">
         <h2 align="center"><a href="" ng-click="loginTeam()"><strong>Login Here</strong></a></h2>
-      <div class="col-100">
+      <div class="col">
     </div>
   </ion-content>
 </ion-view>

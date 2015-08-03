@@ -58,6 +58,16 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
           makeTeam(name,uid);
           $state.go('teamArea');
 
+        },
+        isReg : 0,
+        regUsers : function(){
+          $ionicUser.identify({
+           user_id: Auth.user.uid,
+           name: Auth.user.uid+"-user"
+         }).then(function(){
+           regUser();
+         })
+
         }
 
     };
@@ -89,11 +99,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
 
            }
 
-           $ionicUser.identify({
-            user_id: authData.uid,
-            name: data.name
-          });
-          regUser();
+
           //if no curTeam existes pop user to default picker
           if(!data.curTeam){
             // go to default picker
@@ -177,20 +183,25 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
 
     }
 
-    function regUser(){
-      $ionicPlatform.ready(function() {
+
+   function regUser(){
+     console.log('Ionic Push: Registering user');
+
+      // Register with the Ionic Push service.  All parameters are optional.
       $ionicPush.register({
-          canShowAlert: false, //Should new pushes show an alert on your screen?
-          canSetBadge: true, //Should new pushes be allowed to update app icon badges?
-          canPlaySound: false, //Should notifications be allowed to play a sound?
-          canRunActionsOnWake: true, // Whether to run auto actions outside the app,
-          onNotification: function(notification) {
-            // Called for each notification.
-            return true;
-          }
-        });
+        canShowAlert: true, //Can pushes show an alert on your screen?
+        canSetBadge: true, //Can pushes update app icon badges?
+        canPlaySound: true, //Can notifications play a sound?
+        canRunActionsOnWake: true, //Can run actions outside the app,
+        onNotification: function(notification) {
+          // Handle new push notifications here
+          console.log(notification);
+          return true;
+        }
       });
-    }
+   }
+
+
     function get_gravatar(email, size) {
         email = email.toLowerCase();
 
