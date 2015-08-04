@@ -1,0 +1,32 @@
+<ion-view view-title="update status" hide-nav-bar="true">
+  <ion-header-bar align-title="center" class="bar-phased compose">
+    <div class="buttons">
+      <button class="button" ng-click="goBack()" nav-direction="back"><i class="icon-back" style="color:#fff;"></i></button>
+    </div>
+    <h1 class="title" >Profile</h1>
+
+  </ion-header-bar>
+  <ion-content>
+
+      <div class="list">
+        <label class="item item-input">
+          <p>Name : {{user.name}}<p>
+        </label>
+        <label class="item item-input">
+          <p>Email : {{user.email}}<p>
+        </label>
+      </div>
+      <!-- <div class="list">
+        <a nav-direction="forward" on-tap="onTap(seeStatus({{member}}))" id="{{member.uid}}" ng-repeat="member in team | orderBy : 'time':true" style="{{member.photo}}" class="item item-thumbnail-left team-member" ng-class="{photoAdded:member.photo}">
+          <img src="{{member.gravatar}}">
+          <h1>{{member.task}}</h1>
+          <p am-time-ago="member.time"></p>
+          <div id="{{member.uid}}-nudge" class="nudge nudgeHidden">
+            <h2>Nudge sent to {{member.name}}</h2>
+          </div>
+        </a>
+      </div> -->
+
+  </ion-content>
+
+</ion-view>

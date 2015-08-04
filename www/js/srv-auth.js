@@ -114,7 +114,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
             if(thePlace == 'teamArea' || thePlace == 'updateStatus'){
 
             }else{
-              $state.go('updateStatus');
+              $state.go('teamArea');
             }
           }
 

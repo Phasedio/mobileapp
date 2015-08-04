@@ -1,6 +1,9 @@
 
 
-app.controller('LoginUserDetailsCtrl', function($scope,Auth,$state) {
+app.controller('LoginUserDetailsCtrl', function($scope,Auth,$state,$cordovaStatusbar) {
+  $cordovaStatusbar.overlaysWebView(true)
+
+  $cordovaStatusBar.style(1);
 
   var oriPerson = angular.copy($scope.user);
 

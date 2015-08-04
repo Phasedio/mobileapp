@@ -9467,7 +9467,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .bar-phased {
   background-color: #187e83;
-  border-color: #187e83; }
+  border-color: #187e83;
+  border-bottom: 1px solid #187e83;
+  background-image: none !important; }
   .bar-phased h1, .bar-phased h2, .bar-phased h3, .bar-phased h4, .bar-phased h5, .bar-phased h6 {
     color: #fff; }
   .bar-phased .button {

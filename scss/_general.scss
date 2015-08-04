@@ -93,6 +93,8 @@ h1,h2,h3,h4,h5,h6{
 .bar-phased{
   background-color: $background;
   border-color: $background;
+  border-bottom:1px solid $background;
+  background-image: none !important;
   h1,h2,h3,h4,h5,h6{
     color:#fff;
   }
@@ -102,6 +104,10 @@ h1,h2,h3,h4,h5,h6{
     color:#fff;
   }
 }
+// .menu{
+//   background-color: $background;
+//   border-color: $background;
+// }
 .active{
   color:$green !important;
 }

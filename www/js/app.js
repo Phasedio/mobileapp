@@ -31,6 +31,7 @@ app.config(function($compileProvider){
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 });
 
+
 app.factory('Cameraz', ['$q', function($q) {
 
   return {
@@ -214,6 +215,15 @@ app.run(function($ionicPlatform) {
       'phased': {
         templateUrl: 'templates/member-add.html',
         controller: 'memberAddCtrl'
+      }
+    }
+  })
+  .state('profileMain', {
+    url: '/profileMain',
+    views: {
+      'phased': {
+        templateUrl: 'templates/profile-main.html',
+        controller: 'ProfileMainCtrl'
       }
     }
   })

@@ -19,6 +19,9 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
    $scope.compose = function(){
      $state.go('updateStatus');
    }
+   $scope.viewProfile = function(){
+     $state.go('profileMain');
+   }
    $scope.seeStatus = function(id){
      console.log(id);
      id = angular.toJson(id);
