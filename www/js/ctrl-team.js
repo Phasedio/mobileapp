@@ -62,6 +62,17 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
 
    }
 
+   $scope.setColor = function(time){
+     var curTime = new Date();
+     var difTime = curTime - time;
+     if(difTime < 14400000){
+       return 'greenClock'
+     }else if(difTime > 14400000 && difTime < 43200000){
+       return 'yellowClock'
+     }else{
+       return 'redClock'
+     }
+   }
    $scope.addMember = function(){
      $state.go('memberAdd');
    }
@@ -92,18 +103,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
                if(users[memberID].photo){
                 style = "background:url("+users[memberID].photo+") no-repeat center center fixed; -webkit-background-size: cover;-moz-background-size: cover; -o-background-size: cover; background-size: cover";
               }else{
-                var colors = [
-                  '#0288D1',
-                  '#03A9F4',
-                  '#E040FB',
-                  '#673AB7',
-                  '#009688',
-                  '#388E3C',
-                  '#4CAF50',
-                  '#8BC34A'
-                ];
-                var rand = colors[Math.floor(Math.random() * colors.length)];
-                style = "background:"+rand;
+                style = false;
               }
                var teamMember = {
                    name : p.name,

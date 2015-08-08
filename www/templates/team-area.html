@@ -36,17 +36,31 @@
     </ion-header-bar>
     <ion-content class="team">
       <div class="list">
-        <a nav-direction="forward" on-tap="onTap(seeStatus({{member}}))" id="{{member.uid}}" on-swipe-left="nudge(member.uid)" ng-repeat="member in team | orderBy : 'time':true" style="{{member.photo}}" class="item item-thumbnail-left team-member" ng-class="{photoAdded:member.photo}">
-          <img src="{{member.gravatar}}">
-          <h1>{{member.task}}</h1>
-          <p am-time-ago="member.time"></p>
+        <a nav-direction="forward" on-tap="onTap(seeStatus({{member}}))" id="{{member.uid}}" on-swipe-left="nudge(member.uid)" ng-repeat="member in team | orderBy : 'time':true"  class="item team-member">
+          <div class="row">
+            <div class="col">
+              <img src="{{member.gravatar}}">
+            </div>
+            <div class="col-67 statusArea">
+              <h2>{{member.name}}</h2>
+              <p>{{member.task}}</p>
+              <p><span class="ph-icon icon-camera" ng-show="member.photo"></span></p>
+            </div>
+            <div class="col timeArea">
+              <span class="ion-ios-clock-outline" ng-class="setColor(member.time)"></span>
+              <p class="wrap" am-time-ago="member.time"></p>
+            </div>
+          </div>
+
+
+
           <div id="{{member.uid}}-nudge" class="nudge nudgeHidden">
             <h2>Nudge sent to {{member.name}}</h2>
           </div>
         </a>
         <a class="item more-margin" href="" ng-click="addMember()">
 
-          <h2>Add Member</h2>
+          <h2 align="center">Add member</h2>
 
         </a>
       </div>
