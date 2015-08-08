@@ -1,4 +1,4 @@
-<ion-view view-title="update status" hide-nav-bar="true">
+<ion-view view-title="update status team" hide-nav-bar="true">
   <ion-header-bar align-title="center" class="bar-phased compose">
     <div class="buttons">
       <button class="button" ng-click="goBack()" nav-direction="back"><i class="icon-back" style="color:#fff;"></i></button>
@@ -7,26 +7,42 @@
 
   </ion-header-bar>
   <ion-content>
-
-      <div class="list">
-        <label class="item item-input">
-          <p>Name : {{user.name}}<p>
-        </label>
-        <label class="item item-input">
-          <p>Email : {{user.email}}<p>
-        </label>
+    <div class="row status">
+      <div class="col  viewStat">
+        <div class="dp-user" style="background:url('{{user.gravatar}}');   background-size: cover; "></div>
       </div>
-      <!-- <div class="list">
-        <a nav-direction="forward" on-tap="onTap(seeStatus({{member}}))" id="{{member.uid}}" ng-repeat="member in team | orderBy : 'time':true" style="{{member.photo}}" class="item item-thumbnail-left team-member" ng-class="{photoAdded:member.photo}">
-          <img src="{{member.gravatar}}">
-          <h1>{{member.task}}</h1>
+    </div>
+      <div class="list">
+        <a nav-direction="forward"  id="{{member.uid}}" ng-repeat="member in updates | orderBy : 'time':true" style="{{member.photo}}" class="item item-thumbnail-left team-member" ng-class="{photoAdded:member.photo}">
+          <h1>{{member.name}}</h1>
           <p am-time-ago="member.time"></p>
-          <div id="{{member.uid}}-nudge" class="nudge nudgeHidden">
-            <h2>Nudge sent to {{member.name}}</h2>
-          </div>
         </a>
-      </div> -->
+      </div>
+      <ul class="list">
+        <li class="item">
+          Most active day {{stats.bestDay}}
+        </li>
+        <li class="item">
+          City you post from the most {{stats.city}}
+        </li>
+      </ul>
 
   </ion-content>
+  <ion-footer>
+    <div class="tabs tabs-icon-left">
+      <a class="tab-item active">
+        <i class="icon ion-edit"></i>
+        Posts
+      </a>
+      <a class="tab-item" ng-click="makeStats()">
+        <i class="icon ion-ios-pulse"></i>
+        Stats
+      </a>
+      <a class="tab-item">
+        <i class="icon ion-gear-a"></i>
+        Settings
+      </a>
+    </div>
+  </ion-footer>
 
 </ion-view>
