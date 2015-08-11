@@ -25,9 +25,12 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams) 
     statusInfo.task = data.task ? data.task :'';
     statusInfo.time = data.time ? data.time : '';
     statusInfo.weather = data.weather ? data.weather : '';
+    statusInfo.gravatar = data.gravatar + '&s=120';
     statusInfo.name = data.name;
-    statusInfo.gravatar = data.gravatar;
+
     $scope.statusInfo = statusInfo;
+
+
 
     if(data.photo){
       $scope.bgColor = data.photo;
@@ -44,6 +47,12 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams) 
     $state.go('teamArea');
   }
 
-  
+  $scope.getBetterImage = function(email){
+
+    $scope.statusInfo.gravatar = Auth.biggerAvatar(email,100);
+    console.log($scope.statusInfo.gravatar);
+  }
+
+
 
 });

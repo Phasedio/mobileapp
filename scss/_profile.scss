@@ -1,0 +1,15 @@
+.profile{
+  background-color: $background;
+  h2{
+    font-family: $regFont;
+    color:#fff;
+  }
+  .dp-user{
+    width: 100px;
+    height:100px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 100px;
+    border: 1px solid #fff;
+  }
+}

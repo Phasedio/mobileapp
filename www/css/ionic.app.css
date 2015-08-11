@@ -9459,6 +9459,9 @@ body {
 .wrap {
   overflow: auto; }
 
+.tabs-nonstick {
+  position: relative !important; }
+
 h1, h2, h3, h4, h5, h6 {
   font-family: AvenirNext-Bold; }
 
@@ -9646,3 +9649,16 @@ h1, h2, h3, h4, h5, h6 {
 .viewStat object path {
   color: #fff !important;
   background-color: #fff !important; }
+
+.profile {
+  background-color: #187e83; }
+  .profile h2 {
+    font-family: AvenirNext-Regular;
+    color: #fff; }
+  .profile .dp-user {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 100px;
+    border: 1px solid #fff; }

@@ -1,4 +1,4 @@
-<ion-view view-title="update status team" hide-nav-bar="true">
+<ion-view view-title="update profile team " hide-nav-bar="true">
   <ion-header-bar align-title="center" class="bar-phased compose">
     <div class="buttons">
       <button class="button" ng-click="goBack()" nav-direction="back"><i class="icon-back" style="color:#fff;"></i></button>
@@ -6,31 +6,15 @@
     <h1 class="title" >Profile</h1>
 
   </ion-header-bar>
-  <ion-content>
-    <div class="row status">
-      <div class="col  viewStat">
+  <ion-content class="profile">
+    <div class="row">
+      <div class="col">
         <div class="dp-user" style="background:url('{{user.gravatar}}');   background-size: cover; "></div>
+        <h2 align="center">{{user.name}}</h2>
       </div>
     </div>
-      <div class="list">
-        <a nav-direction="forward"  id="{{member.uid}}" ng-repeat="member in updates | orderBy : 'time':true" style="{{member.photo}}" class="item item-thumbnail-left team-member" ng-class="{photoAdded:member.photo}">
-          <h1>{{member.name}}</h1>
-          <p am-time-ago="member.time"></p>
-        </a>
-      </div>
-      <ul class="list">
-        <li class="item">
-          Most active day {{stats.bestDay}}
-        </li>
-        <li class="item">
-          City you post from the most {{stats.city}}
-        </li>
-      </ul>
-
-  </ion-content>
-  <ion-footer>
-    <div class="tabs tabs-icon-left">
-      <a class="tab-item active">
+    <div class="tabs tabs-icon-left tabs-nonstick">
+      <a class="tab-item active" ng-click="showPosts()">
         <i class="icon ion-edit"></i>
         Posts
       </a>
@@ -43,6 +27,26 @@
         Settings
       </a>
     </div>
-  </ion-footer>
+      <div class="list team" ng-hide="view != 'posts'">
+        <a nav-direction="forward"  id="{{member.uid}}" ng-repeat="member in updates | orderBy : 'time':true"  class="item item-thumbnail-left team-member" >
+          <div class="row">
+            <div class="col">
+              <h2>{{member.name}}</h2>
+              <p>{{member.time | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</p>
+              <p><span class="ph-icon icon-camera" ng-show="member.photo"></span></p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <ul class="list" ng-hide="view != 'stats'">
+        <li class="item">
+          Most active day {{stats.bestDay}}
+        </li>
+        <li class="item">
+          City you post from the most {{stats.city}}
+        </li>
+      </ul>
+
+  </ion-content>
 
 </ion-view>

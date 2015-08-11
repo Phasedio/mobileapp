@@ -3,6 +3,7 @@ app.controller('ProfileMainCtrl', function($scope,Auth,$state,FURL) {
   $scope.user = {};
   $scope.updates = [];
   $scope.stats = {};
+  $scope.view ="posts";
   var ref = new Firebase(FURL);
 
   ref.child('profile').child(Auth.user.uid).once('value',function(data){
@@ -27,7 +28,12 @@ app.controller('ProfileMainCtrl', function($scope,Auth,$state,FURL) {
     $scope.$apply();
   });
 
+  $scope.showPosts = function(){
+    $scope.view ="posts";
+  }
+
   $scope.makeStats = function(){
+    $scope.view ="stats";
     var updates = $scope.updates;
     var city = {};
     var activeDay = [0,0,0,0,0,0,0];

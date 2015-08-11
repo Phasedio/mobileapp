@@ -68,6 +68,10 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
            regUser();
          })
 
+       },
+        biggerAvatar : function(email,size){
+          console.log('making a bigger one');
+          return get_gravatar(email, size);
         }
 
     };
