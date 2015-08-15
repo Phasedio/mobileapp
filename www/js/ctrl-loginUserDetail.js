@@ -13,6 +13,8 @@ app.controller('LoginUserDetailsCtrl', function($scope,Auth,$state,$cordovaStatu
       $scope.userForm.$setPristine();
                 console.log('login done');
                 $state.go('updateStatus');
+            }, function(err){
+              alert('incorrect username/password');
             });
   }
   $scope.makeAccount = function(){

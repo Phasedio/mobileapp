@@ -2,56 +2,57 @@ app.controller('memberAddCtrl', function($scope,Auth,$state,FURL) {
   console.log(Auth.user);
   var user;
 
-
+var msg = {}
 
   var ref = new Firebase(FURL);
   ref.child('profile').child(Auth.user.uid).once('value',function(data){
     user = data.val();
+    msg = {
+      "template_name" : 'invite',
+      "template_content": [
+
+          {
+            "name":'team_name',
+            "content":Auth.team
+          },
+          {
+            "name":'inviter_name',
+            "content":user.name
+          },
+          {
+            "name":'inviter_email',
+            "content":user.email
+          }
+
+      ],
+      "message" : {
+        "from_email" : 'brian@phased.io',
+        "from_name" : "Brian",
+        'subject' : user.name+" has invited you to " + Auth.team,
+        'global_merge_vars' : [
+          {
+            "name":'team_name',
+            "content":Auth.team
+          },
+          {
+            "name":'inviter_name',
+            "content":user.name
+          },
+          {
+            "name":'inviter_email',
+            "content":user.email
+          }
+        ],
+        'to' : [
+          {
+            'email' : names.email
+          }
+        ]
+      }
+    };
   });
 
-  var msg = {
-    "template_name" : 'invite',
-    "template_content": [
 
-        {
-          "name":'team_name',
-          "content":Auth.team
-        },
-        {
-          "name":'inviter_name',
-          "content":user.name
-        },
-        {
-          "name":'inviter_email',
-          "content":user.email
-        }
-
-    ],
-    "message" : {
-      "from_email" : 'brian@phased.io',
-      "from_name" : "Brian",
-      'subject' : user.name+" has invited you to " + Auth.team,
-      'global_merge_vars' : [
-        {
-          "name":'team_name',
-          "content":Auth.team
-        },
-        {
-          "name":'inviter_name',
-          "content":user.name
-        },
-        {
-          "name":'inviter_email',
-          "content":user.email
-        }
-      ],
-      'to' : [
-        {
-          'email' : names.email
-        }
-      ]
-    }
-  };
 
   console.log(user);
 

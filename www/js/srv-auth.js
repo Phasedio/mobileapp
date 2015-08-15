@@ -1,4 +1,4 @@
-app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform) {
+app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform,$rootScope) {
 
   //$ionicAppProvider.identify();
   var ref = new Firebase(FURL);
@@ -86,6 +86,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
          // If not save nothing
          ref.child('profile').child(authData.uid).once('value',function(data){
            data = data.val();
+
            console.log(data);
            // Check permitted teams
            // Does the user account have any teams in the 'teams' area of their profile?
@@ -160,6 +161,36 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
       });
         // else continue blank
     }
+    // $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
+    //   alert("Successfully registered token " + data.token);
+    //   console.log('Ionic Push: Got token ', data.token, data.platform);
+    //   $scope.token = data.token;
+    //   //save device token to FB
+    //   ref.child('profile').child(Auth.user.uid).child('token').set(data.token);
+    //
+    //
+    // });
+
+    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+      if (notification.alert) {
+        navigator.notification.alert(notification.alert);
+      }
+
+      if (notification.sound) {
+        var snd = new Media(event.sound);
+        snd.play();
+      }
+
+      if (notification.badge) {
+        $cordovaPush.setBadgeNumber(notification.badge).then(function(result) {
+          // Success!
+        }, function(err) {
+          // An error occurred. Show a message to the user
+        });
+      }
+    });
+
+
     function makeTeam(name,id){
       if(Auth.newTeam){
         console.log('MAKING A NEW TEAM');
@@ -192,17 +223,17 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
      console.log('Ionic Push: Registering user');
 
       // Register with the Ionic Push service.  All parameters are optional.
-      $ionicPush.register({
-        canShowAlert: true, //Can pushes show an alert on your screen?
-        canSetBadge: true, //Can pushes update app icon badges?
-        canPlaySound: true, //Can notifications play a sound?
-        canRunActionsOnWake: true, //Can run actions outside the app,
-        onNotification: function(notification) {
-          // Handle new push notifications here
-          console.log(notification);
-          return true;
-        }
-      });
+      // $ionicPush.register({
+      //   canShowAlert: true, //Can pushes show an alert on your screen?
+      //   canSetBadge: true, //Can pushes update app icon badges?
+      //   canPlaySound: true, //Can notifications play a sound?
+      //   canRunActionsOnWake: true, //Can run actions outside the app,
+      //   onNotification: function(notification) {
+      //     // Handle new push notifications here
+      //     console.log(notification);
+      //     return true;
+      //   }
+      // });
    }
 
 

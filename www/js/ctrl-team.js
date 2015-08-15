@@ -1,4 +1,4 @@
-app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform) {
+app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform,$rootScope,$http,$cordovaPush) {
   $scope.team = [];
   $scope.teamName = Auth.team;
   $scope.teamsAvail = Auth.memberOf;
@@ -7,15 +7,33 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
     checkStatus();
   });
 
-  if(!Auth.isReg){
-    Auth.regUsers();
-    Auth.isReg = 1;
-  }
+  // if(!Auth.isReg){
+  //   Auth.regUsers();
+  //   Auth.isReg = 1;
+  // }
+
+  var iosConfig = {
+  "badge": true,
+  "sound": true,
+  "alert": true,
+  };
+  document.addEventListener("deviceready", function(){
+      $cordovaPush.register(iosConfig).then(function(deviceToken) {
+        // Success -- send deviceToken to server, and store for future use
+        alert("deviceToken: " + deviceToken);
+        ref.child('profile').child(Auth.user.uid).child('token').set(deviceToken);
+      });
+
+  });
+
+
   var ref = new Firebase(FURL);
 
    checkStatus();
    moment().format();
-
+   $scope.newTeam = function(){
+     $state.go('setupTeam');
+   }
    $scope.compose = function(){
      $state.go('updateStatus');
    }
@@ -52,6 +70,15 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
      })
    }
    $scope.nudge = function(id){
+     ref.child('profile').child(id).on('value', function(data){
+       data = data.val();
+       if(data.token){
+         $http.get('http://45.55.200.34:8080/hello/'+data.token,'').success(function(data){
+           alert(data);
+         });
+       }
+     })
+
      id = id +'-nudge';
      document.getElementById(id).className =
        document.getElementById(id).className.replace( /(?:^|\s)nudgeHidden(?!\S)/g , '' );
@@ -135,8 +162,53 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
        }
      })
    }
+// =============================================================================
+// PUSH NOTIFICATIONS
+// =============================================================================
+   idPerson('brian','brian@phased.io');
+   //regUsers();
 
 
+   function idPerson(name, email) {
+     console.log('Ionic User: Identifying with Ionic User service');
+
+     var user = $ionicUser.get();
+     if(!user.user_id) {
+       // Set your user_id here, or generate a random one.
+       user.user_id = $ionicUser.generateGUID();
+     };
+
+     // Add some metadata to your user object.
+     angular.extend(user, {
+       name: name,
+       bio: email
+     });
+
+     // Identify your user with the Ionic User Service
+     $ionicUser.identify(user).then(function(){
+        $scope.identified = true;
+       //alert('Identified user ' + user.name + '\n ID ' + user.user_id);
+     });
+  };
+
+  $scope.regUsers = function(){
+    alert('Ionic Push: Registering user');
+
+    // Register with the Ionic Push service.  All parameters are optional.
+    // $ionicPush.register({
+    //   canShowAlert: true, //Can pushes show an alert on your screen?
+    //   canSetBadge: true, //Can pushes update app icon badges?
+    //   canPlaySound: true, //Can notifications play a sound?
+    //   canRunActionsOnWake: true, //Can run actions outside the app,
+    //   onNotification: function(notification) {
+    //     // Handle new push notifications here
+    //     // console.log(notification);
+    //     alert(notification);
+    //     return true;
+    //   }
+    // });
+
+}
 
 
 });

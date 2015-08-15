@@ -7,8 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 var app =  angular.module('starter', [
   'ionic',
-  'ngCordova',
   'ionic.service.core',
+  'ngCordova',
   'ionic.service.push',
   'starter.controllers',
   'starter.services',
@@ -23,7 +23,7 @@ app.config(['$ionicAppProvider', function($ionicAppProvider) {
     app_id: '32c45998',
     // The API key all services will use for this app
     api_key: '62e4043cdea5ff673f4a6dd3e752325ca57996fec97ffedc',
-    dev_push: false
+    dev_push: true
   });
 }]);
 
@@ -53,6 +53,8 @@ app.factory('Cameraz', ['$q', function($q) {
 app.run(function($ionicPlatform) {
 
   $ionicPlatform.ready(function() {
+    Parse.initialize("S1R7aIPJPXKPPF2cOcFkJ9zluitibxyOjjvUZWfg", "Lf70hdqXJ1EZVRFdiMovRSnxFdQQ3DJSkXbHPoMy");
+
 
     //initPushwoosh();
 

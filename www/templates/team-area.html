@@ -13,8 +13,11 @@
         <ion-item nav-clear menu-close href="" ng-repeat="team in teamsAvail" ng-click="switchTeam(team);" >
           {{team}}{{team == $parent.teamName ? '*': ''}}
         </ion-item>
-        <ion-item nav-clear menu-close href="" >
+        <ion-item nav-clear menu-close ng-click="newTeam();" >
           Create new team
+        </ion-item>
+        <ion-item nav-clear menu-close  ng-click="regUsers();" >
+          reg
         </ion-item>
         <ion-item nav-clear menu-close href="" ng-click="signOut();">
           Log out
@@ -58,7 +61,7 @@
             <h2>Nudge sent to {{member.name}}</h2>
           </div>
         </a>
-        <a class="item more-margin" href="" ng-click="addMember()">
+        <a class="item more-margin" href="" ng-click="addMember();">
 
           <h2 align="center">Add member</h2>
 
