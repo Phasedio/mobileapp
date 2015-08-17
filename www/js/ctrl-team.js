@@ -17,12 +17,24 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
   "sound": true,
   "alert": true,
   };
-  document.addEventListener("deviceready", function(){
+  $scope.$on('$ionicView.enter', function(){
+      var ref2 = new Firebase(FURL);
       $cordovaPush.register(iosConfig).then(function(deviceToken) {
         // Success -- send deviceToken to server, and store for future use
         alert("deviceToken: " + deviceToken);
+
+        ref2.child('profile').child(Auth.user.uid).on('value',function(data){
+          data = data.val();
+          $http.get('http://45.55.200.34:8080/register/'+deviceToken+'/'+data.parse,'').success(function(data){
+            alert(data);
+          });
+        })
+
+
         ref.child('profile').child(Auth.user.uid).child('token').set(deviceToken);
-      });
+      },function(err) {
+      alert("Registration error: " + err)
+    });
 
   });
 
@@ -70,14 +82,18 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
      })
    }
    $scope.nudge = function(id){
-     ref.child('profile').child(id).on('value', function(data){
-       data = data.val();
-       if(data.token){
-         $http.get('http://45.55.200.34:8080/hello/'+data.token,'').success(function(data){
-           alert(data);
-         });
-       }
-     })
+     alert(id);
+     $http.get('http://45.55.200.34:8080/push/nudge/'+id,'').success(function(data){
+            alert(data);
+      });
+    //  ref.child('profile').child(id).on('value', function(data){
+    //    data = data.val();
+    //    if(data.token){
+    //      $http.get('http://45.55.200.34:8080/hello/'+data.token,'').success(function(data){
+    //        alert(data);
+    //      });
+    //    }
+    //  })
 
      id = id +'-nudge';
      document.getElementById(id).className =
@@ -165,7 +181,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
 // =============================================================================
 // PUSH NOTIFICATIONS
 // =============================================================================
-   idPerson('brian','brian@phased.io');
+   //idPerson('brian','brian@phased.io');
    //regUsers();
 
 
@@ -195,18 +211,18 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
     alert('Ionic Push: Registering user');
 
     // Register with the Ionic Push service.  All parameters are optional.
-    // $ionicPush.register({
-    //   canShowAlert: true, //Can pushes show an alert on your screen?
-    //   canSetBadge: true, //Can pushes update app icon badges?
-    //   canPlaySound: true, //Can notifications play a sound?
-    //   canRunActionsOnWake: true, //Can run actions outside the app,
-    //   onNotification: function(notification) {
-    //     // Handle new push notifications here
-    //     // console.log(notification);
-    //     alert(notification);
-    //     return true;
-    //   }
-    // });
+    $ionicPush.register({
+      canShowAlert: true, //Can pushes show an alert on your screen?
+      canSetBadge: true, //Can pushes update app icon badges?
+      canPlaySound: true, //Can notifications play a sound?
+      canRunActionsOnWake: true, //Can run actions outside the app,
+      onNotification: function(notification) {
+        // Handle new push notifications here
+        // console.log(notification);
+        alert(notification);
+        return true;
+      }
+    });
 
 }
 

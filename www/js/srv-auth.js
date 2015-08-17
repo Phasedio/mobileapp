@@ -86,7 +86,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
          // If not save nothing
          ref.child('profile').child(authData.uid).once('value',function(data){
            data = data.val();
-
+           parseReg(authData.uid);
            console.log(data);
            // Check permitted teams
            // Does the user account have any teams in the 'teams' area of their profile?
@@ -218,23 +218,39 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
 
     }
 
+    function parseReg(id){
+      ref.child('profile').child(id).on('value',function(data){
+        data = data.val();
+        // if user is not reg on Parce
+        if(!data.parse){
+          var user = new Parse.User();
+          user.set("username", id);
+          user.set("password", "mypass");
+          user.signUp(null, {
+            success: function(user) {
+              console.log(user);
+              // Hooray! Let them use the app now.
+              Auth.user.parse = user.id;
+              ref.child('profile').child(id).child('parse').set(user.id);
+            }
+          });
+        }else{
+          // if user is reg on parse
+          Parse.User.logIn(id, "mypass", {
+            success: function(user) {
+              // Do stuff after successful login.
+              Auth.user.parse = user.id;
+            },
+            error: function(user, error) {
+              // The login failed. Check error to see why.
+            }
+          });
+        }
 
-   function regUser(){
-     console.log('Ionic Push: Registering user');
 
-      // Register with the Ionic Push service.  All parameters are optional.
-      // $ionicPush.register({
-      //   canShowAlert: true, //Can pushes show an alert on your screen?
-      //   canSetBadge: true, //Can pushes update app icon badges?
-      //   canPlaySound: true, //Can notifications play a sound?
-      //   canRunActionsOnWake: true, //Can run actions outside the app,
-      //   onNotification: function(notification) {
-      //     // Handle new push notifications here
-      //     console.log(notification);
-      //     return true;
-      //   }
-      // });
-   }
+      });
+
+    }
 
 
     function get_gravatar(email, size) {

@@ -50,7 +50,7 @@
         //   pushNotification.registerDevice(
         //       function(status) {
         //           var deviceToken = status['deviceToken'];
-        //           console.warn('registerDevice: ' + deviceToken);
+        //           alert('registerDevice: ' + deviceToken);
         //       },
         //       function(status) {
         //           console.warn('failed to register : ' + JSON.stringify(status));
@@ -60,7 +60,9 @@
         //
         //   //reset badges on app start
         //   pushNotification.setApplicationIconBadgeNumber(0);
-
+        //
+        // }
+        // initPushwoosh();
     </script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
