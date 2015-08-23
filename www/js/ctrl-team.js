@@ -12,23 +12,48 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
   //   Auth.isReg = 1;
   // }
 
-  var iosConfig = {
-  "badge": true,
-  "sound": true,
-  "alert": true,
-  };
+
   $scope.$on('$ionicView.enter', function(){
       var ref2 = new Firebase(FURL);
-      $cordovaPush.register(iosConfig).then(function(deviceToken) {
+      var isIOS = ionic.Platform.isIOS();
+      var isAndroid = ionic.Platform.isAndroid();
+      var push = {};
+      if(isIOS){
+        alert('Is iOS');
+         push = {
+          config : {
+            "badge": true,
+            "sound": true,
+            "alert": true,
+          },
+          platform : 'ios'
+        };
+      }else if(isAndroid){
+        alert('Is Android');
+        push = {
+         config : {
+           "senderID": "578262937048",
+         },
+         platform : 'android'
+       };
+      }
+      $cordovaPush.register(push.config).then(function(deviceToken) {
         // Success -- send deviceToken to server, and store for future use
-
+        alert('got DT');
         ref2.child('profile').child(Auth.user.uid).on('value',function(data){
           data = data.val();
           Auth.user.parse = data.parse;
-          $http.get('http://45.55.200.34:8080/register/'+deviceToken+'/'+data.parse,'').success(function(data){
+          alert('got user');
+          var address = 'http://45.55.200.34:8080/register/'+push.platform+'/'+deviceToken+'/'+data.parse+'/'+Auth.team;
+          // Handle the senderID if the platform is android
+          if(isAndroid){
+            address = address +'/'+push.config.senderID;
+          }
+          alert('sending');
+          $http.get(address,'').success(function(data){
             alert(data);
           });
-        })
+        });
 
 
         ref.child('profile').child(Auth.user.uid).child('token').set(deviceToken);
@@ -77,7 +102,8 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
          $scope.team = [];
          Auth.team = team;
          $scope.teamName = Auth.team;
-         $http.get('http://45.55.200.34:8080/register/'+Auth.user.deviceToken+'/'+Auth.user.parse/+team,'').success(function(data){
+
+         $http.get('http://45.55.200.34:8080/register/'+Auth.user.deviceToken+'/'+Auth.user.parse+'/'+team,'').success(function(data){
            alert(data);
          });
          checkStatus();
