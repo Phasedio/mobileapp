@@ -109,6 +109,13 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
     teamRef.child('team').child(team).child('all').push(status);
     console.log('status set');
     $scope.updateStatus = '';
+
+    //Send push notifications to team
+    $http.get('http://45.55.200.34:8080/push/update/'+team+'/'+Auth.user.name+'/'+status.name,'').success(function(data){
+      //alert(data);
+    });
+
+
     $state.go('teamArea');
   }
 

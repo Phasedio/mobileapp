@@ -21,10 +21,10 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
       var ref2 = new Firebase(FURL);
       $cordovaPush.register(iosConfig).then(function(deviceToken) {
         // Success -- send deviceToken to server, and store for future use
-        alert("deviceToken: " + deviceToken);
 
         ref2.child('profile').child(Auth.user.uid).on('value',function(data){
           data = data.val();
+          Auth.user.parse = data.parse;
           $http.get('http://45.55.200.34:8080/register/'+deviceToken+'/'+data.parse,'').success(function(data){
             alert(data);
           });
@@ -32,6 +32,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
 
 
         ref.child('profile').child(Auth.user.uid).child('token').set(deviceToken);
+        Auth.user.deviceToken = deviceToken;
       },function(err) {
       alert("Registration error: " + err)
     });
@@ -76,6 +77,9 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
          $scope.team = [];
          Auth.team = team;
          $scope.teamName = Auth.team;
+         $http.get('http://45.55.200.34:8080/register/'+Auth.user.deviceToken+'/'+Auth.user.parse/+team,'').success(function(data){
+           alert(data);
+         });
          checkStatus();
 
        }
@@ -83,17 +87,10 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
    }
    $scope.nudge = function(id){
      alert(id);
-     $http.get('http://45.55.200.34:8080/push/nudge/'+id,'').success(function(data){
-            alert(data);
-      });
-    //  ref.child('profile').child(id).on('value', function(data){
-    //    data = data.val();
-    //    if(data.token){
-    //      $http.get('http://45.55.200.34:8080/hello/'+data.token,'').success(function(data){
-    //        alert(data);
-    //      });
-    //    }
-    //  })
+     $http.get('http://45.55.200.34:8080/push/nudge/'+id+'/'+Auth.user.name,'').success(function(data){
+       console.log(data);
+     });
+
 
      id = id +'-nudge';
      document.getElementById(id).className =

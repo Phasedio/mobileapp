@@ -87,7 +87,9 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
          ref.child('profile').child(authData.uid).once('value',function(data){
            data = data.val();
            parseReg(authData.uid);
+           Auth.user.name = data.name;
            console.log(data);
+           console.log(Auth.user);
            // Check permitted teams
            // Does the user account have any teams in the 'teams' area of their profile?
            if (data.teams){
