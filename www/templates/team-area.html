@@ -1,86 +1,49 @@
-<ion-side-menus>
-  <!-- Center content -->
-  <!-- <ion-side-menu-content ng-controller="ContentController">
-  </ion-side-menu-content> -->
+<ion-view view-title="" hide-nav-bar="true">
+  <ion-content class="team">
+    <div class="list">
+      <a nav-direction="forward" on-tap="onTap(seeStatus({{member}}))" id="{{member.uid}}" on-swipe-left="nudge(member.uid)" ng-repeat="member in team | orderBy : 'time':true"  class="item team-member">
+        <div class="row">
+          <div class="col-20">
+            <img src="{{member.gravatar}}?s=50">
+          </div>
+          <div class="col-50 statusArea">
+            <h2>{{member.name}}</h2>
+            <p>{{member.task}}</p>
+          </div>
 
-  <!-- Left menu -->
-  <ion-side-menu side="left">
-    <header class="bar bar-header bar-phased">
-      <h1 class="title">Menu</h1>
-    </header>
-    <ion-content class="has-header bg-darkGrey">
-      <ion-list>
-        <ion-item nav-clear menu-close href="" ng-repeat="team in teamsAvail" ng-click="switchTeam(team);" >
-          {{team}}{{team == $parent.teamName ? '*': ''}}
-        </ion-item>
-        <ion-item nav-clear menu-close ng-click="newTeam();" >
-          Create new team
-        </ion-item>
-        <ion-item nav-clear menu-close  ng-click="regUsers();" >
-          reg
-        </ion-item>
-        <ion-item nav-clear menu-close href="" ng-click="signOut();">
-          Log out
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-side-menu>
-
-  <!-- Right menu -->
-
-  <ion-side-menu-content>
-  <!-- Main content, usually <ion-nav-view> -->
-    <ion-header-bar align-title="center" class="bar-phased">
-
-      <button class="button icon ion-navicon button-clear " menu-toggle></button>
-      <h1 class="title">{{teamName}}</h1>
-      <button class="button icon ion-person button-clear " ng-click="viewProfile()"></button>
-
-    </ion-header-bar>
-    <ion-content class="team">
-      <div class="list">
-        <a nav-direction="forward" on-tap="onTap(seeStatus({{member}}))" id="{{member.uid}}" on-swipe-left="nudge(member.uid)" ng-repeat="member in team | orderBy : 'time':true"  class="item team-member">
-          <div class="row">
-            <div class="col">
-              <img src="{{member.gravatar}}">
-            </div>
-            <div class="col-67 statusArea">
-              <h2>{{member.name}}</h2>
-              <p>{{member.task}}</p>
-              <p><span class="ph-icon icon-camera" ng-show="member.photo"></span></p>
-            </div>
-            <div class="col timeArea">
-              <span class="ion-ios-clock-outline" ng-class="setColor(member.time)"></span>
-              <p class="wrap" am-time-ago="member.time"></p>
+          <div class="col statusArea timeArea">
+            <p class="wrap" align="center" am-time-ago="member.time"></p>
+            <div class="iconholder">
+              <span class="ph-icon icon-camera" align="center" ng-show="member.photo"></span>
             </div>
           </div>
 
+        </div>
 
 
-          <div id="{{member.uid}}-nudge" class="nudge nudgeHidden">
-            <h2>Nudge sent to {{member.name}}</h2>
-          </div>
-        </a>
-        <a class="item more-margin" href="" ng-click="addMember();">
 
-          <h2 align="center">Add member</h2>
+        <div id="{{member.uid}}-nudge" class="nudge nudgeHidden">
+          <h2>Nudge sent to {{member.name}}</h2>
+        </div>
+      </a>
+      <a class="item more-margin" href="" ng-click="addMember();">
 
-        </a>
-      </div>
+        <h2 align="center">Add member</h2>
 
-
-    </ion-content>
-    <div class="actionHolder">
-      <button class="button button-compose" ng-click="compose()" nav-direction="forward" ><i class="ion-compose"></i></button>
+      </a>
     </div>
-    <!-- <ion-footer-bar align-title="left" class="bar-none team">
-      <div class="buttons">
 
+  </ion-content>
+  <div class="actionHolder">
+    <div class="row">
+      <div class="col">
+        <p>Team {{teamName}}</p>
       </div>
-    </ion-footer-bar> -->
-  </ion-side-menu-content>
-</ion-side-menus>
-<!-- <ion-view view-title="update status" hide-nav-bar="true">
+      <div class="col">
+        <button class="button button-compose" ng-click="compose()" nav-direction="forward" ><i class="ion-ios-people-outline"></i></button>
+        <button class="button button-compose" ng-click="compose()" nav-direction="forward" ><i class="ion-compose"></i></button>
+      </div>
+    </div>
 
-
-</ion-view> -->
+  </div>
+</ion-view>

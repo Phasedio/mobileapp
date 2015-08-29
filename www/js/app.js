@@ -53,6 +53,7 @@ app.factory('Cameraz', ['$q', function($q) {
 app.run(function($ionicPlatform) {
 
   $ionicPlatform.ready(function() {
+    $cordovaStatusbar.hide();
     Parse.initialize("S1R7aIPJPXKPPF2cOcFkJ9zluitibxyOjjvUZWfg", "Lf70hdqXJ1EZVRFdiMovRSnxFdQQ3DJSkXbHPoMy");
 
 

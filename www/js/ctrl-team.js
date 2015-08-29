@@ -1,7 +1,10 @@
-app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform,$rootScope,$http,$cordovaPush) {
+app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform,$rootScope,$http,$cordovaPush,$cordovaStatusbar) {
   $scope.team = [];
   $scope.teamName = Auth.team;
   $scope.teamsAvail = Auth.memberOf;
+  $cordovaStatusbar.hide();
+  $scope.user = Auth.user;
+  var push = {};
   $scope.$on('$ionicView.leave', function(){
     $scope.team = [];
     checkStatus();
@@ -13,13 +16,15 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
   // }
 
 
+
+
   $scope.$on('$ionicView.enter', function(){
       var ref2 = new Firebase(FURL);
       var isIOS = ionic.Platform.isIOS();
       var isAndroid = ionic.Platform.isAndroid();
-      var push = {};
+
       if(isIOS){
-        alert('Is iOS');
+
          push = {
           config : {
             "badge": true,
@@ -29,7 +34,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
           platform : 'ios'
         };
       }else if(isAndroid){
-        alert('Is Android');
+
         push = {
          config : {
            "senderID": "578262937048",
@@ -39,19 +44,20 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
       }
       $cordovaPush.register(push.config).then(function(deviceToken) {
         // Success -- send deviceToken to server, and store for future use
-        alert('got DT');
+
         ref2.child('profile').child(Auth.user.uid).on('value',function(data){
           data = data.val();
           Auth.user.parse = data.parse;
-          alert('got user');
+
           var address = 'http://45.55.200.34:8080/register/'+push.platform+'/'+deviceToken+'/'+data.parse+'/'+Auth.team;
           // Handle the senderID if the platform is android
           if(isAndroid){
             address = address +'/'+push.config.senderID;
+          }else{
+            address = address +'/'+0;
           }
-          alert('sending');
           $http.get(address,'').success(function(data){
-            alert(data);
+
           });
         });
 
@@ -66,6 +72,15 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
 
 
   var ref = new Firebase(FURL);
+
+  ref.child('profile').child(Auth.user.uid).once('value',function(data){
+    data = data.val();
+    $scope.user = data;
+    ref.child('team').child(Auth.team).child('task').child(Auth.user.uid).once('value',function(data){
+      data = data.val();
+      $scope.user.task = data;
+    });
+  });
 
    checkStatus();
    moment().format();
@@ -247,6 +262,63 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
       }
     });
 
+}
+
+function sendEmailNudge(sender){
+  ref.child('profile').child(Auth.user.uid).once('value',function(data){
+    user = data.val();
+    msg = {
+      "template_name" : 'nudge',
+      "template_content": [
+
+        {
+          "name":'team_name',
+          "content":Auth.team
+        },
+        {
+          "name":'receiver_name',
+          "content":user.name
+        },
+        {
+          "name":'sender_name',
+          "content":Auth.user.name
+        },
+        {
+          "name":'sender_grav',
+          "content":Auth.user.gravatar
+        }
+
+      ],
+      "message" : {
+        "from_email" : 'brian@phased.io',
+        "from_name" : "Brian",
+        'subject' : user.name+" is wondering what you're up to ",
+        'global_merge_vars' : [
+          {
+            "name":'team_name',
+            "content":Auth.team
+          },
+          {
+            "name":'receiver_name',
+            "content":user.name
+          },
+          {
+            "name":'sender_name',
+            "content":user.email
+          },
+          {
+            "name":'sender_name',
+            "content":user.email
+          }
+        ],
+        'to' : [
+          {
+            'email' : names.email
+          }
+        ]
+      }
+    };
+  });
 }
 
 
