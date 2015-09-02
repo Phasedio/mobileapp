@@ -8,15 +8,15 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
 
   var push = {};
   $scope.$on('$ionicView.leave', function(){
-    $scope.team = [];
-    checkStatus();
+    //$scope.team = [];
+    //checkStatus();
   });
 
 
 
   $scope.$on('$ionicView.enter', function(){
-      $scope.team = [];
-      checkStatus();
+      //$scope.team = [];
+      //
       var ref2 = new Firebase(FURL);
       var isIOS = ionic.Platform.isIOS();
       var isAndroid = ionic.Platform.isAndroid();
@@ -157,6 +157,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
    }
 
    function checkStatus(){
+
      new Firebase(FURL + 'team/' + Auth.team + '/task').on('value', function(users) {
        $scope.team = [];
        users = users.val();
@@ -319,6 +320,9 @@ function sendEmailNudge(sender){
   });
 }
 
+//initialize
+
+checkStatus();
 
 });
 
