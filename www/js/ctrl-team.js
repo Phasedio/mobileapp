@@ -2,23 +2,21 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
   $scope.team = [];
   $scope.teamName = Auth.team;
   $scope.teamsAvail = Auth.memberOf;
-  $cordovaStatusbar.hide();
   $scope.user = Auth.user;
+
+  //$cordovaStatusbar.styleColor('black');
+
   var push = {};
   $scope.$on('$ionicView.leave', function(){
     $scope.team = [];
     checkStatus();
   });
 
-  // if(!Auth.isReg){
-  //   Auth.regUsers();
-  //   Auth.isReg = 1;
-  // }
-
-
 
 
   $scope.$on('$ionicView.enter', function(){
+      $scope.team = [];
+      checkStatus();
       var ref2 = new Firebase(FURL);
       var isIOS = ionic.Platform.isIOS();
       var isAndroid = ionic.Platform.isAndroid();
@@ -82,7 +80,7 @@ app.controller('teamCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$ionic
     });
   });
 
-   checkStatus();
+
    moment().format();
    $scope.newTeam = function(){
      $state.go('setupTeam');

@@ -6,7 +6,7 @@ in ionic's _variables.scss file.
 For example, you might change some of the default colors:
 
 $light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
+$stable:                          #  !default;
 $positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
@@ -9433,6 +9433,10 @@ a.button {
   font-family: "fontawesome";
   content: "\f053"; }
 
+.icon-down:before {
+  font-family: "fontawesome";
+  content: "\f0d7"; }
+
 ::-webkit-input-placeholder {
   font-style: italic;
   color: white;
@@ -9547,9 +9551,21 @@ h1, h2, h3, h4, h5, h6 {
     background: transparent;
     border: transparent; }
 
+.teamHeader {
+  overflow: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 4.5rem !important; }
+  .teamHeader img {
+    margin: 0 auto;
+    display: block; }
+  .teamHeader h2 {
+    margin-top: 1.5rem !important;
+    color: #3e3e43;
+    font-family: AvenirNext-DemiBold; }
+
 .team {
-  background: #3e3e43;
-  /* Old browsers */ }
+  background: #fff; }
   .team .greenClock {
     color: #11ba55; }
   .team .yellowClock {
@@ -9566,30 +9582,32 @@ h1, h2, h3, h4, h5, h6 {
     background-color: transparent;
     padding: 1rem 0 !important;
     border-width: 0 !important; }
+    .team .team-member:nth-child(even) {
+      background-color: #fff; }
+    .team .team-member:nth-child(odd) {
+      background-color: #f8f8f8; }
     .team .team-member h1 {
       font-family: AvenirNext-DemiBold;
       font-size: 1.25rem; }
     .team .team-member h2 {
       margin-top: 0.5rem;
-      color: #fff;
+      color: #3e3e43;
       font-family: AvenirNext-Regular; }
     .team .team-member p {
-      color: #fff;
-      font-family: AvenirNext-UltraLight;
-      opacity: 0.5; }
+      color: #3e3e43;
+      font-family: AvenirNext-Regular;
+      opacity: 1; }
     .team .team-member .iconholder {
       padding-top: 0.5rem;
       overflow: auto; }
     .team .team-member .ph-icon {
-      color: #fff;
+      color: #3e3e43;
       font-size: 25px;
       opacity: 0.4;
       margin-right: 1.5rem; }
     .team .team-member .timeArea p {
-      font-size: 0.55rem;
-      font-weight: bold; }
+      font-size: 0.55rem; }
     .team .team-member .timeArea span {
-      margin-top: 0.5rem;
       width: 100%;
       display: block;
       font-size: 1rem;
@@ -9621,14 +9639,10 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0; }
 
 .actionHolder {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  background-color: #313135;
+  background-color: #187e83;
   color: #fff;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-top: 2px solid #fff; }
+  border-top: none;
+  outline: none; }
   .actionHolder p {
     color: #fff;
     font-family: AvenirNext-Regular;
@@ -9655,6 +9669,19 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   border-radius: 1000px;
   font-size: 1.6rem; }
+
+.teamIndicator {
+  position: absolute !important;
+  bottom: 3rem !important;
+  width: 50% !important; }
+  .teamIndicator h2 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    color: #fff !important;
+    font-family: AvenirNext-Regular;
+    margin-top: 15px !important;
+    margin-left: 1.25rem !important;
+    font-size: 16px !important; }
 
 .viewStat .dp-user {
   width: 8rem;
