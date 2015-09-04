@@ -1,16 +1,10 @@
 app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform,$rootScope,$http,$cordovaPush,$cordovaStatusbar) {
-  Team.checkStatus();
-  $scope.team = Team.members;
+  //Team.checkStatus();
+  $scope.team = [];
   $scope.teamName = Auth.team;
   $scope.teamsAvail = Auth.memberOf;
   $scope.user = Auth.user;
 
-
-
-  $scope.$watch('team', function() {
-        //alert('team changed');
-        $scope.$apply;
-    });
 
   var push = {};
   $scope.$on('$ionicView.leave', function(){
@@ -20,7 +14,8 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
 
 
   $scope.$on('$ionicView.enter', function(){
-
+      Team.removeTeam();
+      checkStatus();
       var ref2 = new Firebase(FURL);
       var isIOS = ionic.Platform.isIOS();
       var isAndroid = ionic.Platform.isAndroid();
@@ -69,6 +64,7 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
       },function(err) {
       alert("Registration error: " + err)
     });
+
 
   });
 
@@ -160,49 +156,53 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
      $state.go('memberAdd');
    }
 
-  //  function checkStatus(){
-   //
-  //    new Firebase(FURL + 'team/' + Auth.team + '/task').on('value', function(users) {
-  //      $scope.team = [];
-  //      users = users.val();
-  //      //console.log(users);
-  //      if(users){
-  //        var teamUID = Object.keys(users);
-   //
-  //           for (var i = 0; i < teamUID.length; i++) {
-  //               getTeamMember(teamUID[i], users);
-  //           }
-  //      }
-   //
-  //    });
-  //  }
-  //  function getTeamMember(memberID, users){
-  //    //console.log(users);
-  //      var userrefs = new Firebase(FURL + 'profile/' + memberID);
-  //      userrefs.once("value", function(data) {
-  //              //console.log(memberID);
-  //              var p = data.val();
-  //              //console.log(p);
-  //              var pic,style;
-  //              if(users[memberID].photo){
-  //               style = "background:url("+users[memberID].photo+") no-repeat center center fixed; -webkit-background-size: cover;-moz-background-size: cover; -o-background-size: cover; background-size: cover";
-  //             }else{
-  //               style = false;
-  //             }
-  //              var teamMember = {
-  //                  name : p.name,
-  //                  gravatar : p.gravatar,
-  //                  task : users[memberID].name,
-  //                  time : users[memberID].time,
-  //                  weather:users[memberID].weather,
-  //                  city:users[memberID].city,
-  //                  uid : memberID,
-  //                  photo:style
-  //              };
-  //              $scope.team.push(teamMember);
-  //              $scope.$apply();
-  //          });
-  //  }
+   function checkStatus(){
+   
+     new Firebase(FURL + 'team/' + Auth.team + '/task').on('value', function(users) {
+       Team.removeTeam();
+       users = users.val();
+       //console.log(users);
+       if(users){
+         var teamUID = Object.keys(users);
+   
+            for (var i = 0; i < teamUID.length; i++) {
+                getTeamMember(teamUID[i], users);
+            }
+            $scope.team = Team.members;
+            console.log($scope.team);
+            $scope.$apply();
+       }
+   
+     });
+   }
+   function getTeamMember(memberID, users){
+     
+       var userrefs = new Firebase(FURL + 'profile/' + memberID);
+       userrefs.once("value", function(data) {
+               //console.log(memberID);
+               var p = data.val();
+               //console.log(p);
+               var pic,style;
+               if(users[memberID].photo){
+                style = "background:url("+users[memberID].photo+") no-repeat center center fixed; -webkit-background-size: cover;-moz-background-size: cover; -o-background-size: cover; background-size: cover";
+              }else{
+                style = false;
+              }
+               var teamMember = {
+                   name : p.name,
+                   gravatar : p.gravatar,
+                   task : users[memberID].name,
+                   time : users[memberID].time,
+                   weather:users[memberID].weather,
+                   city:users[memberID].city,
+                   uid : memberID,
+                   photo:style
+               };
+               Team.addMember(teamMember);
+               $scope.$apply();
+   
+           });
+   }
 
 
    function getPhoto(file){
@@ -323,13 +323,6 @@ function sendEmailNudge(sender){
     };
   });
 }
-
-//initialize
-
-setTimeout(function(){
-  console.log(Team.members);
-  $scope.team=Team.members;
-},2000);
 
 
 });

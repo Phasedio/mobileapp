@@ -1,0 +1,531 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"por",
+				"profile"
+			],
+			[
+				"bac",
+				"background-image"
+			],
+			[
+				"pr",
+				"profileRef"
+			],
+			[
+				"F",
+				"Firebase"
+			],
+			[
+				"text",
+				"textarea"
+			],
+			[
+				"new",
+				"newDoc"
+			],
+			[
+				"get",
+				"getBref"
+			],
+			[
+				"team",
+				"teamUID"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"tra",
+				"transition"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"cur",
+				"cursor"
+			],
+			[
+				"tea",
+				"team"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"imp",
+				"important"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"bor",
+				"border"
+			],
+			[
+				"lo",
+				"lowercase"
+			],
+			[
+				"u",
+				"uppercase"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"task",
+				"taskId"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"pro",
+				"profile"
+			],
+			[
+				"create",
+				"createProfile"
+			],
+			[
+				"s",
+				"scripts"
+			],
+			[
+				"auth",
+				"authData"
+			],
+			[
+				"user",
+				"user"
+			],
+			[
+				"h",
+				"href	Attr"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"foun",
+				"foundCat"
+			],
+			[
+				"the_",
+				"the_title"
+			],
+			[
+				"post",
+				"postCats"
+			],
+			[
+				"Th",
+				"themompreneur"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"ma",
+				"max-width"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"li",
+				"link	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "www/js/srv-team.js",
+			"settings":
+			{
+				"buffer_size": 1747,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 175.0,
+		"last_filter": "jSCS",
+		"selected_items":
+		[
+			[
+				"jSCS",
+				"JSCS Formatter: Format this file"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 453.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/brianbest/Sites/Phased",
+		"/Users/brianbest/Sites/Phased/www",
+		"/Users/brianbest/Sites/Phased/www/js",
+		"/Users/brianbest/Sites/Phased/www/templates"
+	],
+	"file_history":
+	[
+		"/Users/brianbest/Sites/Phased/www/lib/momentjs/ucTEJPpt-undefined.txt",
+		"/Users/brianbest/Sites/Phased/platforms/platforms.json",
+		"/Users/brianbest/Downloads/id_rsa.pub",
+		"/Users/brianbest/Sites/phasedIO/app/scripts/controller-register.js",
+		"/Users/brianbest/Sites/phasedIO/app/views/register.html",
+		"/Users/brianbest/Sites/phasedIO/app/views/onboarding.html",
+		"/Users/brianbest/Sites/phasedIO/app/manifest.json",
+		"/Users/brianbest/Sites/phasedIO/app/scripts/controller-onboarding.js",
+		"/Users/brianbest/Sites/phasedIO/app/scripts/controller-login.js",
+		"/Users/brianbest/Sites/phasedIO/app/scss/main.scss",
+		"/Users/brianbest/Sites/phasedIO/app/scss/_general.scss",
+		"/Users/brianbest/Sites/phasedIO/app/scripts/controller-browse.js",
+		"/Users/brianbest/Sites/phasedIO/app/scripts/zen.js",
+		"/Users/brianbest/Sites/phasedIO/app/window.html",
+		"/Users/brianbest/Sites/phasedIO/app/views/main.html",
+		"/Users/brianbest/Sites/phasedIO/app/views/login.html",
+		"/Users/brianbest/Sites/phasedIO/app/scripts/service-auth.js",
+		"/Users/brianbest/Sites/phasedIO/.gitignore",
+		"/Users/brianbest/Sites/phasedIO/app/scripts/app.js",
+		"/Users/brianbest/Sites/phasedIO/app/scss/onboarding.scss",
+		"/Users/brianbest/Sites/phasedIO/app/scss/login.scss",
+		"/Users/brianbest/Sites/phasedIO/scripts/controller-login.js",
+		"/Users/brianbest/Sites/phasedIO/.jscsrc",
+		"/Users/brianbest/Sites/phasedIO/views/register.html",
+		"/Users/brianbest/Sites/phasedIO/scripts/controller-register.js",
+		"/Users/brianbest/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/brianbest/Sites/brian-best/scss/main.scss",
+		"/Users/brianbest/Sites/phasedIO/manifest.json",
+		"/Users/brianbest/Sites/momprenure/header.php",
+		"/Users/brianbest/Desktop/pitch.txt",
+		"/Users/brianbest/Sites/brian-best/scss/_comment.scss",
+		"/Users/brianbest/Sites/brian-best/index.html",
+		"/Users/brianbest/Sites/brian-best/scss/_sidebar.scss",
+		"/Users/brianbest/Sites/brian-best/scss/_blog.scss",
+		"/Users/brianbest/Sites/brian-best/single.html",
+		"/Users/brianbest/Documents/Web Tools/glyphicons_pro/glyphicons_halflings/svg/glyphicons_halflings.svg",
+		"/Users/brianbest/Documents/Web Tools/glyphicons_pro/glyphicons/svg/individual_svg/glyphicons-4-user.svg",
+		"/Users/brianbest/Sites/TaskFighter/views/partials/post.html",
+		"/Users/brianbest/Sites/PhasedLanding/page.php",
+		"/Users/brianbest/Sites/PhasedLanding/single.php",
+		"/Users/brianbest/Sites/PhasedLanding/header.php",
+		"/Users/brianbest/Sites/PhasedLanding/functions.php",
+		"/Users/brianbest/Sites/Phased-Landing/index.php",
+		"/Users/brianbest/Sites/Phased-Landing/_index.html",
+		"/Users/brianbest/Sites/momprenure/functions.php",
+		"/Users/brianbest/Sites/TaskFighter/scripts/controllers/auth.js",
+		"/Users/brianbest/Sites/TaskFighter/scripts/controllers/task.js",
+		"/Users/brianbest/Sites/TaskFighter/scripts/app.js",
+		"/Users/brianbest/Sites/TaskFighter/views/browse.html",
+		"/Users/brianbest/Sites/TaskFighter/scripts/services/auth.js",
+		"/Users/brianbest/Sites/TaskFighter/scripts/controllers/nav.js",
+		"/Users/brianbest/Sites/TaskFighter/views/partials/changepass.html",
+		"/Users/brianbest/Sites/TaskFighter/views/login.html",
+		"/Users/brianbest/Sites/TaskFighter/views/register.html",
+		"/Users/brianbest/Sites/TaskFighter/index.html",
+		"/Users/brianbest/Sites/TaskFighter/views/post.html",
+		"/Users/brianbest/Sites/TaskFighter/views/edit.html",
+		"/Users/brianbest/Sites/momprenure/template-membercsv0.php",
+		"/Users/brianbest/Sites/momprenure/template-membercsv.php",
+		"/Users/brianbest/Desktop/colinSite/www.riverstonellc.com/index.html",
+		"/Users/brianbest/Sites/momResources/single.php",
+		"/Users/brianbest/Sites/momResources/template_resource.php",
+		"/Users/brianbest/Sites/momprenure/single.php",
+		"/Users/brianbest/Sites/momprenure/page.php",
+		"/Users/brianbest/Sites/momprenure/index.php",
+		"/Users/brianbest/Documents/Web Tools/glyphicons_pro/glyphicons/web/html_css/css/style.css",
+		"/Users/brianbest/Sites/tecmar/index.html",
+		"/Users/brianbest/Sites/cbTransit/server.js",
+		"/Users/brianbest/Sites/cbTransit/app/index.html",
+		"/Users/brianbest/Desktop/mompage.html",
+		"/Users/brianbest/Desktop/momtable.html",
+		"/Users/brianbest/Sites/nameless/config.xml",
+		"/Users/brianbest/Downloads/wordpress_tecmar1.sql",
+		"/Users/brianbest/Sites/kanfund/app/styles/main.scss",
+		"/Users/brianbest/Sites/momprenure/callout.php",
+		"/Users/brianbest/Sites/kanfund/bower.json",
+		"/private/var/folders/nz/7xdhpny50x9c3y3nwsbg2llh0000gn/T/fz3temp-1/overrule.css",
+		"/Users/brianbest/Sites/app_bang/app/css/overrule.css",
+		"/Users/brianbest/Sites/hackersforSTL/app/elements/google-apis/google-maps-api.html",
+		"/Users/brianbest/Sites/_launch/ritemp/wordpress_e.sql",
+		"/private/var/folders/nz/7xdhpny50x9c3y3nwsbg2llh0000gn/T/fz3temp-1/wp-config.php",
+		"/Users/brianbest/Sites/_backup/Bang/wp-content/advanced-cache.php",
+		"/Users/brianbest/Sites/_backup/Bang/wp-content/index.php",
+		"/private/var/folders/nz/7xdhpny50x9c3y3nwsbg2llh0000gn/T/fz3temp-1/header.php",
+		"/private/var/folders/nz/7xdhpny50x9c3y3nwsbg2llh0000gn/T/fz3temp-1/app.js",
+		"/private/var/folders/nz/7xdhpny50x9c3y3nwsbg2llh0000gn/T/fz3temp-1/.htaccess",
+		"/Users/brianbest/Sites/_launch/Greenprop/js/app.js",
+		"/Users/brianbest/Sites/_launch/Greenprop/view/linklist.html",
+		"/Users/brianbest/Sites/_launch/Greenprop/work.html",
+		"/Users/brianbest/Sites/_launch/Greenprop/contact.html",
+		"/Users/brianbest/Sites/newest_green/scss/featshots.scss",
+		"/Users/brianbest/Desktop/index.html",
+		"/Users/brianbest/Desktop/main.scss",
+		"/Users/brianbest/Sites/pdc_test/scss/app.scss",
+		"/Users/brianbest/Sites/pdc_css/scss/app.scss",
+		"/Users/brianbest/Sites/new_pdc/home_slider.php",
+		"/Users/brianbest/Sites/new_pdc/template-team.php",
+		"/Users/brianbest/Sites/new_pdc/header.php",
+		"/Users/brianbest/Sites/new_pdc/slider.php",
+		"/Users/brianbest/Sites/new_pdc/template_profile_1.php",
+		"/Users/brianbest/Sites/newest_green/emailNow.php",
+		"/Users/brianbest/Sites/newest_green/mkCap.php",
+		"/Users/brianbest/Sites/new_pdc/footer.php",
+		"/Users/brianbest/Sites/polymer-demo/bower.json",
+		"/Users/brianbest/Sites/wc-theme/README.md",
+		"/Users/brianbest/Sites/holding/default.hbs",
+		"/Users/brianbest/Sites/flexbox/scss/style.scss",
+		"/Users/brianbest/Sites/flexbox/index.html",
+		"/Users/brianbest/Sites/test/Gruntfile.js",
+		"/private/var/folders/nz/7xdhpny50x9c3y3nwsbg2llh0000gn/T/c7a63562-400e-4d2d-8c77-e4e7a7eb7c1e/var/www/ghost/config.js",
+		"/private/var/folders/nz/7xdhpny50x9c3y3nwsbg2llh0000gn/T/c7a63562-400e-4d2d-8c77-e4e7a7eb7c1e/var/www/ghost/index.js",
+		"/private/var/folders/nz/7xdhpny50x9c3y3nwsbg2llh0000gn/T/c7a63562-400e-4d2d-8c77-e4e7a7eb7c1e/var/www/ghost/Gruntfile.js",
+		"/private/var/folders/nz/7xdhpny50x9c3y3nwsbg2llh0000gn/T/c7a63562-400e-4d2d-8c77-e4e7a7eb7c1e/var/www/config.js",
+		"/Users/brianbest/Desktop/config.js"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"fbTasks",
+			"sizeMaker",
+			"$scope.team",
+			"team",
+			"tasks",
+			"$scope.init",
+			"$scope.team",
+			"fitc",
+			"\"></",
+			">\n",
+			"http://develop.creativitygoesbang.com/tecmar/",
+			"event",
+			"data",
+			"develop.creativitygoesbang.com/ritemp",
+			"init()",
+			"JSON"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"http://tecmargroup.com/",
+			"www.ritemptechnologies.com"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "www/js/srv-team.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1747,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								747,
+								747
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "phased.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

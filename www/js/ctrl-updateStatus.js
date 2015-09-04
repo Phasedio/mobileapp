@@ -1,4 +1,4 @@
-app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
+app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team) {
   $scope.updateStatus = '';
   $scope.team = Auth.team;
   $scope.weather = '';
@@ -80,6 +80,7 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
 
 
   $scope.submitStatus = function(update){
+    //Team.removeTeam();
     console.log(update);
     console.log($scope.updateStatus);
     update = $scope.updateStatus;
@@ -114,9 +115,10 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http) {
     $http.get('http://45.55.200.34:8080/push/update/'+team+'/'+Auth.user.name+'/'+status.name,'').success(function(data){
       //alert(data);
     });
-
-
+    
     $state.go('teamArea');
+
+    
   }
 
 

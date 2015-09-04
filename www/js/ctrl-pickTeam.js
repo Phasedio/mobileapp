@@ -10,7 +10,7 @@ app.controller('PickTeamCtrl', function($scope,Auth,$state,FURL,Team) {
       console.log(Auth.user.uid);
       if(data[Auth.user.uid]){
         //User is allowed in
-        Team.reset();
+        Team.removeTeam();
         Auth.team = team;
         $state.go('teamArea');
 
