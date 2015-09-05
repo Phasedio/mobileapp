@@ -1,25 +1,62 @@
-<ion-view view-title="update status" hide-nav-bar="true">
+<ion-view view-title="update status" class="status" hide-nav-bar="true">
   <ion-header-bar align-title="center" class="bar-phased compose">
     <div class="buttons">
       <button class="button" ng-click="goBack()" nav-direction="back"><i class="icon-back" style="color:#fff;"></i></button>
     </div>
-    <h1 class="title" >{{team}}</h1>
+    <!-- <h1 class="title" >{{team}}</h1> -->
 
   </ion-header-bar>
   <ion-content class="compose" style="background:url('{{bgPhoto}}') no-repeat center center fixed; -webkit-background-size: cover;-moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+  <div class="row">
+    <div class="col">
+      <h1 align="center"><i class="icon ion-compose"></i></h1>
+    </div>
+    
+  </div>
+  <h3 align="center">What are you up to?</h3>
+  <!-- Type -->
+    <div class="row">
+      <div class="col">
+        <button class="button activityBtn active" ng-click="task = 'current'" ng-class="{button-balanced: task == 'current'}" style="color:fff">Currently</button>
+      </div>
+      <div class="col">
+        <button class="button activityBtn" ng-click="task = 'starting'" ng-class="{button-balanced: task == 'starting'}">Started</button>
+      </div>
+      <div class="col">
+        <button class="button activityBtn" ng-click="task = 'finsh'" ng-class="{button-balanced: task == 'finsh'}">Finshed</button>
+      </div>
+    </div>
 
-      <div class="list">
-        <label class="item item-input">
-          <textarea id="photoHolder" ng-model="$parent.updateStatus" placeholder="What are you doing?" ></textarea>
+    <!-- Input -->
+      <div class="row">
+        <label class="item col item-input">
+          <input type="text" id="photoHolder" ng-model="$parent.updateStatus" placeholder="What are you doing?" ></textarea>
         </label>
       </div>
+      <p align="center"><small>remember: say more with less.</small></p>
+
+    <!-- Extras -->
+
+    <div class="row">
+      <div class="col">
+        <button type="button" class="button button-extra " ng-click="takePhoto()"><i id="ph" class="ph-icon icon-camera"></i></button>
+        <p align="center">Add a photo</p>
+      </div>
+      <!-- <div class="col">
+        <button type="button" class="button button-extra" ng-click="getWeather()"><img src="{{weatherIcon}}" height="25px" width="25px">{{weather}}</button>
+      </div> -->
+      <div class="col">
+        <button type="button" class="button button-extra" ng-click="getLocation()"><i id="loc" class="ph-icon icon-map"></i>&nbsp;{{city}}</button>
+        <p align="center">Add your location</p>
+      </div>
+    </div>
+
+    
 
   </ion-content>
-  <div class="bar bar-footer compose">
-    <button type="button" class="button button-light" ng-click="takePhoto()"><i id="ph" class="ph-icon icon-camera"></i></button>
-    <button type="button" class="button button-light" ng-click="getWeather()"><img src="{{weatherIcon}}" height="35px" width="35px">{{weather}}</button>
-    <button type="button" class="button button-light" ng-click="getLocation()"><i id="loc" class="ph-icon icon-map"></i>&nbsp;{{city}}</button>
-    <button type="submit" class="button button-light " style="float:right;" ng-click="submitStatus(updateStatus)"><i class="ph-icon icon-check"></i></button>
-  </div>
-
+  
+  <ion-footer-bar align-title="left" keyboard-attach class="bar ">
+    <!-- Send -->
+    <button class="button button-block button-dark" ng-click="submitStatus(updateStatus)">Post Update</button>
+  </ion-footer-bar>
 </ion-view>

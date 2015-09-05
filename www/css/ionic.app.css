@@ -9525,31 +9525,56 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
     color: white; }
 
+.status {
+  background: #187e83;
+  color: #fff; }
+
 .compose .item {
   border-color: transparent !important;
   background-color: transparent !important; }
-.compose textarea {
+.compose h3, .compose h1 {
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 0; }
+.compose #photoHolder {
   margin-top: 1.5rem;
+  padding: 1rem;
   border: none;
   outline: none;
-  min-height: 75vh;
+  height: auto;
   font-size: 1.5rem;
-  font-family: AvenirNext-Regular;
-  color: #000;
+  font-family: AvenirNext-DemiBold;
+  color: #fff;
   line-height: 1;
-  background-color: transparent; }
-.compose .button {
-  color: #777677;
-  border: none; }
+  background-color: transparent;
+  border-bottom: 1px solid #fff; }
+.compose .activityBtn {
+  color: #fff;
+  height: 5rem;
+  width: 5rem;
+  display: block;
+  margin: 0 auto;
+  font-size: 0.75rem;
+  border-radius: 1000px;
+  border: none;
+  background: rgba(50, 50, 50, 0.5); }
+  .compose .activityBtn.active {
+    background: #323232;
+    color: #fff !important; }
+.compose .button-extra {
+  color: #fff;
+  height: 3.5rem;
+  width: 3.5rem;
+  display: block;
+  margin: 0 auto;
+  color: #fff;
+  border-radius: 1000px;
+  border: none;
+  background: rgba(50, 50, 50, 0.5); }
 .compose .ph-icon {
-  font-size: 35px; }
-
-.bar-footer.compose {
-  background: transparent;
-  border-top: none; }
-  .bar-footer.compose button {
-    background: transparent;
-    border: transparent; }
+  font-size: 25px; }
+.compose .icon-map {
+  margin-left: 0.25rem; }
 
 .teamHeader {
   overflow: auto;

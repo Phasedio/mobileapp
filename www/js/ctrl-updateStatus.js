@@ -1,4 +1,5 @@
 app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team) {
+  //cordova.plugins.Keyboard.disableScroll(true);
   $scope.updateStatus = '';
   $scope.team = Auth.team;
   $scope.weather = '';
@@ -8,6 +9,7 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team) 
   $scope.bgPhoto = '';
   $scope.photo ='';
   $scope.weatherIcon = 'img/weather.svg';
+  $scope.task = 'current';
 
 
 
@@ -115,7 +117,7 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team) 
     $http.get('http://45.55.200.34:8080/push/update/'+team+'/'+Auth.user.name+'/'+status.name,'').success(function(data){
       //alert(data);
     });
-    
+
     $state.go('teamArea');
 
     
