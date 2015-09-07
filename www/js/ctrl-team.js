@@ -1,5 +1,7 @@
 app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform,$rootScope,$http,$cordovaPush,$cordovaStatusbar) {
-  //Team.checkStatus();
+  
+  //$cordovaStatusbar.hide();
+  
   $scope.team = [];
   $scope.teamName = Auth.team;
   $scope.teamsAvail = Auth.memberOf;

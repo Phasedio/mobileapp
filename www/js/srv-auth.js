@@ -55,8 +55,13 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
         },
         createTeam : function(name,uid){
           Auth.newTeam = true;
-          makeTeam(name,uid);
-          $state.go('teamArea');
+          var teamMaker = makeTeam(name,uid);
+          if(teamMaker){
+            $state.go('teamArea');
+          }else{
+            return false;
+          }
+          
 
         },
         isReg : 0,
@@ -200,9 +205,19 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
         var teamRef = ref.child('team');
         var k = {};
         k[id]=true;
-        teamRef.child(name).child('members').child(id).set(true);
-        ref.child('profile').child(id).child('teams').push(name);
-        return true;
+        teamRef.child(name).once('value', function(){
+          //if exists
+          if(snapshot.val() == null){
+            teamRef.child(name).child('members').child(id).set(true);
+            ref.child('profile').child(id).child('teams').push(name);
+            return true;
+          }else{
+            return false;
+          }
+          
+        });
+        
+        
       }else{
         // Team validation
         ref.child('team').child(name).child('members').once('value',function(data){

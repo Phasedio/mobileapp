@@ -9437,6 +9437,10 @@ a.button {
   font-family: "fontawesome";
   content: "\f0d7"; }
 
+.icon-close:before {
+  font-family: "fontawesome";
+  content: "\f00d"; }
+
 ::-webkit-input-placeholder {
   font-style: italic;
   color: white;
@@ -9536,6 +9540,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   margin-top: 0;
   margin-bottom: 0; }
+.compose h3 {
+  margin-bottom: 1.5rem; }
 .compose #photoHolder {
   margin-top: 1.5rem;
   padding: 1rem;
@@ -9561,6 +9567,10 @@ h1, h2, h3, h4, h5, h6 {
   .compose .activityBtn.active {
     background: #323232;
     color: #fff !important; }
+.compose .extra-btn {
+  margin-top: 1.5rem; }
+  .compose .extra-btn p {
+    margin-top: 5px; }
 .compose .button-extra {
   color: #fff;
   height: 3.5rem;
@@ -9574,7 +9584,11 @@ h1, h2, h3, h4, h5, h6 {
 .compose .ph-icon {
   font-size: 25px; }
 .compose .icon-map {
-  margin-left: 0.25rem; }
+  margin-left: 0.1rem; }
+
+.bar-footer {
+  height: auto !important;
+  background-color: transparent !important; }
 
 .teamHeader {
   overflow: auto;

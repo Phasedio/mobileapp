@@ -1,8 +1,11 @@
-app.controller('memberAddCtrl', function($scope,Auth,$state,FURL) {
+app.controller('memberAddCtrl', function($scope,Auth,$state,FURL,$ionicHistory) {
   console.log(Auth.user);
   var user;
+  var msg = {}
 
-var msg = {}
+  $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
 
   var ref = new Firebase(FURL);
   ref.child('profile').child(Auth.user.uid).once('value',function(data){

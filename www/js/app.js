@@ -16,7 +16,10 @@ var app =  angular.module('starter', [
   'firebase'
 ]).constant('FURL', 'https://phaseddev.firebaseio.com/');
 
-app.config(['$ionicAppProvider', function($ionicAppProvider) {
+app.config(['$ionicAppProvider','$ionicConfigProvider', function($ionicAppProvider, $ionicConfigProvider) {
+
+  $ionicConfigProvider.views.swipeBackEnabled(false);
+  //$cordovaStatusbar.style(3);
   // Identify app
   $ionicAppProvider.identify({
     // The App ID for the server
@@ -50,10 +53,11 @@ app.factory('Cameraz', ['$q', function($q) {
   }
 }]);
 
-app.run(function($ionicPlatform) {
+app.run(function($ionicPlatform,$cordovaStatusbar) {
 
   $ionicPlatform.ready(function() {
-    //$cordovaStatusbar.hide();
+    //cordovaStatusbar.hide();
+    
     Parse.initialize("S1R7aIPJPXKPPF2cOcFkJ9zluitibxyOjjvUZWfg", "Lf70hdqXJ1EZVRFdiMovRSnxFdQQ3DJSkXbHPoMy");
 
 

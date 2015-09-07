@@ -1,5 +1,6 @@
-app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team) {
+app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team,$cordovaStatusbar) {
   //cordova.plugins.Keyboard.disableScroll(true);
+  $cordovaStatusbar.hide();
   $scope.updateStatus = '';
   $scope.team = Auth.team;
   $scope.weather = '';
@@ -10,6 +11,7 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team) 
   $scope.photo ='';
   $scope.weatherIcon = 'img/weather.svg';
   $scope.task = 'current';
+  $scope.filter = '';
 
 
 
@@ -71,21 +73,23 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team) 
      };
     navigator.camera.getPicture(function(imageURI) {
       $scope.bgPhoto = 'data:image/jpeg;base64,'+imageURI;
+      $scope.filter = "background:rgba(0,0,0,0.5)";
       $scope.$apply();
       }, function(err) {
 
         // Ruh-roh, something bad happened
-        alert('KAAAAAHHHNNNN');
+        alert('error there was an issue with your photo');
 
       }, cameraOptions);
   }
 
 
   $scope.submitStatus = function(update){
-    //Team.removeTeam();
+    
     console.log(update);
     console.log($scope.updateStatus);
     update = $scope.updateStatus;
+    var taskPrefix = getTaskPrefix();
     var team = Auth.team;
     var weather,city,lat,long,photo;
     weather = $scope.weatherIcon != '' ? $scope.weatherIcon : 0;
@@ -94,11 +98,12 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team) 
     long = $scope.long ? $scope.long : 0;
     photo = $scope.bgPhoto ? $scope.bgPhoto : 0;
     var status = {
-      name: update,
+      name: taskPrefix+update,
       time: new Date().getTime(),
       user:Auth.user.uid,
       city:city,
       weather:weather,
+      taskPrefix : taskPrefix,
       photo : photo,
       location:{
         lat : lat,
@@ -109,21 +114,54 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team) 
     var teamRef = new Firebase(FURL);
     console.log(status);
     teamRef.child('team').child(team).child('task').child(Auth.user.uid).set(status);
-    teamRef.child('team').child(team).child('all').push(status);
-    console.log('status set');
-    $scope.updateStatus = '';
+    teamRef.child('team').child(team).child('all').push(status,function(){
+      console.log('status set');
+      $scope.updateStatus = '';
 
-    //Send push notifications to team
-    $http.get('http://45.55.200.34:8080/push/update/'+team+'/'+Auth.user.name+'/'+status.name,'').success(function(data){
-      //alert(data);
+      //Send push notifications to team
+      $http.get('http://45.55.200.34:8080/push/update/'+team+'/'+Auth.user.name+'/'+status.name,'').success(function(data){
+        //alert(data);
+      });
+
+      // hard reset
+      // $scope.updateStatus = '';
+      // $scope.team = Auth.team;
+      // $scope.weather = '';
+      // $scope.city = '';
+      // $scope.lat = '';
+      // $scope.long = '';
+      // $scope.bgPhoto = '';
+      // $scope.photo ='';
+      // $scope.weatherIcon = 'img/weather.svg';
+      // $scope.task = 'current';
+      // $scope.filter = '';
+      Team.removeTeam();
+      $state.go('teamArea');
     });
-
-    $state.go('teamArea');
+    
 
     
   }
 
+  $scope.changePrefix = function(x){
+    $scope.task = x;
+  }
 
+  function getTaskPrefix(){
+    var r = '';
+    switch ($scope.task){
+      case 'current':
+        r = 'Is currently ';
+        break;
+      case 'starting':
+        r = 'Has started ';
+        break;
+      case 'finsh':
+        r = 'Has finshed ';
+        break;    
+    }
+    return r;
+  }
   function getWeatherIcon(icon){
     var final;
     switch (icon) {

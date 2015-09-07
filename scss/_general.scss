@@ -50,6 +50,10 @@ $lightFont: AvenirNext-UltraLight;
     content: "\f0d7";
 }
 
+.icon-close:before{
+  font-family: "fontawesome";
+    content: "\f00d";
+}
 
 
 // ----------------------------------------------------------------
@@ -115,7 +119,10 @@ h1,h2,h3,h4,h5,h6{
     border: none;
     color:#fff;
   }
+
+
 }
+
 // .menu{
 //   background-color: $background;
 //   border-color: $background;
