@@ -1,6 +1,6 @@
 app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team,$cordovaStatusbar) {
   //cordova.plugins.Keyboard.disableScroll(true);
-  $cordovaStatusbar.hide();
+  //$cordovaStatusbar.hide();
   $scope.updateStatus = '';
   $scope.team = Auth.team;
   $scope.weather = '';
@@ -114,7 +114,7 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team,$
     var teamRef = new Firebase(FURL);
     console.log(status);
     teamRef.child('team').child(team).child('task').child(Auth.user.uid).set(status);
-    teamRef.child('team').child(team).child('all').push(status,function(){
+    teamRef.child('team').child(team).child('all').child(Auth.user.uid).push(status,function(){
       console.log('status set');
       $scope.updateStatus = '';
 

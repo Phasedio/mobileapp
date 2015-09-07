@@ -28,11 +28,25 @@
       </div>
       <div class="row">
         <div class="col">
-          <img src='{{statusInfo.weather}}'>
-          <object type="image/svg+xml" data="{{statusInfo.weather}}" class="logo" color="#fff" width="150px" height="150px"></object>
           <h3 align="center">{{statusInfo.city}}</h3>
         </div>
       </div>
+
+
+      <div class="row">
+        <div class="col">
+          <h3 align="center">Today <button class="button bar-none" style="background-color:transparent;"><i class="icon-down" style="color:#fff;"></i></button></h3>
+        </div>
+      </div>
+
+      <ul class="list">
+        <li class="item" ng-repeat="task in taskHistory | orderBy : 'time':true">
+        <p>{{task.name}}</p>
+        <p><small>{{task.time | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</small></p>
+        </li>
+        <li ng-if="!taskHistory"><p align="center">No updates made in the past 24 hours!</p></li>
+      </ul>
+
     </div>
   </ion-content>
 </ion-view>

@@ -1,5 +1,6 @@
 app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams) {
   $scope.team = Auth.team;
+  $scope.taskHistory = [];
 
   var member = angular.fromJson($stateParams.uid);
   console.log(member);
@@ -39,7 +40,31 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams) 
       $scope.bgColor = "background:" + colors[4];
       $scope.filter = ''
     }
+    //Make task history
 
+    $scope.getTaskHistory = function(){
+      var startTime = new Date().getTime();
+      var endTime = startTime - 86400000;
+      console.log(startTime);
+
+
+      statusRef.child('team').child(Auth.team).child('all').child(member.uid).orderByChild('time').startAt(endTime).once('value',function(data){
+        //console.log(data.val());
+        //Clean up data
+        data = data.val();
+
+        var keys = Object.keys(data);
+        var arr = [];
+        for(var i = 0; i < keys.length;i++){
+          arr.push(data[keys[i]]);
+        }
+        $scope.taskHistory = arr;
+
+
+      });
+    };
+
+    
     //weather
 
 
@@ -52,7 +77,7 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams) 
     $scope.statusInfo.gravatar = Auth.biggerAvatar(email,100);
     console.log($scope.statusInfo.gravatar);
   }
-
+  $scope.getTaskHistory();
 
 
 });

@@ -9734,6 +9734,10 @@ h1, h2, h3, h4, h5, h6 {
 .viewStat object path {
   color: #fff !important;
   background-color: #fff !important; }
+.viewStat .item {
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #fff; }
 
 .profile {
   background-color: #187e83; }
