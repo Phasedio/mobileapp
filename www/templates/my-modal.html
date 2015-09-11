@@ -1,15 +1,15 @@
 <ion-modal-view>
     <ion-header-bar>
-    	<button ng-click=""></button>
+    	<button ng-click="closeModal()"><span class="icon-close"></span></button>
       <h1 class="title">My Modal title</h1>
     </ion-header-bar>
     <ion-content>
       <ul class="list">
-	    <li class="item">24 hours</li>
-	    <li class="item">7 days</li>
-	    <li class="item">30 days</li>
-	    <li class="item">6 months</li>
-	    <li class="item">All time</li>
+	    <li class="item" ng-click="changeHistoryTimeOffset(86400000)">24 hours</li>
+	    <li class="item" ng-click="changeHistoryTimeOffset(604800000)">7 days</li>
+	    <li class="item" ng-click="changeHistoryTimeOffset(2592000000)">30 days</li>
+	    <li class="item" ng-click="changeHistoryTimeOffset(78892290000)">6 months</li>
+	    <li class="item" ng-click="changeHistoryTimeOffset(78892290000)">All time</li>
 	   </ul>
     </ion-content>
 </ion-modal-view>

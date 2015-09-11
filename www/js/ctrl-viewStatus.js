@@ -1,4 +1,7 @@
 app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$ionicModal) {
+
+  $scope.history = 86400000;
+
   $ionicModal.fromTemplateUrl('templates/my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -49,9 +52,15 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
     }
     //Make task history
 
+    $scope.changeHistoryTimeOffset = function(x){
+      $scope.taskHistory = [];
+      $scope.history = x;
+      $scope.getTaskHistory();
+    }
+
     $scope.getTaskHistory = function(){
       var startTime = new Date().getTime();
-      var endTime = startTime - 86400000;
+      var endTime = startTime - $scope.history;
       console.log(startTime);
 
 
