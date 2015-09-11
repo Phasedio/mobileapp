@@ -2,37 +2,29 @@
   <ion-content class="padding login">
     <div class="row">
       <div class="col">
-        <img src="img/phased-logo.svg" height="150px" width="150px" style="display:block;margin:0 auto;">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h1 align="center">Phased.io</h1>
-        <h4 align="center">Enter your <strong>email address</strong> and <strong>password</strong></h4>
+        <img src="img/phased-logo.svg" height="220px" width="220px" style="">
       </div>
     </div>
 
       <form name="userForm" ng-submit="regPerson(user)" novalidate>
         <div class="list">
-          <label class="item item-input">
-            <input type="email" ng-model="user.email" placeholder="email">
+          <label class="item item-input item-stacked-label">
+            <label class="input-label" for="email">email</label>
+            <input class="loginInput" type="email" id="email" ng-model="user.email" placeholder="">
           </label>
-          <label class="item item-input">
-            <input type="password" ng-model="user.password" placeholder="password">
+          <label class="item item-input item-stacked-label">
+            <label class="input-label" for="password">password</label>
+            <input class="loginInput" type="password" id='password' ng-model="user.password" placeholder="">
+          </label>
+          <label class="item">
+            <input type="submit" class="button button-block button-phased" value="Sign In">
           </label>
         </div>
-        <input type="submit" class="button button-block button-phased">
       </form>
-
     <div class="row">
       <div class="col">
-        <h4 align="center">Need to create an account?</h4>
+        <h4 align="center">Don't have an account? <a href="" ng-click="makeAccount()"><strong>Sign up</strong></a></h4>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h4 align="center"><a href="" ng-click="makeAccount()" style="text-align:center;"><strong>Make one here</strong></a></h4>
-      <div class="col">
     </div>
   </ion-content>
 </ion-view>

@@ -9474,10 +9474,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: AvenirNext-Bold; }
 
 .button-phased {
-  background-color: #11ba55;
+  background-color: #50D2C2;
   color: #fff;
   outline: none;
-  border-color: #11ba55; }
+  border-color: #50D2C2; }
+  .button-phased:active {
+    background-color: #317F76; }
+  .button-phased:hover {
+    color: #fff; }
 
 .bar-phased {
   background-color: #187e83;
@@ -9511,23 +9515,126 @@ h1, h2, h3, h4, h5, h6 {
     color: #eee; }
 
 .login {
-  background: #187e83; }
+  background: #fff; }
   .login h1, .login h2, .login h3, .login h4, .login h5, .login h6 {
-    color: #fff; }
-  .login input[type='email'], .login input[type='password'] {
+    color: #1D1D26; }
+  .login img {
+    display: block;
+    margin: 0 auto;
+    margin-top: 5rem; }
+  .login .btn-phased {
+    background: #50D2C2; }
+  .login form {
+    margin-top: 10vh; }
+  .login .loginInput {
     background: transparent;
-    font-family: AvenirNext-DemiBold;
-    width: 250px;
-    text-align: center;
+    overflow: auto;
+    font-family: AvenirNext-Regular;
     border: none;
-    color: #fff; }
+    padding-right: 0;
+    color: #1D1D26;
+    /* 3 */
+    /* 3 */
+    /* 4 */
+    /* 6 */
+    /* 6 */
+    /* 7 */
+    font-size: 18px;
+    /* 9 */
+    font-size: 1.8rem;
+    /* 9 */
+    border-bottom: 2px solid rgba(29, 29, 38, 0.1);
+    /* 3 */
+    /* 3 */
+    /* 4 */
+    /* 6 */
+    /* 6 */
+    /* 7 */
+    padding-bottom: 10px;
+    /* 9 */
+    padding-bottom: 1rem;
+    /* 9 */
+    transition: all 0.3s; }
+    .login .loginInput:focus {
+      border-bottom: 2px solid rgba(80, 210, 194, 0.5); }
   .login .item {
     background: transparent;
     border-color: transparent;
     border: 1px solid white; }
+  .login .item-input {
+    padding: 6px 16px 5px 16px;
+    /* 3 */
+    /* 3 */
+    /* 4 */
+    /* 6 */
+    /* 6 */
+    /* 7 */
+    margin-bottom: 10px;
+    /* 9 */
+    margin-bottom: 1rem;
+    /* 9 */ }
+    .login .item-input label {
+      font-family: AvenirNext-Regular;
+      text-transform: uppercase;
+      color: rgba(29, 29, 38, 0.5);
+      /* 3 */
+      /* 3 */
+      /* 4 */
+      /* 6 */
+      /* 6 */
+      /* 7 */
+      letter-spacing: 1px;
+      /* 9 */
+      letter-spacing: 0.1rem;
+      /* 9 */
+      /* 3 */
+      /* 3 */
+      /* 4 */
+      /* 6 */
+      /* 6 */
+      /* 7 */
+      font-size: 10px;
+      /* 9 */
+      font-size: 1rem;
+      /* 9 */
+      /* 3 */
+      /* 3 */
+      /* 4 */
+      /* 6 */
+      /* 6 */
+      /* 7 */
+      margin-bottom: 10px;
+      /* 9 */
+      margin-bottom: 1rem;
+      /* 9 */ }
+  .login h4 {
+    font-family: AvenirNext-Regular;
+    text-transform: uppercase;
+    color: rgba(29, 29, 38, 0.5);
+    /* 3 */
+    /* 3 */
+    /* 4 */
+    /* 6 */
+    /* 6 */
+    /* 7 */
+    font-size: 10px;
+    /* 9 */
+    font-size: 1rem;
+    /* 9 */
+    /* 3 */
+    /* 3 */
+    /* 4 */
+    /* 6 */
+    /* 6 */
+    /* 7 */
+    letter-spacing: 1px;
+    /* 9 */
+    letter-spacing: 0.1rem;
+    /* 9 */ }
   .login a {
     text-decoration: none;
-    color: white; }
+    font-family: AvenirNext-Regular;
+    color: #1d1d26; }
 
 .status {
   background: #187e83;

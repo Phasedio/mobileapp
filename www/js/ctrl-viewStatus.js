@@ -1,4 +1,11 @@
-app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams) {
+app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$ionicModal) {
+  $ionicModal.fromTemplateUrl('templates/my-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    console.log('got it');
+    $scope.modal = modal;
+  });
   $scope.team = Auth.team;
   $scope.taskHistory = [];
 
@@ -78,6 +85,30 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams) 
     console.log($scope.statusInfo.gravatar);
   }
   $scope.getTaskHistory();
+
+
+
+  // Modal 
+  
+  $scope.openModal = function() {
+    console.log('fire');
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 
 
 });
