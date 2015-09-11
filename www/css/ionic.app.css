@@ -9441,6 +9441,10 @@ a.button {
   font-family: "fontawesome";
   content: "\f00d"; }
 
+.icon-cog:before {
+  font-family: "fontawesome";
+  content: "\f013"; }
+
 ::-webkit-input-placeholder {
   font-style: italic;
   color: white;
@@ -9481,6 +9485,16 @@ h1, h2, h3, h4, h5, h6 {
   .button-phased:active {
     background-color: #317F76; }
   .button-phased:hover {
+    color: #fff; }
+
+.button-logout {
+  background-color: #FFB258;
+  color: #fff;
+  outline: none;
+  border-color: #FFB258; }
+  .button-logout:active {
+    background-color: #FFB258; }
+  .button-logout:hover {
     color: #fff; }
 
 .bar-phased {
@@ -9539,9 +9553,9 @@ h1, h2, h3, h4, h5, h6 {
     /* 6 */
     /* 6 */
     /* 7 */
-    font-size: 18px;
+    font-size: 12px;
     /* 9 */
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     /* 9 */
     border-bottom: 2px solid rgba(29, 29, 38, 0.1);
     /* 3 */
@@ -9847,14 +9861,127 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff; }
 
 .profile {
-  background-color: #187e83; }
-  .profile h2 {
-    font-family: AvenirNext-Regular;
-    color: #fff; }
-  .profile .dp-user {
-    width: 100px;
-    height: 100px;
+  background: #fff; }
+  .profile h1, .profile h2, .profile h3, .profile h4, .profile h5, .profile h6 {
+    color: #1D1D26 !important;
+    font-family: AvenirNext-Regular; }
+  .profile.bar.bar-light {
+    background-image: none !important; }
+  .profile img {
     display: block;
     margin: 0 auto;
-    border-radius: 100px;
-    border: 1px solid #fff; }
+    margin-top: 2rem;
+    border-radius: 1000px; }
+  .profile .btn-phased {
+    background: #50D2C2; }
+  .profile form {
+    margin-top: 10vh; }
+  .profile .loginInput {
+    background: transparent;
+    overflow: auto;
+    font-family: AvenirNext-Regular;
+    border: none;
+    padding-right: 0;
+    color: #1D1D26;
+    /* 3 */
+    /* 3 */
+    /* 4 */
+    /* 6 */
+    /* 6 */
+    /* 7 */
+    font-size: 12px;
+    /* 9 */
+    font-size: 1.2rem;
+    /* 9 */
+    border-bottom: 2px solid rgba(29, 29, 38, 0.1);
+    /* 3 */
+    /* 3 */
+    /* 4 */
+    /* 6 */
+    /* 6 */
+    /* 7 */
+    padding-bottom: 10px;
+    /* 9 */
+    padding-bottom: 1rem;
+    /* 9 */
+    transition: all 0.3s; }
+    .profile .loginInput:focus {
+      border-bottom: 2px solid rgba(80, 210, 194, 0.5); }
+  .profile .item {
+    background: transparent;
+    border-color: transparent;
+    border: 1px solid white; }
+  .profile .item-input {
+    padding: 6px 16px 5px 16px;
+    /* 3 */
+    /* 3 */
+    /* 4 */
+    /* 6 */
+    /* 6 */
+    /* 7 */
+    margin-bottom: 10px;
+    /* 9 */
+    margin-bottom: 1rem;
+    /* 9 */ }
+    .profile .item-input label {
+      font-family: AvenirNext-Regular;
+      text-transform: uppercase;
+      color: rgba(29, 29, 38, 0.5);
+      /* 3 */
+      /* 3 */
+      /* 4 */
+      /* 6 */
+      /* 6 */
+      /* 7 */
+      letter-spacing: 1px;
+      /* 9 */
+      letter-spacing: 0.1rem;
+      /* 9 */
+      /* 3 */
+      /* 3 */
+      /* 4 */
+      /* 6 */
+      /* 6 */
+      /* 7 */
+      font-size: 10px;
+      /* 9 */
+      font-size: 1rem;
+      /* 9 */
+      /* 3 */
+      /* 3 */
+      /* 4 */
+      /* 6 */
+      /* 6 */
+      /* 7 */
+      margin-bottom: 10px;
+      /* 9 */
+      margin-bottom: 1rem;
+      /* 9 */ }
+  .profile h4 {
+    font-family: AvenirNext-Regular;
+    text-transform: uppercase;
+    color: rgba(29, 29, 38, 0.5);
+    /* 3 */
+    /* 3 */
+    /* 4 */
+    /* 6 */
+    /* 6 */
+    /* 7 */
+    font-size: 10px;
+    /* 9 */
+    font-size: 1rem;
+    /* 9 */
+    /* 3 */
+    /* 3 */
+    /* 4 */
+    /* 6 */
+    /* 6 */
+    /* 7 */
+    letter-spacing: 1px;
+    /* 9 */
+    letter-spacing: 0.1rem;
+    /* 9 */ }
+  .profile a {
+    text-decoration: none;
+    font-family: AvenirNext-Regular;
+    color: #1d1d26; }

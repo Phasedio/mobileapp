@@ -49,6 +49,32 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
         changePassword : function(user) {
             return auth.$changePassword({email: user.email, oldPassword: user.oldPass, newPassword: user.newPass});
         },
+        changeName : function(uid,name){
+          var profileRef = ref.child('profile');
+          return profileRef.child(uid).child('name').set(name);
+        },
+        changeEmail : function(uid,newEmail,oldEmail,password){
+          
+          ref.changeEmail({
+            oldEmail : oldEmail,
+            newEmail : newEmail,
+            password : "password"
+          }, function(error) {
+            if (error === null) {
+              console.log("Email changed successfully");
+              //Update email on profile 
+              var profileRef = ref.child('profile');
+              return profileRef.child(uid).child('email').set(newEmail);
+
+            } else {
+              console.log("Error changing email:", error);
+              alert("Error changing email:"+ error);
+            }
+          });
+
+
+
+        },
 
         signedIn: function() {
             return !!Auth.user.provider;

@@ -1,6 +1,8 @@
 app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$ionicModal) {
 
   $scope.history = 86400000;
+  $scope.historyTitle = '24 hours';
+  $scope.teamPlan = 'free';
 
   $ionicModal.fromTemplateUrl('templates/my-modal.html', {
     scope: $scope,
@@ -28,8 +30,6 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
   ];
 
 
-
-
     data = member;
     statusInfo.city = data.city ? data.city : '';
     statusInfo.location = data.location ? data.location : '';
@@ -50,12 +50,43 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
       $scope.bgColor = "background:" + colors[4];
       $scope.filter = ''
     }
+
+
+    $scope.getTeamPlan = function(){
+      statusRef.child('team').child(Auth.team).child('plan').once('value', function(data){
+        data = data.val();
+        $scope.teamPlan = data;
+      });
+    }
     //Make task history
 
     $scope.changeHistoryTimeOffset = function(x){
       $scope.taskHistory = [];
       $scope.history = x;
+      $scope.historyTitle = $scope.changeHistoryTitle(x);
       $scope.getTaskHistory();
+      $scope.closeModal();
+    }
+    $scope.changeHistoryTitle = function(x){
+      var r = ''
+      switch(x){
+        case 86400000:
+          r = '24 Hours';
+          break;
+        case 604800000:
+          r = '7 Days';
+          break;
+        case 2592000000:
+          r = '30 Days';
+          break;
+        case 78892290000:
+          r = '6 Months';
+          break;  
+        case 78892290001:
+          r = 'All Time';
+          break;     
+      }
+      return r;
     }
 
     $scope.getTaskHistory = function(){
@@ -76,7 +107,6 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
         }
         $scope.taskHistory = arr;
 
-
       });
     };
 
@@ -93,6 +123,7 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
     $scope.statusInfo.gravatar = Auth.biggerAvatar(email,100);
     console.log($scope.statusInfo.gravatar);
   }
+  $scope.getTeamPlan();
   $scope.getTaskHistory();
 
 

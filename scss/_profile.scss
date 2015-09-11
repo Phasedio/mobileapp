@@ -1,15 +1,70 @@
 .profile{
-  background-color: $background;
-  h2{
+  background: #fff;
+  h1,h2,h3,h4,h5,h6{
+    color: #1D1D26!important;
     font-family: $regFont;
-    color:#fff;
   }
-  .dp-user{
-    width: 100px;
-    height:100px;
-    display: block;
-    margin: 0 auto;
-    border-radius: 100px;
-    border: 1px solid #fff;
+  &.bar.bar-light{
+    background-image:none!important;
+  }
+  img{
+    
+    display:block;
+    margin:0 auto;
+    margin-top: 2rem;
+    border-radius:1000px;
+  }
+  .btn-phased{
+    background:#50D2C2;
+  }
+  form{
+     margin-top: 10vh;
+  }
+  .loginInput{
+    background: transparent;
+    overflow: auto;
+    font-family: $regFont;
+    border: none;
+    padding-right:0;
+    color:#1D1D26;
+    @include rem(font-size, 12px);
+     border-bottom:2px solid rgba(29,29,38,0.1);
+    @include rem(padding-bottom, 10px);
+    transition:all 0.3s;
+    &:focus{
+      border-bottom:2px solid rgba(80,210,194,0.5);
+    }
+
+    
+  }
+  
+  .item{
+    background: transparent;
+    border-color: transparent;
+    border: 1px solid white;
+  }
+  .item-input{
+    padding: 6px 16px 5px 16px;
+    @include rem(margin-bottom, 10px);
+    label{
+      font-family: $regFont;
+      text-transform: uppercase;
+      color:rgba(29,29,38,0.5);
+      @include rem(letter-spacing, 1px);
+      @include rem(font-size, 10px);
+      @include rem(margin-bottom, 10px);
+    } 
+  }
+  h4{
+    font-family: $regFont;
+    text-transform: uppercase;
+    color:rgba(29,29,38,0.5);
+    @include rem(font-size, 10px);
+    @include rem(letter-spacing, 1px);
+  }
+  a{
+    text-decoration: none;
+    font-family: $regFont;
+    color:rgba(29,29,38,1);
   }
 }

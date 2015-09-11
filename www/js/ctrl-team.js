@@ -163,7 +163,7 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
      new Firebase(FURL + 'team/' + Auth.team + '/task').on('value', function(users) {
        Team.removeTeam();
        users = users.val();
-       //console.log(users);
+       console.log('got new intel');
        if(users){
          var teamUID = Object.keys(users);
    
@@ -172,6 +172,7 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
             }
             $scope.team = Team.members;
             console.log($scope.team);
+            users = '';
             $scope.$apply();
        }
    

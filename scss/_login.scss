@@ -22,7 +22,7 @@
     border: none;
     padding-right:0;
     color:#1D1D26;
-    @include rem(font-size, 18px);
+    @include rem(font-size, 12px);
      border-bottom:2px solid rgba(29,29,38,0.1);
     @include rem(padding-bottom, 10px);
     transition:all 0.3s;

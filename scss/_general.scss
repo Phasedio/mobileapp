@@ -54,6 +54,10 @@ $lightFont: AvenirNext-UltraLight;
     content: "\f00d";
 }
 
+.icon-cog:before{
+  font-family: "fontawesome";
+    content: "\f013";
+}
 
 // ----------------------------------------------------------------
 // Colors
@@ -108,6 +112,19 @@ h1,h2,h3,h4,h5,h6{
   border-color: #50D2C2;
   &:active{
     background-color:#317F76;
+  }
+  &:hover{
+    color: #fff;
+  }
+}
+
+.button-logout{
+  background-color: #FFB258;
+  color: #fff;
+  outline: none;
+  border-color: #FFB258;
+  &:active{
+    background-color:#FFB258;
   }
   &:hover{
     color: #fff;
