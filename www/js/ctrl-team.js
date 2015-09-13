@@ -119,7 +119,7 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
          $scope.teamName = Auth.team;
 
          $http.get('http://45.55.200.34:8080/register/'+Auth.user.deviceToken+'/'+Auth.user.parse+'/'+team,'').success(function(data){
-           alert(data);
+           //alert(data);
          });
          checkStatus();
 
@@ -215,9 +215,9 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
      var param = {Key: file}
      bucket.getObject(param,function(err,data){
        if(err){
-         alert(err);
+         //alert(err);
        }else{
-         alert('got it');
+         //alert('got it');
          return(data);
        }
      })
@@ -263,7 +263,7 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
       onNotification: function(notification) {
         // Handle new push notifications here
         // console.log(notification);
-        alert(notification);
+        //alert(notification);
         return true;
       }
     });
