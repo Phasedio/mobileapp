@@ -189,8 +189,8 @@ h1,h2,h3,h4,h5,h6{
 }
 
 @mixin rem($property, $values) {
-  $px : (); /* 3 */
-  $rem: (); /* 3 */
+  $px : (); 
+  $rem: (); 
 
   @each $value in $values { /* 4 */
 

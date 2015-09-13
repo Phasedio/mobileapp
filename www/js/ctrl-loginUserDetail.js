@@ -14,6 +14,7 @@ app.controller('LoginUserDetailsCtrl', function($scope,Auth,$state,$cordovaStatu
                 console.log('login done');
                 $state.go('updateStatus');
             }, function(err){
+              alert(err);
               alert('incorrect username/password');
             });
   }

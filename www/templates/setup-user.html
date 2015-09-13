@@ -1,41 +1,36 @@
 <ion-view view-title="LoginUserDetails" hide-nav-bar="true">
+<ion-header-bar align-title="center" class="bar-light profile">
+    <div class="buttons">
+      <button class="button button-icon" ng-click="loginArea()" nav-direction="back"><i class="icon-close" style="color:rgba(29,29,38,0.5);font-size: 1.1rem;"></i></button>
+    </div>
+    <h1 class="title" >Sign up</h1>
+  </ion-header-bar>
   <ion-content class="padding login">
-    <div class="row">
-      <div class="col">
-        <img src="img/phased-logo.svg" height="150px" width="150px" style="display:block;margin:0 auto;">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h1 align="center">Phased.io</h1>
-        <h2 align="center">Enter your email address and password</h2>
-      </div>
-    </div>
-
       <form ng-submit="regPerson(user)" novalidate>
         <div class="list">
-          <label class="item item-input">
-            <input type="text" style="text-align:center;" ng-model="user.name" placeholder="name">
+          <label class="item item-input item-stacked-label">
+            <label class="input-label" for="email">Full name</label>
+            <input class="loginInput" type="text" ng-model="user.name" placeholder="">
           </label>
-          <label class="item item-input">
-            <input type="email" ng-model="user.email" placeholder="email">
+          <label class="item item-input item-stacked-label">
+            <label class="input-label" for="email">email</label>
+            <input class="loginInput" type="email" ng-model="user.email" placeholder="">
           </label>
-          <label class="item item-input">
-            <input type="password" ng-model="user.password" placeholder="password">
+          <label class="item item-input item-stacked-label">
+            <label class="input-label" for="email">Password</label>
+            <input  class="loginInput" type="password" ng-model="user.password" placeholder="">
+          </label>
+          <label class="item">
+            <input type="submit" class="button button-block button-phased" value="Create">
           </label>
         </div>
-        <input type="submit" class="button button-block button-phased">
+        
       </form>
 
     <div class="row">
       <div class="col">
-        <h4 align="center">Already have a Phased account?</h4>
+        <h4 align="center">Have an account? <a href="" ng-click="loginArea()"><strong>Login here</strong></a></h4>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h4 align="center"><a href="" ng-click="loginArea()"><strong>Login here</strong></a></h4>
-      <div class="col">
     </div>
   </ion-content>
 </ion-view>

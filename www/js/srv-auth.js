@@ -83,8 +83,10 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
           Auth.newTeam = true;
           var teamMaker = makeTeam(name,uid);
           if(teamMaker){
-            $state.go('teamArea');
+            console.log('tres');
+            
           }else{
+            console.log('nope');
             return false;
           }
           
@@ -194,15 +196,6 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
       });
         // else continue blank
     }
-    // $rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
-    //   alert("Successfully registered token " + data.token);
-    //   console.log('Ionic Push: Got token ', data.token, data.platform);
-    //   $scope.token = data.token;
-    //   //save device token to FB
-    //   ref.child('profile').child(Auth.user.uid).child('token').set(data.token);
-    //
-    //
-    // });
 
     $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       if (notification.alert) {
@@ -231,14 +224,16 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
         var teamRef = ref.child('team');
         var k = {};
         k[id]=true;
-        teamRef.child(name).once('value', function(){
+        teamRef.child(name).once('value', function(snapshot){
           //if exists
           if(snapshot.val() == null){
+            console.log('team doesnt exist creting');
             teamRef.child(name).child('members').child(id).set(true);
             ref.child('profile').child(id).child('teams').push(name);
-            return true;
+            console.log('made');
+            $state.go('teamArea');
           }else{
-            return false;
+            return 0;
           }
           
         });

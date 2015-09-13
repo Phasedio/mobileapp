@@ -11,7 +11,7 @@ app.controller('SetupTeamCtrl', function($scope,$state,Auth,$ionicHistory) {
     if(!x){
     	$scope.noTeam = 'Team name not available!';
     	$scope.team = angular.copy(oriTeam);
-      	$scope.teamForm.$setPristine();
+      $scope.teamForm.$setPristine();
     }
 
   };

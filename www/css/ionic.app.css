@@ -9535,11 +9535,11 @@ h1, h2, h3, h4, h5, h6 {
   .login img {
     display: block;
     margin: 0 auto;
-    margin-top: 5rem; }
+    margin-top: 4vh; }
   .login .btn-phased {
     background: #50D2C2; }
   .login form {
-    margin-top: 10vh; }
+    margin-top: 7vh; }
   .login .loginInput {
     background: transparent;
     overflow: auto;
@@ -9547,8 +9547,6 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     padding-right: 0;
     color: #1D1D26;
-    /* 3 */
-    /* 3 */
     /* 4 */
     /* 6 */
     /* 6 */
@@ -9558,8 +9556,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.2rem;
     /* 9 */
     border-bottom: 2px solid rgba(29, 29, 38, 0.1);
-    /* 3 */
-    /* 3 */
     /* 4 */
     /* 6 */
     /* 6 */
@@ -9577,8 +9573,6 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid white; }
   .login .item-input {
     padding: 6px 16px 5px 16px;
-    /* 3 */
-    /* 3 */
     /* 4 */
     /* 6 */
     /* 6 */
@@ -9591,8 +9585,6 @@ h1, h2, h3, h4, h5, h6 {
       font-family: AvenirNext-Regular;
       text-transform: uppercase;
       color: rgba(29, 29, 38, 0.5);
-      /* 3 */
-      /* 3 */
       /* 4 */
       /* 6 */
       /* 6 */
@@ -9601,8 +9593,6 @@ h1, h2, h3, h4, h5, h6 {
       /* 9 */
       letter-spacing: 0.1rem;
       /* 9 */
-      /* 3 */
-      /* 3 */
       /* 4 */
       /* 6 */
       /* 6 */
@@ -9611,8 +9601,6 @@ h1, h2, h3, h4, h5, h6 {
       /* 9 */
       font-size: 1rem;
       /* 9 */
-      /* 3 */
-      /* 3 */
       /* 4 */
       /* 6 */
       /* 6 */
@@ -9625,8 +9613,6 @@ h1, h2, h3, h4, h5, h6 {
     font-family: AvenirNext-Regular;
     text-transform: uppercase;
     color: rgba(29, 29, 38, 0.5);
-    /* 3 */
-    /* 3 */
     /* 4 */
     /* 6 */
     /* 6 */
@@ -9635,8 +9621,6 @@ h1, h2, h3, h4, h5, h6 {
     /* 9 */
     font-size: 1rem;
     /* 9 */
-    /* 3 */
-    /* 3 */
     /* 4 */
     /* 6 */
     /* 6 */
@@ -9866,7 +9850,8 @@ h1, h2, h3, h4, h5, h6 {
     color: #1D1D26 !important;
     font-family: AvenirNext-Regular; }
   .profile.bar.bar-light {
-    background-image: none !important; }
+    background-image: none !important;
+    border-bottom: none !important; }
   .profile img {
     display: block;
     margin: 0 auto;
@@ -9883,8 +9868,6 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     padding-right: 0;
     color: #1D1D26;
-    /* 3 */
-    /* 3 */
     /* 4 */
     /* 6 */
     /* 6 */
@@ -9894,8 +9877,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.2rem;
     /* 9 */
     border-bottom: 2px solid rgba(29, 29, 38, 0.1);
-    /* 3 */
-    /* 3 */
     /* 4 */
     /* 6 */
     /* 6 */
@@ -9913,8 +9894,6 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid white; }
   .profile .item-input {
     padding: 6px 16px 5px 16px;
-    /* 3 */
-    /* 3 */
     /* 4 */
     /* 6 */
     /* 6 */
@@ -9927,8 +9906,6 @@ h1, h2, h3, h4, h5, h6 {
       font-family: AvenirNext-Regular;
       text-transform: uppercase;
       color: rgba(29, 29, 38, 0.5);
-      /* 3 */
-      /* 3 */
       /* 4 */
       /* 6 */
       /* 6 */
@@ -9937,8 +9914,6 @@ h1, h2, h3, h4, h5, h6 {
       /* 9 */
       letter-spacing: 0.1rem;
       /* 9 */
-      /* 3 */
-      /* 3 */
       /* 4 */
       /* 6 */
       /* 6 */
@@ -9947,8 +9922,6 @@ h1, h2, h3, h4, h5, h6 {
       /* 9 */
       font-size: 1rem;
       /* 9 */
-      /* 3 */
-      /* 3 */
       /* 4 */
       /* 6 */
       /* 6 */
@@ -9961,8 +9934,6 @@ h1, h2, h3, h4, h5, h6 {
     font-family: AvenirNext-Regular;
     text-transform: uppercase;
     color: rgba(29, 29, 38, 0.5);
-    /* 3 */
-    /* 3 */
     /* 4 */
     /* 6 */
     /* 6 */
@@ -9971,8 +9942,6 @@ h1, h2, h3, h4, h5, h6 {
     /* 9 */
     font-size: 1rem;
     /* 9 */
-    /* 3 */
-    /* 3 */
     /* 4 */
     /* 6 */
     /* 6 */

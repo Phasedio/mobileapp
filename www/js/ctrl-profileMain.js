@@ -4,6 +4,10 @@ app.controller('ProfileMainCtrl', function($scope,Auth,$state,FURL) {
   $scope.updates = [];
   $scope.stats = {};
   $scope.view ="posts";
+  $scope.submitBtnText = 'Update';
+  $scope.ogUser = '';
+
+
   var ref = new Firebase(FURL);
 
   ref.child('profile').child(Auth.user.uid).once('value',function(data){
@@ -13,14 +17,18 @@ app.controller('ProfileMainCtrl', function($scope,Auth,$state,FURL) {
     console.log(data);
   });
 
-  $scope.goBack = function(){
+  $scope.goBack = function(){ 
     $state.go('teamArea');
   }
   $scope.update = function(user){
-    if(user.name == $scope.ogUser.name){
-      Auth.changeName(Auth.user.auth.uid, user.name);
-    } 
-    if(user.email == $scope.ogUser.email){
+    console.log('updating');
+    console.log($scope.user);
+    console.log($scope.ogUser);
+    console.log('updating name');
+    Auth.changeName(Auth.user.auth.uid, user.name);
+     
+    if(user.email != $scope.ogUser.email){
+      console.log('updating email');
       if(!user.password){
         alert('to edit your email, please enter your password');
       }else{
@@ -36,8 +44,18 @@ app.controller('ProfileMainCtrl', function($scope,Auth,$state,FURL) {
         newPass : user.newPassword
 
       }
-      Auth.changePassword(Auth.user.auth.uid, user.name);
+      Auth.changePassword(Auth.user.auth.uid, user.name).then(function(data){
+        console.log(data);
+      },function(data){
+        console.log(data);
+      });
     }
+
+    $scope.submitBtnText = 'Updated';
+
   };
+  $scope.logout = function(){
+    Auth.logout();
+  }
 
 });
