@@ -1,8 +1,9 @@
-app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$ionicModal) {
+app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$ionicModal,$ionicActionSheet) {
 
   $scope.history = 86400000;
   $scope.historyTitle = '24 hours';
   $scope.teamPlan = 'free';
+  $scope.userAdmin = false;
 
   $ionicModal.fromTemplateUrl('templates/my-modal.html', {
     scope: $scope,
@@ -51,7 +52,19 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
       $scope.filter = ''
     }
 
-
+    $scope.isAdmin = function(){
+      if(member.uid != Auth.user.uid){
+        statusRef.child('team').child(Auth.team).child('admin').once('value',function(data){
+          data = data.val();
+          if(data == Auth.user.uid){
+            $scope.userAdmin = true;
+          }else{
+            $scope.userAdmin = false;
+          }
+        });
+      }
+      
+    }
     $scope.getTeamPlan = function(){
       statusRef.child('team').child(Auth.team).child('plan').once('value', function(data){
         data = data.val();
@@ -123,6 +136,7 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
     $scope.statusInfo.gravatar = Auth.biggerAvatar(email,100);
     console.log($scope.statusInfo.gravatar);
   }
+  $scope.isAdmin();
   $scope.getTeamPlan();
   $scope.getTaskHistory();
 
@@ -150,5 +164,60 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
     // Execute action
   });
 
+
+
+  //Action sheet - for admins only
+
+   // Triggered on a button click, or some other target
+ $scope.adminBar = function() {
+
+   // Show the action sheet
+   var hideSheet = $ionicActionSheet.show({
+     // buttons: [
+     //   { text: 'Make Admin' }
+     // ],
+     destructiveText: 'Delete User',
+     destructiveButtonClicked : function(){
+        //remove person from tasks
+        var taskRef = new Firebase(FURL+'team/'+Auth.team+'/task/'+member.uid);
+
+        taskRef.remove();
+
+        //remove person from allowed members
+        var memberRef = new Firebase(FURL+'team/'+Auth.team+'/members/'+member.uid);
+
+        memberRef.remove();
+
+        //insure that if their curTeam is set that its not set to the team
+        statusRef.child('profile').child(member.uid).child('teams').once('value',function(data){
+          data = data.val();
+          keys = Object.keys(data);
+          var arr = [];
+          for(var i = 0; i < keys.length; i++){
+            if(data[keys[i]] == Auth.team){
+              continue;
+            }
+            arr.push(data[keys[i]]);
+          }
+          statusRef.child('profile').child(member.uid).child('teams').set(arr);
+          $state.go('teamArea');
+          return true;
+        });
+
+     },
+     titleText: 'Admin area',
+     cancelText: 'Cancel',
+     cancel: function() {
+          // add cancel code..
+        },
+     buttonClicked: function(index) {
+      console.log(index);
+       return true;
+     }
+   });
+
+   
+
+ };
 
 });

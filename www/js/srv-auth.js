@@ -47,6 +47,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
             auth.$unauth();
         },
         changePassword : function(user) {
+          console.log(user);
             return auth.$changePassword({email: user.email, oldPassword: user.oldPass, newPassword: user.newPass});
         },
         changeName : function(uid,name){
@@ -58,7 +59,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
           ref.changeEmail({
             oldEmail : oldEmail,
             newEmail : newEmail,
-            password : "password"
+            password : password
           }, function(error) {
             if (error === null) {
               console.log("Email changed successfully");

@@ -13,7 +13,10 @@ app.controller('ProfileMainCtrl', function($scope,Auth,$state,FURL) {
   ref.child('profile').child(Auth.user.uid).once('value',function(data){
     data = data.val();
     $scope.user = data;
-    $scope.ogUser = data;
+    $scope.ogUser = {
+      name : $scope.user.name,
+      email : $scope.user.email
+    };
     console.log(data);
   });
 
@@ -26,17 +29,19 @@ app.controller('ProfileMainCtrl', function($scope,Auth,$state,FURL) {
     console.log($scope.ogUser);
     console.log('updating name');
     Auth.changeName(Auth.user.auth.uid, user.name);
-     
-    if(user.email != $scope.ogUser.email){
+     console.log('check email');
+     console.log($scope.user.email + ' ' + $scope.ogUser.email);
+    if($scope.user.email != $scope.ogUser.email){
       console.log('updating email');
-      if(!user.password){
+      if(!user.oldPassword){
         alert('to edit your email, please enter your password');
       }else{
-        Auth.changeEmail(Auth.user.auth.uid,user.email, $scope.ogUser.email, user.password);
+        Auth.changeEmail(Auth.user.auth.uid,user.email, $scope.ogUser.email, user.oldPassword);
       }
       
     } 
     if(user.newPassword){
+      console.log('updating password');
       var obj = {
         uid : Auth.user.auth.uid,
         email : user.email,
@@ -44,12 +49,14 @@ app.controller('ProfileMainCtrl', function($scope,Auth,$state,FURL) {
         newPass : user.newPassword
 
       }
-      Auth.changePassword(Auth.user.auth.uid, user.name).then(function(data){
+      console.log(obj);
+      Auth.changePassword(obj).then(function(data){
         console.log(data);
       },function(data){
         console.log(data);
       });
     }
+    $state.go('teamArea');
 
     $scope.submitBtnText = 'Updated';
 
