@@ -230,6 +230,7 @@ app.factory('Auth', function(FURL,$firebaseAuth,$firebase,$q,$state,$ionicHistor
           if(snapshot.val() == null){
             console.log('team doesnt exist creting');
             teamRef.child(name).child('members').child(id).set(true);
+            teamRef.child(name).child('admin').set(id);
             ref.child('profile').child(id).child('teams').push(name);
             console.log('made');
             $state.go('teamArea');
