@@ -1,4 +1,4 @@
-app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$ionicModal,$ionicActionSheet,$ionicPlatform) {
+app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$ionicModal,$ionicActionSheet,$ionicPlatform,$cordovaGoogleAnalytics) {
   $ionicPlatform.ready(function() {
     if (typeof analytics !== 'undefined'){
        $cordovaGoogleAnalytics.startTrackerWithId('UA-67596202-1');
@@ -120,13 +120,15 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
         //console.log(data.val());
         //Clean up data
         data = data.val();
-
-        var keys = Object.keys(data);
-        var arr = [];
-        for(var i = 0; i < keys.length;i++){
-          arr.push(data[keys[i]]);
+        if(data){
+          var keys = Object.keys(data);
+          var arr = [];
+          for(var i = 0; i < keys.length;i++){
+            arr.push(data[keys[i]]);
+          }
+          $scope.taskHistory = arr;
         }
-        $scope.taskHistory = arr;
+        
 
       });
     };

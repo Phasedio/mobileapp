@@ -60,6 +60,7 @@ app.factory('Cameraz', ['$q', function($q) {
 app.run(function($ionicPlatform,$cordovaStatusbar) {
 
   $ionicPlatform.ready(function() {
+    $cordovaPush.setBadgeNumber(null);
     //cordovaStatusbar.hide();
     
     Parse.initialize("S1R7aIPJPXKPPF2cOcFkJ9zluitibxyOjjvUZWfg", "Lf70hdqXJ1EZVRFdiMovRSnxFdQQ3DJSkXbHPoMy");
