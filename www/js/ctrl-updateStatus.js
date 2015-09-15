@@ -1,4 +1,13 @@
-app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team,$cordovaStatusbar) {
+app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team,$cordovaStatusbar,$cordovaGoogleAnalytics,$ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if (typeof analytics !== 'undefined'){
+       $cordovaGoogleAnalytics.startTrackerWithId('UA-67596202-1');
+        $cordovaGoogleAnalytics.trackView('Update status screen');
+        $cordovaGoogleAnalytics.setUserId(Auth.user.uid);
+    }
+  });
+  
+
   //cordova.plugins.Keyboard.disableScroll(true);
   //$cordovaStatusbar.hide();
   $scope.updateStatus = '';
@@ -20,6 +29,9 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team,$
   }
 
   $scope.getLocation = function(){
+    if(typeof analytics !== "undefined") {
+      $cordovaGoogleAnalytics.trackEvent('Compose', 'got location');
+    }
     if ($scope.lat){
 
       document.getElementById("loc").className =
@@ -45,6 +57,7 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team,$
   };
 
   $scope.getWeather = function(){
+
     if($scope.weather){
       $scope.weather = '';
     }else{
@@ -59,6 +72,9 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team,$
     }
   };
   $scope.takePhoto = function (){
+    if(typeof analytics !== "undefined") {
+      $cordovaGoogleAnalytics.trackEvent('Compose', 'got photo');
+    }
     var ic = document.getElementById('ph');
     ic.className = ic.className + " active";
 
@@ -85,7 +101,9 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team,$
 
 
   $scope.submitStatus = function(update){
-    
+    if(typeof analytics !== "undefined") {
+      $cordovaGoogleAnalytics.trackEvent('Compose', 'submitted status');
+    }
     console.log(update);
     console.log($scope.updateStatus);
     update = $scope.updateStatus;
@@ -148,6 +166,9 @@ app.controller('updateStatusCtrl', function($scope,Auth,$state,FURL,$http,Team,$
   }
 
   function getTaskPrefix(){
+    if(typeof analytics !== "undefined") {
+      $cordovaGoogleAnalytics.trackEvent('Compose', 'added prefex');
+    }
     var r = '';
     switch ($scope.task){
       case 'current':

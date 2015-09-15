@@ -1,4 +1,12 @@
-app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$ionicModal,$ionicActionSheet) {
+app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$ionicModal,$ionicActionSheet,$ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if (typeof analytics !== 'undefined'){
+       $cordovaGoogleAnalytics.startTrackerWithId('UA-67596202-1');
+  $cordovaGoogleAnalytics.trackView('View status screen');
+  $cordovaGoogleAnalytics.setUserId(Auth.user.uid);
+    }
+  });
+  
 
   $scope.history = 86400000;
   $scope.historyTitle = '24 hours';
@@ -146,6 +154,9 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
   
   $scope.openModal = function() {
     console.log('fire');
+    if(typeof analytics !== "undefined") {
+      $cordovaGoogleAnalytics.trackEvent('Profile','Change history timeframe');
+    }
     $scope.modal.show();
   };
   $scope.closeModal = function() {
@@ -170,7 +181,9 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
 
    // Triggered on a button click, or some other target
  $scope.adminBar = function() {
-
+    if(typeof analytics !== "undefined") {
+      $cordovaGoogleAnalytics.trackEvent('Profile', 'Admin bar open');
+    }
    // Show the action sheet
    var hideSheet = $ionicActionSheet.show({
      // buttons: [
@@ -178,6 +191,9 @@ app.controller('viewStatusCtrl', function($scope,Auth,$state,FURL,$stateParams,$
      // ],
      destructiveText: 'Delete User',
      destructiveButtonClicked : function(){
+      if(typeof analytics !== "undefined") {
+        $cordovaGoogleAnalytics.trackEvent('Profile', 'Deleted user');
+      }
         //remove person from tasks
         var taskRef = new Firebase(FURL+'team/'+Auth.team+'/task/'+member.uid);
 

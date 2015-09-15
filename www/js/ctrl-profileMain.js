@@ -1,4 +1,14 @@
-app.controller('ProfileMainCtrl', function($scope,Auth,$state,FURL) {
+app.controller('ProfileMainCtrl', function($scope,Auth,$state,FURL,$cordovaGoogleAnalytics,$ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if (typeof analytics !== 'undefined'){
+       $cordovaGoogleAnalytics.startTrackerWithId('UA-67596202-1');
+        $cordovaGoogleAnalytics.trackView('Profile screen');
+        $cordovaGoogleAnalytics.setUserId(Auth.user.uid);
+    }
+  });
+
+ 
+
   $scope.team = Auth.team;
   $scope.user = {};
   $scope.updates = [];

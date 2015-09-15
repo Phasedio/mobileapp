@@ -1,5 +1,11 @@
-app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform,$rootScope,$http,$cordovaPush,$cordovaStatusbar) {
-  
+app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$ionicUser,$ionicPush,$ionicPlatform,$rootScope,$http,$cordovaPush,$cordovaStatusbar,$cordovaGoogleAnalytics) {
+  $ionicPlatform.ready(function() {
+    if (typeof analytics !== 'undefined'){
+      $cordovaGoogleAnalytics.startTrackerWithId('UA-67596202-1');
+      $cordovaGoogleAnalytics.trackView('Team screen');
+      $cordovaGoogleAnalytics.setUserId(Auth.user.uid);
+    }
+  });
   
 
   $scope.team = [];
@@ -64,7 +70,7 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
         ref.child('profile').child(Auth.user.uid).child('token').set(deviceToken);
         Auth.user.deviceToken = deviceToken;
       },function(err) {
-      alert("Registration error: " + err)
+      //alert("Registration error: " + err)
     });
 
 
@@ -109,7 +115,9 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
    }
    $scope.switchTeam = function(team){
      //double check that user is allowed in team area
-
+     if(typeof analytics !== "undefined") {
+      $cordovaGoogleAnalytics.trackEvent('Team', 'Change team');
+    }
      ref.child('team').child(team).child('members').once('value',function(data){
        data = data.val();
        if(data[Auth.user.uid]){
@@ -127,7 +135,10 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
      })
    }
    $scope.nudge = function(id){
-     alert(id);
+    if(typeof analytics !== "undefined") {
+      $cordovaGoogleAnalytics.trackEvent('Team', 'send nudge');
+    }
+     
      $http.get('http://45.55.200.34:8080/push/nudge/'+id+'/'+Auth.user.name,'').success(function(data){
        console.log(data);
      });
@@ -155,6 +166,9 @@ app.controller('teamCtrl', function($scope,Auth,Team,$state,FURL,$ionicHistory,$
      }
    }
    $scope.addMember = function(){
+    if(typeof analytics !== "undefined") {
+      $cordovaGoogleAnalytics.trackEvent('Team', 'add members start');
+    }
      $state.go('memberAdd');
    }
 

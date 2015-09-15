@@ -1,4 +1,12 @@
-app.controller('memberAddCtrl', function($scope,Auth,$state,FURL,$ionicHistory) {
+app.controller('memberAddCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$cordovaGoogleAnalytics,$ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if (typeof analytics !== 'undefined'){
+      $cordovaGoogleAnalytics.startTrackerWithId('UA-67596202-1');
+      $cordovaGoogleAnalytics.trackView('Add member screen');
+      $cordovaGoogleAnalytics.setUserId(Auth.user.uid);
+    }
+  });
+  
   console.log(Auth.user);
   var user;
   var msg = {}
@@ -61,6 +69,9 @@ app.controller('memberAddCtrl', function($scope,Auth,$state,FURL,$ionicHistory) 
 
 
   $scope.addMembers = function(names){
+    if(typeof analytics !== "undefined") {
+      $cordovaGoogleAnalytics.trackEvent('Add member', 'sent invites out');
+    }
     // grab all users and see if they match an email in the system
     console.log('test');
     ref.child('profile').once('value', function(data){

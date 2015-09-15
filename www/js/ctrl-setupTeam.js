@@ -1,4 +1,12 @@
-app.controller('SetupTeamCtrl', function($scope,$state,Auth,$ionicHistory) {
+app.controller('SetupTeamCtrl', function($scope,$state,Auth,$ionicHistory,$cordovaGoogleAnalytics,$ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if (typeof analytics !== 'undefined'){
+       $cordovaGoogleAnalytics.startTrackerWithId('UA-67596202-1');
+      $cordovaGoogleAnalytics.trackView('Setup team screen');
+    }
+  });
+  
+  
   $scope.team = {
   	name : ''
   };

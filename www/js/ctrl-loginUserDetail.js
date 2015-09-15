@@ -1,6 +1,14 @@
 
 
-app.controller('LoginUserDetailsCtrl', function($scope,Auth,$state,$cordovaStatusbar) {
+app.controller('LoginUserDetailsCtrl', function($scope,Auth,$state,$cordovaStatusbar,$cordovaGoogleAnalytics,$ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if (typeof analytics !== 'undefined'){
+      $cordovaGoogleAnalytics.startTrackerWithId('UA-67596202-1');
+      $cordovaGoogleAnalytics.trackView('Login Screen');
+    }
+  });
+  
+
   // $cordovaStatusbar.overlaysWebView(true)
   //
   // $cordovaStatusBar.style(1);
