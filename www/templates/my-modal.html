@@ -5,24 +5,24 @@
     </ion-header-bar>
     <ion-content>
       <ul class="list">
-	    <li class="item" ng-click="changeHistoryTimeOffset(86400000)"></li>
-	    <a class="item item-icon-right" ng-click="changeHistoryTimeOffset(86400000)" href="#">
+	    
+	    <a class="item item-icon-right" ng-click="changeHistoryTimeOffset(86400000)" href="">
 		    24 hours
 		    <i ng-if="history == 86400000" class="icon icon-check"></i>
 		</a>
-		<a class="item item-icon-right" ng-if="teamPlan != 'free'" ng-click="changeHistoryTimeOffset(604800000)" href="#">
+		<a class="item item-icon-right" ng-if="teamPlan != 'free'" ng-click="changeHistoryTimeOffset(604800000)" href="">
 		    7 days
 		    <i ng-if="history == 604800000" class="icon icon-check"></i>
 		</a>
-		<a class="item item-icon-right" ng-if="teamPlan != 'free'" ng-click="changeHistoryTimeOffset(2592000000)" href="#">
+		<a class="item item-icon-right" ng-if="teamPlan != 'free'" ng-click="changeHistoryTimeOffset(2592000000)" href="">
 		    30 days
 		    <i ng-if="history == 2592000000" class="icon icon-check"></i>
 		</a>
-		<a class="item item-icon-right" ng-if="teamPlan != 'free'" ng-click="changeHistoryTimeOffset(78892290000)" href="#">
+		<a class="item item-icon-right" ng-if="teamPlan != 'free'" ng-click="changeHistoryTimeOffset(78892290000)" href="">
 		    6 months
 		    <i ng-if="history == 78892290000" class="icon icon-check"></i>
 		</a>
-		<a class="item item-icon-right" ng-if="teamPlan != 'free'" ng-click="changeHistoryTimeOffset(78892290001)" href="#">
+		<a class="item item-icon-right" ng-if="teamPlan != 'free'" ng-click="changeHistoryTimeOffset(78892290001)" href="">
 			All time
 		    <i ng-if="history == 78892290001" class="icon icon-check"></i>
 		</a>

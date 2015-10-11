@@ -89,11 +89,13 @@ app.controller('memberAddCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$
           console.log('test5');
           //push new team to member
           ref.child('profile').child(selectedUID[y]).child('teams').push(Auth.team);
+          $state.go('teamArea');
           break;
         }
       }
       // if no matches are found create a profile-in-waiting with this team assigned.
       if(!isSet){
+        console.log('test2');
         console.log(names.email);
         // loop profile-in-waiting to find a match
         ref.child('profile-in-waiting').once('value', function(data){
@@ -111,6 +113,7 @@ app.controller('memberAddCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$
 
               for(var u = 0; u < userTeams.length; u++){
                 if(profileOfUser.teams[userTeams[u]] == Auth.team){
+                  $state.go('teamArea');
                   break;
                 }else{
                   change = true;
@@ -118,18 +121,22 @@ app.controller('memberAddCtrl', function($scope,Auth,$state,FURL,$ionicHistory,$
                 }
               }
               if(change){
+                console.log('test7');
                 //push new team to member
                 ref.child('profile-in-waiting').child(selectedUID[y]).child('teams').push(Auth.team);
                 sendTheMail(msg);
+                $state.go('teamArea');
                 break;
               }
             }
           }
           if(!thisSet){
+            console.log('test8');
             ref.child('profile-in-waiting').push({teams : { 0 : Auth.team},email : names.email});
 
 
             sendTheMail(msg);
+            $state.go('teamArea');
           }
         });
       }
