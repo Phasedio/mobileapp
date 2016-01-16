@@ -1,0 +1,17 @@
+<ion-view view-title="Feed" hide-back-button="true">
+        <ion-content class="padding-top">
+          <!-- <h1>Hello There!</h1>
+          <button ng-click="logOut()" class="button button-clear button-positive">Logout</button> -->
+
+          <div class="list">
+
+            <a class="item item-avatar" href="#" ng-repeat="update in team.history | orderBy : 'time':true | limitTo :100">
+              <img src="{{team.members[update.user].gravatar}}">
+              <h2>{{team.members[update.user].name}} <small am-time-ago="update.time"></small></h2>
+              <p>{{update.name}}</p>
+            </a>
+
+        </div>
+
+        </ion-content>
+</ion-view>
