@@ -22,6 +22,11 @@ $stateProvider
       templateUrl: 'views/home/home.html',
       controller:'homeController'
     })
+    .state('tasks', {
+      url: '/tasks',
+      templateUrl: 'views/tasks/tasks.html',
+      controller:'TasksController'
+    })
     ;
 $urlRouterProvider.otherwise("/login");
 })
