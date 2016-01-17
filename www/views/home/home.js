@@ -2,10 +2,17 @@
 angular.module('App').controller('homeController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
 
+  $scope.status = {
+    name : '',
+    catKey : ''
+  }
+
   $scope.logOut = function () {
       Auth.logout();
       $location.path("/login");
   }
+
+
 
   // PhasedProvider integrations
   // n.b.: categories now in Phased.team.categorySelect and in Phased.team.categoryObj (different structures)
@@ -28,6 +35,7 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
     console.log(Phased);
   });
 
+  //Add modal fucntions
   $ionicModal.fromTemplateUrl('my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -53,6 +61,59 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
   $scope.$on('modal.removed', function() {
     // Execute action
   });
+
+  //add task
+  // add a task
+  // 1. format incoming data
+  // 2. PhasedProvider pushes to db
+  // 3. update interface
+	$scope.addTask = function(update){
+
+
+    // 1. format incoming status data
+  	// if ($scope.taskForm.$error.maxlength){
+  	// 	alert('Your update is too long!');
+    //   return;
+  	// }
+
+    var key = update.catKey;
+    var taskPrefix = '';
+
+    var weather,city,lat,long,photo;
+
+    key = update.catKey ? update.catKey : '';
+    city = 0;
+    lat =  0;
+    long =  0;
+    photo =  0;
+    var status = {
+      name: taskPrefix+update.name,
+      time: new Date().getTime(),
+      user:Auth.user.uid,
+      cat : key,
+      city:city,
+      weather:'',
+      taskPrefix : taskPrefix,
+      photo : photo,
+      location:{
+        lat : lat,
+        long : long
+      }
+    };
+
+    // 2. update db
+    Phased.addTask(status);
+
+    // 3. update interface
+    //$scope.task = update;
+    $scope.status = {name:'',catKey:''};
+    $scope.modal.hide();
+    //$scope.taskTime = status.time; // we didnt have status.time so i think this fixes the problem(?)
+	};
+
+  $scope.tab = function(place){
+    $state.go(place);
+  }
 
 
 }

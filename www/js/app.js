@@ -27,6 +27,16 @@ $stateProvider
       templateUrl: 'views/tasks/tasks.html',
       controller:'TasksController'
     })
+    .state('task', {
+      url: '/tasks/:taskid',
+      templateUrl: 'views/taskItem/taskItem.html',
+      controller:'TasksIDController'
+    })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'views/profile/profile.html',
+      controller:'ProfileController'
+    })
     ;
 $urlRouterProvider.otherwise("/login");
 })

@@ -20,11 +20,11 @@
 
         </ion-content>
         <ion-tabs class="tabs-icon-top">
-        <ion-tab title="Feed" href="#/home" icon="ion-ios-chatbubble-outline">
+        <ion-tab title="Feed" ng-click="tab('home')" icon="ion-ios-chatbubble-outline">
 
         </ion-tab>
-        <ion-tab title="Tasks" href="#/tasks" icon="ion-ios-list-outline">Hello tab 2!</ion-tab>
-        <ion-tab title="Profile"  icon="ion-ios-person-outline">Hello tab 2!</ion-tab>
+        <ion-tab title="Tasks" ng-click="tab('tasks')" icon="ion-ios-list-outline">Hello tab 2!</ion-tab>
+        <ion-tab title="Profile" ng-click="tab('profile')" icon="ion-ios-person-outline">Hello tab 2!</ion-tab>
       </ion-tabs>
 
 </ion-view>
@@ -35,7 +35,25 @@
       <h1 class="title">New task</h1>
     </ion-header-bar>
     <ion-content>
-      Hello!
+    <form ng-submit="addTask(status)" novalidate>
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" ng-model="status.name" placeholder="What are you doing?">
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Category
+          </div>
+          <select  ng-model="status.catKey" ng-init="status.catKey = ''">
+            <option value="">none</option>
+            <option ng-repeat="(key, category) in team.categorySelect" value="key">{{category.name}}</option>
+          </select>
+        </label>
+        <button type="submit" class="button button-full button-positive">Submit</button>
+
+      </div>
+    </from>
     </ion-content>
+
   </ion-modal-view>
   </script>

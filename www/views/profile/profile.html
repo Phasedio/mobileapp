@@ -1,0 +1,42 @@
+<ion-view view-title="Profile" hide-back-button="true">
+        <ion-content class="padding-top">
+          <!-- <form name="updateForm" ng-submit="updateUser(update)" novalidate>
+
+          <div class="login login-drk" style="background:transparent;">
+            <div class="item item-input item-stacked-label">
+              <label class="input-label" for="name">name</label>
+              <input class="loginInput" type="text" id="name" ng-model="update.name" placeholder="{{currentUser.name}}">
+            </div>
+            <div class="item item-input item-stacked-label">
+              <label class="input-label" for="tel">tel</label>
+              <input class="loginInput" type="tel" id="tel" ng-model="update.tel" placeholder="{{currentUser.tel | tel}}">
+            </div>
+            <div class="item item-input item-stacked-label">
+              <label class="input-label" for="email">email</label>
+              <input class="loginInput" type="email" id="email" ng-model="update.email" placeholder="{{currentUser.email}}">
+            </div>
+            <div class="item item-input item-stacked-label">
+              <label class="input-label" for="oldpassword">old password</label>
+              <input class="loginInput" type="password" id='oldpassword' ng-model="update.oldPass" placeholder="">
+            </div>
+            <div class="item item-input item-stacked-label">
+              <label class="input-label" for="newpassword">new password</label>
+              <input class="loginInput" type="password" id='newpassword' ng-model="update.newPass" placeholder="">
+            </div>
+            <div class="item">
+              <input type="submit" class="btn btn-phased-blue btn-block " value="Update Account">
+            </div>
+          </div>
+        </form> -->
+        <button class="btn btn-phased-blue btn-block " ng-click="logout()">logout</button>
+
+
+        </ion-content>
+        <ion-tabs class="tabs-icon-top">
+        <ion-tab title="Feed" ng-click="tab('home')" icon="ion-ios-chatbubble-outline">
+
+        </ion-tab>
+        <ion-tab title="Tasks" ng-click="tab('tasks')" icon="ion-ios-list-outline">Hello tab 2!</ion-tab>
+        <ion-tab title="Profile" ng-click="tab('profile')" icon="ion-ios-person-outline">Hello tab 2!</ion-tab>
+      </ion-tabs>
+</ion-view>

@@ -1,15 +1,21 @@
 <ion-view view-title="Tasks" hide-back-button="true">
         <ion-content class="padding-top">
-          <h1>Hello There!</h1>
-          <button ng-click="logOut()" class="button button-clear button-positive">Logout</button>
-
+          <h3 align="center">Tasks assigned to you</h3>
+          <ul class="list">
+            <li class="item item-button-right" ng-repeat="assignment in activeStream | filterTaskByStatus : activeStatusFilter | filterTaskByCategory : activeCategoryFilter | orderObjectBy : 'time' | limitTo :5">
+              {{assignment.name}}
+              <button class="button button-positive" ng-click="taskView(assignment.key)">
+                <i  class="icon ion-arrow-right-a"></i>
+              </button>
+            </li>
+          </ul>
 
         </ion-content>
         <ion-tabs class="tabs-icon-top">
-        <ion-tab title="Feed" href="#/home" icon="ion-ios-chatbubble-outline">
+        <ion-tab title="Feed" ng-click="tab('home')" icon="ion-ios-chatbubble-outline">
 
         </ion-tab>
-        <ion-tab title="Tasks" href="#/tasks" icon="ion-ios-list-outline">Hello tab 2!</ion-tab>
-        <ion-tab title="Profile"  icon="ion-ios-person-outline">Hello tab 2!</ion-tab>
+        <ion-tab title="Tasks" ng-click="tab('tasks')" icon="ion-ios-list-outline">Hello tab 2!</ion-tab>
+        <ion-tab title="Profile" ng-click="tab('profile')" icon="ion-ios-person-outline">Hello tab 2!</ion-tab>
       </ion-tabs>
 </ion-view>

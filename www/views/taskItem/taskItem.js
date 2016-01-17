@@ -88,13 +88,19 @@ angular.module('App').filter('orderObjectBy', function() {
       return result;
     }
   });
-angular.module('App').controller('TasksController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils,Phased) {
+angular.module('App').controller('TasksIDController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils,Phased,$stateParams) {
   var ref = new Firebase(FURL);
   $scope.team = Phased.team;
   $scope.currentUser = Phased.user.profile;
   $scope.assignments = Phased.assignments;
+  $scope.taskID = $stateParams.taskid;
   //$scope.archive = Phased.archive;
-
+  $scope.viewType = Phased.viewType;
+    $scope.taskPriorities = Phased.TASK_PRIORITIES; // in new task modal
+    $scope.taskStatuses = Phased.TASK_STATUSES; // in new task modal
+    $scope.taskPriorityID = Phased.TASK_PRIORITY_ID;
+    $scope.taskStatusID = Phased.TASK_STATUS_ID;
+    $scope.myID = Auth.user.uid;
   $scope.activeStream = Phased.assignments.to_me;
   $scope.activeStreamName = 'assignments.to_me';
   $scope.activeStatusFilter = '!1'; // not completed tasks
@@ -107,18 +113,53 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
 
   // history retrieved
   $scope.$on('Phased:historyComplete', function() {
-    $scope.$apply();
     console.log(Phased);
+    console.log($stateParams.taskid);
+
+    console.log($scope.task);
+    $scope.$apply();
+
   });
+  $scope.task = Phased.assignments.all[$stateParams.taskid];
 
 
-  $scope.taskView = function(taskID){
-    console.log(taskID);
-    $state.transitionTo('task', {taskid: taskID});
-  }
+  $scope.startTask = function(task) {
+      if (!task.user || task.unassigned)
+        Phased.takeTask(task.key);
+      Phased.activateTask(task.key);
 
-  $scope.tab = function(place){
-    $state.go(place);
-  }
+      $scope.activeStream = Phased.assignments.to_me;
+      $scope.activeStatusFilter = Phased.TASK_STATUS_ID.ASSIGNED;
+    }
+
+    $scope.moveToArchive = function(assignmentID) {
+      Phased.moveToFromArchive(assignmentID);
+      $scope.closeDetails();
+    }
+
+    $scope.moveFromArchive = function(assignmentID) {
+      Phased.moveToFromArchive(assignmentID, true);
+
+    }
+
+    // gets archived tasks at address shows archive
+    $scope.getArchiveFor = function(address) {
+      Phased.getArchiveFor(address);
+    }
+
+    $scope.setTaskCompleted = function(assignmentID) {
+      Phased.setAssignmentStatus(assignmentID, Phased.TASK_STATUS_ID.COMPLETE);
+    }
+
+    //Broadcasts that user is working on Task
+    $scope.broadcastTask = function(task){
+      Phased.activateTask(task.key);
+       //toaster.pop('success', "Success!", "Your task was posted");
+    }
+
+
+    $scope.tab = function(place){
+      $state.go(place);
+    }
 
 });
