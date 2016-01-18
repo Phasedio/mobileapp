@@ -1,5 +1,20 @@
 'Use Strict';
 angular.module('App', ['ionic','ngStorage', 'ngCordova','firebase','ngMessages','angularMoment'])
+.config(function($ionicConfigProvider) {
+  $ionicConfigProvider.views.maxCache(3);
+})
+.run(['$rootScope', '$location', function ($rootScope, $location) {
+      $rootScope.$on('$routeChangeError', function(event, next, previous, error) {
+        // We can catch the error thrown when the $requireAuth promise is rejected
+        // and redirect the user back to the home page
+        console.log('hi');
+        console.log(error);
+        if (error === 'AUTH_REQUIRED') {
+          $location.path("/login");
+        }
+      });
+
+  }])
 .config(function($stateProvider, $urlRouterProvider) {
 $stateProvider
     .state('login', {
@@ -27,7 +42,12 @@ $stateProvider
                     'currentAuth': ['Auth', function(Auth) {
                       // $requireAuth returns a promise so the resolve waits for it to complete
                       // If the promise is rejected, it will throw a $stateChangeError (see above)
+                      //console.log(Auth.user.name);
+                      console.log(Auth);
+                      // $requireAuth returns a promise so the resolve waits for it to complete
+                      // If the promise is rejected, it will throw a $stateChangeError (see above)
                       return Auth.fb.$requireAuth();
+
                     }]
                   }
     })
@@ -44,21 +64,22 @@ $stateProvider
     .state('profile', {
       url: '/profile',
       templateUrl: 'views/profile/profile.html',
-      controller:'ProfileController'
+      controller:'ProfileController',
+      resolve: {
+                    // controller will not be loaded until $requireAuth resolves
+                    // Auth refers to our $firebaseAuth wrapper in the example above
+                    'currentAuth': ['Auth', function(Auth) {
+                      console.log(Auth);
+                      // $requireAuth returns a promise so the resolve waits for it to complete
+                      // If the promise is rejected, it will throw a $stateChangeError (see above)
+                      return Auth.fb.$requireAuth();
+                    }]
+                  }
     })
     ;
 $urlRouterProvider.otherwise("/home");
 })
-.run(['$rootScope', '$location', function ($rootScope, $location) {
-      $rootScope.$on('$routeChangeError', function(event, next, previous, error) {
-        // We can catch the error thrown when the $requireAuth promise is rejected
-        // and redirect the user back to the home page
-        if (error === 'AUTH_REQUIRED') {
-          $location.path("/login");
-        }
-      });
 
-  }])
 // Changue this for your Firebase App URL.
 .constant('FURL', 'https://phaseddev.firebaseio.com/')
 .run(function($ionicPlatform) {

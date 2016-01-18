@@ -1,7 +1,7 @@
 'Use Strict';
 angular.module('App').controller('homeController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
-
+console.log(Phased);
   $scope.status = {
     name : '',
     catKey : ''

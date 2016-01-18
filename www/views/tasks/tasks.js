@@ -116,6 +116,10 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
     console.log(Phased);
   });
 
+    $scope.$watch('Phased.assignments', function(user){
+        $scope.assignments = Phased.assignments;
+    });
+
   //Add modal fucntions
   $ionicModal.fromTemplateUrl('my-task.html', {
     scope: $scope,
@@ -155,13 +159,12 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
         Phased.takeTask(task.key);
       Phased.activateTask(task.key);
 
-      $scope.activeStream = Phased.assignments.to_me;
-      $scope.activeStatusFilter = Phased.TASK_STATUS_ID.ASSIGNED;
     }
 
     $scope.moveToArchive = function(assignmentID) {
       Phased.moveToFromArchive(assignmentID);
       $scope.closeDetails();
+
     }
 
     $scope.moveFromArchive = function(assignmentID) {
@@ -172,15 +175,18 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
     // gets archived tasks at address shows archive
     $scope.getArchiveFor = function(address) {
       Phased.getArchiveFor(address);
+
     }
 
     $scope.setTaskCompleted = function(assignmentID) {
       Phased.setAssignmentStatus(assignmentID, Phased.TASK_STATUS_ID.COMPLETE);
+
     }
 
     //Broadcasts that user is working on Task
     $scope.broadcastTask = function(task){
       Phased.activateTask(task.key);
+
        //toaster.pop('success', "Success!", "Your task was posted");
     }
 

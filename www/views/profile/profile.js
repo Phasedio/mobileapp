@@ -1,11 +1,11 @@
 'Use Strict';
-angular.module('App').controller('ProfileController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
+angular.module('App').controller('ProfileController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased,$window) {
 
   // PhasedProvider integrations
   // n.b.: categories now in Phased.team.categorySelect and in Phased.team.categoryObj (different structures)
   // n.b.: Phased.user.profile is a link to Phased.team.members[Auth.user.uid].profile;
   $scope.team = Phased.team;
-  $scope.currentUser = Phased.user.profile;
+  $scope.currentUser = Phased.team.members[Auth.user.uid];
   $scope.assignments = Phased.assignments;
   //$scope.archive = Phased.archive;
   console.log($scope.team);
@@ -13,30 +13,38 @@ angular.module('App').controller('ProfileController', function ($scope, $state,$
   // ensure view updates when new members are added
   // members data retrieved
   $scope.$on('Phased:membersComplete', function() {
+    $scope.currentUser = Phased.team.members[Auth.user.uid];
     $scope.$apply();
+
   });
 
   // history retrieved
   $scope.$on('Phased:historyComplete', function() {
     $scope.$apply();
-    console.log(Phased);
-  });
 
+  });
+  $scope.logOut = function () {
+      //console.log(Phased);
+
+      Auth.logout();
+      //$window.location.reload(true);
+      $location.path("/login");
+  }
   // Update Account
     $scope.updateUser = function(update){
-      var toaster = { pop : function(a) { console.log(a) } }; // patch while the toaster disappeared!
+      //var toaster = { pop : function(a) { console.log(a) } }; // patch while the toaster disappeared!
       if (update.email === undefined || update.email === '') {
         update.email = $scope.currentUser.email;
       }
-      if (update.tel !== $scope.currentUser.tel) {
-        console.log('hit the tel!');
-        if (Auth.changeTel(update, Auth.user.uid)) {
-          toaster.pop('success', "Your phone number has been updated");
-          $scope.currentUser.tel = update.tel;
-        } else {
-          toaster.pop('error', 'Invalid phone number');
-        }
-      }
+      // if (update.tel !== $scope.currentUser.tel) {
+      //   console.log('hit the tel!');
+      //   if (Auth.changeTel(update, Auth.user.uid)) {
+      //     toaster.pop('success', "Your phone number has been updated");
+      //     $scope.currentUser.tel = update.tel;
+      //   } else {
+      //     toaster.pop('error', 'Invalid phone number');
+      //   }
+      // }
 
       if (update.name === $scope.currentUser.name || update.name === undefined || update.name === ''){
         //console.log("we are changing the password");
@@ -44,14 +52,14 @@ angular.module('App').controller('ProfileController', function ($scope, $state,$
           console.log('we will change the password');
           Auth.changePassword(update).then(function (){
             console.log('will change password');
-            toaster.pop('success', "Your password has been changed!");
+            alert("Your password has been changed!");
           }, function(err) {
             console.log('error', err);
             if (err == "Error: The specified password is incorrect.") {
               console.log("we are here");
-              toaster.pop('error', 'Your current password is incorrect');
+              alert('Your current password is incorrect');
             } else {
-              toaster.pop('error', 'Your email is incorrect! Make sure you are using your current email');
+              alert('Your email is incorrect! Make sure you are using your current email');
             }
           });
         } else {
@@ -60,7 +68,7 @@ angular.module('App').controller('ProfileController', function ($scope, $state,$
           if (update.email !== $scope.currentUser.email) {
             console.log('we are changing the email', Auth.user.uid);
             Auth.changeEmail(update, Auth.user.uid);
-            toaster.pop('success', "Your email has been updated!");
+            alert("Your email has been updated!");
             $scope.currentUser.email = update.email;
           }
         }
@@ -77,12 +85,12 @@ angular.module('App').controller('ProfileController', function ($scope, $state,$
             console.log(Auth.user.uid);
           });
 
-          toaster.pop('success', "Your name has been updated!");
+          alert("Your name has been updated!");
         }
 
         if (update.email !== $scope.currentUser.email) {
           Auth.changeEmail(update, Auth.user.uid);
-          toaster.pop('success', "Your email has been updated!");
+          alert("Your email has been updated!");
         }
       }
     };

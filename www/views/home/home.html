@@ -1,7 +1,7 @@
 <ion-view view-title="Feed" hide-back-button="true">
   <ion-nav-buttons side="right">
     <button class="button"  ng-click="openModal()">
-      <i class="icon ion-ios-plus-empty"></i>
+      Update <i class="icon ion-ios-plus-empty"></i>
     </button>
   </ion-nav-buttons>
         <ion-content class="padding-top">
@@ -49,7 +49,8 @@
             <option ng-repeat="(key, category) in team.categorySelect" value="key">{{category.name}}</option>
           </select>
         </label>
-        <button type="submit" class="button button-full button-positive">Submit</button>
+        <button type="submit" class="button button-full button-balanced">Submit</button>
+        <button type="button" class="button button-full button-dark" ng-click="closeModal()">Cancel</button>
 
       </div>
     </from>

@@ -2,11 +2,14 @@ angular.module('App')
   .provider('Phased', function() {
 
     /**
+
       PhasedProvider provides a single access point for interacting with the Phased FireBase server.
+
       It provides
         - methods for adding, updating, or removing data from the server
         - 'live' properties reflecting the data in the database (courtesy of FBRef.on())
         - 'static' properties reflecting Phased constants (such as task priority names and IDs)
+
       Note on FireBase async:
         Methods can be called from controllers that request data from Auth before the
       FireBase AJAX requests (called in AuthProvider.doAfterAuth()) that gather that data are complete. To
@@ -14,8 +17,10 @@ angular.module('App')
       are either fired immediately if doAfterAuth is complete (ie, PHASED_SET_UP == true) or at the end of
       this.init() if not (via doAsync).
         Because of this, all methods exposed by PhasedProvider must be registered with registerAsync.
+
         Currently team history is watched and synched with firebase but team assignments must explicitly
       be watched (using PhasedProvider.watchAssignments() in some controller)
+
     **/
 
     /**
@@ -85,6 +90,7 @@ angular.module('App')
         FBRef : FBRef // set in setFBRef
       };
 
+
     /**
     *
     * configure the provider and begin requests
@@ -96,6 +102,7 @@ angular.module('App')
     */
 
     this.init = function(Auth) {
+
       _Auth = Auth;
       PhasedProvider.user = Auth.user;
       PhasedProvider.team.name = Auth.currentTeam;
@@ -120,6 +127,7 @@ angular.module('App')
       // register functions listed after this in the script...
       // PhasedProvider.watchAssignments = _watchAssignments;
       // PhasedProvider.watchTaskStream = _watchTaskStream;
+
       PhasedProvider.getArchiveFor = _getArchiveFor;
       PhasedProvider.moveToFromArchive = _moveToFromArchive;
       PhasedProvider.activateTask = _activateTask;
@@ -340,7 +348,6 @@ angular.module('App')
               }
 
               // get member role from server
-              //Commented out till we get an API working
                 // $.post('./api/auth/role/get', {user: id, team : PhasedProvider.team.name})
                 //   .success(function(data) {
                 //       if (data.success) {

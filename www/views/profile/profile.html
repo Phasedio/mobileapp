@@ -1,16 +1,20 @@
 <ion-view view-title="Profile" hide-back-button="true">
         <ion-content class="padding-top">
-          <!-- <form name="updateForm" ng-submit="updateUser(update)" novalidate>
+          <div class="row">
+            <div class="col">  <img style="height: 120px; width: 120px; border-radius: 50%;margin: 0 auto; display:block;" src="{{currentUser.pic}}"></div>
+          </div>
+          
+          <form name="updateForm" ng-submit="updateUser(update)" novalidate>
 
           <div class="login login-drk" style="background:transparent;">
             <div class="item item-input item-stacked-label">
               <label class="input-label" for="name">name</label>
               <input class="loginInput" type="text" id="name" ng-model="update.name" placeholder="{{currentUser.name}}">
             </div>
-            <div class="item item-input item-stacked-label">
+            <!-- <div class="item item-input item-stacked-label">
               <label class="input-label" for="tel">tel</label>
               <input class="loginInput" type="tel" id="tel" ng-model="update.tel" placeholder="{{currentUser.tel | tel}}">
-            </div>
+            </div> -->
             <div class="item item-input item-stacked-label">
               <label class="input-label" for="email">email</label>
               <input class="loginInput" type="email" id="email" ng-model="update.email" placeholder="{{currentUser.email}}">
@@ -24,11 +28,11 @@
               <input class="loginInput" type="password" id='newpassword' ng-model="update.newPass" placeholder="">
             </div>
             <div class="item">
-              <input type="submit" class="btn btn-phased-blue btn-block " value="Update Account">
+              <button type="submit" class="button button-full button-balanced">Update Account</button>
             </div>
           </div>
-        </form> -->
-        <button class="btn btn-phased-blue btn-block " ng-click="logout()">logout</button>
+        </form>
+        <button class="button button-full button-dark " ng-click="logOut()">Logout</button>
 
 
         </ion-content>
