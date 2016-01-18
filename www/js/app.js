@@ -20,15 +20,24 @@ $stateProvider
     .state('home', {
       url: '/home',
       templateUrl: 'views/home/home.html',
-      controller:'homeController'
+      controller:'homeController',
+      resolve: {
+                    // controller will not be loaded until $requireAuth resolves
+                    // Auth refers to our $firebaseAuth wrapper in the example above
+                    'currentAuth': ['Auth', function(Auth) {
+                      // $requireAuth returns a promise so the resolve waits for it to complete
+                      // If the promise is rejected, it will throw a $stateChangeError (see above)
+                      return Auth.fb.$requireAuth();
+                    }]
+                  }
     })
     .state('tasks', {
       url: '/tasks',
       templateUrl: 'views/tasks/tasks.html',
       controller:'TasksController'
     })
-    .state('task', {
-      url: '/tasks/:taskid',
+    .state('thisisatask', {
+      url: '/thisisatask/:taskid',
       templateUrl: 'views/taskItem/taskItem.html',
       controller:'TasksIDController'
     })
@@ -38,8 +47,18 @@ $stateProvider
       controller:'ProfileController'
     })
     ;
-$urlRouterProvider.otherwise("/login");
+$urlRouterProvider.otherwise("/home");
 })
+.run(['$rootScope', '$location', function ($rootScope, $location) {
+      $rootScope.$on('$routeChangeError', function(event, next, previous, error) {
+        // We can catch the error thrown when the $requireAuth promise is rejected
+        // and redirect the user back to the home page
+        if (error === 'AUTH_REQUIRED') {
+          $location.path("/login");
+        }
+      });
+
+  }])
 // Changue this for your Firebase App URL.
 .constant('FURL', 'https://phaseddev.firebaseio.com/')
 .run(function($ionicPlatform) {

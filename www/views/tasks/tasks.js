@@ -88,7 +88,7 @@ angular.module('App').filter('orderObjectBy', function() {
       return result;
     }
   });
-angular.module('App').controller('TasksController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils,Phased) {
+angular.module('App').controller('TasksController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
   $scope.team = Phased.team;
   $scope.currentUser = Phased.user.profile;
@@ -99,7 +99,12 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
   $scope.activeStreamName = 'assignments.to_me';
   $scope.activeStatusFilter = '!1'; // not completed tasks
   $scope.activeCategoryFilter;
-  $scope.filterView = $scope.activeStreamName;//for the select filter
+  // $scope.filterView = $scope.activeStreamName;//for the select filter
+   $scope.taskPriorities = Phased.TASK_PRIORITIES; // in new task modal
+  $scope.taskStatuses = Phased.TASK_STATUSES; // in new task modal
+  $scope.taskPriorityID = Phased.TASK_PRIORITY_ID;
+  $scope.taskStatusID = Phased.TASK_STATUS_ID;
+  $scope.myID = Auth.user.uid;
 
   $scope.$on('Phased:membersComplete', function() {
     $scope.$apply();
@@ -111,13 +116,78 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
     console.log(Phased);
   });
 
+  //Add modal fucntions
+  $ionicModal.fromTemplateUrl('my-task.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    console.log('doing things');
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 
   $scope.taskView = function(taskID){
-    console.log(taskID);
-    $state.transitionTo('task', {taskid: taskID});
+    $scope.task = Phased.assignments.all[taskID];
+    $scope.openModal();
   }
 
+
+
+  $scope.startTask = function(task) {
+      if (!task.user || task.unassigned)
+        Phased.takeTask(task.key);
+      Phased.activateTask(task.key);
+
+      $scope.activeStream = Phased.assignments.to_me;
+      $scope.activeStatusFilter = Phased.TASK_STATUS_ID.ASSIGNED;
+    }
+
+    $scope.moveToArchive = function(assignmentID) {
+      Phased.moveToFromArchive(assignmentID);
+      $scope.closeDetails();
+    }
+
+    $scope.moveFromArchive = function(assignmentID) {
+      Phased.moveToFromArchive(assignmentID, true);
+
+    }
+
+    // gets archived tasks at address shows archive
+    $scope.getArchiveFor = function(address) {
+      Phased.getArchiveFor(address);
+    }
+
+    $scope.setTaskCompleted = function(assignmentID) {
+      Phased.setAssignmentStatus(assignmentID, Phased.TASK_STATUS_ID.COMPLETE);
+    }
+
+    //Broadcasts that user is working on Task
+    $scope.broadcastTask = function(task){
+      Phased.activateTask(task.key);
+       //toaster.pop('success', "Success!", "Your task was posted");
+    }
+
+
+
   $scope.tab = function(place){
+
     $state.go(place);
   }
 
