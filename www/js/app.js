@@ -77,7 +77,7 @@ $stateProvider
                   }
     })
     ;
-$urlRouterProvider.otherwise("/home");
+$urlRouterProvider.otherwise("/login");
 })
 
 // Changue this for your Firebase App URL.
