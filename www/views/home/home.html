@@ -9,7 +9,7 @@
     <div class="list">
       <div class="item item-input-inset">
         <label>
-          <input type="text" placeholder="What are you doing?">
+          <input type="text" ng-click="updateTask()" placeholder="What are you doing?">
         </label>
       </div>
 
@@ -48,7 +48,11 @@
 <script id="my-modal.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar>
-      <h1 class="title">New task</h1>
+      <h1 class="title"></h1>
+      <div class="buttons">
+
+        <button class="button button-clear" ng-click="closeUpdateTask()">Close<i class="button-icon icon ion-ios-close-empty"></i> </button>
+      </div>
     </ion-header-bar>
     <ion-content>
     <form ng-submit="addTask(status)" novalidate>

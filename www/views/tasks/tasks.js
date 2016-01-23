@@ -127,8 +127,8 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
   }).then(function(modal) {
     $scope.modal = modal;
   });
-  $scope.openModal = function() {
-    console.log('doing things');
+  $scope.taskAdd = function() {
+    console.log('will open up a modal to add a new task');
     $scope.modal.show();
   };
   $scope.closeModal = function() {
@@ -147,11 +147,40 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
     // Execute action
   });
 
+  $scope.showTaskListView = true;
+  jQuery('.ion-checkmark.taskList').addClass('active');
+
+
+  $scope.showTaskList = function(){
+    $scope.showTaskListView = true;
+    $scope.showChatView = false;
+    $scope.showProjectView = false;
+  };
+  $scope.showChat = function(){
+    jQuery('.ion-checkmark.taskList').removeClass('active');
+    $scope.showTaskListView = false;
+    $scope.showChatView = true;
+    $scope.showProjectView = false;
+  };
+  $scope.showProject = function(){
+    jQuery('.ion-checkmark.taskList').removeClass('active');
+    $scope.showTaskListView = false;
+    $scope.showChatView = false;
+    $scope.showProjectView = true;
+  };
+
   $scope.taskView = function(taskID){
     $scope.task = Phased.assignments.all[taskID];
     $scope.openModal();
   }
 
+  $scope.taskCompleted = function(id){
+    console.log('will check task off list then remove it', id);
+  }
+
+  $scope.taskDetail = function(id){
+    console.log('will go to details for each task', id);
+  }
 
 
   $scope.startTask = function(task) {
