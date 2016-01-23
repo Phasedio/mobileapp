@@ -1,32 +1,47 @@
-<ion-view view-title="Feed" hide-back-button="true">
-  <ion-nav-buttons side="right">
-    <button class="button"  ng-click="openModal()">
-      Update <i class="icon ion-ios-plus-empty"></i>
-    </button>
+<ion-view hide-back-button="true">
+
+  <ion-nav-buttons class="button-large" side="right">
+    <a class="button button-icon icon ion-ios-bell"></a>
   </ion-nav-buttons>
-        <ion-content class="padding-top">
-          <!-- <h1>Hello There!</h1>
-          <button ng-click="logOut()" class="button button-clear button-positive">Logout</button> -->
 
-          <div class="list">
+  <ion-content class="padding-top">
 
-            <a class="item item-avatar" href="#" ng-repeat="update in team.history | orderBy : 'time':true | limitTo :100">
-              <img src="{{team.members[update.user].gravatar}}">
-              <h2>{{team.members[update.user].name}} <small am-time-ago="update.time"></small></h2>
-              <p>{{update.name}}</p>
-            </a>
+    <div class="list">
+      <div class="item item-input-inset">
+        <label>
+          <input type="text" placeholder="What are you doing?">
+        </label>
+      </div>
 
+    </div>
+    <!-- <h1>Hello There!</h1>
+    <button ng-click="logOut()" class="button button-clear button-positive">Logout</button> -->
+
+    <div class="list">
+      <a class="item item-avatar" href="#" ng-repeat="update in team.history | orderBy : 'time':true | limitTo :100">
+
+        <div class="row">
+          <div class="col-33">
+            <img src="{{team.members[update.user].gravatar}}" class="avatarHome">
+          </div>
+          <div class="col-67" style="padding-top: 4%">
+            <h2>{{team.members[update.user].name}} <small am-time-ago="update.time"></small></h2>
+            <p>{{update.name}}</p>
+          </div>
         </div>
-        <ion-spinner icon="crescent" ng-hide="team.history.length > 0"></ion-spinner>
 
-        </ion-content>
-        <ion-tabs class="tabs-icon-top">
-        <ion-tab title="Feed" ng-click="tab('home')" icon="ion-ios-chatbubble-outline">
+      </a>
+    </div>
 
-        </ion-tab>
-        <ion-tab title="Tasks" ng-click="tab('tasks')" icon="ion-ios-list-outline">Hello tab 2!</ion-tab>
-        <ion-tab title="Profile" ng-click="tab('profile')" icon="ion-ios-person-outline">Hello tab 2!</ion-tab>
-      </ion-tabs>
+    <ion-spinner icon="crescent" ng-hide="team.history.length > 0"></ion-spinner>
+  </ion-content>
+
+  <ion-tabs class="tabs-icon-top">
+    <ion-tab title="Feed" ng-click="tab('home')" icon="ion-social-rss-outline"></ion-tab>
+    <ion-tab title="Tasks" ng-click="tab('tasks')" icon="ion-checkmark">Hello tab 2!</ion-tab>
+    <ion-tab title="Projects" ng-click="tab('tasks')" icon="ion-clipboard">Hello tab 2!</ion-tab>
+    <ion-tab title="Profile" ng-click="tab('profile')" icon="ion-android-person">Hello tab 2!</ion-tab>
+  </ion-tabs>
 
 </ion-view>
 
@@ -54,7 +69,7 @@
         <button type="button" class="button button-full button-dark" ng-click="closeModal()">Cancel</button>
 
       </div>
-    </from>
+    </form>
     </ion-content>
 
   </ion-modal-view>
