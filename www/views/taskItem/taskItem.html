@@ -1,14 +1,50 @@
-<ion-view view-title="Tasks" >
-        <ion-content class="padding-top">
-          <h1>Hi</h1>
+<ion-view hide-back-button="true" >
 
+  <ion-nav-buttons class="button-clear" side="right">
+    <button class="button-clear" ng-click="$ionicGoBack()">Close <i class="button-icon ion-ios-close-empty"></i></button>
+  </ion-nav-buttons>
 
-        </ion-content>
-        <ion-tabs class="tabs-icon-top">
-          <ion-tab title="Feed" ng-click="tab('home')" icon="ion-ios-chatbubble-outline">
+  <ion-content class="padding-top">
+    <div class="row">
 
-          </ion-tab>
-          <ion-tab title="Tasks" ng-click="tab('tasks')" icon="ion-ios-list-outline">Hello tab 2!</ion-tab>
-          <ion-tab title="Profile" ng-click="tab('profile')" icon="ion-ios-person-outline">Hello tab 2!</ion-tab>
-      </ion-tabs>
+      <div class="card taskDetail">
+        <h1>{{task.name}}</h1>
+
+        <div class="row">
+          <div class="col col-60">Not Started</div>
+          <div class="col col-40"><i class="ion-ios-calendar"></i> {{task.due}}</div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+          <div class="col col-30 assignee">
+            <p>Assigned to:</p>
+          </div>
+          <div class="col col-20 assignee">
+            <img src="{{currentUser}}">
+          </div>
+          <div class="col col-40 col-offset-10">Priority: {{priority}}</div>
+        </div>
+
+        <div class="card description">
+          <div class="row">
+            <div class="col">
+              <p class="font14">Description:</p>
+              <textarea style="width:100%" rows="6">{{task.disc}}</textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <p class="font14">Category: </p>
+            <p class="font14">Card: </p>
+            <button class="button button-block button-outline button-balanced" style="margin" ng-click="taskStart()">Start</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ion-content>
 </ion-view>

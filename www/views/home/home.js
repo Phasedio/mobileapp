@@ -1,7 +1,7 @@
 'Use Strict';
-angular.module('App').controller('homeController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
+angular.module('App').controller('homeController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $ionicSideMenuDelegate, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
-console.log(Phased);
+console.log("this is where i'm at", Phased);
   $scope.status = {
     name : '',
     catKey : ''
@@ -12,7 +12,10 @@ console.log(Phased);
       $location.path("/login");
   }
 
-
+  //Notifications
+  $scope.showMenu = function(){
+    $ionicSideMenuDelegate.toggleRight();
+  };
 
   // PhasedProvider integrations
   // n.b.: categories now in Phased.team.categorySelect and in Phased.team.categoryObj (different structures)
@@ -111,10 +114,5 @@ console.log(Phased);
     //$scope.taskTime = status.time; // we didnt have status.time so i think this fixes the problem(?)
 	};
 
-  $scope.tab = function(place){
-    $state.go(place);
-  }
 
-
-}
-);
+});

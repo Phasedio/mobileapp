@@ -91,20 +91,28 @@ angular.module('App').filter('orderObjectBy', function() {
 angular.module('App').controller('TasksController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
   $scope.team = Phased.team;
+  console.log('the team', $scope.team)
   $scope.currentUser = Phased.user.profile;
   $scope.assignments = Phased.assignments;
+
   //$scope.archive = Phased.archive;
 
   $scope.activeStream = Phased.assignments.to_me;
+  console.log($scope.activeStream);
+
   $scope.activeStreamName = 'assignments.to_me';
   $scope.activeStatusFilter = '!1'; // not completed tasks
-  $scope.activeCategoryFilter;
   // $scope.filterView = $scope.activeStreamName;//for the select filter
    $scope.taskPriorities = Phased.TASK_PRIORITIES; // in new task modal
   $scope.taskStatuses = Phased.TASK_STATUSES; // in new task modal
   $scope.taskPriorityID = Phased.TASK_PRIORITY_ID;
   $scope.taskStatusID = Phased.TASK_STATUS_ID;
   $scope.myID = Auth.user.uid;
+
+  for(var taskId in $scope.activeStream){
+    console.log("User Id: " + taskId);
+    //$scope.taskId = taskId;
+  }
 
   $scope.$on('Phased:membersComplete', function() {
     $scope.$apply();
@@ -117,7 +125,7 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
   });
 
     $scope.$watch('Phased.assignments', function(user){
-        $scope.assignments = Phased.assignments;
+      $scope.assignments = Phased.assignments;
     });
 
   //Add modal fucntions
@@ -150,7 +158,6 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
   $scope.showTaskListView = true;
   jQuery('.ion-checkmark.taskList').addClass('active');
 
-
   $scope.showTaskList = function(){
     $scope.showTaskListView = true;
     $scope.showChatView = false;
@@ -178,9 +185,10 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
     console.log('will check task off list then remove it', id);
   }
 
-  $scope.taskDetail = function(id){
-    console.log('will go to details for each task', id);
-  }
+  //$scope.taskDetail = function(id){
+  //  console.log('will go to details for each task', id);
+  //  $scope.go('tab.{{id}}');
+  //};
 
 
   $scope.startTask = function(task) {
@@ -218,12 +226,5 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
 
        //toaster.pop('success', "Success!", "Your task was posted");
     }
-
-
-
-  $scope.tab = function(place){
-
-    $state.go(place);
-  }
 
 });

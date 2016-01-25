@@ -1,0 +1,41 @@
+<ion-view view-title="Projects" hide-back-button="true">
+
+  <ion-content class="padding-top">
+
+    <div class="card subProjects">
+      <!--ng-repeat the subprojects-->
+      <div class="row">
+        <h1>Second Floor</h1>
+      </div>
+
+      <div class="row">
+        <div class="col col-60">
+            <p class="font14">Progress</p>
+        </div>
+        <div class="col col-40">
+          <p class="font14">{{completedAmount}}/{{taskAmount}} complete</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-90 progressOutline">
+          <div class="progressBar" style="width:{{progressPercent}}%">&nbsp;</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <p class="font14">People:</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <!--ng-repeat faces in this subproject-->
+
+
+      </div>
+
+
+    </div>
+  </ion-content>
+</ion-view>

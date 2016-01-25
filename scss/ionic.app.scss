@@ -36,6 +36,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   border-bottom: 1px darkgrey solid;
 }
 
+.item-avatar {
+  padding-left: 10%;
+}
+
 img.avatarHome {
   max-height: 60px;
   max-width: 60px;
@@ -67,3 +71,77 @@ label.item-checkbox {
   margin-top: 5px;
 }
 
+.addNewItem {
+  margin-top: 100%;
+}
+
+.listSpot {
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+.assignee {
+  border: none;
+}
+
+.assignee img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.font14 {
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.taskDetail {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 1%;
+  border: none;
+  box-shadow: none;
+}
+
+//SubProjects Page
+
+.card.subProjects {
+  width: 90%;
+  margin-left: 5%;
+}
+.progressOutline {
+  height: 30px;
+  margin-bottom: 5%;
+  width: 100%;
+  border: 1px solid lightgray;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+}
+.progressBar {
+  height: 20px;
+  margin-top: -1px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  background: green;
+}
+
+.menuItem .item-content {
+  background-color: #3D3F47;
+  margin-top:1px;
+  color: white;
+}
+
+.title-notifications {
+  font-size: 24px;
+  margin-left: 2%;
+  font-family: Colaborate-Thin;
+  color: white;
+}
+
+.updateStatus {
+  margin-left: 9%;
+  width: 82%;
+
+}

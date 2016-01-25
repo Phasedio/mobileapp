@@ -1,8 +1,4 @@
-<ion-view hide-back-button="true">
-
-  <ion-nav-buttons class="button-large" side="right">
-    <a class="button button-icon icon ion-ios-bell"></a>
-  </ion-nav-buttons>
+<ion-view title="" hide-back-button="true">
 
   <ion-content class="padding-top">
 
@@ -12,36 +8,24 @@
           <input type="text" ng-click="updateTask()" placeholder="What are you doing?">
         </label>
       </div>
-
     </div>
-    <!-- <h1>Hello There!</h1>
-    <button ng-click="logOut()" class="button button-clear button-positive">Logout</button> -->
 
-    <div class="list">
-      <a class="item item-avatar" href="#" ng-repeat="update in team.history | orderBy : 'time':true | limitTo :100">
+      <a class="item item-avatar" href="#" ng-repeat="update in team.members | orderBy : 'time':true ">
 
         <div class="row">
-          <div class="col-33">
-            <img src="{{team.members[update.user].gravatar}}" class="avatarHome">
+          <div class="col-25">
+            <img src="{{update.gravatar}}" class="avatarHome">
           </div>
-          <div class="col-67" style="padding-top: 4%">
-            <h2>{{team.members[update.user].name}} <small am-time-ago="update.time"></small></h2>
-            <p>{{update.name}}</p>
+          <div class="col-75" style="padding-top: 4%">
+            <h2>{{update.name}} <small style="font-size: 70%;" am-time-ago="update.time"></small></h2>
+            <p>{{update.task}}</p>
           </div>
         </div>
 
       </a>
-    </div>
 
     <ion-spinner icon="crescent" ng-hide="team.history.length > 0"></ion-spinner>
   </ion-content>
-
-  <ion-tabs class="tabs-icon-top">
-    <ion-tab title="Feed" ng-click="tab('home')" icon="ion-social-rss-outline"></ion-tab>
-    <ion-tab title="Tasks" ng-click="tab('tasks')" icon="ion-checkmark">Hello tab 2!</ion-tab>
-    <ion-tab title="Projects" ng-click="tab('tasks')" icon="ion-clipboard">Hello tab 2!</ion-tab>
-    <ion-tab title="Profile" ng-click="tab('profile')" icon="ion-android-person">Hello tab 2!</ion-tab>
-  </ion-tabs>
 
 </ion-view>
 
@@ -50,30 +34,40 @@
     <ion-header-bar>
       <h1 class="title"></h1>
       <div class="buttons">
-
         <button class="button button-clear" ng-click="closeUpdateTask()">Close<i class="button-icon icon ion-ios-close-empty"></i> </button>
       </div>
     </ion-header-bar>
-    <ion-content>
-    <form ng-submit="addTask(status)" novalidate>
-      <div class="list">
-        <label class="item item-input">
-          <input type="text" ng-model="status.name" placeholder="What are you doing?">
-        </label>
-        <label class="item item-input item-select">
-          <div class="input-label">
-            Category
-          </div>
-          <select  ng-model="status.catKey" ng-init="status.catKey = ''">
-            <option value="">none</option>
-            <option ng-repeat="(key, category) in team.categorySelect" value="key">{{category.name}}</option>
-          </select>
-        </label>
-        <button type="submit" class="button button-full button-balanced">Submit</button>
-        <button type="button" class="button button-full button-dark" ng-click="closeModal()">Cancel</button>
 
-      </div>
-    </form>
+    <ion-content >
+      <form ng-submit="addTask(status)" novalidate>
+        <div class="list updateStatus">
+          <h2>Update Status:</h2>
+
+          <div class="card">
+            <label class="item item-input">
+              <textarea type="text" rows="10" ng-model="status.name" placeholder="What are you doing?"></textarea>
+            </label>
+          </div>
+
+          <div style="width: 93%; margin-left: 3%" >
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Category
+              </div>
+
+              <select ng-model="status.catKey" ng-init="status.catKey = ''">
+                <option value="">unassigned</option>
+                <option ng-repeat="(key, category) in team.categorySelect" value="key">{{category.name}}</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="row">
+            <button type="submit" style="margin-top: 60%" class="button button-full button-balanced">Submit</button>
+          </div>
+
+        </div>
+      </form>
     </ion-content>
 
   </ion-modal-view>
