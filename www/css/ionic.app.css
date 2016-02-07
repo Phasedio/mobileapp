@@ -9795,6 +9795,10 @@ label.item-checkbox {
   border: none;
   box-shadow: none; }
 
+.card.subProject {
+  width: 80%;
+  margin-left: 10%; }
+
 .card.subProjects {
   width: 90%;
   margin-left: 5%; }
@@ -9830,3 +9834,14 @@ label.item-checkbox {
 .updateStatus {
   margin-left: 9%;
   width: 82%; }
+
+.projectImage {
+  color: white;
+  width: 102%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
+.projectShade {
+  background-color: rgba(0, 0, 0, 0.8); }

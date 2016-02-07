@@ -100,6 +100,16 @@ $stateProvider
       }
     })
 
+    .state('menu.tab.projectDetail', {
+      url: '/projectDetail',
+      views: {
+        'menu-tab-projects': {
+          templateUrl: 'views/subProjects/subProjectDetail.html',
+          controller:'SubProjectsController'
+        }
+      }
+    })
+
     .state('menu.tab.profile', {
       url: '/profile',
       views: {

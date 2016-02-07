@@ -1,0 +1,87 @@
+<ion-view view-title="Projects">
+
+  <ion-header-bar align-title="center" class="bar-light profile">
+    <div class="buttons">
+      <button class="button button-icon" ng-click="goBack()" nav-direction="back"><i class="icon-back" style="color:rgba(29,29,38,0.5)"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="padding-top">
+
+    <div class="card subProject" style="background-color: #2A2A2A">
+      <h3 style="color:white; padding-left: 5%;">Under Construction</h3>
+      <!--ng-repeat the subprojects-->
+
+      <div class="card subProjects">
+        <div class="row">
+          <h2>Second Floor</h2>
+        </div>
+
+        <div class="row">
+          <div class="col col-60">
+            <p class="font14">Progress</p>
+          </div>
+          <div class="col col-40">
+            <p class="font14">{{completedAmount}}/{{taskAmount}} complete</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-90 progressOutline">
+            <div class="progressBar" style="width:{{progressPercent}}%">&nbsp;</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <p class="font14">People:</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <!--ng-repeat faces in this subproject-->
+
+
+        </div>
+
+      </div>
+
+
+      <div class="card subProjects">
+        <div class="row">
+          <h2>Bathrooms Floor</h2>
+        </div>
+
+        <div class="row">
+          <div class="col col-60">
+            <p class="font14">Progress</p>
+          </div>
+          <div class="col col-40">
+            <p class="font14">{{completedAmount}}/{{taskAmount}} complete</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-90 progressOutline">
+            <div class="progressBar" style="width:{{progressPercent}}%">&nbsp;</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <p class="font14">People:</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <!--ng-repeat faces in this subproject-->
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </ion-content>
+</ion-view>
