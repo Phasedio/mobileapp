@@ -11,5 +11,9 @@ angular.module('App').controller('SubProjectsController', function ($scope, $sta
     $state.go('menu.tab.projectDetail');
   }
 
+  $scope.createCard = function() {
+    console.log('will create a new card');
+  }
+
 
 });
