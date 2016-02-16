@@ -1,51 +1,31 @@
-<ion-view view-title="Tasks" hide-back-button="true">
+<ion-view view-title="My Tasks" hide-back-button="true">
 
   <ion-content class="padding-top">
-
-    <div class="button-bar" ng-show="true">
-      <a class="button" ng-class="{ 'active': activeButton === 'showTaskListView' }" ng-click="showTaskList();activeButton = 'showTaskListView'"><i class="ion-checkmark taskList"></i></a>
-      <a class="button" ng-class="{ 'active': activeButton === 'showChatView' }" ng-click="showChat();activeButton = 'showChatView'"><i class="ion-chatbubbles"></i></a> <!-- button-energized" ng-click="showSimilar()" -->
-      <a class="button" ng-class="{ 'active': activeButton === 'showProjectView' }" ng-click="showProject();activeButton = 'showProjectView'"><i class="ion-ios-folder"></i></a>
-    </div>
-
-    <div class="button button-clear button-block" ng-click="taskAdd()">+ Add a New Task</div>
-
-    <div class="showTaskListView_content" ng-show="showTaskListView">
-      <div id="taskList" class="col col-90 offset-10">
-        <div class="item item-tasks" ng-repeat="update in team.history | orderBy : 'time':true | limitTo :5">
-          <div class="row" style="margin-top: 1%">
-            <div class="col col-10">
-              <ion-checkbox ng-click="taskCompleted('id')"></ion-checkbox>
-            </div>
-
-            <a class="col col-80 col-offset-10 font14" style="margin-top: 4%" href="#/menu/tab/tasks/{{update.key}}">
-              <p>{{update.name}}</p>
-            </a>
+    <div class="col col-90 offset-10">
+      <div class="item item-tasks" ng-repeat="task in assignments.to_me | orderBy : 'time':true | limitTo :25">
+        <div class="row" style="margin-top: 1%">
+          <div class="col col-10">
+            <ion-checkbox ng-click="taskCompleted('id')"></ion-checkbox>
           </div>
+          <!--<div>{{task}}</div>-->
+
+          <a class="col col-80 col-offset-10 font14" style="margin-top: 4%" href="#/menu/tab/tasks/{{task.key}}">
+            <p>{{task.name}}</p>
+            <div class="row">
+              <div class="col col-10">
+                <p style="height: 10px; width: 10px; background-color: red; border-radius: 50%;"></p>
+              </div>
+              <div class="col col-20">
+                <p>{{task.status}}</p>
+              </div>
+              <div class="col col-40">
+                <p><i class="ion-ios-calendar"></i> {{task.deadline | date : 'MMM dd'}}</p>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
-
-    <div class="showChatView_content" ng-show="showChatView">
-      <div id="chat">
-        <p>this will be pictures that are similar</p>
-      </div>
-    </div>
-
-    <div class="showProjectView_content" ng-show="showProjectView">
-      <div id="project">
-        <p>here we'll show seller profile</p>
-      </div>
-    </div>
-
-    <!--<ul class="list">-->
-      <!--<li class="item item-button-right" ng-repeat="assignment in activeStream | filterTaskByStatus : activeStatusFilter | filterTaskByCategory : activeCategoryFilter | orderObjectBy : 'time' | limitTo :5">-->
-        <!--{{assignment.name}}-->
-        <!--<button class="button button-positive" ng-click="taskView(assignment.key)">-->
-          <!--<i  class="icon ion-arrow-right-a"></i>-->
-        <!--</button>-->
-      <!--</li>-->
-    <!--</ul>-->
 
   </ion-content>
 

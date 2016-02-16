@@ -91,14 +91,12 @@ angular.module('App').filter('orderObjectBy', function() {
 angular.module('App').controller('TasksController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
   $scope.team = Phased.team;
-  console.log('the team', $scope.team)
+  console.log('the team', $scope.team);
   $scope.currentUser = Phased.user.profile;
   $scope.assignments = Phased.assignments;
 
-  //$scope.archive = Phased.archive;
-
   $scope.activeStream = Phased.assignments.to_me;
-  console.log($scope.activeStream);
+  console.log('the phased active', $scope.activeStream);
 
   $scope.activeStreamName = 'assignments.to_me';
   $scope.activeStatusFilter = '!1'; // not completed tasks
@@ -110,7 +108,7 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
   $scope.myID = Auth.user.uid;
 
   for(var taskId in $scope.activeStream){
-    console.log("User Id: " + taskId);
+    console.log("User Id: " + taskId, $scope.activeStream);
     //$scope.taskId = taskId;
   }
 
@@ -121,11 +119,13 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
   // history retrieved
   $scope.$on('Phased:historyComplete', function() {
     $scope.$apply();
-    console.log(Phased);
+    //console.log(Phased);
   });
 
     $scope.$watch('Phased.assignments', function(user){
       $scope.assignments = Phased.assignments;
+      console.log('we are watching assingments', $scope.assignments);
+
     });
 
   //Add modal fucntions
