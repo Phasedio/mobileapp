@@ -89,7 +89,7 @@
      }
    });
 
-angular.module('App').controller('TasksIDController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils,Phased,$stateParams) {
+angular.module('App').controller('TasksIDController', function ($scope, $state,$cordovaOauth, $rootScope, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils,Phased,$stateParams) {
   console.log('HEY IM HERE CAN YOU SEE ME!!!!!!');
 
 
@@ -106,13 +106,19 @@ angular.module('App').controller('TasksIDController', function ($scope, $state,$
   $scope.activeStatusFilter = '!1'; // not completed tasks
   $scope.filterView = $scope.activeStreamName;//for the select filter
 
+  //$scope.task = Phased.team.
 
-  $scope.task = Phased.assignments.all[$stateParams.taskid];
+  //$scope.task = Phased.assignments.all[$stateParams.taskid];
+  console.log($rootScope.tasks);
+
+  //$scope.tasks = $rootScope.tasks
+
+  $scope.task = $rootScope.tasks[$stateParams.taskid];
+  console.log('the state params are ', $stateParams)
+
   console.log($scope.task);
 
-  console.log($scope.taskPriorityID);
-
-  $scope.currentUser = Auth.user.profile.gravatar;
+  //$scope.currentUser = Auth.user.profile.gravatar;
 
 
   //if ($scope.task.deadline == nil) {

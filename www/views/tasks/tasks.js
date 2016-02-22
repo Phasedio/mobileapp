@@ -88,11 +88,12 @@ angular.module('App').filter('orderObjectBy', function() {
       return result;
     }
   });
-angular.module('App').controller('TasksController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
+angular.module('App').controller('TasksController', function ($scope, $rootScope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
   $scope.team = Phased.team;
   console.log('the team', $scope.team);
-  $scope.currentUser = Phased.user.profile;
+  $scope.currentUser = Phased.user;
+  console.log('the current user is ', $scope.currentUser);
   $scope.assignments = Phased.assignments;
 
   $scope.activeStream = Phased.assignments.to_me;
@@ -107,7 +108,41 @@ angular.module('App').controller('TasksController', function ($scope, $state,$co
   $scope.taskStatusID = Phased.TASK_STATUS_ID;
   $scope.myID = Auth.user.uid;
 
+  $scope.projects = Phased.team.projects;
+  console.log($scope.projects);
+
+  angular.forEach($scope.projects, function(value, key){
+    console.log(value, key);
+    $scope.columns = value.columns;
+
+    angular.forEach($scope.columns, function(value, key) {
+      console.log(value);
+      $scope.cards = value.cards;
+
+      angular.forEach($scope.cards, function(value, key) {
+        console.log(value);
+        $scope.tasks = value.tasks;
+        console.log($scope.tasks);
+        $rootScope.tasks = $scope.tasks;
+        //$scope.task.uid = $scope.tasks.assigned_to;
+        //console.log($scope.task.uid);
+      })
+
+    })
+
+  })
+
+  //if ($scope.task.priority==2){
+  //  $scope.priority = "Low";
+  //} else if ($scope.task.priority==1){
+  //  $scope.priority = "Medium";
+  //} else {
+  //  $scope.priority = "High";
+  //}
+  //
+
   for(var taskId in $scope.activeStream){
+
     console.log("User Id: " + taskId, $scope.activeStream);
     //$scope.taskId = taskId;
   }
