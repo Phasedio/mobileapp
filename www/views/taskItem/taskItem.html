@@ -1,23 +1,39 @@
-<ion-view hide-back-button="true" >
+<ion-view title="{{task.name}}" hide-back-button="true" >
 
-  <ion-nav-buttons class="button-clear" side="right">
+  <ion-nav-buttons class="button-clear" side="left">
     <button class="button-clear" ng-click="$ionicGoBack()">Close <i class="button-icon ion-ios-close-empty"></i></button>
   </ion-nav-buttons>
 
   <ion-content class="padding-top">
+    <!--if there is an image then show it otherwise show an icon to upload a photo-->
+
     <img src="../../img/cyberegg.jpg" style="width:102%; background-size: cover">
 
     <div class="row">
 
       <div class="card taskDetail">
-        <h1>{{task.name}}</h1>
 
         <div class="row">
-          <div class="col col-60">Not Started</div>
-          <!--<div class="col col-40"><i class="ion-ios-calendar"></i> {{task.due}}</div>-->
+          <p class="font14">Description:</p>
         </div>
 
-        <br/>
+        <div class="row">
+          <p>{{task.description}}</p>
+        </div>
+
+        <div class="row">
+          <!--if there is a due date then show it else show nothing-->
+          <div ng-show="task.due == 'Invalid Date'">
+            <div class="col col-60"><p>No Due Date!</p></div>
+          </div>
+          <!--if there is a started say in progress else say not started-->
+          <div ng-show="task.due != 'Invalid Date'">
+            <div class="col col-60"><i class="ion-android-calendar"></i> {{task.due}}</div>
+          </div>
+
+          <div class="col col-40">Not Started</div>
+        </div>
+
 
         <div class="row">
           <div class="col col-30 assignee">
@@ -29,24 +45,24 @@
           <div class="col col-40 col-offset-10">Priority: {{priority}}</div>
         </div>
 
-        <div class="card description">
-          <div class="row">
-            <div class="col">
-              <p class="font14">Description:</p>
-              <textarea style="width:100%" rows="6">{{task.disc}}</textarea>
-            </div>
-          </div>
-        </div>
-
         <div class="row">
           <div class="col">
             <p class="font14">Category: </p>
             <p class="font14">Card: </p>
-            <button class="button button-block button-outline button-balanced" style="margin" ng-click="taskStart()">Start</button>
           </div>
         </div>
 
+        <div class="row">
+          <!--if started we will have  stop button otherwise we'll have a start button-->
+          <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskStart()">Start</button> &nbsp;&nbsp;
+          <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskStart()">Comment</button>
+        </div>
+        <div class="row">
+          <button class="button button-block button-outline button-balanced col-45"  ng-click="taskStart()">Edit</button> &nbsp;&nbsp;
+          <button class="button button-block button-outline button-balanced col-45"  ng-click="taskStart()">Finish</button>
+        </div>
       </div>
     </div>
+
   </ion-content>
 </ion-view>

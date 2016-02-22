@@ -28,15 +28,16 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
 
   // ensure view updates when new members are added
   // members data retrieved
-  $scope.$on('Phased:membersComplete', function() {
-    $scope.$apply();
-  });
+  //$scope.$on('Phased:membersComplete', function() {
+  //  $scope.$apply();
+  //});
 
   // history retrieved
-  $scope.$on('Phased:historyComplete', function() {
-    $scope.$apply();
-    //console.log(Phased);
-  });
+  //$scope.$on('Phased:historyComplete', function() {
+  //  $scope.$apply();
+  //  //console.log(Phased);
+  //});
+
 
   //Add modal fucntions
   $ionicModal.fromTemplateUrl('my-modal.html', {
@@ -71,6 +72,7 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
   // 2. PhasedProvider pushes to db
   // 3. update interface
 	$scope.addTask = function(update){
+    console.log('we will update the task', update)
 
 
     // 1. format incoming status data

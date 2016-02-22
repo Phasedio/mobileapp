@@ -11,7 +11,10 @@
       </div>
     </div>
 
-      <a class="item item-avatar" href="#" ng-repeat="update in team.members | orderBy : 'time':true ">
+    <!--<ion-spinner icon="crescent" ng-hide=""></ion-spinner>-->
+
+    <a class="item item-avatar" href="#" ng-repeat="update in team.members | orderBy : 'time':true ">
+
 
         <div class="row">
           <div class="col-25">
@@ -25,7 +28,6 @@
 
       </a>
 
-    <ion-spinner icon="crescent" ng-hide="team.history.length > 0"></ion-spinner>
   </ion-content>
 
 </ion-view>
@@ -33,19 +35,21 @@
 <script id="my-modal.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar>
-      <h1 class="title"></h1>
       <div class="buttons">
-        <button class="button button-clear" ng-click="closeUpdateTask()">Close<i class="button-icon icon ion-ios-close-empty"></i> </button>
+        <button class="button button-clear" ng-click="closeUpdateTask()"><i class="button-icon icon ion-ios-close-empty"></i>Close &nbsp;</button>
+      </div>
+      <h1 class="title"> Update Status</h1>
+      <div class="buttons">
+        <button type="submit" ng-click="addTask(status)" class="button button-clear">Post </button>
       </div>
     </ion-header-bar>
 
     <ion-content >
       <form ng-submit="addTask(status)" novalidate>
         <div class="list updateStatus">
-          <h2>Update Status:</h2>
-
           <div class="card">
             <label class="item item-input">
+              <!--<button class="button button-clear" ng-click="openDropdown()"><i class="button-icon icon ion-pricetag"></i></button>-->
               <textarea type="text" rows="10" ng-model="status.name" placeholder="What are you doing?"></textarea>
             </label>
           </div>
