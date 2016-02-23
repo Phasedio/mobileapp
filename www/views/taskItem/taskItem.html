@@ -23,15 +23,15 @@
 
         <div class="row">
           <!--if there is a due date then show it else show nothing-->
-          <div ng-show="task.due == 'Invalid Date'">
-            <div class="col col-60"><p>No Due Date!</p></div>
+          <div class="col col-60" ng-show="task.due == 'Invalid Date'">
+            <p>No Due Date!</p>
           </div>
           <!--if there is a started say in progress else say not started-->
-          <div ng-show="task.due != 'Invalid Date'">
-            <div class="col col-60"><i class="ion-android-calendar"></i> {{task.due}}</div>
+          <div class="col col-60" ng-show="task.due != 'Invalid Date'">
+            <i class="ion-android-calendar"></i> {{task.due}}
           </div>
 
-          <div class="col col-40">Not Started</div>
+          <div class="col col-30">Not Started</div>
         </div>
 
 

@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('App').controller('homeController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $ionicSideMenuDelegate, $firebaseObject, Auth, FURL, Utils,Phased) {
+angular.module('App').controller('homeController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $ionicSideMenuDelegate, $firebaseObject, Auth, FURL, Utils,Phased, $stateParams) {
   var ref = new Firebase(FURL);
 //console.log("this is where i'm at", Phased, Auth);
   $scope.status = {
@@ -21,10 +21,19 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
   // n.b.: categories now in Phased.team.categorySelect and in Phased.team.categoryObj (different structures)
   // n.b.: Phased.user.profile is a link to Phased.team.members[Auth.user.uid].profile;
   $scope.team = Phased.team;
+  //$scope.history = $scope.team.statuses[$stateParams.user]
+
   $scope.currentUser = Phased.user;
   $scope.assignments = Phased.assignments;
   //$scope.archive = Phased.archive;
   console.log('the current team is', $scope.team);
+  console.log('the user is ', $scope.history)
+  //console.log('the current statuses are:', $scope.team.statuses)
+
+  //angular.forEach($scope.team.statuses, function(key, value){
+  //  console.log('the key is:', key, 'and the value is:', value);
+  //
+  //})
 
   // ensure view updates when new members are added
   // members data retrieved

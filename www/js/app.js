@@ -70,6 +70,16 @@ $stateProvider
       }
     })
 
+    .state('menu.tab.userHistory', {
+      url: '/home/:userid',
+      views: {
+        'menu-tab-home': {
+          templateUrl: 'views/home/userHistory.html',
+          controller:'historyController'
+        }
+      }
+    })
+
     .state('menu.tab.tasks', {
       url: '/tasks',
       views: {

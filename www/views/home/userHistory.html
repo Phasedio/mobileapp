@@ -1,0 +1,27 @@
+<ion-view title="History" hide-back-button="true" >
+
+  <ion-nav-buttons class="button-clear" side="left">
+    <button class="button-clear" ng-click="$ionicGoBack()">Close <i class="button-icon ion-ios-close-empty"></i></button>
+  </ion-nav-buttons>
+
+  <div class="card">
+    <!--ngrepeat through the history of user task-->
+    <a class="item item-avatar" href="#" ng-repeat="task in history | orderBy : 'time':true ">
+      <div class="row">
+        <!--<p>{{team.members}}</p>-->
+
+        <div class="col-25">
+          <!--<img src="{{team.members}}" class="avatarHome">-->
+        </div>
+
+
+        <div class="col-75" style="padding-top: 4%">
+
+          <h2>{{task.name}} <small style="font-size: 70%;" am-time-ago="task.time"></small></h2>
+          <!--<p>{{update.currentStatus.name}}</p>-->
+        </div>
+      </div>
+
+    </a>
+  </div>
+</ion-view>
