@@ -7,12 +7,21 @@ angular.module('App').controller('historyController', function ($scope, $state,$
   $scope.userid = $stateParams.userid;
   console.log($scope.userid);
 
-  $scope.history = Phased.team.statuses;
+  $scope.histories = Phased.team.statuses;
   //$scope.history1 = Phased.team.statuses[$stateParams.userid]
   //console.log('the history is', $scope.history, $scope.history1)
 
-  //angular.forEach($scope.team.statuses, function(key, value){
-  //  console.log('the key is:', key, 'and the value is:', value);
-  //
-  //})
+  angular.forEach($scope.histories, function(key, value){
+    //console.log('the key is:', key, 'and the value is:', value);
+    //var user = key.user;
+    //console.log(user, $scope.userid);
+    if (key.user == $scope.userid){
+      console.log('what is the user id', $scope.userid, key)
+      $scope.history = key;
+    }
+
+
+  })
+
+
 })
