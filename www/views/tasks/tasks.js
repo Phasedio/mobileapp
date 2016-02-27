@@ -108,6 +108,7 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
   $scope.taskStatusID = Phased.TASK_STATUS_ID;
   $scope.myID = Auth.user.uid;
 
+    console.log('the priorities are', $scope.taskPriorities);
   $scope.projects = Phased.team.projects;
   console.log($scope.projects);
 
@@ -124,13 +125,20 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
         $scope.tasks = value.tasks;
         console.log($scope.tasks);
         $rootScope.tasks = $scope.tasks;
-        //$scope.task.uid = $scope.tasks.assigned_to;
-        //console.log($scope.task.uid);
       })
-
     })
-
   })
+
+  $scope.bgColor = function(task){
+    if(task.status == 0){
+      $scope.status = "In Progress";
+      return "#55c73b";
+    } else {
+      $scope.status = "Assigned";
+      return "#CC0000";
+
+    }
+  }
 
   //if ($scope.task.priority==2){
   //  $scope.priority = "Low";
@@ -139,7 +147,7 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
   //} else {
   //  $scope.priority = "High";
   //}
-  //
+
 
   for(var taskId in $scope.activeStream){
 

@@ -1,13 +1,19 @@
-<ion-view title="{{task.name}}" hide-back-button="true" >
+<ion-view title="Task Details" hide-back-button="true" >
 
   <ion-nav-buttons class="button-clear" side="left">
     <button class="button-clear" ng-click="$ionicGoBack()">Close <i class="button-icon ion-ios-close-empty"></i></button>
   </ion-nav-buttons>
 
   <ion-content class="padding-top">
+    <h3 class="upperCase">{{task.name}}</h3>
     <!--if there is an image then show it otherwise show an icon to upload a photo-->
 
-    <img src="../../img/cyberegg.jpg" style="width:102%; background-size: cover">
+    <!--<img src="../../img/cyberegg.jpg" style="width:102%; background-size: cover">-->
+
+    <div ng-if= !task.image>
+
+      <p>will allow an upload of images</p>
+    </div>
 
     <div class="row">
 

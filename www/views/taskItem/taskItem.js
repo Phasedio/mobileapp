@@ -106,37 +106,22 @@ angular.module('App').controller('TasksIDController', function ($scope, $state,$
   $scope.activeStatusFilter = '!1'; // not completed tasks
   $scope.filterView = $scope.activeStreamName;//for the select filter
 
-  //$scope.task = Phased.team.
-
-  //$scope.task = Phased.assignments.all[$stateParams.taskid];
-  console.log($rootScope.tasks);
-
-  //$scope.tasks = $rootScope.tasks
-
   $scope.task = $rootScope.tasks[$stateParams.taskid];
-  console.log('the state params are ', $stateParams)
 
   console.log($scope.task);
 
-  //$scope.currentUser = Auth.user.profile.gravatar;
+  var myDate = new Date($scope.task.deadline);
+  $scope.task.due = myDate.toDateString();
 
 
-  //if ($scope.task.deadline == nil) {
-  //  $scope.task.due = 'No Date Set';
   //
+  //if ($scope.task.priority==2){
+  //  $scope.priority = "Low";
+  //} else if ($scope.task.priority==1){
+  //  $scope.priority = "Medium";
   //} else {
-    var myDate = new Date($scope.task.deadline);
-    $scope.task.due = myDate.toDateString();
+  //  $scope.priority = "High";
   //}
-
-
-  if ($scope.task.priority==2){
-    $scope.priority = "Low";
-  } else if ($scope.task.priority==1){
-    $scope.priority = "Medium";
-  } else {
-    $scope.priority = "High";
-  }
 
   $scope.taskStart = function(){
     console.log('will set the progress going');

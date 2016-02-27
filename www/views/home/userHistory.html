@@ -5,23 +5,25 @@
   </ion-nav-buttons>
 
   <div class="card">
-    <!--ngrepeat through the history of user task-->
-    <a class="item item-avatar" href="#" ng-repeat="history in histories | orderBy: 'time':true ">
-
-      <!--{{history.user}} : {{userid}}-->
-      <div ng-show="history.user === userid" class="row" style="margin-top: 1%">
-
+    <a class="item " href="#" ng-repeat="history in histories | orderBy: 'time':true " ng-if="history.user === selectedTeamMember">
+      <div class="row">
         <div class="col-25">
-          <img src="{{currentUser.gravatar}}" class="avatarHome">
+          <img src="{{selectedTeamMemberInfo.gravatar}}" class="avatarHome">
         </div>
-
 
         <div class="col-75" style="padding-top: 4%">
           <h2>{{history.name}} <small style="font-size: 70%;" am-time-ago="history.time"></small></h2>
           <!--<p>{{update.currentStatus.name}}</p>-->
         </div>
+
       </div>
 
     </a>
+    <div ng-show="histories.length">No match</div>
+
+
+
+
+
   </div>
 </ion-view>

@@ -4,10 +4,10 @@
 angular.module('App').controller('historyController', function ($scope, $filter, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $ionicSideMenuDelegate, $firebaseObject, Auth, FURL, Utils,Phased, $stateParams) {
   var ref = new Firebase(FURL);
 
+  $scope.selectedTeamMember = $stateParams.userid;
+  $scope.selectedTeamMemberInfo = Phased.team.members[$scope.selectedTeamMember];
 
-
-  $scope.userid = $stateParams.userid;
-  console.log($scope.userid);
+  console.log($scope.selectedTeamMember, $scope.selectedTeamMemberInfo);
   $scope.currentUser = Phased.user;
   console.log($scope.currentUser);
 
@@ -15,18 +15,6 @@ angular.module('App').controller('historyController', function ($scope, $filter,
   $scope.histories = Phased.team.statuses;
   console.log('the history', $scope.histories);
 
-  angular.forEach($scope.histories, function(key, value){
-    //console.log('the key is:', key, 'and the value is:', value);
-    //var user = key.user;
-    //console.log(user, $scope.userid);
-    if (key.user == $scope.userid){
-      //console.log('what is the user id', $scope.userid, key);
-      $scope.history = key;
-      console.log($scope.history)
-    }
-
-
-  })
 
 
 })

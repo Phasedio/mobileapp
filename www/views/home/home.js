@@ -81,7 +81,7 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
   // 2. PhasedProvider pushes to db
   // 3. update interface
 	$scope.addTask = function(update){
-    console.log('we will update the task', update)
+    console.log('we will update the task', update);
 
 
     // 1. format incoming status data
