@@ -94,8 +94,8 @@ $stateProvider
       url: '/tasks/:taskid',
       views: {
         'menu-tab-tasks': {
-          templateUrl: 'views/taskItem/taskItem.html',
-          controller:'TasksIDController'
+          templateUrl: 'views/tasks/taskItem.html',
+          controller:'taskItemController'
         }
       }
     })

@@ -140,6 +140,12 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
     }
   }
 
+  $scope.taskDetail = function(taskid){
+    console.log('will go', taskid);
+    //console.log($location.path('#/menu/tab/tasks/'+taskid))
+    //$location.path('/tasks/'+taskid)
+  }
+
   //if ($scope.task.priority==2){
   //  $scope.priority = "Low";
   //} else if ($scope.task.priority==1){

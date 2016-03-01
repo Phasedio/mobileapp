@@ -184,16 +184,16 @@ angular.module('App')
         // and remove newUser flag
         // doesn't need to be done after team data is in, since the server
         // will do that heavy lifting
-        if (Auth.user.profile.newUser) {
-          FBRef.child('profile/' + PhasedProvider.user.uid + '/newUser').remove();
-          registerAfterMembers(function() {
-            issueNotification({
-              title : [{string : 'Welcome to Phased, '}, {userID: Auth.user.uid}],
-              body : [],
-              type : PhasedProvider.NOTIF_TYPE_ID.USER_CREATED
-            });
-          });
-        }
+        //if (Auth.user.profile.newUser) {
+          //FBRef.child('profile/' + PhasedProvider.user.uid + '/newUser').remove();
+          //registerAfterMembers(function() {
+          //  issueNotification({
+          //    title : [{string : 'Welcome to Phased, '}, {userID: Auth.user.uid}],
+          //    body : [],
+          //    type : PhasedProvider.NOTIF_TYPE_ID.USER_CREATED
+          //  });
+          //});
+        //}
       }
     }
 
@@ -571,7 +571,7 @@ angular.module('App')
       });
 
       // get user's team names. have to go to DB bc team names are only stored at /team/$teamID/name
-      var getUsersTeams = function(teamList) {
+      function getUsersTeams(teamList) {
         for (var i in teamList) {
           (function(teamIndex){
             var teamID = teamList[teamIndex];
@@ -587,6 +587,7 @@ angular.module('App')
           })(i)
         }
       }
+
     }
 
     /**
@@ -808,7 +809,7 @@ angular.module('App')
         return out;
       }
 
-      //registerAfterMembers(function doWatchNotifications(){
+      registerAfterMembers(function doWatchNotifications(){
       //  // clean notifications once
       //  $.post('./api/notification/clean', {
       //      user: PhasedProvider.user.uid,
@@ -850,7 +851,7 @@ angular.module('App')
       //    eventType : 'value',
       //    callback : cb
       //  });
-      //});
+      });
     }
 
     /**
@@ -1222,21 +1223,22 @@ angular.module('App')
      *
      */
     var issueNotification = function(notification) {
-      $.post('./api/notification/issue', {
-          user: _Auth.user.uid,
-          team : _Auth.currentTeam,
-          notification : JSON.stringify(notification)
-        })
-        .success(function(data) {
-          if (data.success) {
-            // console.log('IssueNotif success', data);
-          } else {
-            console.log('IssueNotif error', data);
-          }
-        })
-        .error(function(data){
-          console.log('err', data.error());
-        });
+      return true;
+      //$.post('./api/notification/issue', {
+      //    user: _Auth.user.uid,
+      //    team : _Auth.currentTeam,
+      //    notification : JSON.stringify(notification)
+      //  })
+      //  .success(function(data) {
+      //    if (data.success) {
+      //      // console.log('IssueNotif success', data);
+      //    } else {
+      //      console.log('IssueNotif error', data);
+      //    }
+      //  })
+      //  .error(function(data){
+      //    console.log('err', data.error());
+      //  });
     }
 
     /**
@@ -1788,32 +1790,33 @@ angular.module('App')
     }
 
     var doAddMember = function(args) {
-      ga('send', 'event', 'Team', 'Member invited');
-      $.post('./api/registration/invite', {
-          invitedEmail: args.newMember.email,
-          inviterEmail : PhasedProvider.user.email,
-          inviterName : PhasedProvider.user.name,
-          team : PhasedProvider.team.uid
-        })
-        .success(function(data) {
-          if (data.success) {
-            console.log('success', data);
-            if (data.added) {
-              issueNotification({
-                title : [{userID : data.userID}, {string : ' has joined your team'}],
-                body : [],
-                type : PhasedProvider.NOTIF_TYPE_ID.USER_JOINED
-              });
-            } else if (data.invited) {
-              console.log('User was invited to join Phased');
-            }
-          } else {
-            console.log('err', data);
-          }
-        })
-        .error(function(data){
-          console.log('err', data);
-        });
+      return true;
+      //ga('send', 'event', 'Team', 'Member invited');
+      //$.post('./api/registration/invite', {
+      //    invitedEmail: args.newMember.email,
+      //    inviterEmail : PhasedProvider.user.email,
+      //    inviterName : PhasedProvider.user.name,
+      //    team : PhasedProvider.team.uid
+      //  })
+      //  .success(function(data) {
+      //    if (data.success) {
+      //      console.log('success', data);
+      //      if (data.added) {
+      //        issueNotification({
+      //          title : [{userID : data.userID}, {string : ' has joined your team'}],
+      //          body : [],
+      //          type : PhasedProvider.NOTIF_TYPE_ID.USER_JOINED
+      //        });
+      //      } else if (data.invited) {
+      //        console.log('User was invited to join Phased');
+      //      }
+      //    } else {
+      //      console.log('err', data);
+      //    }
+      //  })
+      //  .error(function(data){
+      //    console.log('err', data);
+      //  });
     }
 
     /**
@@ -1837,32 +1840,33 @@ angular.module('App')
     }
 
     var doAddTeam = function(args) {
+      return true;
       // 1.
-      $.post('./api/registration/registerTeam', {
-          userID : PhasedProvider.user.uid,
-          teamName : args.teamName
-        })
-        .success(function(data){
-          if (data.success) {
-            ga('send', 'event', 'Team', 'team added');
-            // 2A. switch to that team
-            doSwitchTeam({
-              teamID : data.teamID,
-              callback : args.success
-            });
-          } else {
-            // fail
-            console.log(data);
-            if (typeof args.failure == 'function')
-              args.failure(args.teamName);
-          }
-        })
-        .error(function(error){
-          // 2B. fail!
-          console.log(error);
-          if (typeof args.failure == 'function')
-            args.failure(args.teamName);
-        })
+      //$.post('./api/registration/registerTeam', {
+      //    userID : PhasedProvider.user.uid,
+      //    teamName : args.teamName
+      //  })
+      //  .success(function(data){
+      //    if (data.success) {
+      //      ga('send', 'event', 'Team', 'team added');
+      //      // 2A. switch to that team
+      //      doSwitchTeam({
+      //        teamID : data.teamID,
+      //        callback : args.success
+      //      });
+      //    } else {
+      //      // fail
+      //      console.log(data);
+      //      if (typeof args.failure == 'function')
+      //        args.failure(args.teamName);
+      //    }
+      //  })
+      //  .error(function(error){
+      //    // 2B. fail!
+      //    console.log(error);
+      //    if (typeof args.failure == 'function')
+      //      args.failure(args.teamName);
+      //  })
     }
 
 

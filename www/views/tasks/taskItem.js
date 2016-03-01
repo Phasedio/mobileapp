@@ -89,10 +89,8 @@
      }
    });
 
-angular.module('App').controller('TasksIDController', function ($scope, $state,$cordovaOauth, $rootScope, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils,Phased,$stateParams) {
-  console.log('HEY IM HERE CAN YOU SEE ME!!!!!!');
-
-
+angular.module('App').controller('taskItemController', function ($scope, $state,$cordovaOauth, $rootScope, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils,Phased, $cordovaCamera, $stateParams) {
+  //alert('HEY IM HERE CAN YOU SEE ME!!!!!!');
 
   $scope.archive = Phased.archive;
   $scope.viewType = Phased.viewType;
@@ -114,7 +112,28 @@ angular.module('App').controller('TasksIDController', function ($scope, $state,$
   $scope.task.due = myDate.toDateString();
 
 
-  //
+
+  $scope.openCamera = function(){
+    var options = {
+      quality: 75,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      popoverOptions: CameraPopoverOptions,
+      targetWidth: 500,
+      targetHeight: 500,
+      saveToPhotoAlbum: false
+    };
+
+    $cordovaCamera.getPicture(options).then(function(photo) {
+      $scope.task.image = "data:image/jpeg;base64," + photo;
+
+      //right away save?
+    })
+
+  }
+
   //if ($scope.task.priority==2){
   //  $scope.priority = "Low";
   //} else if ($scope.task.priority==1){
@@ -126,4 +145,20 @@ angular.module('App').controller('TasksIDController', function ($scope, $state,$
   $scope.taskStart = function(){
     console.log('will set the progress going');
   }
+
+  $scope.$on('Phased:membersComplete', function() {
+    $scope.$apply();
+  });
+
+  // history retrieved
+  $scope.$on('Phased:historyComplete', function() {
+    $scope.$apply();
+    //console.log(Phased);
+  });
+
+  $scope.$watch('Phased.assignments', function(user){
+    $scope.assignments = Phased.assignments;
+    console.log('we are watching assingments', $scope.assignments);
+
+  });
 });

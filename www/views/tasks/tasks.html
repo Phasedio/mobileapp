@@ -3,10 +3,10 @@
   <ion-content class="padding-top">
     <!--<div class="list">-->
 
-      <div class="item item-tasks item-icon-right" ng-repeat="(key,task) in tasks | orderBy : 'time':true | limitTo :25 ">
+      <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderBy : 'time':true | limitTo :25">
         <div ng-if="task.assigned_to == currentUser.uid && task.status != 'Complete'"  class="row" style="margin-top: 1%">
 
-          <a class="col col-90 font14" style="margin-top: 4%" href="#/menu/tab/tasks/{{key}}">
+          <a class="col col-90 font14" style="margin-top: 4%" href="#/menu/tab/tasks/{{taskid}}">
             <p>{{task.name}}</p>
 
 

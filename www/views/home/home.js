@@ -26,8 +26,8 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
   $scope.currentUser = Phased.user;
   $scope.assignments = Phased.assignments;
   //$scope.archive = Phased.archive;
-  console.log('the current team is', $scope.team);
-  console.log('the user is ', $scope.history)
+  //console.log('the current team is', $scope.team);
+  //console.log('the user is ', $scope.history);
   //console.log('the current statuses are:', $scope.team.statuses)
 
   //angular.forEach($scope.team.statuses, function(key, value){
@@ -35,17 +35,22 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
   //
   //})
 
+  $scope.$on('Phased:setup', function() {
+    $scope.$apply();
+    //console.log(Phased);
+  });
+
   // ensure view updates when new members are added
   // members data retrieved
-  //$scope.$on('Phased:membersComplete', function() {
-  //  $scope.$apply();
-  //});
+  $scope.$on('Phased:membersComplete', function() {
+    $scope.$apply();
+  });
 
   // history retrieved
-  //$scope.$on('Phased:historyComplete', function() {
-  //  $scope.$apply();
-  //  //console.log(Phased);
-  //});
+  $scope.$on('Phased:historyComplete', function() {
+    $scope.$apply();
+    //console.log(Phased);
+  });
 
 
   //Add modal fucntions
