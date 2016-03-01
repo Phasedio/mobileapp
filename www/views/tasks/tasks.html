@@ -3,8 +3,8 @@
   <ion-content class="padding-top">
     <!--<div class="list">-->
     <div class="button-bar" ng-show="true">
-      <a class="button" ng-class="{ 'active': activeButton === 'showTaskListView' }" ng-click="showTaskList();activeButton = 'showTaskListView'"><i class="ion-checkmark taskList"></i></a>
-      <a class="button" ng-class="{ 'active': activeButton === 'showCompletedTasksView' }" ng-click="showComplete();activeButton = 'showCompletedView'"><i class="ion-chatbubbles"></i></a> <!-- button-energized" ng-click="showSimilar()" -->
+      <a class="button" ng-class="{ 'active': activeButton === 'showTaskListView' }" ng-click="showTaskList();activeButton = 'showTaskListView'"><i class="ion-ios-star"> Current</i></a>
+      <a class="button" ng-class="{ 'active': activeButton === 'showCompletedTasksView' }" ng-click="showComplete();activeButton = 'showCompletedView'"><i class="ion-android-checkbox-outline"> Completed</i></a> <!-- button-energized" ng-click="showSimilar()" -->
     </div>
 
     <div class="showTaskListView_content" ng-show="showTaskListView">

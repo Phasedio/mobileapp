@@ -116,7 +116,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     var options = {
       quality: 75,
       destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      sourceType: Camera.PictureSourceType.CAMERA,
       allowEdit: true,
       encodingType: Camera.EncodingType.JPEG,
       popoverOptions: CameraPopoverOptions,

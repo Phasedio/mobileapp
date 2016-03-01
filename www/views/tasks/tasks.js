@@ -204,20 +204,22 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
   });
 
   $scope.showTaskListView = true;
-  jQuery('.ion-checkmark.taskList').addClass('active');
+  jQuery('.ion-ios-star').addClass('active');
 
   $scope.showTaskList = function(){
-    jQuery('.ion-checkmark.taskList').addClass('active');
-    jQuery('.ion-chatbubbles').removeClass('active');
+    jQuery('.ion-ios-star').addClass('active');
+
+    jQuery('.ion-android-checkbox-outline').removeClass('active');
+
 
     $scope.showTaskListView = true;
     $scope.showCompletedTasksView = false;
   };
   $scope.showComplete = function(){
     console.log('the tasks that are complted');
-    jQuery('.ion-chatbubbles').addClass('active');
+    jQuery('.ion-android-checkbox-outline').addClass('active');
+    jQuery('.ion-ios-star').removeClass('active');
 
-    jQuery('.ion-checkmark.taskList').removeClass('active');
     $scope.showTaskListView = false;
     $scope.showCompletedTasksView = true;
   };
