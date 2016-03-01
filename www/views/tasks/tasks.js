@@ -130,20 +130,19 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
   })
 
   $scope.bgColor = function(task){
-    if(task.status == 0){
+    if(task.status == 1) {
+      $scope.status = "Complete";
+      return "#CC0000";
+    } else if(task.status == 0){
       $scope.status = "In Progress";
       return "#55c73b";
     } else {
       $scope.status = "Assigned";
       return "#CC0000";
-
     }
-  }
 
-  $scope.taskDetail = function(taskid){
-    console.log('will go', taskid);
-    //console.log($location.path('#/menu/tab/tasks/'+taskid))
-    //$location.path('/tasks/'+taskid)
+    //}
+
   }
 
   //if ($scope.task.priority==2){
@@ -208,21 +207,19 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
   jQuery('.ion-checkmark.taskList').addClass('active');
 
   $scope.showTaskList = function(){
+    jQuery('.ion-checkmark.taskList').addClass('active');
+    jQuery('.ion-chatbubbles').removeClass('active');
+
     $scope.showTaskListView = true;
-    $scope.showChatView = false;
-    $scope.showProjectView = false;
+    $scope.showCompletedTasksView = false;
   };
-  $scope.showChat = function(){
+  $scope.showComplete = function(){
+    console.log('the tasks that are complted');
+    jQuery('.ion-chatbubbles').addClass('active');
+
     jQuery('.ion-checkmark.taskList').removeClass('active');
     $scope.showTaskListView = false;
-    $scope.showChatView = true;
-    $scope.showProjectView = false;
-  };
-  $scope.showProject = function(){
-    jQuery('.ion-checkmark.taskList').removeClass('active');
-    $scope.showTaskListView = false;
-    $scope.showChatView = false;
-    $scope.showProjectView = true;
+    $scope.showCompletedTasksView = true;
   };
 
   $scope.taskView = function(taskID){

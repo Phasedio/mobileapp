@@ -105,13 +105,12 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.filterView = $scope.activeStreamName;//for the select filter
 
   $scope.task = $rootScope.tasks[$stateParams.taskid];
+  $scope.taskid = $stateParams.taskid;
 
-  console.log($scope.task);
+  console.log($scope.task, $scope.taskid);
 
   var myDate = new Date($scope.task.deadline);
   $scope.task.due = myDate.toDateString();
-
-
 
   $scope.openCamera = function(){
     var options = {
@@ -128,22 +127,44 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
     $cordovaCamera.getPicture(options).then(function(photo) {
       $scope.task.image = "data:image/jpeg;base64," + photo;
-
+      savePhoto($scope.task.image);
+      $firebaseObject
       //right away save?
     })
 
+    function savePhoto(image){
+      console.log('we are going to save the photo to the database');
+
+    }
+
   }
 
-  //if ($scope.task.priority==2){
-  //  $scope.priority = "Low";
-  //} else if ($scope.task.priority==1){
-  //  $scope.priority = "Medium";
-  //} else {
-  //  $scope.priority = "High";
-  //}
+  if ($scope.task.priority==2){
+    $scope.priority = "Low";
+  } else if ($scope.task.priority==1){
+    $scope.priority = "Medium";
+  } else {
+    $scope.priority = "High";
+  }
 
-  $scope.taskStart = function(){
-    console.log('will set the progress going');
+  if($scope.task.status == 0){
+    $scope.status = "In Progress";
+  } else {
+    $scope.status = "Assigned";
+  }
+
+  $scope.taskStart = function(taskid, task){
+    console.log('starting the task', taskid, task);
+    Phased.activateTask(taskid, task)
+  }
+
+  $scope.taskComments = function(){
+    console.log('we will set up comments section');
+  }
+
+  $scope.taskFinish = function(taskid, task){
+    console.log('we will complete task', taskid, task);
+    Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.COMPLETE)
   }
 
   $scope.$on('Phased:membersComplete', function() {

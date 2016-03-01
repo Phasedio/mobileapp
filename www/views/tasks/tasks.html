@@ -2,9 +2,14 @@
 
   <ion-content class="padding-top">
     <!--<div class="list">-->
+    <div class="button-bar" ng-show="true">
+      <a class="button" ng-class="{ 'active': activeButton === 'showTaskListView' }" ng-click="showTaskList();activeButton = 'showTaskListView'"><i class="ion-checkmark taskList"></i></a>
+      <a class="button" ng-class="{ 'active': activeButton === 'showCompletedTasksView' }" ng-click="showComplete();activeButton = 'showCompletedView'"><i class="ion-chatbubbles"></i></a> <!-- button-energized" ng-click="showSimilar()" -->
+    </div>
 
+    <div class="showTaskListView_content" ng-show="showTaskListView">
       <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderBy : 'time':true | limitTo :25">
-        <div ng-if="task.assigned_to == currentUser.uid && task.status != 'Complete'"  class="row" style="margin-top: 1%">
+        <div ng-if="task.assigned_to == currentUser.uid && task.status != 1"  class="row" style="margin-top: 1%">
 
           <a class="col col-90 font14" style="margin-top: 4%" href="#/menu/tab/tasks/{{taskid}}">
             <p>{{task.name}}</p>
@@ -31,7 +36,37 @@
         </div>
 
       </div>
-    <!--</div>-->
+    </div>
+    <div class="showCompletedTasksView_content" ng-show="showCompletedTasksView">
+      <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderBy : 'time':true | limitTo :25">
+        <div ng-if="task.assigned_to == currentUser.uid && task.status == 1"  class="row" style="margin-top: 1%">
+
+          <a class="col col-90 font14" style="margin-top: 4%" href="#/menu/tab/tasks/{{taskid}}">
+            <p>{{task.name}}</p>
+
+
+            <div class="row">
+              <div class="col col-10" style="margin-top: 2%;">
+                <p ng-style="{'background-color': bgColor(task) }" style="height: 10px; width: 10px; border-radius: 50%;"></p>
+              </div>
+              <div class="col col-60">
+                <div class="upperCase">
+                  <p>{{status}}</p>
+                </div>
+              </div>
+
+              <div class="col col-30" ng-if="task.deadline">
+                <p><i class="ion-ios-calendar"></i> {{task.deadline | date : 'MMM dd'}}</p>
+              </div>
+            </div>
+          </a>
+          <i class="ion-chevron-right font24"></i>
+
+
+        </div>
+
+      </div>
+    </div>
 
 
   </ion-content>

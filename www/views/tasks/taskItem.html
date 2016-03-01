@@ -46,7 +46,7 @@
             <i class="ion-android-calendar"></i> {{task.due}}
           </div>
 
-          <div class="col col-30">Not Started</div>
+          <div class="col col-30"></div>
         </div>
 
 
@@ -69,12 +69,12 @@
 
         <div class="row">
           <!--if started we will have  stop button otherwise we'll have a start button-->
-          <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskStart()">Start</button> &nbsp;&nbsp;
+          <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskStart(taskid, task)">Start</button> &nbsp;&nbsp;
           <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskStart()">Comment</button>
         </div>
         <div class="row">
           <button class="button button-block button-outline button-balanced col-45"  ng-click="taskStart()">Edit</button> &nbsp;&nbsp;
-          <button class="button button-block button-outline button-balanced col-45"  ng-click="taskStart()">Finish</button>
+          <button class="button button-block button-outline button-balanced col-45"  ng-click="taskFinish(taskid, task)">Finish</button>
         </div>
       </div>
     </div>
