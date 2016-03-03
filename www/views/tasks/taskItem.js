@@ -128,15 +128,13 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     $cordovaCamera.getPicture(options).then(function(photo) {
       $scope.task.image = "data:image/jpeg;base64," + photo;
       savePhoto($scope.task.image);
-      $firebaseObject
+      //$firebaseObject
       //right away save?
     })
 
     function savePhoto(image){
-      console.log('we are going to save the photo to the database');
-
+      alert('we are going to save the photo to the database');
     }
-
   }
 
   if ($scope.task.priority==2){
@@ -156,6 +154,11 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.taskStart = function(taskid, task){
     console.log('starting the task', taskid, task);
     Phased.activateTask(taskid, task)
+  }
+
+  $scope.taskStop = function(taskid, task){
+    console.log('pausing the task', taskid, task);
+    Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.ASSIGNED)
   }
 
   $scope.taskComments = function(){

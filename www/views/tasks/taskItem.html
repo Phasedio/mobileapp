@@ -69,7 +69,8 @@
 
         <div class="row">
           <!--if started we will have  stop button otherwise we'll have a start button-->
-          <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskStart(taskid, task)">Start</button> &nbsp;&nbsp;
+          <button ng-if="task.status == 2" class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskStart(taskid, task)">Start</button> &nbsp;&nbsp;
+          <button ng-if="task.status == 0" class="button button-block button-outline button-dark upButton col-45"  ng-click="taskStop(taskid, task)">Stop</button> &nbsp;&nbsp;
           <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskStart()">Comment</button>
         </div>
         <div class="row">

@@ -63,6 +63,7 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
   $scope.updateTask = function() {
     console.log('doing things');
     $scope.modal.show();
+    //$scope.status.name.focus();
   };
   $scope.closeUpdateTask = function() {
     $scope.modal.hide();
