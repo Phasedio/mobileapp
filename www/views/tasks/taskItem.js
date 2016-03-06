@@ -155,6 +155,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     $scope.toggleState = true;
   }
 
+  //Dealing with the toggling between start and stop
 
   $scope.toggleText = $scope.toggleState ? 'Start' : 'Stop';
   $scope.toggleClass = $scope.toggleState ? 'button-balanced' : 'button-dark';
@@ -175,28 +176,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       $scope.toggleClass = 'button-dark';
       Phased.activateTask(taskid, task);
     }
-  }
-
-
-  $scope.taskStart = function(taskid, task){
-    console.log('starting the task', taskid, task);
-    //$scope.beginTask = false;
-    //$scope.endTask = true;
-    $scope.status = "In Progress";
-    Phased.activateTask(taskid, task);
-
-
-  }
-
-  $scope.taskStop = function(taskid, task){
-    //$scope.endTask = false;
-    //$scope.beginTask = true;
-    $scope.status = "Assigned";
-
-    console.log('pausing the task', taskid, task);
-    Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.ASSIGNED)
-
-
   }
 
   $scope.taskComments = function(){
