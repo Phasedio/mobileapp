@@ -113,6 +113,8 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.task.due = myDate.toDateString();
 
   $scope.openCamera = function(){
+    alert('we are going to open camera');
+
     var options = {
       quality: 75,
       destinationType: Camera.DestinationType.DATA_URL,
@@ -147,22 +149,62 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   if($scope.task.status == 0){
     $scope.status = "In Progress";
+    $scope.toggleState = false;
   } else {
     $scope.status = "Assigned";
+    $scope.toggleState = true;
   }
+
+
+  $scope.toggleText = $scope.toggleState ? 'Start' : 'Stop';
+  $scope.toggleClass = $scope.toggleState ? 'button-balanced' : 'button-dark';
+
+  $scope.toggle = function(taskid, task){
+    $scope.toggleState = !$scope.toggleState;
+    $scope.toggleText = $scope.toggleState ? 'Start' : 'Stop';
+
+    console.log('we clicked toggle', $scope.toggleState);
+    if ($scope.toggleState) {
+      $scope.status = "Assigned";
+      $scope.toggleClass = 'button-balanced';
+      console.log('pausing the task', taskid, task);
+      Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.ASSIGNED)
+    }else{
+      console.log('we will run the Stat task', taskid, task);
+      $scope.status = "In Progress";
+      $scope.toggleClass = 'button-dark';
+      Phased.activateTask(taskid, task);
+    }
+  }
+
 
   $scope.taskStart = function(taskid, task){
     console.log('starting the task', taskid, task);
-    Phased.activateTask(taskid, task)
+    //$scope.beginTask = false;
+    //$scope.endTask = true;
+    $scope.status = "In Progress";
+    Phased.activateTask(taskid, task);
+
+
   }
 
   $scope.taskStop = function(taskid, task){
+    //$scope.endTask = false;
+    //$scope.beginTask = true;
+    $scope.status = "Assigned";
+
     console.log('pausing the task', taskid, task);
     Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.ASSIGNED)
+
+
   }
 
   $scope.taskComments = function(){
     console.log('we will set up comments section');
+  }
+
+  $scope.taskEdit = function(){
+    console.log('we will set up edit section');
   }
 
   $scope.taskFinish = function(taskid, task){

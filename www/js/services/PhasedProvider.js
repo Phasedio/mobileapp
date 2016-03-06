@@ -2274,7 +2274,7 @@ angular.module('App')
      *
      */
     var _activateTask = function (taskID, task) {
-      debugger
+      //debugger
 
       var args = {
         task : task,
@@ -2318,7 +2318,7 @@ angular.module('App')
     }
 
     var doSetTaskStatus = function(args) {
-      debugger
+      //debugger
       var taskID = args.taskID,
         newStatus = args.newStatus;
       if (!(newStatus in PhasedProvider.task.STATUS)) { // not a valid ID, might be a valid string
