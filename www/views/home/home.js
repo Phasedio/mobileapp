@@ -54,7 +54,7 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
 
 
   //Add modal fucntions
-  $ionicModal.fromTemplateUrl('my-modal.html', {
+  $ionicModal.fromTemplateUrl('views/home/new-task-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {

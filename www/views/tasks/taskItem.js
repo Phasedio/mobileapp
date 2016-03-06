@@ -129,14 +129,14 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
     $cordovaCamera.getPicture(options).then(function(photo) {
       $scope.task.image = "data:image/jpeg;base64," + photo;
-      savePhoto($scope.task.image);
+      //savePhoto($scope.task.image);
       //$firebaseObject
       //right away save?
     })
 
-    function savePhoto(image){
-      alert('we are going to save the photo to the database');
-    }
+    //function savePhoto(image){
+    //  alert('we are going to save the photo to the database');
+    //}
   }
 
   if ($scope.task.priority==2){
