@@ -205,7 +205,17 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     $scope.modal.hide();
   };
 
+  $scope.eventSources = []; //needed for the calendar
 
+  $scope.chooseDate = function($event) {
+    console.log('we will open the calendar to be a drop down', $event)
+      $scope.status.opened = true;
+    };
+
+  $scope.setDate = function(year, month, day) {
+    console.log('youre picking a new day')
+    $scope.dt = new Date(year, month, day);
+};
 
   $scope.taskFinish = function(taskid, task){
     console.log('we will complete task', taskid, task);
