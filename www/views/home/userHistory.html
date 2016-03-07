@@ -4,26 +4,24 @@
     <button class="button-clear" ng-click="$ionicGoBack()">Close <i class="button-icon ion-ios-close-empty"></i></button>
   </ion-nav-buttons>
 
-  <div class="card">
-    <a class="item " href="#" ng-repeat="(key, history) in histories | orderObjectBy:'-time'" ng-if="history.user === selectedTeamMember">
+  <div class="card" style="margin-top: 15%">
+    <a class="item" href="#" ng-repeat="(key, history) in histories | orderObjectBy:'-time'" ng-if="history.user === selectedTeamMember">
       <div class="row">
         <div class="col-25">
           <img src="{{selectedTeamMemberInfo.gravatar}}" class="avatarHome">
         </div>
 
-        <div class="col-75" style="padding-top: 4%">
-          <h2>{{history.name}} <small style="font-size: 70%;" am-time-ago="history.time"></small></h2>
-          <!--<p>{{update.currentStatus.name}}</p>-->
+        <div class="col col-75">
+          <div class="row">
+            <p class="col col-60">{{selectedTeamMemberInfo.name}}</p>
+            <small class="col col-20 col-offset-10" style="font-size: 70%;" am-time-ago="history.time"></small>
+          </div>
+          <div class="row">
+            <h2>{{history.name}}</h2>
+
+          </div>
         </div>
-
       </div>
-
     </a>
-    <div ng-show="histories.length">No match</div>
-
-
-
-
-
   </div>
 </ion-view>
