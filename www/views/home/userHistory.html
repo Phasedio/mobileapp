@@ -5,7 +5,7 @@
   </ion-nav-buttons>
 
   <div class="card">
-    <a class="item " href="#" ng-repeat="history in histories | orderBy: 'time':true " ng-if="history.user === selectedTeamMember">
+    <a class="item " href="#" ng-repeat="(key, history) in histories | orderObjectBy:'-time'" ng-if="history.user === selectedTeamMember">
       <div class="row">
         <div class="col-25">
           <img src="{{selectedTeamMemberInfo.gravatar}}" class="avatarHome">

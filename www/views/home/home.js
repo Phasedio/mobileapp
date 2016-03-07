@@ -21,7 +21,6 @@ angular.module('App').controller('homeController', function ($scope, $state,$cor
   // n.b.: categories now in Phased.team.categorySelect and in Phased.team.categoryObj (different structures)
   // n.b.: Phased.user.profile is a link to Phased.team.members[Auth.user.uid].profile;
   $scope.team = Phased.team;
-  //$scope.history = $scope.team.statuses[$stateParams.user]
 
   $scope.currentUser = Phased.user;
   $scope.assignments = Phased.assignments;
