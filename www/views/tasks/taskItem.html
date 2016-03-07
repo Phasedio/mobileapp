@@ -32,24 +32,28 @@
       <div class="card taskDetail">
 
         <div class="row">
-          <p class="font14">Description:</p>
+          <div class="row">
+            <p class="font14">Description:</p>
+          </div>
         </div>
 
         <div class="row">
-          <p>{{task.description}}</p>
+          <div class="row">
+            <p>{{task.description}}</p>
+          </div>
         </div>
 
         <div class="row">
           <!--if there is a due date then show it else show nothing-->
-          <div class="col col-60" ng-show="task.due == 'Invalid Date'">
+          <div class="col col-50" ng-show="task.due == 'Invalid Date'">
             <p>No Due Date!</p>
           </div>
           <!--if there is a started say in progress else say not started-->
-          <div class="col col-60" ng-show="task.due != 'Invalid Date'">
+          <div class="col col-50" ng-show="task.due != 'Invalid Date'">
             <i class="ion-android-calendar"></i> {{task.due}}
           </div>
 
-          <div class="col col-30">
+          <div class="col col-50">
             <p>Status: {{status}}</p>
           </div>
         </div>
@@ -62,7 +66,7 @@
           <div class="col col-20 assignee">
             <!--<img src="{{currentUser}}">-->
           </div>
-          <div class="col col-40 col-offset-10">Priority: {{priority}}</div>
+          <div class="col col-50">Priority: {{priority}}</div>
         </div>
 
         <div class="row">
@@ -75,7 +79,6 @@
         <div class="row">
           <!--if started we will have  stop button otherwise we'll have a start button-->
           <button class="button button-block button-outline {{toggleClass}} upButton col-45" ng-click="toggle(taskid, task)" ng-class="{on: toggleState}"> {{toggleText}} </button> &nbsp;&nbsp;
-          <!--<button ng-if="endTask" class="button button-block button-outline button-dark upButton col-45"  ng-click="taskStop(taskid, task)">Stop</button> &nbsp;&nbsp;-->
           <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskComments(taskid, task)">Comment</button>
         </div>
         <div class="row">

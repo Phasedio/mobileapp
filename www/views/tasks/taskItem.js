@@ -89,16 +89,16 @@
      }
    });
 
-angular.module('App').controller('taskItemController', function ($scope, $state,$cordovaOauth, $rootScope, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils,Phased, $cordovaCamera, $stateParams) {
+angular.module('App').controller('taskItemController', function ($scope, $state,$cordovaOauth, $rootScope, $localStorage, $location, $http, $ionicModal, $firebaseObject, Auth, FURL, Utils,Phased, $cordovaCamera, $stateParams) {
   //alert('HEY IM HERE CAN YOU SEE ME!!!!!!');
 
   $scope.archive = Phased.archive;
   $scope.viewType = Phased.viewType;
-    $scope.taskPriorities = Phased.TASK_PRIORITIES; // in new task modal
-    $scope.taskStatuses = Phased.TASK_STATUSES; // in new task modal
-    $scope.taskPriorityID = Phased.TASK_PRIORITY_ID;
-    $scope.taskStatusID = Phased.TASK_STATUS_ID;
-    $scope.myID = Auth.user.uid;
+  $scope.taskPriorities = Phased.TASK_PRIORITIES; // in new task modal
+  $scope.taskStatuses = Phased.TASK_STATUSES; // in new task modal
+  $scope.taskPriorityID = Phased.TASK_PRIORITY_ID;
+  $scope.taskStatusID = Phased.TASK_STATUS_ID;
+  $scope.myID = Auth.user.uid;
   $scope.activeStream = Phased.assignments.to_me;
   $scope.activeStreamName = 'assignments.to_me';
   $scope.activeStatusFilter = '!1'; // not completed tasks
@@ -112,7 +112,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   var myDate = new Date($scope.task.deadline);
   $scope.task.due = myDate.toDateString();
 
-  $scope.openCamera = function(){
+  $scope.openCamera = function () {
     alert('we are going to open camera');
 
     var options = {
@@ -127,7 +127,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       saveToPhotoAlbum: false
     };
 
-    $cordovaCamera.getPicture(options).then(function(photo) {
+    $cordovaCamera.getPicture(options).then(function (photo) {
       $scope.task.image = "data:image/jpeg;base64," + photo;
       //savePhoto($scope.task.image);
       //$firebaseObject
@@ -139,15 +139,15 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     //}
   }
 
-  if ($scope.task.priority==2){
+  if ($scope.task.priority == 2) {
     $scope.priority = "Low";
-  } else if ($scope.task.priority==1){
+  } else if ($scope.task.priority == 1) {
     $scope.priority = "Medium";
   } else {
     $scope.priority = "High";
   }
 
-  if($scope.task.status == 0){
+  if ($scope.task.status == 0) {
     $scope.status = "In Progress";
     $scope.toggleState = false;
   } else {
@@ -160,7 +160,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.toggleText = $scope.toggleState ? 'Start' : 'Stop';
   $scope.toggleClass = $scope.toggleState ? 'button-balanced' : 'button-dark';
 
-  $scope.toggle = function(taskid, task){
+  $scope.toggle = function (taskid, task) {
     $scope.toggleState = !$scope.toggleState;
     $scope.toggleText = $scope.toggleState ? 'Start' : 'Stop';
 
@@ -170,7 +170,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       $scope.toggleClass = 'button-balanced';
       console.log('pausing the task', taskid, task);
       Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.ASSIGNED)
-    }else{
+    } else {
       console.log('we will run the Stat task', taskid, task);
       $scope.status = "In Progress";
       $scope.toggleClass = 'button-dark';
@@ -178,13 +178,34 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     }
   }
 
-  $scope.taskComments = function(){
+  $scope.taskComments = function () {
     console.log('we will set up comments section');
   }
 
-  $scope.taskEdit = function(){
-    console.log('we will set up edit section');
+
+  $ionicModal.fromTemplateUrl('views/tasks/edit-task-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      $scope.modal = modal;
+    });
+
+  $scope.taskEdit = function(task) {
+    console.log('we will set up edit section, I think we can just open up a new modal');
+    $scope.modal.show(task);
+    //$scope.status.name.focus();
+  };
+
+  $scope.saveEdit = function(editedTask) {
+    console.log('we will save the changes', editedTask);
   }
+
+  $scope.closeEditTask = function() {
+    console.log('will close the edit task');
+    $scope.modal.hide();
+  };
+
+
 
   $scope.taskFinish = function(taskid, task){
     console.log('we will complete task', taskid, task);
