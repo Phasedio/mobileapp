@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('App').controller('homeController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $ionicSideMenuDelegate, $firebaseObject, Auth, FURL, Utils,Phased, $stateParams) {
+angular.module('App').controller('homeController', function ($scope, $state, $localStorage, $location,$http,$ionicPopup,$ionicModal, $ionicSideMenuDelegate, $firebaseObject, Auth, FURL, Utils,Phased, $stateParams) {
   var ref = new Firebase(FURL);
 //console.log("this is where i'm at", Phased, Auth);
   $scope.status = {

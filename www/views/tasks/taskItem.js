@@ -89,7 +89,7 @@
      }
    });
 
-angular.module('App').controller('taskItemController', function ($scope, $state,$cordovaOauth, $rootScope, $localStorage, $location, $http, $ionicModal, $firebaseObject, Auth, FURL, Utils,Phased, $cordovaCamera, $stateParams) {
+angular.module('App').controller('taskItemController', function ($scope, $state, $rootScope, $localStorage, $location, $http, $ionicModal, $firebaseObject, Auth, FURL, Utils,Phased, $cordovaCamera, $stateParams) {
   //alert('HEY IM HERE CAN YOU SEE ME!!!!!!');
 
   $scope.archive = Phased.archive;

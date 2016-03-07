@@ -88,7 +88,7 @@ angular.module('App').filter('orderObjectBy', function() {
       return result;
     }
   });
-angular.module('App').controller('TasksController', function ($scope, $rootScope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
+angular.module('App').controller('TasksController', function ($scope, $rootScope, $state, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
   $scope.team = Phased.team;
   console.log('the team', $scope.team);

@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('App').controller('ProfileController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased,$window) {
+angular.module('App').controller('ProfileController', function ($scope, $state, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased,$window) {
 
   // PhasedProvider integrations
   // n.b.: categories now in Phased.team.categorySelect and in Phased.team.categoryObj (different structures)

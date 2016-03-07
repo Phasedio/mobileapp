@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('App').controller('loginController', function ($scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils,Phased) {
+angular.module('App').controller('loginController', function ($scope, $state, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils,Phased) {
   console.log(Phased);
   var ref = new Firebase(FURL);
   var userkey = "";
