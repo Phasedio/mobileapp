@@ -31,13 +31,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .list a.item {
   width: 90%;
   margin-left: 5%;
-  padding: 5% 10%;
+  //padding: 5% 10%;
   border: none;
   border-bottom: 1px darkgrey solid;
 }
 
 .item-avatar {
-  padding-left: 10%;
+  padding: 2% 0 2% 5%;
 }
 
 img.avatarHome {
