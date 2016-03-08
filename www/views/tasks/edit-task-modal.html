@@ -11,7 +11,7 @@
 
   <ion-content >
     <!--<form name="task" ng-submit="saveEdit(task)">-->
-      <textarea class="upperCase" type="text" ng-model="task.name" placeholder="{{task.name}}"></textarea>
+      <textarea class="upperCase" type="text" ng-model="task.name" placeholder="{{task.name}}" style="width: 90%"></textarea>
 
       <img ng-if=task.image ng-src="{{task.image}}" style="height:200px; width: 100%">
 
@@ -45,11 +45,12 @@
           <div class="row">
             <!--if there is a due date then show it else show nothing-->
             <div class="col col-50" ng-show="task.due == 'Invalid Date'">
-              <button ng-click="chooseDate($event)" class="button button-icon ion-android-calendar"><input ng-model="editedTask.due" placeholder="No Due Date!" /></button>
+              <button ng-click="chooseDate($event)" class="button button-icon ion-android-calendar"></button><input style="width: 80%" ng-model="editedTask.due" placeholder="No Due Date!" />
             </div>
             <!--if there is a started say in progress else say not started-->
             <div class="col col-50" ng-show="task.due != 'Invalid Date'">
-              <i class="ion-android-calendar"></i><input ng-model="task.due" placeholder="{{task.due}}" />
+                <i class="ion-android-calendar"></i>
+                <input ng-model="task.due" placeholder="{{task.due}}" />
             </div>
 
             <div class="col col-50">

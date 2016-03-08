@@ -1,7 +1,7 @@
 <ion-view title="Activity" hide-back-button="true">
   <ion-content class="padding-top">
     <div class="list">
-      <button class="item item-input-inset" ng-click="updateTask()">What are you doing?</button>
+      <button class="item item-input-inset" style="color:lightgrey" ng-click="updateTask()">What are you doing?</button>
     </div>
     <a class="item item-avatar" href="#/menu/tab/home/{{update.currentStatus.user}}" ng-repeat="update in team.members | orderBy : 'time':true ">
         <div class="row">
