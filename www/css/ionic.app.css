@@ -9757,6 +9757,9 @@ img.avatarHome {
 i.icon .ion-ios-bell {
   font-size: 50px; }
 
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
+  color: salmon; }
+
 .active {
   color: salmon; }
 

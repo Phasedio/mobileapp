@@ -7,30 +7,18 @@
   <ion-content class="padding-top">
     <h3 class="upperCase">{{task.name}}</h3>
     <!--if there is an image then show it otherwise show an icon to upload a photo-->
-
-
-  <!--<div ng-if=imgURI>-->
-    <!--<p>picture here</p>-->
-  <!--</div>-->
-
     <img ng-if=task.image ng-src="{{task.image}}" style="height:200px; width: 100%">
 
-    <!--<img src="../../img/cyberegg.jpg" style="width:102%; background-size: cover">-->
-
     <div class="row" style="background-color: grey; width: 100%; height: 200px; color: white;" ng-if= !task.image>
-      <!--<div class="col col-center col-offset-33">-->
         <button class="button button-icon col col-center" ng-click="openCamera()">
           <i class="ion-ios-camera-outline" style="color: white; font-size: 90px"></i>
           <p>Add an Image</p>
 
         </button>
-      <!--</div>-->
     </div>
 
     <div class="row">
-
       <div class="card taskDetail">
-
         <div class="row">
           <div class="row">
             <p class="font14">Description:</p>

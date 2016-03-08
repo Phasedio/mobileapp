@@ -1,21 +1,10 @@
-<ion-view title="" hide-back-button="true">
-
+<ion-view title="Activity" hide-back-button="true">
   <ion-content class="padding-top">
-    <!--<p>In home</p>-->
-
     <div class="list">
-      <div class="item item-input-inset">
-        <label>
-          <input type="text" ng-click="updateTask()" placeholder="What are you doing?">
-        </label>
-      </div>
+      <button class="item item-input-inset" ng-click="updateTask()">What are you doing?</button>
     </div>
-
-    <!--<ion-spinner icon="crescent" ng-hide=""></ion-spinner>-->
-
     <a class="item item-avatar" href="#/menu/tab/home/{{update.currentStatus.user}}" ng-repeat="update in team.members | orderBy : 'time':true ">
         <div class="row">
-
           <div class="col-25">
             <img src="{{update.gravatar}}" class="avatarHome">
           </div>
@@ -23,12 +12,8 @@
             <h2 class="upperCase">{{update.name}}</h2>
             <p>{{update.currentStatus.name}}</p><br>
             <small style="font-size: 70%;" class="upperCase" am-time-ago="update.currentStatus.time"></small>
-
           </div>
         </div>
-
       </a>
-
   </ion-content>
-
 </ion-view>
