@@ -89,7 +89,7 @@
      }
    });
 
-angular.module('App').controller('taskItemController', function ($scope, $state, $rootScope, $localStorage, $location, $http, $ionicModal, $firebaseObject, Auth, FURL, Utils,Phased, $cordovaCamera, $stateParams) {
+angular.module('App').controller('taskItemController', function ($scope, $state, $rootScope, $ionicPopup, $cordovaDatePicker, $localStorage, $location, $http, $ionicModal, $firebaseObject, Auth, FURL, Utils,Phased, $cordovaCamera, $stateParams) {
   //alert('HEY IM HERE CAN YOU SEE ME!!!!!!');
 
   $scope.archive = Phased.archive;
@@ -207,10 +207,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   $scope.eventSources = []; //needed for the calendar
 
-  $scope.chooseDate = function($event) {
-    console.log('we will open the calendar to be a drop down', $event)
-      $scope.status.opened = true;
-    };
+
 
   $scope.setDate = function(year, month, day) {
     console.log('youre picking a new day')

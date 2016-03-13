@@ -17,6 +17,8 @@ angular.module('App').filter('orderObjectBy', function() {
     filtered.sort(function (a, b) {
       return (a[field] > b[field] ? 1 : -1);
     });
+    console.log(items)
+
     if(reverse) filtered.reverse();
     return filtered;
   };

@@ -35,44 +35,59 @@
             </div>
           </div>
 
-
           <div class="row">
             <div class="row">
               <textarea type="text" class="col col-100" ng-model="task.description" rows="5" cols="30" placeholder="{{task.description}}"></textarea>
             </div>
           </div>
 
-          <div class="row">
-            <!--if there is a due date then show it else show nothing-->
-            <div class="col col-50" ng-show="task.due == 'Invalid Date'">
-              <button ng-click="chooseDate($event)" class="button button-icon ion-android-calendar"></button><input style="width: 80%" ng-model="editedTask.due" placeholder="No Due Date!" />
-            </div>
-            <!--if there is a started say in progress else say not started-->
-            <div class="col col-50" ng-show="task.due != 'Invalid Date'">
-                <i class="ion-android-calendar"></i>
-                <input ng-model="task.due" placeholder="{{task.due}}" />
-            </div>
+          <!--if there is a due date then show it else show nothing-->
+          <!--<div class="row">-->
+            <label class="item item-input">
+              <i class="ion-android-calendar"></i>
+              <span class="input-label">&nbsp;{{task.due}}</span>
 
-            <div class="col col-50">
+              <input type="date" placeholder="{{task.due}}">
+
+            </label>
+          <!--</div>-->
+
+
+
+          <!--if there is a started say in progress else say not started-->
+          <!--<div class="row" ng-show="task.due != 'Invalid Date'">-->
+            <!--<i class="ion-android-calendar" style="width:100%" >&nbsp;&nbsp;<input ng-model="task.due" placeholder="{{task.due}}" style="width:100%" /></i>-->
+          <!--</div>-->
+          <!--<br/>-->
+
+          <div class="row">
+            <div class="row">
               <p>Status: {{status}}</p>
             </div>
           </div>
 
 
           <div class="row">
-            <div class="col col-30 assignee">
+            <div class="row">
               <p>Assigned to:</p>
-            </div>
-            <div class="col col-20 assignee">
+              <!--<div class="col col-20 assignee">-->
               <!--<img src="{{currentUser}}">-->
+              <!--</div>-->
             </div>
-            <div class="col col-50">Priority: {{priority}}</div>
           </div>
+
+
+          <div class="row">
+            <div class="row">
+              <div>Priority: {{priority}}</div>
+            </div>
+          </div>
+
 
           <div class="row">
             <div class="col">
               <p class="font14">Category: </p>
-              <p class="font14">Card: </p>
+              <!--<p class="font14">Card: </p>-->
             </div>
           </div>
 
@@ -83,6 +98,7 @@
           <button type="submit" ng-click="saveEdit(task)" class="button button-outline button-block button-balanced">Save </button>
         </div>
       </div>
+
 
     <!--</form>-->
   </ion-content>

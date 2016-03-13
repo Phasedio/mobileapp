@@ -35,6 +35,8 @@
     </div>
 
     <div class="showCompletedTasksView_content" ng-show="showCompletedTasksView">
+      <!--<div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderObjectBy : '-time':true">-->
+
       <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderBy : 'time':true | limitTo :25">
         <div ng-if="task.assigned_to == currentUser.uid && task.status == 1"  class="row">
 
