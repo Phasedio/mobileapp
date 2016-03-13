@@ -110,6 +110,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   console.log($scope.task, $scope.taskid);
 
   var myDate = new Date($scope.task.deadline);
+
   $scope.task.due = myDate.toDateString();
 
   $scope.openCamera = function () {
@@ -139,12 +140,17 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     //}
   }
 
+  //$("#priorityDropdown").val($scope.task.priority);
+
   if ($scope.task.priority == 2) {
     $scope.priority = "Low";
+
   } else if ($scope.task.priority == 1) {
     $scope.priority = "Medium";
+
   } else {
     $scope.priority = "High";
+
   }
 
   if ($scope.task.status == 0) {
@@ -193,6 +199,19 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.taskEdit = function(task) {
     console.log('we will set up edit section, I think we can just open up a new modal');
     $scope.modal.show(task);
+
+    if($scope.task.due == "Invalid Date"){
+      console.log('we have an invalid date')
+    }else{
+      var date = myDate.toISOString();
+      $scope.task.due = date.substr(0,date.indexOf('T'));
+
+      $scope.task = {
+        value: new Date($scope.task.due)
+      };
+    }
+
+
     //$scope.status.name.focus();
   };
 
@@ -207,12 +226,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   $scope.eventSources = []; //needed for the calendar
 
-
-
-  $scope.setDate = function(year, month, day) {
-    console.log('youre picking a new day')
-    $scope.dt = new Date(year, month, day);
-};
 
   $scope.taskFinish = function(taskid, task){
     console.log('we will complete task', taskid, task);

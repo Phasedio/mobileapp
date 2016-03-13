@@ -44,11 +44,8 @@
           <!--if there is a due date then show it else show nothing-->
           <!--<div class="row">-->
             <label class="item item-input">
-              <i class="ion-android-calendar"></i>
-              <span class="input-label">&nbsp;{{task.due}}</span>
-
-              <input type="date" placeholder="{{task.due}}">
-
+                &nbsp;<i class="ion-android-calendar"></i>&nbsp;&nbsp;
+                <input type="date" id="taskInput" name="input" ng-model="task.value" required />
             </label>
           <!--</div>-->
 
@@ -76,6 +73,17 @@
             </div>
           </div>
 
+
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Priority:
+            </div>
+            <select id="priorityDropdown">
+              <option value="2">Low</option>
+              <option value="1">Medium</option>
+              <option value="0">High</option>
+            </select>
+          </label>
 
           <div class="row">
             <div class="row">
