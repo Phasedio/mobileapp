@@ -74,8 +74,8 @@
       <file leaf-file-name="edit-task-modal.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/views/tasks/edit-task-modal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3324397">
-              <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+            <state vertical-scroll-proportion="1.3538874">
+              <caret line="91" column="29" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
               <folding>
                 <element signature="n#style#0;n#textarea#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
@@ -111,8 +111,8 @@
       <file leaf-file-name="taskItem.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/views/tasks/taskItem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.4814816">
-              <caret line="238" column="82" selection-start-line="238" selection-start-column="82" selection-end-line="238" selection-end-column="82" />
+            <state vertical-scroll-proportion="-5.3333335">
+              <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -192,8 +192,8 @@
         <option value="$PROJECT_DIR$/www/views/tasks/tasks.html" />
         <option value="$PROJECT_DIR$/www/views/home/userHistory.html" />
         <option value="$PROJECT_DIR$/www/views/tasks/tasks.js" />
-        <option value="$PROJECT_DIR$/www/views/tasks/taskItem.js" />
         <option value="$PROJECT_DIR$/www/views/tasks/edit-task-modal.html" />
+        <option value="$PROJECT_DIR$/www/views/tasks/taskItem.js" />
       </list>
     </option>
   </component>
@@ -866,16 +866,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/views/tasks/taskItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4814816">
-          <caret line="238" column="82" selection-start-line="238" selection-start-column="82" selection-end-line="238" selection-end-column="82" />
+        <state vertical-scroll-proportion="-5.3333335">
+          <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/views/tasks/edit-task-modal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3324397">
-          <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+        <state vertical-scroll-proportion="1.3538874">
+          <caret line="91" column="29" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#textarea#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />

@@ -84,13 +84,22 @@
             </select>
           </label>
 
-
-          <div class="row">
-            <div class="col">
-              <p class="font14">Category: </p>
-              <!--<p class="font14">Card: </p>-->
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Category:
             </div>
-          </div>
+            <select ng-options="option.name for option in task.priority.availableOptions track by option.id" ng-model="task.priority.selectedOption" >
+              <option value="" selected></option>
+            </select>
+          </label>
+
+
+          <!--<div class="row">-->
+            <!--<div class="col">-->
+              <!--<p class="font14">Category: </p>-->
+              <!--&lt;!&ndash;<p class="font14">Card: </p>&ndash;&gt;-->
+            <!--</div>-->
+          <!--</div>-->
 
         </div>
       </div>

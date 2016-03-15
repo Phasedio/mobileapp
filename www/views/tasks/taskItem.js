@@ -155,9 +155,9 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   $scope.task.priority = {
     availableOptions: [
-      {id: '2', name: 'Low'},
-      {id: '1', name: 'Medium'},
-      {id: '0', name: 'High'}
+      {id: 2, name: 'Low'},
+      {id: 1, name: 'Medium'},
+      {id: 0, name: 'High'}
     ],
     selectedOption: {id: $scope.task.priority, name: $scope.priority} //This sets the default value of the select in the ui
   };
@@ -173,8 +173,8 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   $scope.task.status = {
     availableOptions: [
-      {id: '1', name: 'Assigned'},
-      {id: '0', name: 'In Progress'}
+      {id: 1, name: 'Assigned'},
+      {id: 0, name: 'In Progress'}
     ],
     selectedOption: {id: $scope.task.status, name: $scope.status} //This sets the default value of the select in the ui
   };
@@ -233,30 +233,29 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     //$scope.status.name.focus();
   };
 
+  //sets up for reassigning members
   $scope.task.members = Phased.team.members;
   var id = Phased.user.uid;
-  console.log('the member is,', Phased.team.members[id].name);
   $scope.task.members.selectedOption = {id: id, name: Phased.team.members[id].name}
-  console.log(Phased.team.members);
 
   $scope.saveEdit = function(editedTask) {
     console.log('we will save the changes', editedTask, Phased.user, Auth.user);
     if (editedTask.members.selectedOption.uid == Phased.user.uid){
+      $scope.assigned_by = $scope.task.assigned_by;
       console.log('we want to keep the same assinged_by;');
     }else {
+      $scope.assigned_by = Phased.user.uid;
       console.log('there is a changee')
     }
     var newTask = {
-      //assigned_by:
-      assigned_to: editedTask.members.selectedOption.uid,
+      assigned_by: $scope.assigned_by,
+      assigned_to: editedTask.members.selectedOption.uid || Phased.team.members[id].name,
       name: editedTask.name,
       description: editedTask.description,
       status: editedTask.status.selectedOption.id,
       priority: editedTask.priority.selectedOption.id,
-      due: editedTask.value
+      due: editedTask.value || "Invalid Date"
     }
-
-
     console.log(newTask);
   }
 
