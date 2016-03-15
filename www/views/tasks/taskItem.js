@@ -171,6 +171,14 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     $scope.toggleState = true;
   }
 
+  $scope.task.status = {
+    availableOptions: [
+      {id: '1', name: 'Assigned'},
+      {id: '0', name: 'In Progress'}
+    ],
+    selectedOption: {id: $scope.task.status, name: $scope.status} //This sets the default value of the select in the ui
+  };
+
   //Dealing with the toggling between start and stop
 
   $scope.toggleText = $scope.toggleState ? 'Start' : 'Stop';
@@ -225,8 +233,31 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     //$scope.status.name.focus();
   };
 
+  $scope.task.members = Phased.team.members;
+  var id = Phased.user.uid;
+  console.log('the member is,', Phased.team.members[id].name);
+  $scope.task.members.selectedOption = {id: id, name: Phased.team.members[id].name}
+  console.log(Phased.team.members);
+
   $scope.saveEdit = function(editedTask) {
-    console.log('we will save the changes', editedTask);
+    console.log('we will save the changes', editedTask, Phased.user, Auth.user);
+    if (editedTask.members.selectedOption.uid == Phased.user.uid){
+      console.log('we want to keep the same assinged_by;');
+    }else {
+      console.log('there is a changee')
+    }
+    var newTask = {
+      //assigned_by:
+      assigned_to: editedTask.members.selectedOption.uid,
+      name: editedTask.name,
+      description: editedTask.description,
+      status: editedTask.status.selectedOption.id,
+      priority: editedTask.priority.selectedOption.id,
+      due: editedTask.value
+    }
+
+
+    console.log(newTask);
   }
 
   $scope.closeEditTask = function() {
