@@ -3,7 +3,7 @@
     <div class="list">
       <button class="item item-input-inset" style="color:lightgrey" ng-click="updateTask()">What are you doing?</button>
     </div>
-    <a class="item item-avatar" href="#/menu/tab/home/{{update.currentStatus.user}}" ng-repeat="update in team.members | orderBy : 'time':true ">
+    <a class="item item-avatar" href="#/menu/tab/home/{{update.currentStatus.user}}" ng-repeat="update in team.members | orderMembers : 'lastUpdated' : true ">
       <div class="row">
         <div class="col-25" >
           <img src="{{update.gravatar}}" class="avatarHome">
