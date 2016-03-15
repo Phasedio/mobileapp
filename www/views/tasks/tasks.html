@@ -1,6 +1,10 @@
 <ion-view view-title="My Tasks" hide-back-button="true">
 
   <ion-content class="padding-top">
+
+    <div class="list">
+      <button class="item item-input-inset" style="color:lightgrey" ng-click="taskAdd()">What needs to be done?</button>
+    </div>
     <!--<div class="list">-->
     <div class="button-bar" ng-show="true">
       <a class="button" ng-class="{ 'active': activeButton === 'showTaskListView' }" ng-click="showTaskList();activeButton = 'showTaskListView'"><i class="ion-ios-star"> Current</i></a>
@@ -8,7 +12,7 @@
     </div>
 
     <div class="showTaskListView_content" ng-show="showTaskListView">
-      <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderBy : '-time':true | limitTo :25">
+      <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderObjectBy : 'time':true | limitTo :25">
         <div ng-if="task.assigned_to == currentUser.uid && task.status != 1"  class="row">
 
           <a class="col col-90 font14" href="#/menu/tab/tasks/{{taskid}}">

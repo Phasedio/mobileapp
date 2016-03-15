@@ -179,7 +179,7 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
     });
 
   //Add modal fucntions
-  $ionicModal.fromTemplateUrl('my-task.html', {
+  $ionicModal.fromTemplateUrl('views/tasks/new-task-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -192,6 +192,20 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
   $scope.closeModal = function() {
     $scope.modal.hide();
   };
+  $scope.addTask = function(task) {
+    console.log(task, Phased.user);
+    //set up the task attributes:
+    var task = {
+      name: task.name,
+      time: Date.now(),
+      created_by: Phased.user.uid,
+      assigned_to: Phased.user.uid,
+      assigned_by: Phased.user.uid
+    }
+    console.log('the task to save is', task);
+    Phased.addTask(task);
+
+  }
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
