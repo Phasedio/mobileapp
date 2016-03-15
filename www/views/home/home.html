@@ -3,17 +3,18 @@
     <div class="list">
       <button class="item item-input-inset" style="color:lightgrey" ng-click="updateTask()">What are you doing?</button>
     </div>
-    <a class="item item-avatar" href="#/menu/tab/home/{{update.currentStatus.user}}" ng-repeat="update in team.members | orderBy : 'time':true ">
+    <a class="item item-avatar" href="#/menu/tab/home/{{update.currentStatus.user}}" ng-repeat="update in team.members | orderMembers : 'lastUpdated' : true ">
       <div class="row">
         <div class="col-25" >
           <img src="{{update.gravatar}}" class="avatarHome">
         </div>
         <div class="col-75">
           <h2 class="upperCase">{{update.name}}</h2>
-          <p>{{update.currentStatus.name}}</p>
+          <p class="wrap">{{update.currentStatus.name}}</p>
           <small style="font-size: 70%;" class="upperCase" am-time-ago="update.currentStatus.time"></small>
         </div>
       </div>
     </a>
   </ion-content>
 </ion-view>
+ 
