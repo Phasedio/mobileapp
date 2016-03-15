@@ -1,27 +1,32 @@
 <ion-view title="History" hide-back-button="true" >
 
+
   <ion-nav-buttons class="button-clear" side="left">
     <button class="button-clear" ng-click="$ionicGoBack()">Close <i class="button-icon ion-ios-close-empty"></i></button>
   </ion-nav-buttons>
 
-  <div class="card" style="margin-top: 15%">
-    <a class="item" href="#" ng-repeat="history in histories | orderBy:'-time'" ng-if="history.user === selectedTeamMember">
-      <div class="row">
-        <div class="col-25">
-          <img src="{{selectedTeamMemberInfo.gravatar}}" class="avatarHome">
-        </div>
-
-        <div class="col col-75">
-          <div class="row">
-            <p class="col col-60">{{selectedTeamMemberInfo.name}}</p>
-            <small class="col col-20 col-offset-10" style="font-size: 70%;" am-time-ago="history.time"></small>
+  <ion-content>
+    <div class="card" style="margin-top: 15%">
+      <a class="item" href="#" ng-repeat="history in histories | orderBy:'-time'" ng-if="history.user === selectedTeamMember">
+        <div class="row">
+          <div class="col-25">
+            <img src="{{selectedTeamMemberInfo.gravatar}}" class="avatarHome">
           </div>
-          <div class="row">
-            <h2>{{history.name}}</h2>
 
+          <div class="col col-75">
+            <div class="row">
+              <p class="col col-60">{{selectedTeamMemberInfo.name}}</p>
+              <small class="col col-20 col-offset-10" style="font-size: 70%;" am-time-ago="history.time"></small>
+            </div>
+            <div class="row">
+              <h2>{{history.name}}</h2>
+
+            </div>
           </div>
         </div>
-      </div>
-    </a>
-  </div>
+      </a>
+    </div>
+  </ion-content>
+
+
 </ion-view>

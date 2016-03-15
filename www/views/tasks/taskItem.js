@@ -142,6 +142,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   //$("#priorityDropdown").val($scope.task.priority);
 
+
   if ($scope.task.priority == 2) {
     $scope.priority = "Low";
 
@@ -150,8 +151,17 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   } else {
     $scope.priority = "High";
-
   }
+
+  $scope.task.priority = {
+    availableOptions: [
+      {id: '2', name: 'Low'},
+      {id: '1', name: 'Medium'},
+      {id: '0', name: 'High'}
+    ],
+    selectedOption: {id: $scope.task.priority, name: $scope.priority} //This sets the default value of the select in the ui
+  };
+
 
   if ($scope.task.status == 0) {
     $scope.status = "In Progress";
@@ -223,9 +233,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     console.log('will close the edit task');
     $scope.modal.hide();
   };
-
-  $scope.eventSources = []; //needed for the calendar
-
 
   $scope.taskFinish = function(taskid, task){
     console.log('we will complete task', taskid, task);
