@@ -9731,6 +9731,12 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.wrap {
+  word-wrap: normal !important;
+  overflow: auto !important;
+  white-space: normal !important;
+  text-overflow: none !important; }
+
 .list h2 small, .list .h2 small {
   font-size: 11px; }
 

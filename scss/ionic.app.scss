@@ -21,6 +21,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.wrap{
+  word-wrap: normal !important;
+  overflow: auto !important;
+  white-space: normal !important;
+  text-overflow: none !important; 
+}
 
 //Quick fix for feed
 .list{
@@ -179,5 +185,3 @@ label.item-checkbox {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-
-
