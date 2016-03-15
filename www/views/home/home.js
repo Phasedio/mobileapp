@@ -136,7 +136,7 @@ angular.module('App').controller('homeController', function ($scope, $state, $lo
     };
 
     // 2. update db
-    Phased.addTask(status);
+    Phased.addStatus(status);
 
     // 3. update interface
     //$scope.task = update;
