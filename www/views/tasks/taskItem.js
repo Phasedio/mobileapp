@@ -109,6 +109,12 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   console.log($scope.task, $scope.taskid);
 
+  if($scope.task.deadline){
+    console.log('we have one');
+  }else {
+    console.log('well we dont');
+  }
+
   var myDate = new Date($scope.task.deadline);
 
   $scope.task.due = myDate.toDateString();
@@ -258,6 +264,10 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     }
     console.log(newTask);
   }
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
 
   $scope.closeEditTask = function() {
     console.log('will close the edit task');

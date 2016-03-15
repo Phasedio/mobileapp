@@ -12,7 +12,7 @@
     </div>
 
     <div class="showTaskListView_content" ng-show="showTaskListView">
-      <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderObjectBy : 'time':true | limitTo :25">
+      <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderBy : 'time':true | limitTo :25">
         <div ng-if="task.assigned_to == currentUser.uid && task.status != 1"  class="row">
 
           <a class="col col-90 font14" href="#/menu/tab/tasks/{{taskid}}">
@@ -64,13 +64,9 @@
           </a>
           <i class="ion-chevron-right font24"></i>
 
-
         </div>
-
       </div>
     </div>
 
-
   </ion-content>
-
 </ion-view>
