@@ -4,7 +4,10 @@ angular.module('App').filter('orderMembers', function() {
       var filtered = [];
       for (var i in items) {
       items[i].key = i;
-      items[i].lastUpdated = items[i].currentStatus.time;
+      if(items[i].currentStatus){
+        items[i].lastUpdated = items[i].currentStatus.time;
+      }
+
       filtered.push(items[i]);
     }
       filtered.sort(function (a, b) {
