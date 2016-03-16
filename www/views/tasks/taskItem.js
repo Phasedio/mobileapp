@@ -159,15 +159,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     $scope.priority = "High";
   }
 
-  $scope.task.priority = {
-    availableOptions: [
-      {id: 2, name: 'Low'},
-      {id: 1, name: 'Medium'},
-      {id: 0, name: 'High'}
-    ],
-    selectedOption: {id: $scope.task.priority, name: $scope.priority} //This sets the default value of the select in the ui
-  };
-
 
   if ($scope.task.status == 0) {
     $scope.status = "In Progress";
@@ -177,13 +168,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     $scope.toggleState = true;
   }
 
-  $scope.task.status = {
-    availableOptions: [
-      {id: 1, name: 'Assigned'},
-      {id: 0, name: 'In Progress'}
-    ],
-    selectedOption: {id: $scope.task.status, name: $scope.status} //This sets the default value of the select in the ui
-  };
 
   //Dealing with the toggling between start and stop
 
@@ -223,6 +207,25 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.taskEdit = function(task) {
     console.log('we will set up edit section, I think we can just open up a new modal');
     $scope.modal.show(task);
+
+    $scope.task.priority = {
+      availableOptions: [
+        {id: 2, name: 'Low'},
+        {id: 1, name: 'Medium'},
+        {id: 0, name: 'High'}
+      ],
+      selectedOption: {id: $scope.task.priority, name: $scope.priority} //This sets the default value of the select in the ui
+    };
+
+    $scope.task.status = {
+      availableOptions: [
+        {id: 1, name: 'Assigned'},
+        {id: 0, name: 'In Progress'}
+      ],
+      selectedOption: {id: $scope.task.status, name: $scope.status} //This sets the default value of the select in the ui
+    };
+
+
 
     if($scope.task.due == "Invalid Date"){
       console.log('we have an invalid date')
