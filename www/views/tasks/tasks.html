@@ -12,10 +12,10 @@
     </div>
 
     <div class="showTaskListView_content" ng-show="showTaskListView">
-      <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderBy : 'time':true | limitTo :25">
-        <div ng-if="task.assigned_to == currentUser.uid && task.status != 1"  class="row">
+      <div class="item item-tasks item-icon-right"  ng-repeat="task in tasks | orderObjectBy : 'time' :true | limitTo :25">
+        <div ng-if="task.assigned_to == Phased.user.uid && task.status != Phased.task.STATUS_ID.COMPLETE"  class="row">
 
-          <a class="col col-90 font14" href="#/menu/tab/tasks/{{taskid}}">
+          <a class="col col-90 font14" href="#/menu/tab/tasks/{{task.key}}">
             <p>{{task.name}}</p>
 
             <div class="row">

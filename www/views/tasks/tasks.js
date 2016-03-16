@@ -93,6 +93,7 @@ angular.module('App').filter('orderObjectBy', function() {
 angular.module('App').controller('TasksController', function ($scope, $rootScope, $state, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
   $scope.team = Phased.team;
+  $scope.Phased = Phased;
   console.log('the team', $scope.team);
   $scope.currentUser = Phased.user;
   console.log('the current user is ', $scope.currentUser);
@@ -129,7 +130,8 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
         $rootScope.tasks = $scope.tasks;
       })
     })
-  })
+  });
+  console.log($scope.tasks);
 
   $scope.bgColor = function(task){
     if(task.status == 1) {
@@ -289,6 +291,35 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
       Phased.activateTask(task.key);
 
        //toaster.pop('success', "Success!", "Your task was posted");
+    }
+
+    $scope.getFilter = function(assignment){
+      //console.log(Phased.user.uid);
+      if (assignment.assigned_to == Phased.user.uid && assignment.status != Phased.task.STATUS_ID.COMPLETE) {
+        console.log(true);
+        return true;
+      }else{
+        return false;
+      }
+      $scope.$apply();
+
+      // if ($scope.filtersToShow == 'me') {
+      //   $scope.currentFilter = 'My Tasks';
+      //
+      // }
+      // }else if ($scope.filtersToShow == 'me_complete') {
+      //   $scope.currentFilter = "My Completed Tasks";
+      //   if (assignment.assigned_to == Phased.user.uid && assignment.status == Phased.task.STATUS_ID.COMPLETE) {
+      //
+      //     return true;
+      //   }else{
+      //     return false;
+      //   }
+      //
+      // }else{
+      //   $scope.currentFilter ="All Tasks";
+      //   return true;
+      // }
     }
 
 });
