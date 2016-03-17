@@ -5,18 +5,19 @@
     </div>
     <h1 class="title"> Update Status</h1>
     <div class="buttons">
-      <button type="submit" ng-click="addTask(status)" class="button button-clear">Post </button>
+      <button type="submit" ng-click="addTask(status)" class="button button-clear" style="color:#2fc2a3;">Post </button>
     </div>
   </ion-header-bar>
 
   <ion-content >
     <form ng-submit="addTask(status)" novalidate>
+      <textarea rows="10" ng-model="status.name" placeholder="What are you doing?" autofocus style="width: 100%; padding: 12px; padding-top:15px"></textarea>
       <div class="list updateStatus">
-        <div class="card">
+        <!-- <div class="card">
           <label class="item item-input">
-            <textarea rows="10" ng-model="status.name" placeholder="What are you doing?" autofocus></textarea>
+
           </label>
-        </div>
+        </div> -->
 
         <div style="width: 93%; margin-left: 3%" >
           <label class="item item-input item-select">
@@ -32,7 +33,7 @@
         </div>
 
         <div class="row">
-          <button type="submit" style="margin-top: 60%" class="button button-full button-balanced">Submit</button>
+          <!-- <button type="submit" style="margin-top: 60%" class="button button-full button-balanced">Submit</button> -->
         </div>
 
       </div>

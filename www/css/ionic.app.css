@@ -9749,9 +9749,13 @@ a.button {
 .item-avatar {
   padding: 2% 0 2% 5%; }
 
+.member p{
+  color:#121212;
+}
+
 img.avatarHome {
-  max-height: 60px;
-  max-width: 60px;
+  /*max-height: 60px;*/
+  max-width: 25px;
   position: relative;
   border-radius: 50%; }
 
