@@ -23,7 +23,7 @@ angular.module('App')
     }
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    var AuthProvider = function(FURL, $firebaseAuth, $firebase,$firebaseObject,$location,$rootScope) {
+    var AuthProvider = function(FURL, $firebaseAuth, $firebase,$firebaseObject,$location,$state,$rootScope) {
         var ref = new Firebase(FURL);
         var auth = $firebaseAuth(ref);
         var team = '';
@@ -166,8 +166,10 @@ angular.module('App')
       }
 
         auth.$onAuth(function(authData) {
+
             if (authData) {
-                angular.copy(authData, Auth.user);
+
+              angular.copy(authData, Auth.user);
                 ref.child('profile').child(Auth.user.uid).child('curTeam').once('value',function(data){
                     data = data.val();
                     Auth.currentTeam = data;
@@ -194,6 +196,8 @@ angular.module('App')
               }
                Auth.user.profile = $firebaseObject(ref.child('profile').child(authData.uid));
                console.log(Auth.user.profile);
+               console.log('want to send the user to the dashboard');
+               $location.path('/menu/tab/home');
                //Check if UID is not on t
                // IF user is just opening a new tab then have the system pull the last team
                if (team == '') {
