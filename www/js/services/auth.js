@@ -23,7 +23,7 @@ angular.module('App')
     }
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    var AuthProvider = function(FURL, $firebaseAuth, $firebase,$firebaseObject,$location,$state,$rootScope) {
+    var AuthProvider = function(FURL, $firebaseAuth, $firebase,$firebaseObject,$location) {
         var ref = new Firebase(FURL);
         var auth = $firebaseAuth(ref);
         var team = '';
