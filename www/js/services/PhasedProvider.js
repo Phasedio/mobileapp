@@ -2528,7 +2528,6 @@ angular.module('App')
         });
     }
 
-
   })
   .config(['PhasedProvider', 'FURL', 'AuthProvider', function(PhasedProvider, FURL, AuthProvider) {
     PhasedProvider.setFBRef(FURL);

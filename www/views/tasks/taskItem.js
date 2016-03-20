@@ -171,7 +171,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     $scope.priority = "High";
   }
 
-
   if ($scope.task.status == 0) {
     $scope.status = "In Progress";
     $scope.toggleState = false;
