@@ -156,14 +156,10 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
     $cordovaCamera.getPicture(options).then(function (photo) {
       $scope.task.image = "data:image/jpeg;base64," + photo;
-      //savePhoto($scope.task.image);
-      //$firebaseObject
-      //right away save?
+      alert('we will save the photo' + $scope.taskid);
+      ref.child('team').child(Phased.team.uid).child('projects').child('0A').child('columns').child('0A').child('cards').child('0A').child('tasks').child($scope.taskid).child('photo').set($scope.task.image)
     })
 
-    //function savePhoto(image){
-    //  alert('we are going to save the photo to the database');
-    //}
   }
 
   //$("#priorityDropdown").val($scope.task.priority);
