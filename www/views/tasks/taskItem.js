@@ -127,7 +127,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
 
 
-  //console.log($scope.task, $scope.taskid);
+  console.log($scope.task, $scope.taskid);
 
   if($scope.task.deadline){
     console.log('we have one');
@@ -157,7 +157,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     $cordovaCamera.getPicture(options).then(function (photo) {
       $scope.task.image = "data:image/jpeg;base64," + photo;
       alert('we will save the photo' + $scope.taskid);
-      ref.child('team').child(Phased.team.uid).child('projects').child('0A').child('columns').child('0A').child('cards').child('0A').child('tasks').child($scope.taskid).child('photo').set($scope.task.image)
+      ref.child('team').child(Phased.team.uid).child('projects').child('0A').child('columns').child('0A').child('cards').child('0A').child('tasks').child($scope.taskid).child('image').set($scope.task.image)
     })
 
   }
