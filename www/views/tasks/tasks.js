@@ -142,19 +142,7 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
       $scope.status = "Assigned";
       return "#CC0000";
     }
-
-    //}
-
   }
-
-  //if ($scope.task.priority==2){
-  //  $scope.priority = "Low";
-  //} else if ($scope.task.priority==1){
-  //  $scope.priority = "Medium";
-  //} else {
-  //  $scope.priority = "High";
-  //}
-
 
   for(var taskId in $scope.activeStream){
 
@@ -172,11 +160,16 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
     //console.log(Phased);
   });
 
-    $scope.$watch('Phased.assignments', function(user){
-      $scope.assignments = Phased.assignments;
-      console.log('we are watching assingments', $scope.assignments);
+  $scope.$watch('Phased.assignments', function(user){
+    $scope.assignments = Phased.assignments;
+    console.log('we are watching assingments', $scope.assignments);
 
-    });
+  });
+
+  //$scope.$watch('Phased.taskStatusID', function(task){
+  //  console.log('the task status changed')
+  //
+  //})
 
   //Add modal fucntions
   $ionicModal.fromTemplateUrl('views/tasks/new-task-modal.html', {
@@ -200,11 +193,13 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
       time: Date.now(),
       created_by: Phased.user.uid,
       assigned_to: Phased.user.uid,
-      assigned_by: Phased.user.uid
+      assigned_by: Phased.user.uid,
+      status: 2
     }
-    console.log('the task to save is', task);
+    //console.log('the task to save is', task);
     Phased.addTask(task);
-
+    $scope.closeModal();
+    $scope.$apply();
   }
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {

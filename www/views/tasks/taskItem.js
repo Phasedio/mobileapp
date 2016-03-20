@@ -89,8 +89,13 @@
      }
    });
 
-angular.module('App').controller('taskItemController', function ($scope, $state, $rootScope, $ionicPopup, $cordovaDatePicker, $localStorage, $location, $http, $ionicModal, $firebaseObject, Auth, FURL, Utils,Phased, $cordovaCamera, $stateParams) {
+angular.module('App').controller('taskItemController', function ($scope, $state, $rootScope, $ionicPopup, $cordovaDatePicker, $firebaseArray, $localStorage, $location, $http, $ionicModal, $firebaseObject, Auth, FURL, Utils,Phased, $cordovaCamera, $stateParams) {
   //alert('HEY IM HERE CAN YOU SEE ME!!!!!!');
+
+  var ref = new Firebase(FURL);
+
+  //$scope.task = $firebaseArray(ref.child('team').child(Phased.team.uid).child('projects').child('0A').child('columns').child('0A').child('cards').child('0A').child($scope.taskid);
+  //console.log($scope.task);
 
   $scope.archive = Phased.archive;
   $scope.viewType = Phased.viewType;
@@ -104,10 +109,25 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.activeStatusFilter = '!1'; // not completed tasks
   $scope.filterView = $scope.activeStreamName;//for the select filter
 
-  $scope.task = $rootScope.tasks[$stateParams.taskid];
-  $scope.taskid = $stateParams.taskid;
+  console.log($scope.tasks);
 
-  console.log($scope.task, $scope.taskid);
+  //taskid = window.localStorage['taskid'] || $stateParams.taskid;
+  //console.log(taskid);
+
+  //var ref = new Firebase(FURL);
+
+  //$scope.task = $firebaseArray(ref.child('team').child(Phased.team.uid).child('projects').child('0A').child('columns').child('0A').child('cards').child('0A').child($scope.taskid));
+  //console.log($scope.task);
+
+  $scope.taskid = $stateParams.taskid
+  $scope.task = $scope.tasks[$scope.taskid];
+  //console.log($stateParams.taskid)
+
+  $scope.tasks = $rootScope.tasks;
+
+
+
+  //console.log($scope.task, $scope.taskid);
 
   if($scope.task.deadline){
     console.log('we have one');
@@ -266,9 +286,13 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       due: editedTask.value || "Invalid Date"
     }
     console.log(newTask);
+    //$scope.$apply();
+
+    $scope.closeModal();
   }
 
   $scope.closeModal = function() {
+
     $scope.modal.hide();
   };
 
@@ -281,6 +305,11 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     console.log('we will complete task', taskid, task);
     Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.COMPLETE)
   }
+
+  $scope.$on('modal.hidden', function() {
+    location.reload();
+  });
+
 
   $scope.$on('Phased:membersComplete', function() {
     $scope.$apply();
