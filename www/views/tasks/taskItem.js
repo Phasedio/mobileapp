@@ -159,11 +159,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       alert('we will save the photo' + $scope.taskid);
       ref.child('team').child(Phased.team.uid).child('projects').child('0A').child('columns').child('0A').child('cards').child('0A').child('tasks').child($scope.taskid).child('image').set($scope.task.image)
     })
-
   }
-
-  //$("#priorityDropdown").val($scope.task.priority);
-
 
   if ($scope.task.priority == 2) {
     $scope.priority = "Low";

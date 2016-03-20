@@ -13,7 +13,17 @@
     <!--<form name="task" ng-submit="saveEdit(task)">-->
       <textarea class="upperCase" type="text" ng-model="task.name" placeholder="{{task.name}}" style="width: 90%"></textarea>
 
-      <img ng-if=task.image ng-src="{{task.image}}" style="height:200px; width: 100%">
+      <div class="row" style="background-image: url({{task.image}}); width: 100%; height: 200px; color: white;" ng-if= task.image>
+        <!--<div class="col col-center col-offset-33">-->
+        <button class="button button-icon col col-center" ng-click="openCamera()">
+          <i class="ion-ios-camera-outline" style="color: white; font-size: 90px"></i>
+          <p style="color: white">Change the Image</p>
+
+        </button>
+        <!--</div>-->
+      </div>
+
+      <!--<img ng-if=task.image ng-src="{{task.image}}" style="height:200px; width: 100%">-->
 
       <div class="row" style="background-color: grey; width: 100%; height: 200px; color: white;" ng-if= !task.image>
         <!--<div class="col col-center col-offset-33">-->
