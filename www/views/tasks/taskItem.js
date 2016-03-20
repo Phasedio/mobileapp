@@ -263,9 +263,10 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   };
 
   //sets up for reassigning members
-  $scope.task.members = Phased.team.members;
+  $scope.task.members = rtnTeamArry();
   var id = Phased.user.uid;
-  $scope.task.members.selectedOption = {id: id, name: Phased.team.members[id].name}
+  console.log($scope.task);
+  //$scope.task.members.selectedOption = {id: id, name: Phased.team.members[id].name}
 
   $scope.saveEdit = function(editedTask) {
     console.log('we will save the changes', editedTask, Phased.user, Auth.user);
@@ -326,4 +327,13 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     console.log('we are watching assingments', $scope.assignments);
 
   });
+
+  function rtnTeamArry(){
+    var key = Object.keys(Phased.team.members);
+    var arr = [];
+    for (var i = 0; i < key.length; i++) {
+      arr.push(Phased.team.members[key[i]]);
+    }
+    return arr;
+  }
 });

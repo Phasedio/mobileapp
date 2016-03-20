@@ -9731,6 +9731,12 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.wrap {
+  word-wrap: normal !important;
+  overflow: auto !important;
+  white-space: normal !important;
+  text-overflow: none !important; }
+
 .list h2 small, .list .h2 small {
   font-size: 11px; }
 
@@ -9743,9 +9749,13 @@ a.button {
 .item-avatar {
   padding: 2% 0 2% 5%; }
 
+.member p{
+  color:#121212;
+}
+
 img.avatarHome {
-  max-height: 60px;
-  max-width: 60px;
+  /*max-height: 60px;*/
+  max-width: 25px;
   position: relative;
   border-radius: 50%; }
 

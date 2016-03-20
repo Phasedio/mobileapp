@@ -21,6 +21,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.wrap{
+  word-wrap: normal !important;
+  overflow: auto !important;
+  white-space: normal !important;
+  text-overflow: none !important;
+}
 
 //Quick fix for feed
 .list{
@@ -36,13 +42,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   border-bottom: 1px darkgrey solid;
 }
 
+.member{
+  p{
+    color:#121212; 
+  }
+}
 .item-avatar {
   padding: 2% 0 2% 5%;
 }
 
 img.avatarHome {
-  max-height: 60px;
-  max-width: 60px;
+
+  max-width: 100%;
   position: relative;
   border-radius: 50%;
 }
@@ -179,5 +190,3 @@ label.item-checkbox {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
-
-

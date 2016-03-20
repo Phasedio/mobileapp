@@ -1,4 +1,22 @@
 'Use Strict';
+angular.module('App').filter('orderMembers', function() {
+    return function(items, field, reverse) {
+      var filtered = [];
+      for (var i in items) {
+      items[i].key = i;
+      if(items[i].currentStatus){
+        items[i].lastUpdated = items[i].currentStatus.time;
+      }
+
+      filtered.push(items[i]);
+    }
+      filtered.sort(function (a, b) {
+        return (a[field] > b[field] ? 1 : -1);
+      });
+      if(reverse) filtered.reverse();
+      return filtered;
+    };
+  });
 angular.module('App').controller('homeController', function ($scope, $state, $localStorage, $location,$http,$ionicPopup,$ionicModal, $ionicSideMenuDelegate, $firebaseObject, Auth, FURL, Utils,Phased, $stateParams) {
   var ref = new Firebase(FURL);
 //console.log("this is where i'm at", Phased, Auth);
@@ -121,7 +139,7 @@ angular.module('App').controller('homeController', function ($scope, $state, $lo
     };
 
     // 2. update db
-    Phased.addTask(status);
+    Phased.addStatus(status);
 
     // 3. update interface
     //$scope.task = update;
