@@ -9753,7 +9753,7 @@ a.button {
   padding: 2% 0 2% 5%; }
 
 img.avatarHome {
-  max-width: 100%;
+  max-width: 25px;
   position: relative;
   border-radius: 50%; }
 
