@@ -261,7 +261,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   $scope.saveEdit = function(editedTask) {
     console.log('we will save the changes', editedTask, Phased.user, Auth.user);
-    if (editedTask.members.selectedOption.uid == Phased.user.uid){
+    if (editedTask.members.selectedOption.id == Phased.user.uid){
       $scope.assigned_by = $scope.task.assigned_by;
       console.log('we want to keep the same assinged_by;');
     }else {
@@ -299,7 +299,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   }
 
   $scope.$on('modal.hidden', function() {
-    location.reload();
+    //location.reload();
   });
 
 

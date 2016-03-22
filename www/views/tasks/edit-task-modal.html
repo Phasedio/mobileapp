@@ -59,7 +59,10 @@
           <div class="input-label">
             Assigned to:
           </div>
-          <select  ng-model="task.assigned_to" ng-options="option.name for option in task.members track by option.uid"  ></select>
+          <select ng-model="task.members.selectedOption" ng-options="option.name for option in task.members track by option.uid">
+            <option value="{{members}}" selected></option>
+          </select>
+
         </label>
 
         <label class="item item-input item-select">
