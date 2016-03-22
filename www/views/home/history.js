@@ -39,6 +39,6 @@ angular.module('App').controller('historyController', function ($scope, $filter,
   //$scope.currentStatus = Phased.team
 
   //need to call to firebase for the history. Phased team statuses only holds the last 100 statusesV
-  $scope.histories = $firebaseArray(ref.child('team').child(Phased.team.uid).child('statuses'));
+  $scope.histories = $firebaseArray(ref.child('team').child(Phased.team.uid).child('statuses').orderByChild("user").equalTo($scope.selectedTeamMember).limitToLast(50));
 
 })
