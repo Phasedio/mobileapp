@@ -94,9 +94,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   var ref = new Firebase(FURL);
 
-  //$scope.task = $firebaseArray(ref.child('team').child(Phased.team.uid).child('projects').child('0A').child('columns').child('0A').child('cards').child('0A').child($scope.taskid);
-  //console.log($scope.task);
-
   $scope.archive = Phased.archive;
   $scope.viewType = Phased.viewType;
   $scope.taskPriorities = Phased.TASK_PRIORITIES; // in new task modal
@@ -114,7 +111,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   $scope.taskid = $stateParams.taskid
   $scope.task = $scope.tasks[$scope.taskid];
-  //console.log($stateParams.taskid)
 
   $scope.tasks = $rootScope.tasks;
 
@@ -151,7 +147,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       ref.child('team').child(Phased.team.uid).child('projects').child('0A').child('columns').child('0A').child('cards').child('0A').child('tasks').child($scope.taskid).child('image').set($scope.task.image)
     })
   }
-
 
   if ($scope.task.priority == 2) {
     $scope.priority = "Low";
@@ -210,14 +205,8 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     });
 
   $scope.taskEdit = function() {
-    console.log('we will set up edit section, I think we can just open up a new modal');
     $scope.modal.show();
     console.log($scope.task);
-
-    //find the category
-    //$scope.task.category = Phased.team.categoryObj[$scope.task.cat]
-    //$scope.task.category = Phased.team.categoryObj;
-    //console.log($scope.task.category)
 
     $scope.task.priority = {
       availableOptions: [
