@@ -159,6 +159,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     })
   }
 
+
   if ($scope.task.priority == 2) {
     $scope.priority = "Low";
 
@@ -197,7 +198,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       console.log('we will run the Stat task', taskid, task);
       $scope.status = "In Progress";
       $scope.toggleClass = 'button-dark';
-      Phased.activateTask(taskid, task);
+      Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.IN_PROGRESS);
     }
   }
 
@@ -212,9 +213,10 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       $scope.modal = modal;
     });
 
-  $scope.taskEdit = function(task) {
+  $scope.taskEdit = function() {
     console.log('we will set up edit section, I think we can just open up a new modal');
-    $scope.modal.show(task);
+    $scope.modal.show();
+    console.log($scope.task)
 
     $scope.task.priority = {
       availableOptions: [
@@ -250,61 +252,48 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   //sets up for reassigning members
   $scope.task.members = rtnTeamArry();
   var id = Phased.user.uid;
-  //console.log($scope.task);
   $scope.task.members.selectedOption = {uid: id, name: Phased.team.members[id].name}
-  console.log('the slected it ', $scope.task.members.selectedOption)
 
   $scope.saveEdit = function(task) {
     console.log('we will save the changes', task, Phased.user, Auth.user);
-
     if (task.members.selectedOption.uid == Phased.user.uid){
       console.log(task.members.selectedOption);
       //$scope.task.assigned_by = $scope.task.assigned_by;
       console.log('we want to keep the same assinged_by;');
     }else {
       $scope.task.assigned_by = Phased.user.uid;
-      $scope.task.assigned_to = task.members.selectedOption.uid
+      $scope.task.assigned_to = task.members.selectedOption.uid;
       //Phased.setTaskAssignee($scope.taskid, editedTask.members.selectedOption.uid);
       console.log('there is a changee')
     }
 
-    if (task.name != $scope.task.name){
-      console.log('there was a change')
-    }else {
-      console.log('there was no change to the name');
-    }
-    var newTask = {
-      //assigned_by: $scope.assigned_by,
-      //assigned_to: editedTask.members.selectedOption.uid || Phased.team.members[id].name,
+    $scope.newTask = {
+      assigned_by: $scope.task.assigned_by,
+      assigned_to: $scope.task.assigned_to,
       name: task.name,
       description: task.description,
       status: task.status.selectedOption.id,
       priority: task.priority.selectedOption.id,
       due: task.value || "Invalid Date"
     }
-    console.log(newTask);
-    Phased.setTaskDesc($scope.taskid, task.description);
-    Phased.setTaskPriority($scope.taskid, task.priority.selectedOption.id);
 
-    //here we need to figure out what we are changing the status to...
-    //maybe we can use the togle thing. first check to see if there is a change
+    Phased.setTaskDesc($scope.taskid, task.description);
+    Phased.setTaskName($scope.taskid, task.name);
+
+    $scope.priority = task.priority.selectedOption.name;
+    $scope.task.priority = task.priority.selectedOption.id;
+    console.log($scope.task.priority);
+    Phased.setTaskPriority($scope.taskid, $scope.task.priority);
+
+
+    //if there is a change to the status we will toggle the wording/button.
     if (task.status.selectedOption.name != $scope.status) {
-      console.log('maybe we will toggle');
-      $scope.toggle($scope.taskid, task);
-      //if (task.status.selectedOption.id == 0){
-      //  console.log('we are setting the task to be in progress')
-      //  Phased.activateTask($scope.taskid, task);
-      //} else if (task.status.selectedOption.id == 1){
-      //  console.log('we are setting the task to be assinged')
-      //  Phased.setTaskStatus($scope.taskid, Phased.task.STATUS_ID.ASSIGNED)
-      //}
-    } else {
-      console.log('its the same so we will leave it');
+
+      $scope.toggle($scope.taskid, $scope.newTask);
     }
 
-    //Phased.setTaskStatus($scope.taskid, task.status.selectedOption.id);
-
-    //$scope.$apply();
+    $scope.task.status = task.status.selectedOption.id;
+    console.log($scope.task.status);
 
     $scope.closeModal();
   }

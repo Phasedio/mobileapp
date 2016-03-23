@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/tasks/edit-task-modal.html" afterPath="$PROJECT_DIR$/www/views/tasks/edit-task-modal.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/tasks/taskItem.js" afterPath="$PROJECT_DIR$/www/views/tasks/taskItem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/tasks/tasks.js" afterPath="$PROJECT_DIR$/www/views/tasks/tasks.js" />
     </list>
     <ignored path="mobileapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,8 +45,8 @@
       <file leaf-file-name="PhasedProvider.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/services/PhasedProvider.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.8703704">
-              <caret line="1995" column="55" selection-start-line="1995" selection-start-column="54" selection-end-line="1995" selection-end-column="55" />
+            <state vertical-scroll-proportion="-1.462963">
+              <caret line="2398" column="7" selection-start-line="2398" selection-start-column="7" selection-end-line="2398" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -56,8 +55,8 @@
       <file leaf-file-name="edit-task-modal.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/views/tasks/edit-task-modal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.5689654">
-              <caret line="62" column="56" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
+            <state vertical-scroll-proportion="-3.2931035">
+              <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
               <folding>
                 <element signature="n#style#0;n#textarea#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
@@ -75,8 +74,8 @@
       <file leaf-file-name="taskItem.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/views/tasks/taskItem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41509435">
-              <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8221024">
+              <caret line="295" column="36" selection-start-line="295" selection-start-column="36" selection-end-line="295" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -179,7 +178,6 @@
         <option value="$PROJECT_DIR$/www/views/profile/profile.html" />
         <option value="$PROJECT_DIR$/www/views/menu.html" />
         <option value="$PROJECT_DIR$/scss/ionic.app.scss" />
-        <option value="$PROJECT_DIR$/www/js/services/PhasedProvider.js" />
         <option value="$PROJECT_DIR$/www/views/tasks/datepicker-template.html" />
         <option value="$PROJECT_DIR$/config.xml" />
         <option value="$PROJECT_DIR$/www/views/home/history.js" />
@@ -193,6 +191,7 @@
         <option value="$PROJECT_DIR$/www/views/tasks/taskItem.html" />
         <option value="$PROJECT_DIR$/www/views/tasks/tasks.js" />
         <option value="$PROJECT_DIR$/www/views/tasks/edit-task-modal.html" />
+        <option value="$PROJECT_DIR$/www/js/services/PhasedProvider.js" />
         <option value="$PROJECT_DIR$/www/views/tasks/taskItem.js" />
       </list>
     </option>
@@ -954,22 +953,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/home/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.111111">
-          <caret line="19" column="162" selection-start-line="19" selection-start-column="162" selection-end-line="19" selection-end-column="162" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/services/PhasedProvider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8703704">
-          <caret line="1995" column="55" selection-start-line="1995" selection-start-column="54" selection-end-line="1995" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/tasks/tasks.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.2592592">
@@ -978,10 +961,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/views/home/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.111111">
+          <caret line="19" column="162" selection-start-line="19" selection-start-column="162" selection-end-line="19" selection-end-column="162" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/tasks/edit-task-modal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.5689654">
-          <caret line="62" column="56" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
+        <state vertical-scroll-proportion="-3.2931035">
+          <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
           <folding>
             <element signature="n#style#0;n#textarea#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#ion-content#0;n#ion-modal-view#0;n#!!top" expanded="true" />
@@ -995,10 +986,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/services/PhasedProvider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.462963">
+          <caret line="2398" column="7" selection-start-line="2398" selection-start-column="7" selection-end-line="2398" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/tasks/taskItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41509435">
-          <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.8221024">
+          <caret line="295" column="36" selection-start-line="295" selection-start-column="36" selection-end-line="295" selection-end-column="36" />
           <folding />
         </state>
       </provider>
