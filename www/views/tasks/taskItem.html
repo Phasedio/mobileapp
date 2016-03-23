@@ -52,15 +52,14 @@
             <p>Assigned to:</p>
           </div>
           <div class="col col-20 assignee">
-            <!--<img src="{{currentUser}}">-->
+            <img src="{{currentUser.gravatar}}">
           </div>
           <div class="col col-50">Priority: {{priority}}</div>
         </div>
 
-        <div class="row">
+        <div ng-if="task.category" class="row">
           <div class="col">
-            <p class="font14">Category: </p>
-            <p class="font14">Card: </p>
+            <p class="font14">Category: <i class="ion-android-checkbox-blank" style="color: {{task.category.color}}"></i>&nbsp;{{task.category.name}}</p>
           </div>
         </div>
 

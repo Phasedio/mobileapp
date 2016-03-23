@@ -78,7 +78,7 @@
           <div class="input-label">
             Category:
           </div>
-          <select ng-options="option.name for option in task.priority.availableOptions track by option.id" ng-model="task.priority.selectedOption" >
+          <select ng-options="option.name for option in task.categories track by option.key" ng-model="task.categories.selectedOption" >
             <option value="" selected></option>
           </select>
         </label>

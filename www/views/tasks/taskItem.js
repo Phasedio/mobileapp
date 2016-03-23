@@ -109,15 +109,8 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.activeStatusFilter = '!1'; // not completed tasks
   $scope.filterView = $scope.activeStreamName;//for the select filter
 
-  console.log($scope.tasks);
-
-  //taskid = window.localStorage['taskid'] || $stateParams.taskid;
-  //console.log(taskid);
-
-  //var ref = new Firebase(FURL);
-
-  //$scope.task = $firebaseArray(ref.child('team').child(Phased.team.uid).child('projects').child('0A').child('columns').child('0A').child('cards').child('0A').child($scope.taskid));
-  //console.log($scope.task);
+  $scope.currentUser = Phased.team.members[$scope.myID]
+  console.log('the current user is ', $scope.currentUser)
 
   $scope.taskid = $stateParams.taskid
   $scope.task = $scope.tasks[$scope.taskid];
@@ -177,10 +170,12 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     $scope.status = "Assigned";
     $scope.toggleState = true;
   }
-
+  //find the category
+  $scope.task.categories = Phased.team.categoryObj;
+  $scope.task.category = Phased.team.categoryObj[$scope.task.cat];
+  console.log($scope.task.category);
 
   //Dealing with the toggling between start and stop
-
   $scope.toggleText = $scope.toggleState ? 'Start' : 'Stop';
   $scope.toggleClass = $scope.toggleState ? 'button-balanced' : 'button-dark';
 
@@ -202,6 +197,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     }
   }
 
+  //not being used yet//
   $scope.taskComments = function () {
     console.log('we will set up comments section');
   }
@@ -216,7 +212,12 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.taskEdit = function() {
     console.log('we will set up edit section, I think we can just open up a new modal');
     $scope.modal.show();
-    console.log($scope.task)
+    console.log($scope.task);
+
+    //find the category
+    //$scope.task.category = Phased.team.categoryObj[$scope.task.cat]
+    //$scope.task.category = Phased.team.categoryObj;
+    //console.log($scope.task.category)
 
     $scope.task.priority = {
       availableOptions: [
@@ -234,8 +235,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       ],
       selectedOption: {id: $scope.task.status, name: $scope.status} //This sets the default value of the select in the ui
     };
-
-
 
     if($scope.task.due == "Invalid Date"){
       console.log('we have an invalid date')
@@ -259,13 +258,22 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     if (task.members.selectedOption.uid == Phased.user.uid){
       console.log(task.members.selectedOption);
       //$scope.task.assigned_by = $scope.task.assigned_by;
-      console.log('we want to keep the same assinged_by;');
     }else {
       $scope.task.assigned_by = Phased.user.uid;
       $scope.task.assigned_to = task.members.selectedOption.uid;
       //Phased.setTaskAssignee($scope.taskid, editedTask.members.selectedOption.uid);
       console.log('there is a changee')
     }
+
+    console.log('the task category is ', task.categories.selectedOption);
+    if (task.categories.selectedOption != null) {
+      Phased.setTaskCategory($scope.taskid, task.categories.selectedOption.key);
+      $scope.task.category = Phased.team.categoryObj[task.categories.selectedOption.key]
+      console.log('we have a category');
+    } else {
+      console.log('categories are empty');
+    }
+
 
     $scope.newTask = {
       assigned_by: $scope.task.assigned_by,
@@ -280,31 +288,23 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     Phased.setTaskDesc($scope.taskid, task.description);
     Phased.setTaskName($scope.taskid, task.name);
 
+    //$scope.task.due = task.value.toDateString();
+    //Phased.setTaskDeadline($scope.taskid, task.value );
+
     $scope.priority = task.priority.selectedOption.name;
     $scope.task.priority = task.priority.selectedOption.id;
     console.log($scope.task.priority);
     Phased.setTaskPriority($scope.taskid, $scope.task.priority);
 
-
     //if there is a change to the status we will toggle the wording/button.
     if (task.status.selectedOption.name != $scope.status) {
-
       $scope.toggle($scope.taskid, $scope.newTask);
     }
-
     $scope.task.status = task.status.selectedOption.id;
-    console.log($scope.task.status);
-
     $scope.closeModal();
   }
 
   $scope.closeModal = function() {
-
-    $scope.modal.hide();
-  };
-
-  $scope.closeEditTask = function() {
-    console.log('will close the edit task');
     $scope.modal.hide();
   };
 
@@ -314,9 +314,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   }
 
   $scope.$on('modal.hidden', function() {
-    //location.reload();
   });
-
 
   $scope.$on('Phased:membersComplete', function() {
     $scope.$apply();
