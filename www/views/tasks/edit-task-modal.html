@@ -36,7 +36,7 @@
 
         <div class="row">
           <div class="row">
-            <textarea type="text" class="col col-100" style="border: 1px grey solid" ng-model="task.description" rows="5" cols="30" placeholder="{{task.description}}"></textarea>
+            <textarea type="text" class="col col-100" style="border: 1px grey solid" ng-model="task.description" rows="5" cols="30">{{task.description}}</textarea>
           </div>
         </div>
 
@@ -51,16 +51,16 @@
             Status:
           </div>
           <select ng-options="option.name for option in task.status.availableOptions track by option.id" ng-model="task.status.selectedOption" >
-            <option value="" selected></option>
+            <option value="{{task.status.selectedOption.name}}" selected></option>
           </select>
         </label>
 
         <label class="item item-input item-select">
           <div class="input-label">
-            Assigned to:
+            Assigned to: {{myID}}
           </div>
           <select ng-model="task.members.selectedOption" ng-options="option.name for option in task.members track by option.uid">
-            <option value="{{members}}" selected></option>
+            <option value="{{task.members.selectedOption}}" label="Carol Louie" selected></option>
           </select>
 
         </label>
@@ -70,7 +70,7 @@
             Priority:
           </div>
           <select ng-options="option.name for option in task.priority.availableOptions track by option.id" ng-model="task.priority.selectedOption" >
-            <option value="" selected></option>
+            <option value="{{task.priority.selectedOption.name}}" selected></option>
           </select>
         </label>
 

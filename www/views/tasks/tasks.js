@@ -196,6 +196,7 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
       created_by: Phased.user.uid,
       assigned_to: Phased.user.uid,
       assigned_by: Phased.user.uid,
+      priority: 1,
       status: 2
     }
     //console.log('the task to save is', task);
