@@ -118,6 +118,7 @@ angular.module('App').filter('orderObjectBy', function() {
   });
 angular.module('App').controller('TasksController', function ($scope, $rootScope, $state, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
+  $scope.loadDone = false;
   $scope.team = Phased.team;
   $scope.Phased = Phased;
   console.log('the team', $scope.team);
@@ -178,12 +179,20 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
     //$scope.taskId = taskId;
   }
 
+  $scope.$on('Phased:setup', function() {
+    $scope.loadDone = true;
+    $scope.$apply();
+    //console.log(Phased);
+  });
+
   $scope.$on('Phased:membersComplete', function() {
+    $scope.loadDone = true;
     $scope.$apply();
   });
 
   // history retrieved
   $scope.$on('Phased:historyComplete', function() {
+    $scope.loadDone = true;
     $scope.$apply();
     //console.log(Phased);
   });

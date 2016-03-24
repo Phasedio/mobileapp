@@ -19,6 +19,7 @@ angular.module('App').filter('orderMembers', function() {
   });
 angular.module('App').controller('homeController', function ($scope, $state, $localStorage, $location,$http,$ionicPopup,$ionicModal, $ionicSideMenuDelegate, $firebaseObject, Auth, FURL, Utils,Phased, $stateParams) {
   var ref = new Firebase(FURL);
+  $scope.loadDone = false;
 //console.log("this is where i'm at", Phased, Auth);
   $scope.status = {
     name : '',
@@ -60,6 +61,7 @@ angular.module('App').controller('homeController', function ($scope, $state, $lo
   // ensure view updates when new members are added
   // members data retrieved
   $scope.$on('Phased:membersComplete', function() {
+    $scope.loadDone = true;
     $scope.$apply();
   });
 

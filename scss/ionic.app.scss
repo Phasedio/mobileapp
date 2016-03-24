@@ -21,6 +21,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.spinner svg{
+  stroke:#2fc2a3;
+  fill:#2fc2a3;
+}
 .wrap{
   word-wrap: normal !important;
   overflow: auto !important;
