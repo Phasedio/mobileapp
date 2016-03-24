@@ -11,7 +11,7 @@ angular.module('App').controller('loginController', function ($scope, $state, $l
       .then(function(authData) {
         angular.copy(authData, Auth.user);
         Utils.hide();
-        $state.go('menu.tab.home');
+        $state.go('tab.home');
       //console.log("id del usuario:" + JSON.stringify(authData));
 
       // ref.child('profile').orderByKey().equalTo(authData.uid).on("child_added", function(snapshot) {

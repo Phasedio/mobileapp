@@ -94,8 +94,8 @@ angular.module('App').controller('ProfileController', function ($scope, $state, 
         }
       }
     };
-    $scope.tab = function(place){
-      $state.go(place);
-    }
+    // $scope.tab = function(place){
+    //   $state.go(place);
+    // }
 
 });

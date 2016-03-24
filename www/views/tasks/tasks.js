@@ -118,6 +118,11 @@ angular.module('App').filter('orderObjectBy', function() {
   });
 angular.module('App').controller('TasksController', function ($scope, $rootScope, $state, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
+
+  $scope.shouldShowDelete = false;
+ $scope.shouldShowReorder = false;
+ $scope.listCanSwipe = true
+
   $scope.loadDone = false;
   $scope.team = Phased.team;
   $scope.Phased = Phased;

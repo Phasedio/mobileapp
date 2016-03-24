@@ -65,12 +65,17 @@
 
         <div class="row">
           <!--if started we will have  stop button otherwise we'll have a start button-->
-          <button class="button button-block button-outline {{toggleClass}} upButton col-45" ng-click="toggle(taskid, task)" ng-class="{on: toggleState}"> {{toggleText}} </button> &nbsp;&nbsp;
-          <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskComments(taskid, task)">Comment</button>
+          <button class="button button-outline {{toggleClass}} upButton col" ng-click="toggle(taskid, task)" ng-class="{on: toggleState}"> {{toggleText}} </button>
+          <button class="button button-outline button-balanced col"  ng-click="taskEdit(taskid, task)">Edit</button>
+          <button class="button button-outline button-balanced col"  ng-click="taskFinish(taskid, task)">Finish</button>
+          <!-- <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskComments(taskid, task)">Comment</button> -->
         </div>
         <div class="row">
-          <button class="button button-block button-outline button-balanced col-45"  ng-click="taskEdit(taskid, task)">Edit</button> &nbsp;&nbsp;
-          <button class="button button-block button-outline button-balanced col-45"  ng-click="taskFinish(taskid, task)">Finish</button>
+
+
+        </div>
+        <div class="row">
+
         </div>
       </div>
     </div>
