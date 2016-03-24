@@ -21,9 +21,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+$PhasedGreen: #2fc2a3;
+
+
 .spinner svg{
-  stroke:#2fc2a3;
-  fill:#2fc2a3;
+  stroke:$PhasedGreen;
+  fill:$PhasedGreen;
 }
 .wrap{
   word-wrap: normal !important;
@@ -43,7 +46,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   margin-left: 5%;
   //padding: 5% 10%;
   border: none;
-  border-bottom: 1px darkgrey solid;
+  border-bottom: 1px darkgrey solid; 
 }
 
 .member{
@@ -72,11 +75,11 @@ i.icon .ion-ios-bell{
 }
 
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated{
-  color: salmon;
+  color: $PhasedGreen;
 }
 
 .active {
-  color: salmon;
+  color: $PhasedGreen;
   //background-color: #e5e5e5;
 }
 
