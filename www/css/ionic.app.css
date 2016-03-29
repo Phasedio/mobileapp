@@ -9731,6 +9731,10 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.spinner svg {
+  stroke: #2fc2a3;
+  fill: #2fc2a3; }
+
 .wrap {
   word-wrap: normal !important;
   overflow: auto !important;
@@ -9765,10 +9769,10 @@ i.icon .ion-ios-bell {
   font-size: 50px; }
 
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {
-  color: salmon; }
+  color: #2fc2a3; }
 
 .active {
-  color: salmon; }
+  color: #2fc2a3; }
 
 .item-tasks {
   border: none;
