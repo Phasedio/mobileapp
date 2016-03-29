@@ -21,8 +21,7 @@
                   ng-if="task.assigned_to == Phased.user.uid && task.status != Phased.task.STATUS_ID.COMPLETE">
 
           <!--<img ng-src="">-->
-          <a class="col col-90 font14" style="margin-top: 2%" href="#/menu/tab/tasks/{{taskid}}">
-
+          <a class="col col-90 font14" style="margin-top: 2%" href="#/menu/tab/tasks/{{task.key}}">
             <h2>{{task.name}}</h2>
 
             <div class="row">
@@ -45,7 +44,7 @@
             <ion-option-button class="button-positive" ng-click="share(task)">
               Share
             </ion-option-button>
-            <ion-option-button class="button-balanced" ng-click="edit(task)">
+            <ion-option-button class="button-balanced" ng-click="taskEdit(task)">
               Edit
             </ion-option-button>
             <ion-option-button class="button-assertive" ng-click="delete(task)">
