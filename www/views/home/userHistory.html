@@ -6,23 +6,25 @@
   </ion-nav-buttons>
 
   <ion-content>
-    <div class="card" style="margin-top: 15%">
+    <div class="card">
       <a class="item" href="#" ng-repeat="history in histories | orderBy:'-time'" ng-if="history.user === selectedTeamMember">
         <div class="row">
-          <div class="col-25">
+          <div class="col col-10" style="padding-top: 5%">
             <img src="{{selectedTeamMemberInfo.gravatar}}" class="avatarHome">
           </div>
 
-          <div class="col col-75">
+          <div class="col-90">
             <div class="row">
               <p class="col col-60">{{selectedTeamMemberInfo.name}}</p>
-              <small class="col col-20 col-offset-10" style="font-size: 70%;" am-time-ago="history.time"></small>
+              <small class="col-20 col-offset-10" style="font-size: 70%;" am-time-ago="history.time"></small>
             </div>
             <div class="row">
-              <h2>{{history.name}}</h2>
-
+              <div class="col col-100 item-text-wrap">
+                <p>{{history.name}}</p>
+              </div>
             </div>
           </div>
+
         </div>
       </a>
     </div>
