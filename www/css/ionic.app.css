@@ -9779,6 +9779,9 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
   border-bottom: 1px solid grey;
   padding: 0 5%; }
 
+.item-content {
+  padding: 5px; }
+
 label.item-checkbox {
   border: none;
   background: transparent;

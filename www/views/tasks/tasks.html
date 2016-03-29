@@ -13,11 +13,17 @@
 
     <div class="showTaskListView_content" ng-show="showTaskListView">
 
-      <div class="item item-tasks item-icon-right"  ng-repeat="task in tasks | orderObjectBy : 'time' :true | limitTo :25">
-        <div ng-if="task.assigned_to == Phased.user.uid && task.status != Phased.task.STATUS_ID.COMPLETE"  class="row">
+      <ion-list
+        show-delete="shouldShowDelete"
+        show-reorder="shouldShowReorder"
+        can-swipe="listCanSwipe">
+        <ion-item ng-repeat="task in tasks | orderObjectBy : 'time' :true | limitTo :25"
+                  ng-if="task.assigned_to == Phased.user.uid && task.status != Phased.task.STATUS_ID.COMPLETE">
 
-          <a class="col col-90 font14" href="#/menu/tab/tasks/{{task.key}}">
-            <p>{{task.name}}</p>
+          <!--<img ng-src="">-->
+          <a class="col col-90 font14" style="margin-top: 2%" href="#/menu/tab/tasks/{{taskid}}">
+
+            <h2>{{task.name}}</h2>
 
             <div class="row">
               <div class="col col-10" style="margin-top: 2%;">
@@ -33,48 +39,28 @@
                 <p><i class="ion-ios-calendar"></i> {{task.deadline | date : 'MMM dd'}}</p>
               </div>
             </div>
+
+
+
+            <ion-option-button class="button-positive" ng-click="share(task)">
+              Share
+            </ion-option-button>
+            <ion-option-button class="button-balanced" ng-click="edit(task)">
+              Edit
+            </ion-option-button>
+            <ion-option-button class="button-assertive" ng-click="delete(task)">
+              Delete
+            </ion-option-button>
           </a>
-          <i class="ion-chevron-right font24"></i>
-        </div>
-      </div>
-      <div class="" ng-if="!loadDone">
-        <ion-spinner class="spinner" style="width:35px; margin:3rem auto; display:block;"></ion-spinner>
-      </div>
-    </div>
 
-    <!-- ionic list way -->
-    <!--<ion-list-->
-          <!--show-delete="shouldShowDelete"-->
-          <!--show-reorder="shouldShowReorder"-->
-          <!--can-swipe="listCanSwipe">-->
-      <!--<ion-item ng-repeat="task in tasks | orderObjectBy : 'time' :true | limitTo :25"-->
-                <!--class="item-thumbnail-left"-->
-                <!--ng-if="task.assigned_to == Phased.user.uid && task.status != Phased.task.STATUS_ID.COMPLETE">-->
+        </ion-item>
+      </ion-list>
 
-        <!--<img ng-src="">-->
-        <!--<h2>{{task.name}}</h2>-->
-
-        <!--<ion-option-button class="button-positive"-->
-                           <!--ng-click="share(item)">-->
-          <!--Share-->
-        <!--</ion-option-button>-->
-        <!--<ion-option-button class="button-assertive"-->
-                           <!--ng-click="edit(item)">-->
-          <!--Edit-->
-        <!--</ion-option-button>-->
-        <!--<ion-delete-button class="ion-minus-circled"-->
-                           <!--ng-click="items.splice($index, 1)">-->
-        <!--</ion-delete-button>-->
-        <!--<ion-reorder-button class="ion-navicon"-->
-                            <!--on-reorder="reorderItem(item, $fromIndex, $toIndex)">-->
-        <!--</ion-reorder-button>-->
-
-      <!--</ion-item>-->
-    <!--</ion-list>-->
 
     <div class="showCompletedTasksView_content" ng-show="showCompletedTasksView">
 
       <!--<div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderObjectBy : '-time':true">-->
+
 
       <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderBy : 'time':true | limitTo :25">
         <div ng-if="task.assigned_to == currentUser.uid && task.status == 1"  class="row">
