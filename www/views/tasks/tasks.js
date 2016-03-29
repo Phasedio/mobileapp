@@ -165,6 +165,7 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
     })
   });
 
+
   console.log($scope.tasks);
 
   $scope.bgColor = function(task){
@@ -183,7 +184,7 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
   for(var taskId in $scope.activeStream){
 
     console.log("User Id: " + taskId, $scope.activeStream);
-    //$scope.taskId = taskId;
+    $scope.taskId = taskId;
   }
 
   $scope.$on('Phased:setup', function() {
@@ -294,6 +295,10 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
   //  $scope.go('tab.{{id}}');
   //};
 
+  $scope.delete = function(task){
+    console.log('delete was clicked for ', task)
+  }
+
 
   $scope.startTask = function(task) {
       if (!task.user || task.unassigned)
@@ -317,6 +322,11 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
     $scope.getArchiveFor = function(address) {
       Phased.getArchiveFor(address);
 
+    }
+
+    $scope.taskFinish = function(taskid, task){
+      console.log('we will complete task', taskid, task);
+      Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.COMPLETE)
     }
 
     $scope.setTaskCompleted = function(assignmentID) {

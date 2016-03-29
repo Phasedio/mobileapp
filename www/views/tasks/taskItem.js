@@ -204,9 +204,9 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       $scope.modal = modal;
     });
 
-  $scope.taskEdit = function() {
+  $scope.taskEdit = function(task) {
     $scope.modal.show();
-    console.log($scope.task);
+    console.log($scope.task = task);
 
     $scope.task.priority = {
       availableOptions: [
