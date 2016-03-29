@@ -11,7 +11,8 @@
       <a class="button" ng-class="{ 'active': activeButton === 'showCompletedTasksView' }" ng-click="showComplete();activeButton = 'showCompletedView'"><i class="ion-android-checkbox-outline"> Completed</i></a> <!-- button-energized" ng-click="showSimilar()" -->
     </div>
 
-    <!-- <div class="showTaskListView_content" ng-show="showTaskListView">
+    <div class="showTaskListView_content" ng-show="showTaskListView">
+
       <div class="item item-tasks item-icon-right"  ng-repeat="task in tasks | orderObjectBy : 'time' :true | limitTo :25">
         <div ng-if="task.assigned_to == Phased.user.uid && task.status != Phased.task.STATUS_ID.COMPLETE"  class="row">
 
@@ -36,39 +37,43 @@
           <i class="ion-chevron-right font24"></i>
         </div>
       </div>
-    </div> -->
+      <div class="" ng-if="!loadDone">
+        <ion-spinner class="spinner" style="width:35px; margin:3rem auto; display:block;"></ion-spinner>
+      </div>
+    </div>
 
     <!-- ionic list way -->
-    <ion-list
-          show-delete="shouldShowDelete"
-          show-reorder="shouldShowReorder"
-          can-swipe="listCanSwipe">
-      <ion-item ng-repeat="task in tasks | orderObjectBy : 'time' :true | limitTo :25"
-                class="item-thumbnail-left"
-                ng-if="task.assigned_to == Phased.user.uid && task.status != Phased.task.STATUS_ID.COMPLETE">
+    <!--<ion-list-->
+          <!--show-delete="shouldShowDelete"-->
+          <!--show-reorder="shouldShowReorder"-->
+          <!--can-swipe="listCanSwipe">-->
+      <!--<ion-item ng-repeat="task in tasks | orderObjectBy : 'time' :true | limitTo :25"-->
+                <!--class="item-thumbnail-left"-->
+                <!--ng-if="task.assigned_to == Phased.user.uid && task.status != Phased.task.STATUS_ID.COMPLETE">-->
 
-        <img ng-src="">
-        <h2>{{task.name}}</h2>
+        <!--<img ng-src="">-->
+        <!--<h2>{{task.name}}</h2>-->
 
-        <ion-option-button class="button-positive"
-                           ng-click="share(item)">
-          Share
-        </ion-option-button>
-        <ion-option-button class="button-assertive"
-                           ng-click="edit(item)">
-          Edit
-        </ion-option-button>
-        <ion-delete-button class="ion-minus-circled"
-                           ng-click="items.splice($index, 1)">
-        </ion-delete-button>
-        <ion-reorder-button class="ion-navicon"
-                            on-reorder="reorderItem(item, $fromIndex, $toIndex)">
-        </ion-reorder-button>
+        <!--<ion-option-button class="button-positive"-->
+                           <!--ng-click="share(item)">-->
+          <!--Share-->
+        <!--</ion-option-button>-->
+        <!--<ion-option-button class="button-assertive"-->
+                           <!--ng-click="edit(item)">-->
+          <!--Edit-->
+        <!--</ion-option-button>-->
+        <!--<ion-delete-button class="ion-minus-circled"-->
+                           <!--ng-click="items.splice($index, 1)">-->
+        <!--</ion-delete-button>-->
+        <!--<ion-reorder-button class="ion-navicon"-->
+                            <!--on-reorder="reorderItem(item, $fromIndex, $toIndex)">-->
+        <!--</ion-reorder-button>-->
 
-      </ion-item>
-    </ion-list>
+      <!--</ion-item>-->
+    <!--</ion-list>-->
 
     <div class="showCompletedTasksView_content" ng-show="showCompletedTasksView">
+
       <!--<div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderObjectBy : '-time':true">-->
 
       <div class="item item-tasks item-icon-right"  ng-repeat="(taskid,task) in tasks | orderBy : 'time':true | limitTo :25">
@@ -97,8 +102,6 @@
         </div>
       </div>
     </div>
-    <div class="" ng-if="!loadDone">
-      <ion-spinner class="spinner" style="width:35px; margin:3rem auto; display:block;"></ion-spinner>
-    </div>
+
   </ion-content>
 </ion-view>

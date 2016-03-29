@@ -157,12 +157,14 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
 
       angular.forEach($scope.cards, function(value, key) {
         console.log(value);
+        $scope.loadDone = true;
         $scope.tasks = value.tasks;
         console.log($scope.tasks);
         $rootScope.tasks = $scope.tasks;
       })
     })
   });
+
   console.log($scope.tasks);
 
   $scope.bgColor = function(task){
