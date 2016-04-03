@@ -105,6 +105,8 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.activeStatusFilter = '!1'; // not completed tasks
   $scope.filterView = $scope.activeStreamName;//for the select filter
 
+  //need to initalize what a task is:
+
   $scope.currentUser = Phased.team.members[$scope.myID]
   console.log('the current user is ', $scope.currentUser)
 
@@ -221,16 +223,15 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       selectedOption: {id: $scope.task.status, name: $scope.task.statusName} //This sets the default value of the select in the ui
     };
 
+    //find the date
     if($scope.task.due == "Invalid Date"){
       console.log('we have an invalid date')
     }else{
       var date = myDate.toISOString();
       $scope.task.due = date.substr(0,date.indexOf('T'));
-
-      $scope.task = {
-        value: new Date($scope.task.due)
-      };
+      $scope.task.date = new Date($scope.task.due)
     }
+
   };
 
   //sets up for reassigning members
@@ -259,22 +260,21 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       console.log('categories are empty');
     }
 
-
-    $scope.newTask = {
+    $scope.task = {
       assigned_by: $scope.task.assigned_by,
       assigned_to: $scope.task.assigned_to,
       name: task.name,
       description: task.description,
       status: task.status.selectedOption.id,
       priority: task.priority.selectedOption.id,
-      due: task.value || "Invalid Date"
+      deadline: task.date
     }
 
     Phased.setTaskDesc($scope.taskid, task.description);
     Phased.setTaskName($scope.taskid, task.name);
 
-    //$scope.task.due = task.value.toDateString();
-    //Phased.setTaskDeadline($scope.taskid, task.value );
+    $scope.task.due = task.date.toDateString();
+    Phased.setTaskDeadline($scope.taskid, task.date );
 
     $scope.priority = task.priority.selectedOption.name;
     $scope.task.priority = task.priority.selectedOption.id;
@@ -283,7 +283,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
     //if there is a change to the status we will toggle the wording/button.
     if (task.status.selectedOption.name != $scope.task.statusName) {
-      $scope.toggle($scope.taskid, $scope.newTask);
+      $scope.toggle($scope.taskid, $scope.task);
     }
     $scope.task.status = task.status.selectedOption.id;
     $scope.closeModal();

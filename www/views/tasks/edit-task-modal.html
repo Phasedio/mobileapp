@@ -41,10 +41,12 @@
         </div>
 
         <!--if there is a due date then show it else show nothing-->
-          <label class="item item-input">
-              &nbsp;<i class="ion-android-calendar"></i>&nbsp;&nbsp;
-              <input type="date" id="taskInput" name="input" ng-model="task.value" required />
-          </label>
+        <label class="item item-input">
+          <span class="input-label"><i class="ion-android-calendar"></i></span>
+          <input type="date" value="task.date" ng-model="task.date">
+
+        </label>
+
         <!--if there is a started say in progress else say not started-->
         <label class="item item-input item-select">
           <div class="input-label">

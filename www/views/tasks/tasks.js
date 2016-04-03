@@ -143,6 +143,19 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
   $scope.taskStatusID = Phased.TASK_STATUS_ID;
   $scope.myID = Auth.user.uid;
 
+  //need to initailize what a task is:
+  $scope.task = {
+    name: "",
+    time: "",
+    created_by: "",
+    assigned_to: "",
+    assigned_by: "",
+    priority: "",
+    status: "",
+    deadline: "",
+    cat: ""
+  }
+
     console.log('the priorities are', $scope.taskPriorities);
   $scope.projects = Phased.team.projects;
   console.log($scope.projects);
@@ -227,26 +240,28 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
     console.log('will open up a modal to add a new task');
     $scope.modal.show();
   };
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
+
   $scope.addTask = function(task) {
-    console.log(task, Phased.user);
+    console.log('we will update the task', task);
     //set up the task attributes:
     var task = {
       name: task.name,
       time: Date.now(),
-      created_by: Phased.user.uid,
-      assigned_to: Phased.user.uid,
-      assigned_by: Phased.user.uid,
+      created_by: $scope.currentUser.uid,
+      assigned_to: $scope.currentUser.uid,
+      assigned_by: $scope.currentUser.uid,
       priority: 1,
       status: 2
     }
-    //console.log('the task to save is', task);
+    console.log('the task to save is', task);
     Phased.addTask(task);
     $scope.closeModal();
-    $scope.$apply();
+    //$scope.$apply();
   }
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
