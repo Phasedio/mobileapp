@@ -90,7 +90,6 @@
    });
 
 angular.module('App').controller('taskItemController', function ($scope, $state, $rootScope, $ionicPopup, $cordovaDatePicker, $firebaseArray, $localStorage, $location, $http, $ionicModal, $firebaseObject, Auth, FURL, Utils,Phased, $cordovaCamera, $stateParams) {
-  //alert('HEY IM HERE CAN YOU SEE ME!!!!!!');
 
   var ref = new Firebase(FURL);
 
@@ -127,8 +126,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   $scope.task.due = myDate.toDateString();
 
   $scope.openCamera = function () {
-    alert('we are going to open camera');
-
     var options = {
       quality: 75,
       destinationType: Camera.DestinationType.DATA_URL,
@@ -143,7 +140,6 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
     $cordovaCamera.getPicture(options).then(function (photo) {
       $scope.task.image = "data:image/jpeg;base64," + photo;
-      alert('we will save the photo' + $scope.taskid);
       ref.child('team').child(Phased.team.uid).child('projects').child('0A').child('columns').child('0A').child('cards').child('0A').child('tasks').child($scope.taskid).child('image').set($scope.task.image)
     })
   }
@@ -159,10 +155,10 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
   }
 
   if ($scope.task.status == 0) {
-    $scope.status = "In Progress";
+    $scope.task.statusName = "In Progress";
     $scope.toggleState = false;
   } else if($scope.task.status == 2){
-    $scope.status = "Assigned";
+    $scope.task.statusName = "Assigned";
     $scope.toggleState = true;
   }
   //find the category
@@ -180,13 +176,13 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
     console.log('we clicked toggle', $scope.toggleState);
     if ($scope.toggleState) {
-      $scope.status = "Assigned";
+      $scope.task.statusName = "Assigned";
       $scope.toggleClass = 'button-balanced';
       console.log('pausing the task', taskid, task);
       Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.ASSIGNED)
     } else {
       console.log('we will run the Stat task', taskid, task);
-      $scope.status = "In Progress";
+      $scope.task.statusName = "In Progress";
       $scope.toggleClass = 'button-dark';
       Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.IN_PROGRESS);
     }
@@ -204,9 +200,9 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       $scope.modal = modal;
     });
 
-  $scope.taskEdit = function(task) {
+  $scope.taskEdit = function(taskid, task) {
     $scope.modal.show();
-    console.log($scope.task = task);
+    $scope.task = task;
 
     $scope.task.priority = {
       availableOptions: [
@@ -222,7 +218,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
         {id: 2, name: 'Assigned'},
         {id: 0, name: 'In Progress'}
       ],
-      selectedOption: {id: $scope.task.status, name: $scope.status} //This sets the default value of the select in the ui
+      selectedOption: {id: $scope.task.status, name: $scope.task.statusName} //This sets the default value of the select in the ui
     };
 
     if($scope.task.due == "Invalid Date"){
@@ -286,7 +282,7 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
     Phased.setTaskPriority($scope.taskid, $scope.task.priority);
 
     //if there is a change to the status we will toggle the wording/button.
-    if (task.status.selectedOption.name != $scope.status) {
+    if (task.status.selectedOption.name != $scope.task.statusName) {
       $scope.toggle($scope.taskid, $scope.newTask);
     }
     $scope.task.status = task.status.selectedOption.id;
