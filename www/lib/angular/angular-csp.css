@@ -11,3 +11,14 @@
 ng\:form {
   display: block;
 }
+<<<<<<< HEAD
+=======
+
+.ng-animate-shim {
+  visibility:hidden;
+}
+
+.ng-anchor {
+  position:absolute;
+}
+>>>>>>> dev

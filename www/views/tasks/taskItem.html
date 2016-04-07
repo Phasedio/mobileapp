@@ -1,0 +1,84 @@
+<ion-view title="Task Details" hide-back-button="true" >
+
+  <ion-nav-buttons class="button-clear" side="left">
+    <button class="button-clear" ng-click="$ionicGoBack()">Close <i class="button-icon ion-ios-close-empty"></i></button>
+  </ion-nav-buttons>
+
+  <ion-content class="padding-top">
+    <h3 class="upperCase">{{task.name}}</h3>
+    <!--if there is an image then show it otherwise show an icon to upload a photo-->
+    <img ng-if=task.image ng-src="{{task.image}}" style="height:200px; width: 100%">
+
+    <div class="row" style="background-color: grey; width: 100%; height: 200px; color: white;" ng-if= !task.image>
+        <button class="button button-icon col col-center" ng-click="openCamera()">
+          <i class="ion-ios-camera-outline" style="color: white; font-size: 90px"></i>
+          <p style="color: white">Add an Image</p>
+
+        </button>
+    </div>
+
+    <div class="row">
+      <div class="card taskDetail">
+        <div class="row">
+          <div class="row">
+            <p class="font14">Description:</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="row">
+            <p>{{task.description}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <!--if there is a due date then show it else show nothing-->
+          <div class="col col-50" ng-show="task.due == 'Invalid Date'">
+            <p>No Due Date!</p>
+          </div>
+          <!--if there is a started say in progress else say not started-->
+          <div class="col col-50" ng-show="task.due != 'Invalid Date'">
+            <i class="ion-android-calendar"></i> {{task.due}}
+          </div>
+
+          <div class="col col-50">
+            <p>Status: {{task.statusName}}</p>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col col-30 assignee">
+            <p>Assigned to:</p>
+          </div>
+          <div class="col col-20 assignee">
+            <img src="{{currentUser.gravatar}}">
+          </div>
+          <div class="col col-50">Priority: {{priority}}</div>
+        </div>
+
+        <div ng-if="task.category" class="row">
+          <div class="col">
+            <p class="font14">Category: <i class="ion-android-checkbox-blank" style="color: {{task.category.color}}"></i>&nbsp;{{task.category.name}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <!--if started we will have  stop button otherwise we'll have a start button-->
+          <button class="button button-outline {{toggleClass}} upButton col" ng-click="toggle(taskid, task)" ng-class="{on: toggleState}"> {{toggleText}} </button>
+          <button class="button button-outline button-balanced col"  ng-click="taskEdit(taskid, task)">Edit</button>
+          <button class="button button-outline button-balanced col"  ng-click="taskFinish(taskid, task)">Finish</button>
+          <!-- <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskComments(taskid, task)">Comment</button> -->
+        </div>
+        <div class="row">
+
+
+        </div>
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

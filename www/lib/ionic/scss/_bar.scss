@@ -123,6 +123,10 @@
 
   // Title inside of a bar is centered
   .title {
+<<<<<<< HEAD
+=======
+    display: block;
+>>>>>>> dev
     position: absolute;
 
     top: 0;
@@ -159,7 +163,11 @@
     color: inherit;
   }
 
+<<<<<<< HEAD
   .button {
+=======
+  .button, button {
+>>>>>>> dev
     z-index: $z-index-bar-button;
     padding: 0 $button-bar-button-padding;
     min-width: initial;
@@ -401,4 +409,7 @@
 .nav-bar-tabs-top .bar {
   background-image: none;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev

@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 [ngCordova](http://ngcordova.com/)
 ==========
 
 [![Travis](http://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](http://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
+=======
+
+[ngCordova](http://ngcordova.com/)
+==========
+
+[![Travis](https://img.shields.io/travis/driftyco/ng-cordova.svg?style=flat)](https://travis-ci.org/driftyco/ng-cordova) [![Bower](https://img.shields.io/badge/bower-ngCordova-FFCC2F.svg?style=flat)](http://bower.io/search/?q=ngCordova)
+>>>>>>> dev
 
 ### Cordova with AngularJS Goodness
 
@@ -16,7 +24,11 @@ Created by the [Ionic Framework](http://ionicframework.com/) team and the commun
 | RESOURCE | LINK |
 |------------|---------|
 | **Website** | [ngCordova.com](http://ngcordova.com/) |
+<<<<<<< HEAD
 | **Docs** | [ngCordova.com/docs](http://ngcordova.com/docs) |
+=======
+| **Docs** | [ngCordova.com/docs](http://ngcordova.com/docs/) |
+>>>>>>> dev
 | **Requirements** | [AngularJS](https://github.com/angular/angular.js),  [Cordova](http://cordova.apache.org/) |
 | **Install** | `bower install ngCordova` or [download zip file](https://github.com/driftyco/ng-cordova/archive/master.zip) |
 | **Custom build** | [ngCordova.com/build](http://ngcordova.com/build/) |
@@ -30,18 +42,29 @@ Install manually, or from bower:
 $ bower install ngCordova
 ```
 
+<<<<<<< HEAD
 ## Plugins `(64+)`
+=======
+## Plugins `(67+)`
+>>>>>>> dev
 
 - [Action Sheet](https://github.com/EddyVerbruggen/cordova-plugin-actionsheet)
 - [AdMob](https://github.com/floatinghotpot/cordova-plugin-admob) (:warning: share % Ad revenue)
 - [App Availability](https://github.com/ohh2ahh/AppAvailability)
+<<<<<<< HEAD
 - [App Preferences](https://github.com/dferrell/plugins-application-preferences)
+=======
+>>>>>>> dev
 - [App Rate](https://github.com/pushandplay/cordova-plugin-apprate)
 - [App Version](https://github.com/whiteoctober/cordova-plugin-app-version)
 - [Background Geolocation](https://github.com/christocracy/cordova-plugin-background-geolocation)
 - [Badge](https://github.com/katzer/cordova-plugin-badge)
 - [Barcode Scanner](https://github.com/wildabeast/BarcodeScanner)
 - [Battery Status](https://github.com/apache/cordova-plugin-battery-status) *
+<<<<<<< HEAD
+=======
+- [Beacon](https://github.com/petermetz/cordova-plugin-ibeacon)
+>>>>>>> dev
 - [Bluetooth Low Energy](https://github.com/don/cordova-plugin-ble-central)
 - [Bluetooth Serial](https://github.com/don/BluetoothSerial)
 - [Brightness](https://github.com/fiscal-cliff/phonegap-plugin-brightness)
@@ -72,7 +95,11 @@ $ bower install ngCordova
 - [Apple iAd](https://github.com/floatinghotpot/cordova-iad-pro) (:warning: share % Ad revenue)
 - [Image Picker](https://github.com/wymsee/cordova-imagePicker)
 - [InAppBrowser](https://github.com/apache/cordova-plugin-inappbrowser)*
+<<<<<<< HEAD
 - [Keyboard](https://github.com/driftyco/ionic-plugins-keyboard)
+=======
+- [Keyboard](https://github.com/driftyco/ionic-plugin-keyboard)
+>>>>>>> dev
 - [Keychain](https://github.com/shazron/KeychainPlugin)
 - [Launch Navigator](https://github.com/dpa99c/phonegap-launch-navigator)
 - [Local Notifications](https://github.com/katzer/cordova-plugin-local-notifications/)
@@ -83,22 +110,41 @@ $ bower install ngCordova
 - [MoPub Ads](https://github.com/floatinghotpot/cordova-plugin-mopub) (:warning: share % Ad revenue)
 - [Native Audio](https://github.com/SidneyS/cordova-plugin-nativeaudio)
 - [Network Information](https://github.com/apache/cordova-plugin-network-information) *
+<<<<<<< HEAD
 - [Oauth](https://github.com/nraboy/ng-cordova-oauth)
 - [Pin Dialog](https://github.com/Paldom/PinDialog)
 - [Printer](https://github.com/katzer/cordova-plugin-printer)
 - [Progress Indicator](https://github.com/pbernasconi/cordova-progressIndicator)
 - [Push Notifications](https://github.com/phonegap-build/PushPlugin)
+=======
+- [Oauth](https://github.com/nraboy/ng-cordova-oauth) (available separately)
+- [Pin Dialog](https://github.com/Paldom/PinDialog)
+- [Preferences](https://github.com/apla/me.apla.cordova.app-preferences)
+- [Printer](https://github.com/katzer/cordova-plugin-printer)
+- [Progress Indicator](https://github.com/pbernasconi/cordova-progressIndicator)
+- [Push Notifications](https://github.com/phonegap-build/PushPlugin) (**deprecated** - Will be removed in future release)
+- [Push Notifications - V5] (https://github.com/phonegap/phonegap-plugin-push)
+- [Screenshots](https://github.com/gitawego/cordova-screenshot)
+>>>>>>> dev
 - [SMS](https://github.com/aharris88/phonegap-sms-plugin)
 - [Social Sharing](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
 - [Spinner Dialog](https://github.com/Paldom/SpinnerDialog)
 - [Splashscreen](https://github.com/apache/cordova-plugin-splashscreen) *
+<<<<<<< HEAD
 - [SQLite](https://github.com/brodysoft/Cordova-SQLitePlugin)
+=======
+- [SQLite](https://github.com/litehelpers/Cordova-sqlite-storage)
+>>>>>>> dev
 - [StatusBar](https://github.com/apache/cordova-plugin-statusbar) *
 - [Toast](https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin)
 - [Touchid](https://github.com/leecrossley/cordova-plugin-touchid)
 - [Vibration](https://github.com/apache/cordova-plugin-vibration) *
 - [Video Capture Plus](https://github.com/EddyVerbruggen/VideoCapturePlus-PhoneGap-Plugin) *
+<<<<<<< HEAD
 - [Zip](https://github.com/MobileChromeApps/zip)
+=======
+- [Zip](https://github.com/MobileChromeApps/cordova-plugin-zip)
+>>>>>>> dev
 
 `* official Apache Cordova Plugin`
 
@@ -119,7 +165,11 @@ $ bower install ngCordova
 #### George Stocker
  - https://twitter.com/gortok
  - https://github.com/gortok
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> dev
 
 ## LICENSE
 

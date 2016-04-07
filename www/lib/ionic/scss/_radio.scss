@@ -34,17 +34,26 @@
   position: absolute;
   left: -9999px;
 
+<<<<<<< HEAD
   &:checked ~ .item-content {
+=======
+  &:checked + .radio-content .item-content {
+>>>>>>> dev
     /* style the item content when its checked */
     background: #f7f7f7;
   }
 
+<<<<<<< HEAD
   &:checked ~ .radio-icon {
+=======
+  &:checked + .radio-content .radio-icon {
+>>>>>>> dev
     /* show the checkmark icon when its checked */
     visibility: visible;
   }
 }
 
+<<<<<<< HEAD
 // Hack for Android to correctly display the checked item
 // http://timpietrusky.com/advanced-checkbox-hack
 .platform-android.grade-b .item-radio,
@@ -55,3 +64,5 @@
   from { padding: 0; }
   to { padding: 0; }
 }
+=======
+>>>>>>> dev

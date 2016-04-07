@@ -51,6 +51,12 @@
     border-right-width: 1px;
     border-radius: 0px $button-border-radius $button-border-radius 0px;
   }
+<<<<<<< HEAD
+=======
+  &:only-child {
+    border-radius: $button-border-radius;
+  }
+>>>>>>> dev
 }
 
 .button-bar > .button-small {

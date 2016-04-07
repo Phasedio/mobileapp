@@ -1,8 +1,14 @@
 {
   "name": "angular-sanitize",
+<<<<<<< HEAD
   "version": "1.3.13",
   "description": "AngularJS module for sanitizing HTML",
   "main": "angular-sanitize.js",
+=======
+  "version": "1.4.3",
+  "description": "AngularJS module for sanitizing HTML",
+  "main": "index.js",
+>>>>>>> dev
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

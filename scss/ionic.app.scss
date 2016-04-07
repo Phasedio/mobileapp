@@ -1,11 +1,19 @@
+<<<<<<< HEAD
      /*
+=======
+/*
+>>>>>>> dev
 To customize the look and feel of Ionic, you can override the variables
 in ionic's _variables.scss file.
 
 For example, you might change some of the default colors:
 
 $light:                           #fff !default;
+<<<<<<< HEAD
 $stable:                          #  !default;
+=======
+$stable:                          #f8f8f8 !default;
+>>>>>>> dev
 $positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
@@ -17,6 +25,7 @@ $dark:                            #444 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
+<<<<<<< HEAD
        
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
@@ -27,3 +36,189 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "_team.scss";
 @import "_viewStatus.scss";
 @import "_profile.scss";
+=======
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+$PhasedGreen: #2fc2a3;
+
+
+.spinner svg{
+  stroke:$PhasedGreen;
+  fill:$PhasedGreen;
+}
+.wrap{
+  word-wrap: normal !important;
+  overflow: auto !important;
+  white-space: normal !important;
+  text-overflow: none !important;
+}
+
+//Quick fix for feed
+.list{
+  h2 small, .h2 small {
+    font-size: 11px;
+  }
+}
+.list a.item {
+  width: 90%;
+  margin-left: 5%;
+  //padding: 5% 10%;
+  border: none;
+  border-bottom: 1px darkgrey solid; 
+}
+
+.member{
+  p{
+    color:#121212;
+  }
+}
+.item-avatar {
+  padding: 2% 0 2% 5%;
+}
+
+img.avatarHome {
+
+  max-width: 25px;
+  position: relative;
+  border-radius: 50%;
+}
+
+.list .item-input-inset{
+  width: 90%;
+  margin-left: 5%;
+}
+
+i.icon .ion-ios-bell{
+  font-size: 50px;
+}
+
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated{
+  color: $PhasedGreen;
+}
+
+.active {
+  color: $PhasedGreen;
+  //background-color: #e5e5e5;
+}
+
+.item-tasks {
+  border: none;
+  border-bottom: 1px solid grey;
+  padding: 0 5%;
+}
+
+.item-content{
+  padding: 5px;
+}
+
+label.item-checkbox {
+  border:none;
+  background: transparent;
+  margin-top: 5px;
+}
+
+.addNewItem {
+  margin-top: 100%;
+}
+
+.listSpot {
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+.assignee {
+  border: none;
+}
+
+.assignee img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.font14 {
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.font24{
+  font-size: 24px;
+  margin-top: 30px;
+}
+
+.taskDetail {
+  width: 90%;
+  margin-left: 5%;
+  //margin-top: 2%;
+  border: none;
+  box-shadow: none;
+}
+
+//SubProjects Page
+
+.card.subProject {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.card.subProjects {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.progressOutline {
+  height: 30px;
+  margin-bottom: 5%;
+  width: 100%;
+  border: 1px solid lightgray;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  border-radius: 25px;
+}
+.progressBar {
+  height: 20px;
+  margin-top: -1px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  background: green;
+}
+
+.menuItem .item-content {
+  background-color: #3D3F47;
+  margin-top:1px;
+  color: white;
+}
+
+.title-notifications {
+  font-size: 24px;
+  margin-left: 2%;
+  font-family: Colaborate-Thin;
+  color: white;
+}
+
+.updateStatus {
+  margin-left: 9%;
+  width: 82%;
+}
+
+.projectImage {
+  color: white;
+  width: 102%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.projectShade {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.upperCase {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+>>>>>>> dev

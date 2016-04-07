@@ -1,0 +1,101 @@
+<ion-view view-title="My tasks" hide-back-button="true">
+
+  <ion-content class="padding-top">
+
+    <div class="list">
+      <button class="item item-input-inset" style="color:lightgrey" ng-click="taskAdd()">What needs to be done?</button>
+    </div>
+    <!--<div class="list">-->
+    <div class="button-bar" ng-show="true">
+      <a class="button" ng-class="{ 'active': activeButton === 'showTaskListView' }" ng-click="showTaskList();activeButton = 'showTaskListView'"><i class="ion-ios-star"> Current</i></a>
+      <a class="button" ng-class="{ 'active': activeButton === 'showCompletedTasksView' }" ng-click="showComplete();activeButton = 'showCompletedView'"><i class="ion-android-checkbox-outline"> Completed</i></a> <!-- button-energized" ng-click="showSimilar()" -->
+    </div>
+
+    <div class="showTaskListView_content" ng-show="showTaskListView">
+
+      <ion-list
+        can-swipe="listCanSwipe">
+        <ion-item ng-repeat="task in tasks | orderObjectBy : 'time' :true | limitTo :25"
+                  ng-if="task.assigned_to == Phased.user.uid && task.status != Phased.task.STATUS_ID.COMPLETE">
+
+          <!--<img ng-src="">-->
+          <a class="col col-90 font14" style="margin-top: 2%" href="#/menu/tab/tasks/{{task.key}}">
+            <h2>{{task.name}}</h2>
+
+            <div class="row">
+              <div class="col col-10" style="margin-top: 2%;">
+                <p ng-style="{'background-color': bgColor(task) }" style="height: 10px; width: 10px; border-radius: 50%;"></p>
+              </div>
+              <div class="col col-60">
+                <div class="upperCase">
+                  <p>{{status}}</p>
+                </div>
+              </div>
+
+              <div class="col col-30" ng-if="task.deadline">
+                <p><i class="ion-ios-calendar"></i> {{task.deadline | date : 'MMM dd'}}</p>
+              </div>
+            </div>
+
+            <!--<ion-option-button class="button-positive" ng-click="share(task)">-->
+              <!--Share-->
+            <!--</ion-option-button>-->
+            <!--<ion-option-button class="button-balanced" ng-click="taskEdit(task)">-->
+              <!--Edit-->
+            <!--</ion-option-button>-->
+            <ion-option-button class="button-assertive" ng-click="taskFinish(task.key, task)">
+              Complete now!
+            </ion-option-button>
+          </a>
+
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+    <div class="showCompletedTasksView_content" ng-show="showCompletedTasksView">
+
+      <ion-list
+        show-delete="shouldShowDelete"
+        show-reorder="shouldShowReorder"
+        can-swipe="listCanSwipe">
+        <ion-item ng-repeat="task in tasks | orderObjectBy : 'time' :true | limitTo :25"
+                  ng-if="task.assigned_to == Phased.user.uid && task.status == Phased.task.STATUS_ID.COMPLETE">
+
+          <!--<img ng-src="">-->
+          <a class="col col-90 font14" style="margin-top: 2%" href="#/menu/tab/tasks/{{task.key}}">
+            <h2>{{task.name}}</h2>
+
+            <div class="row">
+              <div class="col col-10" style="margin-top: 2%;">
+                <p ng-style="{'background-color': bgColor(task) }" style="height: 10px; width: 10px; border-radius: 50%;"></p>
+              </div>
+              <div class="col col-60">
+                <div class="upperCase">
+                  <p>{{status}}</p>
+                </div>
+              </div>
+
+              <div class="col col-30" ng-if="task.deadline">
+                <p><i class="ion-ios-calendar"></i> {{task.deadline | date : 'MMM dd'}}</p>
+              </div>
+            </div>
+
+
+
+            <ion-option-button class="button-positive" ng-click="share(task)">
+              Share
+            </ion-option-button>
+            <ion-option-button class="button-balanced" ng-click="taskEdit(task)">
+              Edit
+            </ion-option-button>
+            <ion-option-button class="button-assertive" ng-click="delete(task)">
+              Delete
+            </ion-option-button>
+          </a>
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </ion-content>
+</ion-view>

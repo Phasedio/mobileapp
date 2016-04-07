@@ -156,6 +156,18 @@ textarea {
   height: $line-height-computed + $font-size-base + 12px;
 }
 
+<<<<<<< HEAD
+=======
+.item-select.item-stacked-label select {
+  position: relative;
+  padding: 0px;
+  max-width: 90%;
+  direction:ltr;
+  white-space: pre-wrap;
+  margin: -3px;
+}
+
+>>>>>>> dev
 .item-floating-label {
   display: block;
   background-color: transparent;

@@ -1,6 +1,10 @@
 {
   "name": "firebase",
+<<<<<<< HEAD
   "version": "2.2.9",
+=======
+  "version": "2.2.7",
+>>>>>>> dev
   "homepage": "https://firebase.com",
   "authors": [
     "Firebase <operations@firebase.com>"

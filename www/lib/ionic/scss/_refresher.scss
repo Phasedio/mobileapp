@@ -82,11 +82,22 @@
 .overflow-scroll > .scroll{
   &.overscroll{
     position:fixed;
+<<<<<<< HEAD
+=======
+    right: 0;
+    left: 0;
+>>>>>>> dev
   }
   -webkit-overflow-scrolling:touch;
   width:100%;
 }
 
+<<<<<<< HEAD
+=======
+.overflow-scroll.padding > .scroll.overscroll{
+    padding: 10px;
+}
+>>>>>>> dev
 @-webkit-keyframes refresh-spin {
   0%   { -webkit-transform: translate3d(0,0,0) rotate(0); }
   100% { -webkit-transform: translate3d(0,0,0) rotate(180deg); }

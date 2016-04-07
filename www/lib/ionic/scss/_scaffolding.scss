@@ -36,6 +36,10 @@ body,
   color: $base-color;
   word-wrap: break-word;
   font-size: $font-size-base;
+<<<<<<< HEAD
+=======
+  font-family: -apple-system;
+>>>>>>> dev
   font-family: $font-family-base;
   line-height: $line-height-computed;
   text-rendering: optimizeLegibility;
@@ -83,6 +87,17 @@ body.grade-c {
   display: block;
   overflow: hidden;
 
+<<<<<<< HEAD
+=======
+  &.overflow-scroll {
+    position: relative;
+  }
+
+  &.scroll-x { overflow-x: scroll; overflow-y: hidden; }
+  &.scroll-y { overflow-x: hidden; overflow-y: scroll; }
+  &.scroll-xy { overflow-x: scroll; overflow-y: scroll; }
+
+>>>>>>> dev
   // Hide the top border if any
   margin-top: -1px;
 }
@@ -185,17 +200,39 @@ ion-infinite-scroll {
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+<<<<<<< HEAD
+=======
+
+  // Make sure the scrollbar doesn't take up layout space on edge
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+
+>>>>>>> dev
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   position: absolute;
 
+<<<<<<< HEAD
+=======
+  &.pane {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+>>>>>>> dev
   .scroll {
     position: static;
     height: 100%;
     -webkit-transform: translate3d(0, 0, 0);   // fix iOS bug where relative children of scroller disapear while scrolling.  see: http://stackoverflow.com/questions/9807620/ipad-safari-scrolling-causes-html-elements-to-disappear-and-reappear-with-a-dela
   }
+<<<<<<< HEAD
+=======
+
+  &.keyboard-up:not(.keyboard-up-confirm) {
+    overflow: hidden;
+  }
+>>>>>>> dev
 }
 
 
@@ -236,6 +273,13 @@ ion-infinite-scroll {
   }
 }
 
+<<<<<<< HEAD
+=======
+.bar-subfooter.has-tabs {
+  bottom: $tabs-height + $bar-footer-height;
+}
+
+>>>>>>> dev
 .has-footer.has-tabs {
   bottom: $tabs-height + $bar-footer-height;
 }

@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "Phased",
   "app_id": "32c45998",
+=======
+  "name": "phased-app",
+  "app_id": "5a6e9631",
+>>>>>>> dev
   "gulpStartupTasks": [
     "sass",
     "watch"
@@ -9,4 +14,8 @@
     "www/**/*",
     "!www/lib/**/*"
   ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dev

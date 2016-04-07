@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*! @license Firebase v2.2.9
     License: https://www.firebase.com/terms/terms-of-service.html */
 (function(ns) {
@@ -7,6 +8,13 @@
 
     // Sets CLIENT_VERSION manually, since we can't use a closure --define with WHITESPACE_ONLY compilation.
     var CLIENT_VERSION = '2.2.9';
+=======
+/*! @license Firebase v2.2.7
+    License: https://www.firebase.com/terms/terms-of-service.html */
+(function(ns) {
+  ns.wrapper = function(goog, fb) {
+    var CLOSURE_NO_DEPS = true;
+>>>>>>> dev
     var COMPILED = false;
 var goog = goog || {};
 goog.global = this;
@@ -3151,8 +3159,12 @@ goog.crypt.base64.init_ = function() {
 };
 goog.provide("fb.constants");
 var NODE_CLIENT = false;
+<<<<<<< HEAD
 var CLIENT_VERSION_DEFINE = "0.0.0";
 var CLIENT_VERSION = CLIENT_VERSION || CLIENT_VERSION_DEFINE;
+=======
+var CLIENT_VERSION = "0.0.0";
+>>>>>>> dev
 goog.provide("fb.util.obj");
 fb.util.obj.contains = function(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
@@ -3617,7 +3629,10 @@ fb.core.snap.Node.prototype.updateChild;
 fb.core.snap.Node.prototype.hasChild;
 fb.core.snap.Node.prototype.isEmpty;
 fb.core.snap.Node.prototype.numChildren;
+<<<<<<< HEAD
 fb.core.snap.Node.prototype.forEachChild;
+=======
+>>>>>>> dev
 fb.core.snap.Node.prototype.val;
 fb.core.snap.Node.prototype.hash;
 fb.core.snap.Node.prototype.compareTo;
@@ -3657,6 +3672,28 @@ if (goog.DEBUG) {
     return "Operation(" + this.path + ": " + this.source.toString() + " overwrite: " + this.snap.toString() + ")";
   };
 }
+<<<<<<< HEAD
+=======
+;goog.provide("fb.core.operation.AckUserWrite");
+fb.core.operation.AckUserWrite = function(path, revert) {
+  this.type = fb.core.OperationType.ACK_USER_WRITE;
+  this.source = fb.core.OperationSource.User;
+  this.path = path;
+  this.revert = revert;
+};
+fb.core.operation.AckUserWrite.prototype.operationForChild = function(childName) {
+  if (!this.path.isEmpty()) {
+    return new fb.core.operation.AckUserWrite(this.path.popFront(), this.revert);
+  } else {
+    return this;
+  }
+};
+if (goog.DEBUG) {
+  fb.core.operation.AckUserWrite.prototype.toString = function() {
+    return "Operation(" + this.path + ": " + this.source.toString() + " ack write revert=" + this.revert + ")";
+  };
+}
+>>>>>>> dev
 ;goog.provide("fb.core.operation.ListenComplete");
 fb.core.operation.ListenComplete = function(source, path) {
   this.type = fb.core.OperationType.LISTEN_COMPLETE;
@@ -5145,6 +5182,7 @@ goog.require("fb.core.util");
 fb.core.view.filter.IndexedFilter = function(index) {
   this.index_ = index;
 };
+<<<<<<< HEAD
 fb.core.view.filter.IndexedFilter.prototype.updateChild = function(snap, key, newChild, affectedPath, source, optChangeAccumulator) {
   var Change = fb.core.view.Change;
   fb.core.util.assert(snap.isIndexed(this.index_), "A node must be indexed if only a child is updated");
@@ -5153,6 +5191,14 @@ fb.core.view.filter.IndexedFilter.prototype.updateChild = function(snap, key, ne
     if (oldChild.isEmpty() == newChild.isEmpty()) {
       return snap;
     }
+=======
+fb.core.view.filter.IndexedFilter.prototype.updateChild = function(snap, key, newChild, source, optChangeAccumulator) {
+  var Change = fb.core.view.Change;
+  fb.core.util.assert(snap.isIndexed(this.index_), "A node must be indexed if only a child is updated");
+  var oldChild = snap.getImmediateChild(key);
+  if (oldChild.equals(newChild)) {
+    return snap;
+>>>>>>> dev
   }
   if (optChangeAccumulator != null) {
     if (newChild.isEmpty()) {
@@ -5233,11 +5279,19 @@ fb.core.view.filter.RangedFilter.prototype.getEndPost = function() {
 fb.core.view.filter.RangedFilter.prototype.matches = function(node) {
   return this.index_.compare(this.getStartPost(), node) <= 0 && this.index_.compare(node, this.getEndPost()) <= 0;
 };
+<<<<<<< HEAD
 fb.core.view.filter.RangedFilter.prototype.updateChild = function(snap, key, newChild, affectedPath, source, optChangeAccumulator) {
   if (!this.matches(new fb.core.snap.NamedNode(key, newChild))) {
     newChild = fb.core.snap.EMPTY_NODE;
   }
   return this.indexedFilter_.updateChild(snap, key, newChild, affectedPath, source, optChangeAccumulator);
+=======
+fb.core.view.filter.RangedFilter.prototype.updateChild = function(snap, key, newChild, source, optChangeAccumulator) {
+  if (!this.matches(new fb.core.snap.NamedNode(key, newChild))) {
+    newChild = fb.core.snap.EMPTY_NODE;
+  }
+  return this.indexedFilter_.updateChild(snap, key, newChild, source, optChangeAccumulator);
+>>>>>>> dev
 };
 fb.core.view.filter.RangedFilter.prototype.updateFullNode = function(oldSnap, newSnap, optChangeAccumulator) {
   if (newSnap.isLeafNode()) {
@@ -5286,7 +5340,11 @@ goog.require("fb.core.view.ChildChangeAccumulator");
 goog.require("fb.core.view.CompleteChildSource");
 fb.core.view.filter.NodeFilter = function() {
 };
+<<<<<<< HEAD
 fb.core.view.filter.NodeFilter.prototype.updateChild = function(snap, key, newChild, affectedPath, source, optChangeAccumulator) {
+=======
+fb.core.view.filter.NodeFilter.prototype.updateChild = function(snap, key, newChild, source, optChangeAccumulator) {
+>>>>>>> dev
 };
 fb.core.view.filter.NodeFilter.prototype.updateFullNode = function(oldSnap, newSnap, optChangeAccumulator) {
 };
@@ -5308,7 +5366,11 @@ fb.core.view.filter.LimitedFilter = function(params) {
   this.limit_ = params.getLimit();
   this.reverse_ = !params.isViewFromLeft();
 };
+<<<<<<< HEAD
 fb.core.view.filter.LimitedFilter.prototype.updateChild = function(snap, key, newChild, affectedPath, source, optChangeAccumulator) {
+=======
+fb.core.view.filter.LimitedFilter.prototype.updateChild = function(snap, key, newChild, source, optChangeAccumulator) {
+>>>>>>> dev
   if (!this.rangedFilter_.matches(new fb.core.snap.NamedNode(key, newChild))) {
     newChild = fb.core.snap.EMPTY_NODE;
   }
@@ -5316,7 +5378,11 @@ fb.core.view.filter.LimitedFilter.prototype.updateChild = function(snap, key, ne
     return snap;
   } else {
     if (snap.numChildren() < this.limit_) {
+<<<<<<< HEAD
       return this.rangedFilter_.getIndexedFilter().updateChild(snap, key, newChild, affectedPath, source, optChangeAccumulator);
+=======
+      return this.rangedFilter_.getIndexedFilter().updateChild(snap, key, newChild, source, optChangeAccumulator);
+>>>>>>> dev
     } else {
       return this.fullLimitUpdateChild_(snap, key, newChild, source, optChangeAccumulator);
     }
@@ -5421,7 +5487,11 @@ fb.core.view.filter.LimitedFilter.prototype.fullLimitUpdateChild_ = function(sna
   if (oldEventCache.hasChild(childKey)) {
     var oldChildSnap = oldEventCache.getImmediateChild(childKey);
     var nextChild = source.getChildAfterChild(this.index_, windowBoundary, this.reverse_);
+<<<<<<< HEAD
     while (nextChild != null && (nextChild.name == childKey || oldEventCache.hasChild(nextChild.name))) {
+=======
+    if (nextChild != null && nextChild.name == childKey) {
+>>>>>>> dev
       nextChild = source.getChildAfterChild(this.index_, nextChild, this.reverse_);
     }
     var compareNext = nextChild == null ? 1 : cmp(nextChild, newChildNamedNode);
@@ -5506,7 +5576,11 @@ fb.core.view.ViewProcessor.prototype.applyOperation = function(oldViewCache, ope
       if (operation.type === fb.core.OperationType.ACK_USER_WRITE) {
         var ackUserWrite = (operation);
         if (!ackUserWrite.revert) {
+<<<<<<< HEAD
           newViewCache = this.ackUserWrite_(oldViewCache, ackUserWrite.path, ackUserWrite.affectedTree, writesCache, optCompleteCache, accumulator);
+=======
+          newViewCache = this.ackUserWrite_(oldViewCache, ackUserWrite.path, writesCache, optCompleteCache, accumulator);
+>>>>>>> dev
         } else {
           newViewCache = this.revertUserWrite_(oldViewCache, ackUserWrite.path, writesCache, optCompleteCache, accumulator);
         }
@@ -5577,7 +5651,11 @@ fb.core.view.ViewProcessor.prototype.generateEventCacheAfterServerEvent_ = funct
           newEventChild = writesCache.calcCompleteChild(childKey, viewCache.getServerCache());
         }
         if (newEventChild != null) {
+<<<<<<< HEAD
           newEventCache = this.filter_.updateChild(oldEventSnap.getNode(), childKey, newEventChild, childChangePath, source, accumulator);
+=======
+          newEventCache = this.filter_.updateChild(oldEventSnap.getNode(), childKey, newEventChild, source, accumulator);
+>>>>>>> dev
         } else {
           newEventCache = oldEventSnap.getNode();
         }
@@ -5601,6 +5679,7 @@ fb.core.view.ViewProcessor.prototype.applyServerOverwrite_ = function(oldViewCac
       if (!oldServerSnap.isCompleteForPath(changePath) && changePath.getLength() > 1) {
         return oldViewCache;
       }
+<<<<<<< HEAD
       var childChangePath = changePath.popFront();
       var childNode = oldServerSnap.getNode().getImmediateChild(childKey);
       var newChildNode = childNode.updateChild(childChangePath, changedSnap);
@@ -5608,6 +5687,14 @@ fb.core.view.ViewProcessor.prototype.applyServerOverwrite_ = function(oldViewCac
         newServerCache = serverFilter.updatePriority(oldServerSnap.getNode(), newChildNode);
       } else {
         newServerCache = serverFilter.updateChild(oldServerSnap.getNode(), childKey, newChildNode, childChangePath, fb.core.view.NO_COMPLETE_CHILD_SOURCE, null);
+=======
+      var childNode = oldServerSnap.getNode().getImmediateChild(childKey);
+      var newChildNode = childNode.updateChild(changePath.popFront(), changedSnap);
+      if (childKey == ".priority") {
+        newServerCache = serverFilter.updatePriority(oldServerSnap.getNode(), newChildNode);
+      } else {
+        newServerCache = serverFilter.updateChild(oldServerSnap.getNode(), childKey, newChildNode, fb.core.view.NO_COMPLETE_CHILD_SOURCE, null);
+>>>>>>> dev
       }
     }
   }
@@ -5646,7 +5733,11 @@ fb.core.view.ViewProcessor.prototype.applyUserOverwrite_ = function(oldViewCache
         }
       }
       if (!oldChild.equals(newChild)) {
+<<<<<<< HEAD
         var newEventSnap = this.filter_.updateChild(oldEventSnap.getNode(), childKey, newChild, childChangePath, source, accumulator);
+=======
+        var newEventSnap = this.filter_.updateChild(oldEventSnap.getNode(), childKey, newChild, source, accumulator);
+>>>>>>> dev
         newViewCache = oldViewCache.updateEventSnap(newEventSnap, oldEventSnap.isFullyInitialized(), this.filter_.filtersNodes());
       } else {
         newViewCache = oldViewCache;
@@ -5702,7 +5793,11 @@ fb.core.view.ViewProcessor.prototype.applyServerMerge_ = function(viewCache, pat
     }
   });
   viewMergeTree.children.inorderTraversal(function(childKey, childMergeTree) {
+<<<<<<< HEAD
     var isUnknownDeepMerge = !viewCache.getServerCache().isCompleteForChild(childKey) && childMergeTree.value == null;
+=======
+    var isUnknownDeepMerge = !viewCache.getServerCache().isFullyInitialized() && childMergeTree.value == null;
+>>>>>>> dev
     if (!serverNode.hasChild(childKey) && !isUnknownDeepMerge) {
       var serverChild = viewCache.getServerCache().getNode().getImmediateChild(childKey);
       var newChild = self.applyMerge_(serverChild, childMergeTree);
@@ -5711,6 +5806,7 @@ fb.core.view.ViewProcessor.prototype.applyServerMerge_ = function(viewCache, pat
   });
   return curViewCache;
 };
+<<<<<<< HEAD
 fb.core.view.ViewProcessor.prototype.ackUserWrite_ = function(viewCache, ackPath, affectedTree, writesCache, optCompleteCache, accumulator) {
   if (writesCache.shadowingWrite(ackPath) != null) {
     return viewCache;
@@ -5739,6 +5835,62 @@ fb.core.view.ViewProcessor.prototype.ackUserWrite_ = function(viewCache, ackPath
       }
     });
     return this.applyServerMerge_(viewCache, ackPath, changedChildren, writesCache, optCompleteCache, false, accumulator);
+=======
+fb.core.view.ViewProcessor.prototype.ackUserWrite_ = function(viewCache, ackPath, writesCache, optCompleteCache, accumulator) {
+  if (writesCache.shadowingWrite(ackPath) != null) {
+    return viewCache;
+  } else {
+    var source = new fb.core.view.WriteTreeCompleteChildSource(writesCache, viewCache, optCompleteCache);
+    var oldEventCache = viewCache.getEventCache().getNode();
+    var newEventCache = oldEventCache;
+    var eventCacheComplete;
+    if (viewCache.getServerCache().isFullyInitialized()) {
+      if (ackPath.isEmpty()) {
+        var update = (writesCache.calcCompleteEventCache(viewCache.getCompleteServerSnap()));
+        newEventCache = this.filter_.updateFullNode(viewCache.getEventCache().getNode(), update, accumulator);
+      } else {
+        if (ackPath.getFront() === ".priority") {
+          var updatedPriority = writesCache.calcCompleteChild(ackPath.getFront(), viewCache.getServerCache());
+          if (updatedPriority != null && !oldEventCache.isEmpty() && !oldEventCache.getPriority().equals(updatedPriority)) {
+            newEventCache = this.filter_.updatePriority(oldEventCache, updatedPriority);
+          }
+        } else {
+          var childKey = ackPath.getFront();
+          var updatedChild = writesCache.calcCompleteChild(childKey, viewCache.getServerCache());
+          if (updatedChild != null) {
+            newEventCache = this.filter_.updateChild(viewCache.getEventCache().getNode(), childKey, updatedChild, source, accumulator);
+          }
+        }
+      }
+      eventCacheComplete = true;
+    } else {
+      if (viewCache.getEventCache().isFullyInitialized() || ackPath.isEmpty()) {
+        newEventCache = oldEventCache;
+        var completeEventSnap = viewCache.getEventCache().getNode();
+        if (!completeEventSnap.isLeafNode()) {
+          var self = this;
+          completeEventSnap = (completeEventSnap);
+          completeEventSnap.forEachChild(fb.core.snap.PriorityIndex, function(key, childNode) {
+            var completeChild = writesCache.calcCompleteChild(key, viewCache.getServerCache());
+            if (completeChild != null) {
+              newEventCache = self.filter_.updateChild(newEventCache, key, completeChild, source, accumulator);
+            }
+          });
+        }
+        eventCacheComplete = viewCache.getEventCache().isFullyInitialized();
+      } else {
+        var childKey = ackPath.getFront();
+        if (ackPath.getLength() == 1 || viewCache.getEventCache().isCompleteForChild(childKey)) {
+          var completeChild = writesCache.calcCompleteChild(childKey, viewCache.getServerCache());
+          if (completeChild != null) {
+            newEventCache = this.filter_.updateChild(oldEventCache, childKey, completeChild, source, accumulator);
+          }
+        }
+        eventCacheComplete = false;
+      }
+    }
+    return viewCache.updateEventSnap(newEventCache, eventCacheComplete, this.filter_.filtersNodes());
+>>>>>>> dev
   }
 };
 fb.core.view.ViewProcessor.prototype.revertUserWrite_ = function(viewCache, path, writesCache, optCompleteServerCache, accumulator) {
@@ -5767,10 +5919,17 @@ fb.core.view.ViewProcessor.prototype.revertUserWrite_ = function(viewCache, path
         newChild = oldEventCache.getImmediateChild(childKey);
       }
       if (newChild != null) {
+<<<<<<< HEAD
         newEventCache = this.filter_.updateChild(oldEventCache, childKey, newChild, path.popFront(), source, accumulator);
       } else {
         if (viewCache.getEventCache().getNode().hasChild(childKey)) {
           newEventCache = this.filter_.updateChild(oldEventCache, childKey, fb.core.snap.EMPTY_NODE, path.popFront(), source, accumulator);
+=======
+        newEventCache = this.filter_.updateChild(oldEventCache, childKey, newChild, source, accumulator);
+      } else {
+        if (viewCache.getEventCache().getNode().hasChild(childKey)) {
+          newEventCache = this.filter_.updateChild(oldEventCache, childKey, fb.core.snap.EMPTY_NODE, source, accumulator);
+>>>>>>> dev
         } else {
           newEventCache = oldEventCache;
         }
@@ -6283,12 +6442,17 @@ fb.core.snap.IndexMap.Default = new fb.core.snap.IndexMap({".priority":fb.core.s
 goog.provide("fb.core.snap.LeafNode");
 goog.require("fb.core.snap.Node");
 goog.require("fb.core.util");
+<<<<<<< HEAD
 fb.core.snap.LeafNode = goog.defineClass(null, {constructor:function(value, opt_priorityNode) {
+=======
+fb.core.snap.LeafNode = function(value, opt_priorityNode) {
+>>>>>>> dev
   this.value_ = value;
   fb.core.util.assert(goog.isDef(this.value_) && this.value_ !== null, "LeafNode shouldn't be created with null/undefined value.");
   this.priorityNode_ = opt_priorityNode || fb.core.snap.EMPTY_NODE;
   fb.core.snap.validatePriorityNode(this.priorityNode_);
   this.lazyHash_ = null;
+<<<<<<< HEAD
 }, statics:{VALUE_TYPE_ORDER:["object", "boolean", "number", "string"]}, isLeafNode:function() {
   return true;
 }, getPriority:function() {
@@ -6296,12 +6460,30 @@ fb.core.snap.LeafNode = goog.defineClass(null, {constructor:function(value, opt_
 }, updatePriority:function(newPriorityNode) {
   return new fb.core.snap.LeafNode(this.value_, newPriorityNode);
 }, getImmediateChild:function(childName) {
+=======
+};
+fb.core.snap.LeafNode.prototype.isLeafNode = function() {
+  return true;
+};
+fb.core.snap.LeafNode.prototype.getPriority = function() {
+  return this.priorityNode_;
+};
+fb.core.snap.LeafNode.prototype.updatePriority = function(newPriorityNode) {
+  return new fb.core.snap.LeafNode(this.value_, newPriorityNode);
+};
+fb.core.snap.LeafNode.prototype.getImmediateChild = function(childName) {
+>>>>>>> dev
   if (childName === ".priority") {
     return this.priorityNode_;
   } else {
     return fb.core.snap.EMPTY_NODE;
   }
+<<<<<<< HEAD
 }, getChild:function(path) {
+=======
+};
+fb.core.snap.LeafNode.prototype.getChild = function(path) {
+>>>>>>> dev
   if (path.isEmpty()) {
     return this;
   } else {
@@ -6311,11 +6493,22 @@ fb.core.snap.LeafNode = goog.defineClass(null, {constructor:function(value, opt_
       return fb.core.snap.EMPTY_NODE;
     }
   }
+<<<<<<< HEAD
 }, hasChild:function() {
   return false;
 }, getPredecessorChildName:function(childName, childNode) {
   return null;
 }, updateImmediateChild:function(childName, newChildNode) {
+=======
+};
+fb.core.snap.LeafNode.prototype.hasChild = function() {
+  return false;
+};
+fb.core.snap.LeafNode.prototype.getPredecessorChildName = function(childName, childNode) {
+  return null;
+};
+fb.core.snap.LeafNode.prototype.updateImmediateChild = function(childName, newChildNode) {
+>>>>>>> dev
   if (childName === ".priority") {
     return this.updatePriority(newChildNode);
   } else {
@@ -6325,7 +6518,12 @@ fb.core.snap.LeafNode = goog.defineClass(null, {constructor:function(value, opt_
       return fb.core.snap.EMPTY_NODE.updateImmediateChild(childName, newChildNode).updatePriority(this.priorityNode_);
     }
   }
+<<<<<<< HEAD
 }, updateChild:function(path, newChildNode) {
+=======
+};
+fb.core.snap.LeafNode.prototype.updateChild = function(path, newChildNode) {
+>>>>>>> dev
   var front = path.getFront();
   if (front === null) {
     return newChildNode;
@@ -6337,6 +6535,7 @@ fb.core.snap.LeafNode = goog.defineClass(null, {constructor:function(value, opt_
       return this.updateImmediateChild(front, fb.core.snap.EMPTY_NODE.updateChild(path.popFront(), newChildNode));
     }
   }
+<<<<<<< HEAD
 }, isEmpty:function() {
   return false;
 }, numChildren:function() {
@@ -6344,12 +6543,27 @@ fb.core.snap.LeafNode = goog.defineClass(null, {constructor:function(value, opt_
 }, forEachChild:function(index, action) {
   return false;
 }, val:function(opt_exportFormat) {
+=======
+};
+fb.core.snap.LeafNode.prototype.isEmpty = function() {
+  return false;
+};
+fb.core.snap.LeafNode.prototype.numChildren = function() {
+  return 0;
+};
+fb.core.snap.LeafNode.prototype.val = function(opt_exportFormat) {
+>>>>>>> dev
   if (opt_exportFormat && !this.getPriority().isEmpty()) {
     return{".value":this.getValue(), ".priority":this.getPriority().val()};
   } else {
     return this.getValue();
   }
+<<<<<<< HEAD
 }, hash:function() {
+=======
+};
+fb.core.snap.LeafNode.prototype.hash = function() {
+>>>>>>> dev
   if (this.lazyHash_ === null) {
     var toHash = "";
     if (!this.priorityNode_.isEmpty()) {
@@ -6365,9 +6579,17 @@ fb.core.snap.LeafNode = goog.defineClass(null, {constructor:function(value, opt_
     this.lazyHash_ = fb.core.util.sha1(toHash);
   }
   return(this.lazyHash_);
+<<<<<<< HEAD
 }, getValue:function() {
   return this.value_;
 }, compareTo:function(other) {
+=======
+};
+fb.core.snap.LeafNode.prototype.getValue = function() {
+  return this.value_;
+};
+fb.core.snap.LeafNode.prototype.compareTo = function(other) {
+>>>>>>> dev
   if (other === fb.core.snap.EMPTY_NODE) {
     return 1;
   } else {
@@ -6378,7 +6600,13 @@ fb.core.snap.LeafNode = goog.defineClass(null, {constructor:function(value, opt_
       return this.compareToLeafNode_((other));
     }
   }
+<<<<<<< HEAD
 }, compareToLeafNode_:function(otherLeaf) {
+=======
+};
+fb.core.snap.LeafNode.VALUE_TYPE_ORDER = ["object", "boolean", "number", "string"];
+fb.core.snap.LeafNode.prototype.compareToLeafNode_ = function(otherLeaf) {
+>>>>>>> dev
   var otherLeafType = typeof otherLeaf.value_;
   var thisLeafType = typeof this.value_;
   var otherIndex = goog.array.indexOf(fb.core.snap.LeafNode.VALUE_TYPE_ORDER, otherLeafType);
@@ -6402,11 +6630,22 @@ fb.core.snap.LeafNode = goog.defineClass(null, {constructor:function(value, opt_
   } else {
     return thisIndex - otherIndex;
   }
+<<<<<<< HEAD
 }, withIndex:function() {
   return this;
 }, isIndexed:function() {
   return true;
 }, equals:function(other) {
+=======
+};
+fb.core.snap.LeafNode.prototype.withIndex = function() {
+  return this;
+};
+fb.core.snap.LeafNode.prototype.isIndexed = function() {
+  return true;
+};
+fb.core.snap.LeafNode.prototype.equals = function(other) {
+>>>>>>> dev
   if (other === this) {
     return true;
   } else {
@@ -6417,7 +6656,11 @@ fb.core.snap.LeafNode = goog.defineClass(null, {constructor:function(value, opt_
       return false;
     }
   }
+<<<<<<< HEAD
 }});
+=======
+};
+>>>>>>> dev
 if (goog.DEBUG) {
   fb.core.snap.LeafNode.prototype.toString = function() {
     return fb.util.json.stringify(this.val(true));
@@ -7069,6 +7312,39 @@ if (goog.DEBUG) {
     return "Operation(" + this.path + ": " + this.source.toString() + " merge: " + this.children.toString() + ")";
   };
 }
+<<<<<<< HEAD
+=======
+;goog.provide("fb.core.Operation");
+goog.require("fb.core.operation.AckUserWrite");
+goog.require("fb.core.operation.Merge");
+goog.require("fb.core.operation.Overwrite");
+goog.require("fb.core.operation.ListenComplete");
+goog.require("fb.core.util");
+fb.core.OperationType = {OVERWRITE:0, MERGE:1, ACK_USER_WRITE:2, LISTEN_COMPLETE:3};
+fb.core.Operation = function() {
+};
+fb.core.Operation.prototype.source;
+fb.core.Operation.prototype.type;
+fb.core.Operation.prototype.path;
+fb.core.Operation.prototype.operationForChild = goog.abstractMethod;
+fb.core.OperationSource = function(fromUser, fromServer, queryId, tagged) {
+  this.fromUser = fromUser;
+  this.fromServer = fromServer;
+  this.queryId = queryId;
+  this.tagged = tagged;
+  fb.core.util.assert(!tagged || fromServer, "Tagged queries must be from server.");
+};
+fb.core.OperationSource.User = new fb.core.OperationSource(true, false, null, false);
+fb.core.OperationSource.Server = new fb.core.OperationSource(false, true, null, false);
+fb.core.OperationSource.forServerTaggedQuery = function(queryId) {
+  return new fb.core.OperationSource(false, true, queryId, true);
+};
+if (goog.DEBUG) {
+  fb.core.OperationSource.prototype.toString = function() {
+    return this.fromUser ? "user" : this.tagged ? "server(queryID=" + this.queryId + ")" : "server";
+  };
+}
+>>>>>>> dev
 ;goog.provide("fb.core.ReadonlyRestClient");
 goog.require("fb.core.util");
 goog.require("fb.util");
@@ -7385,6 +7661,7 @@ if (goog.DEBUG) {
     return fb.util.json.stringify(json);
   };
 }
+<<<<<<< HEAD
 ;goog.provide("fb.core.operation.AckUserWrite");
 goog.require("fb.core.util.ImmutableTree");
 fb.core.operation.AckUserWrite = function(path, affectedTree, revert) {
@@ -7443,6 +7720,8 @@ if (goog.DEBUG) {
     return this.fromUser ? "user" : this.tagged ? "server(queryID=" + this.queryId + ")" : "server";
   };
 }
+=======
+>>>>>>> dev
 ;goog.provide("fb.core.CompoundWrite");
 goog.require("fb.core.snap.Node");
 goog.require("fb.core.util");
@@ -7580,6 +7859,7 @@ fb.core.WriteTree.prototype.addMerge = function(path, changedChildren, writeId) 
   this.visibleWrites_ = this.visibleWrites_.addWrites(path, changedChildren);
   this.lastWriteId_ = writeId;
 };
+<<<<<<< HEAD
 fb.core.WriteTree.prototype.getWrite = function(writeId) {
   for (var i = 0;i < this.allWrites_.length;i++) {
     var record = this.allWrites_[i];
@@ -7589,6 +7869,8 @@ fb.core.WriteTree.prototype.getWrite = function(writeId) {
   }
   return null;
 };
+=======
+>>>>>>> dev
 fb.core.WriteTree.prototype.removeWrite = function(writeId) {
   var idx = goog.array.findIndex(this.allWrites_, function(s) {
     return s.writeId === writeId;
@@ -7613,11 +7895,19 @@ fb.core.WriteTree.prototype.removeWrite = function(writeId) {
     i--;
   }
   if (!removedWriteWasVisible) {
+<<<<<<< HEAD
     return false;
   } else {
     if (removedWriteOverlapsWithOtherWrites) {
       this.resetTree_();
       return true;
+=======
+    return null;
+  } else {
+    if (removedWriteOverlapsWithOtherWrites) {
+      this.resetTree_();
+      return writeToRemove.path;
+>>>>>>> dev
     } else {
       if (writeToRemove.snap) {
         this.visibleWrites_ = this.visibleWrites_.removeWrite(writeToRemove.path);
@@ -7628,7 +7918,11 @@ fb.core.WriteTree.prototype.removeWrite = function(writeId) {
           self.visibleWrites_ = self.visibleWrites_.removeWrite(writeToRemove.path.child(childName));
         });
       }
+<<<<<<< HEAD
       return true;
+=======
+      return writeToRemove.path;
+>>>>>>> dev
     }
   }
 };
@@ -7998,6 +8292,7 @@ fb.core.SyncTree.prototype.applyUserMerge = function(path, changedChildren, writ
 };
 fb.core.SyncTree.prototype.ackUserWrite = function(writeId, revert) {
   revert = revert || false;
+<<<<<<< HEAD
   var write = this.pendingWriteTree_.getWrite(writeId);
   var needToReevaluate = this.pendingWriteTree_.removeWrite(writeId);
   if (!needToReevaluate) {
@@ -8012,6 +8307,13 @@ fb.core.SyncTree.prototype.ackUserWrite = function(writeId, revert) {
       });
     }
     return this.applyOperationToSyncPoints_(new fb.core.operation.AckUserWrite(write.path, affectedTree, revert));
+=======
+  var pathToReevaluate = this.pendingWriteTree_.removeWrite(writeId);
+  if (pathToReevaluate == null) {
+    return[];
+  } else {
+    return this.applyOperationToSyncPoints_(new fb.core.operation.AckUserWrite(pathToReevaluate, revert));
+>>>>>>> dev
   }
 };
 fb.core.SyncTree.prototype.applyServerOverwrite = function(path, newData) {
@@ -10115,7 +10417,11 @@ fb.realtime.BrowserPollConnection.forceDisallow = function() {
   fb.realtime.BrowserPollConnection.forceDisallow_ = true;
 };
 fb.realtime.BrowserPollConnection["isAvailable"] = function() {
+<<<<<<< HEAD
   return fb.realtime.BrowserPollConnection.forceAllow_ || !fb.realtime.BrowserPollConnection.forceDisallow_ && typeof document !== "undefined" && goog.isDefAndNotNull(document.createElement) && !fb.core.util.isChromeExtensionContentScript() && !fb.core.util.isWindowsStoreApp() && !NODE_CLIENT;
+=======
+  return fb.realtime.BrowserPollConnection.forceAllow_ || !fb.realtime.BrowserPollConnection.forceDisallow_ && typeof document !== "undefined" && goog.isDefAndNotNull(document.createElement) && !fb.core.util.isChromeExtensionContentScript() && !fb.core.util.isWindowsStoreApp();
+>>>>>>> dev
 };
 fb.realtime.BrowserPollConnection.prototype.markConnectionHealthy = function() {
 };
@@ -11016,7 +11322,11 @@ var RECONNECT_MAX_DELAY_DEFAULT = 60 * 5 * 1E3;
 var RECONNECT_MAX_DELAY_FOR_ADMINS = 30 * 1E3;
 var RECONNECT_DELAY_MULTIPLIER = 1.3;
 var RECONNECT_DELAY_RESET_TIMEOUT = 3E4;
+<<<<<<< HEAD
 fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repoInfo, onDataUpdate, onConnectStatus, onServerInfoUpdate) {
+=======
+fb.core.PersistentConnection = function(repoInfo, onDataUpdate, onConnectStatus, onServerInfoUpdate) {
+>>>>>>> dev
   this.id = fb.core.PersistentConnection.nextPersistentConnectionId_++;
   this.log_ = fb.core.util.logWrapper("p:" + this.id + ":");
   this.interrupted_ = false;
@@ -11033,10 +11343,13 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
   this.onServerInfoUpdate_ = onServerInfoUpdate;
   this.repoInfo_ = repoInfo;
   this.securityDebugCallback_ = null;
+<<<<<<< HEAD
   this.realtime_ = null;
   this.credential_ = null;
   this.establishConnectionTimer_ = null;
   this.visible_ = false;
+=======
+>>>>>>> dev
   this.requestCBHash_ = {};
   this.requestNumber_ = 0;
   this.firstConnection_ = true;
@@ -11047,7 +11360,14 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
   if (repoInfo.host.indexOf("fblocal") === -1) {
     fb.core.util.OnlineMonitor.getInstance().on("online", this.onOnline_, this);
   }
+<<<<<<< HEAD
 }, statics:{nextPersistentConnectionId_:0, nextConnectionId_:0}, sendRequest:function(action, body, onResponse) {
+=======
+};
+fb.core.PersistentConnection.nextPersistentConnectionId_ = 0;
+fb.core.PersistentConnection.nextConnectionId_ = 0;
+fb.core.PersistentConnection.prototype.sendRequest = function(action, body, onResponse) {
+>>>>>>> dev
   var curReqNum = ++this.requestNumber_;
   var msg = {"r":curReqNum, "a":action, "b":body};
   this.log_(fb.util.json.stringify(msg));
@@ -11056,7 +11376,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
   if (onResponse) {
     this.requestCBHash_[curReqNum] = onResponse;
   }
+<<<<<<< HEAD
 }, listen:function(query, currentHashFn, tag, onComplete) {
+=======
+};
+fb.core.PersistentConnection.prototype.listen = function(query, currentHashFn, tag, onComplete) {
+>>>>>>> dev
   var queryId = query.queryIdentifier();
   var pathString = query.path.toString();
   this.log_("Listen called for " + pathString + " " + queryId);
@@ -11067,7 +11392,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
   if (this.connected_) {
     this.sendListen_(listenSpec);
   }
+<<<<<<< HEAD
 }, sendListen_:function(listenSpec) {
+=======
+};
+fb.core.PersistentConnection.prototype.sendListen_ = function(listenSpec) {
+>>>>>>> dev
   var query = listenSpec.query;
   var pathString = query.path.toString();
   var queryId = query.queryIdentifier();
@@ -11095,7 +11425,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       }
     }
   });
+<<<<<<< HEAD
 }, warnOnListenWarnings_:function(payload, query) {
+=======
+};
+fb.core.PersistentConnection.prototype.warnOnListenWarnings_ = function(payload, query) {
+>>>>>>> dev
   if (payload && typeof payload === "object" && fb.util.obj.contains(payload, "w")) {
     var warnings = fb.util.obj.get(payload, "w");
     if (goog.isArray(warnings) && goog.array.contains(warnings, "no_index")) {
@@ -11104,18 +11439,33 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       fb.core.util.warn("Using an unspecified index. Consider adding " + indexSpec + " at " + indexPath + " to your security rules for better performance");
     }
   }
+<<<<<<< HEAD
 }, auth:function(cred, opt_callback, opt_cancelCallback) {
+=======
+};
+fb.core.PersistentConnection.prototype.auth = function(cred, opt_callback, opt_cancelCallback) {
+>>>>>>> dev
   this.credential_ = {cred:cred, firstRequestSent:false, callback:opt_callback, cancelCallback:opt_cancelCallback};
   this.log_("Authenticating using credential: " + cred);
   this.tryAuth();
   this.reduceReconnectDelayIfAdminCredential_(cred);
+<<<<<<< HEAD
 }, reduceReconnectDelayIfAdminCredential_:function(credential) {
+=======
+};
+fb.core.PersistentConnection.prototype.reduceReconnectDelayIfAdminCredential_ = function(credential) {
+>>>>>>> dev
   var isFirebaseSecret = credential.length == 40;
   if (isFirebaseSecret || fb.util.jwt.isAdmin(credential)) {
     this.log_("Admin auth credential detected.  Reducing max reconnect time.");
     this.maxReconnectDelay_ = RECONNECT_MAX_DELAY_FOR_ADMINS;
   }
+<<<<<<< HEAD
 }, unauth:function(onComplete) {
+=======
+};
+fb.core.PersistentConnection.prototype.unauth = function(onComplete) {
+>>>>>>> dev
   delete this.credential_;
   if (this.connected_) {
     this.sendRequest("unauth", {}, function(result) {
@@ -11124,7 +11474,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       onComplete(status, errorReason);
     });
   }
+<<<<<<< HEAD
 }, tryAuth:function() {
+=======
+};
+fb.core.PersistentConnection.prototype.tryAuth = function() {
+>>>>>>> dev
   var authdata = this.credential_;
   var self = this;
   if (this.connected_ && authdata) {
@@ -11147,7 +11502,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       }
     });
   }
+<<<<<<< HEAD
 }, unlisten:function(query, tag) {
+=======
+};
+fb.core.PersistentConnection.prototype.unlisten = function(query, tag) {
+>>>>>>> dev
   var pathString = query.path.toString();
   var queryId = query.queryIdentifier();
   this.log_("Unlisten called for " + pathString + " " + queryId);
@@ -11155,7 +11515,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
   if (listen && this.connected_) {
     this.sendUnlisten_(pathString, queryId, query.queryObject(), tag);
   }
+<<<<<<< HEAD
 }, sendUnlisten_:function(pathString, queryId, queryObj, tag) {
+=======
+};
+fb.core.PersistentConnection.prototype.sendUnlisten_ = function(pathString, queryId, queryObj, tag) {
+>>>>>>> dev
   this.log_("Unlisten on " + pathString + " for " + queryId);
   var self = this;
   var req = {"p":pathString};
@@ -11165,25 +11530,45 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
     req["t"] = tag;
   }
   this.sendRequest(action, req);
+<<<<<<< HEAD
 }, onDisconnectPut:function(pathString, data, opt_onComplete) {
+=======
+};
+fb.core.PersistentConnection.prototype.onDisconnectPut = function(pathString, data, opt_onComplete) {
+>>>>>>> dev
   if (this.connected_) {
     this.sendOnDisconnect_("o", pathString, data, opt_onComplete);
   } else {
     this.onDisconnectRequestQueue_.push({pathString:pathString, action:"o", data:data, onComplete:opt_onComplete});
   }
+<<<<<<< HEAD
 }, onDisconnectMerge:function(pathString, data, opt_onComplete) {
+=======
+};
+fb.core.PersistentConnection.prototype.onDisconnectMerge = function(pathString, data, opt_onComplete) {
+>>>>>>> dev
   if (this.connected_) {
     this.sendOnDisconnect_("om", pathString, data, opt_onComplete);
   } else {
     this.onDisconnectRequestQueue_.push({pathString:pathString, action:"om", data:data, onComplete:opt_onComplete});
   }
+<<<<<<< HEAD
 }, onDisconnectCancel:function(pathString, opt_onComplete) {
+=======
+};
+fb.core.PersistentConnection.prototype.onDisconnectCancel = function(pathString, opt_onComplete) {
+>>>>>>> dev
   if (this.connected_) {
     this.sendOnDisconnect_("oc", pathString, null, opt_onComplete);
   } else {
     this.onDisconnectRequestQueue_.push({pathString:pathString, action:"oc", data:null, onComplete:opt_onComplete});
   }
+<<<<<<< HEAD
 }, sendOnDisconnect_:function(action, pathString, data, opt_onComplete) {
+=======
+};
+fb.core.PersistentConnection.prototype.sendOnDisconnect_ = function(action, pathString, data, opt_onComplete) {
+>>>>>>> dev
   var self = this;
   var request = {"p":pathString, "d":data};
   self.log_("onDisconnect " + action, request);
@@ -11194,11 +11579,22 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       }, Math.floor(0));
     }
   });
+<<<<<<< HEAD
 }, put:function(pathString, data, opt_onComplete, opt_hash) {
   this.putInternal("p", pathString, data, opt_onComplete, opt_hash);
 }, merge:function(pathString, data, onComplete, opt_hash) {
   this.putInternal("m", pathString, data, onComplete, opt_hash);
 }, putInternal:function(action, pathString, data, opt_onComplete, opt_hash) {
+=======
+};
+fb.core.PersistentConnection.prototype.put = function(pathString, data, opt_onComplete, opt_hash) {
+  this.putInternal("p", pathString, data, opt_onComplete, opt_hash);
+};
+fb.core.PersistentConnection.prototype.merge = function(pathString, data, onComplete, opt_hash) {
+  this.putInternal("m", pathString, data, onComplete, opt_hash);
+};
+fb.core.PersistentConnection.prototype.putInternal = function(action, pathString, data, opt_onComplete, opt_hash) {
+>>>>>>> dev
   var request = {"p":pathString, "d":data};
   if (goog.isDef(opt_hash)) {
     request["h"] = opt_hash;
@@ -11211,7 +11607,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
   } else {
     this.log_("Buffering put: " + pathString);
   }
+<<<<<<< HEAD
 }, sendPut_:function(index) {
+=======
+};
+fb.core.PersistentConnection.prototype.sendPut_ = function(index) {
+>>>>>>> dev
   var self = this;
   var action = this.outstandingPuts_[index].action;
   var request = this.outstandingPuts_[index].request;
@@ -11228,7 +11629,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       onComplete(message["s"], message["d"]);
     }
   });
+<<<<<<< HEAD
 }, reportStats:function(stats) {
+=======
+};
+fb.core.PersistentConnection.prototype.reportStats = function(stats) {
+>>>>>>> dev
   if (this.connected_) {
     var request = {"c":stats};
     this.log_("reportStats", request);
@@ -11240,7 +11646,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       }
     });
   }
+<<<<<<< HEAD
 }, onDataMessage_:function(message) {
+=======
+};
+fb.core.PersistentConnection.prototype.onDataMessage_ = function(message) {
+>>>>>>> dev
   if ("r" in message) {
     this.log_("from server: " + fb.util.json.stringify(message));
     var reqNum = message["r"];
@@ -11258,7 +11669,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       }
     }
   }
+<<<<<<< HEAD
 }, onDataPush_:function(action, body) {
+=======
+};
+fb.core.PersistentConnection.prototype.onDataPush_ = function(action, body) {
+>>>>>>> dev
   this.log_("handleServerMessage", action, body);
   if (action === "d") {
     this.onDataUpdate_(body["p"], body["d"], false, body["t"]);
@@ -11281,7 +11697,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       }
     }
   }
+<<<<<<< HEAD
 }, onReady_:function(timestamp) {
+=======
+};
+fb.core.PersistentConnection.prototype.onReady_ = function(timestamp) {
+>>>>>>> dev
   this.log_("connection ready");
   this.connected_ = true;
   this.lastConnectionEstablishedTime_ = (new Date).getTime();
@@ -11292,7 +11713,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
   this.restoreState_();
   this.firstConnection_ = false;
   this.onConnectStatus_(true);
+<<<<<<< HEAD
 }, scheduleConnect_:function(timeout) {
+=======
+};
+fb.core.PersistentConnection.prototype.scheduleConnect_ = function(timeout) {
+>>>>>>> dev
   fb.core.util.assert(!this.realtime_, "Scheduling a connect when we're already connected/ing?");
   if (this.establishConnectionTimer_) {
     clearTimeout(this.establishConnectionTimer_);
@@ -11302,7 +11728,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
     self.establishConnectionTimer_ = null;
     self.establishConnection_();
   }, Math.floor(timeout));
+<<<<<<< HEAD
 }, onVisible_:function(visible) {
+=======
+};
+fb.core.PersistentConnection.prototype.onVisible_ = function(visible) {
+>>>>>>> dev
   if (visible && !this.visible_ && this.reconnectDelay_ === this.maxReconnectDelay_) {
     this.log_("Window became visible.  Reducing delay.");
     this.reconnectDelay_ = RECONNECT_MIN_DELAY;
@@ -11311,7 +11742,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
     }
   }
   this.visible_ = visible;
+<<<<<<< HEAD
 }, onOnline_:function(online) {
+=======
+};
+fb.core.PersistentConnection.prototype.onOnline_ = function(online) {
+>>>>>>> dev
   if (online) {
     this.log_("Browser went online.");
     this.reconnectDelay_ = RECONNECT_MIN_DELAY;
@@ -11324,7 +11760,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       this.realtime_.close();
     }
   }
+<<<<<<< HEAD
 }, onRealtimeDisconnect_:function() {
+=======
+};
+fb.core.PersistentConnection.prototype.onRealtimeDisconnect_ = function() {
+>>>>>>> dev
   this.log_("data client disconnected");
   this.connected_ = false;
   this.realtime_ = null;
@@ -11352,7 +11793,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
     this.reconnectDelay_ = Math.min(this.maxReconnectDelay_, this.reconnectDelay_ * RECONNECT_DELAY_MULTIPLIER);
   }
   this.onConnectStatus_(false);
+<<<<<<< HEAD
 }, establishConnection_:function() {
+=======
+};
+fb.core.PersistentConnection.prototype.establishConnection_ = function() {
+>>>>>>> dev
   if (this.shouldReconnect_()) {
     this.log_("Making a connection attempt");
     this.lastConnectionAttemptTime_ = (new Date).getTime();
@@ -11367,7 +11813,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       self.killed_ = true;
     });
   }
+<<<<<<< HEAD
 }, interrupt:function() {
+=======
+};
+fb.core.PersistentConnection.prototype.interrupt = function() {
+>>>>>>> dev
   this.interrupted_ = true;
   if (this.realtime_) {
     this.realtime_.close();
@@ -11380,16 +11831,30 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       this.onRealtimeDisconnect_();
     }
   }
+<<<<<<< HEAD
 }, resume:function() {
+=======
+};
+fb.core.PersistentConnection.prototype.resume = function() {
+>>>>>>> dev
   this.interrupted_ = false;
   this.reconnectDelay_ = RECONNECT_MIN_DELAY;
   if (!this.realtime_) {
     this.scheduleConnect_(0);
   }
+<<<<<<< HEAD
 }, handleTimestamp_:function(timestamp) {
   var delta = timestamp - (new Date).getTime();
   this.onServerInfoUpdate_({"serverTimeOffset":delta});
 }, cancelSentTransactions_:function() {
+=======
+};
+fb.core.PersistentConnection.prototype.handleTimestamp_ = function(timestamp) {
+  var delta = timestamp - (new Date).getTime();
+  this.onServerInfoUpdate_({"serverTimeOffset":delta});
+};
+fb.core.PersistentConnection.prototype.cancelSentTransactions_ = function() {
+>>>>>>> dev
   for (var i = 0;i < this.outstandingPuts_.length;i++) {
     var put = this.outstandingPuts_[i];
     if (put && "h" in put.request && put.queued) {
@@ -11403,7 +11868,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
   if (this.outstandingPutCount_ === 0) {
     this.outstandingPuts_ = [];
   }
+<<<<<<< HEAD
 }, onListenRevoked_:function(pathString, opt_query) {
+=======
+};
+fb.core.PersistentConnection.prototype.onListenRevoked_ = function(pathString, opt_query) {
+>>>>>>> dev
   var queryId;
   if (!opt_query) {
     queryId = "default";
@@ -11416,7 +11886,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
   if (listen && listen.onComplete) {
     listen.onComplete("permission_denied");
   }
+<<<<<<< HEAD
 }, removeListen_:function(pathString, queryId) {
+=======
+};
+fb.core.PersistentConnection.prototype.removeListen_ = function(pathString, queryId) {
+>>>>>>> dev
   var normalizedPathString = (new fb.core.util.Path(pathString)).toString();
   var listen;
   if (goog.isDef(this.listens_[normalizedPathString])) {
@@ -11429,13 +11904,23 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
     listen = undefined;
   }
   return listen;
+<<<<<<< HEAD
 }, onAuthRevoked_:function(statusCode, explanation) {
+=======
+};
+fb.core.PersistentConnection.prototype.onAuthRevoked_ = function(statusCode, explanation) {
+>>>>>>> dev
   var cred = this.credential_;
   delete this.credential_;
   if (cred && cred.cancelCallback) {
     cred.cancelCallback(statusCode, explanation);
   }
+<<<<<<< HEAD
 }, onSecurityDebugPacket_:function(body) {
+=======
+};
+fb.core.PersistentConnection.prototype.onSecurityDebugPacket_ = function(body) {
+>>>>>>> dev
   if (this.securityDebugCallback_) {
     this.securityDebugCallback_(body);
   } else {
@@ -11443,7 +11928,12 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
       console.log("FIREBASE: " + body["msg"].replace("\n", "\nFIREBASE: "));
     }
   }
+<<<<<<< HEAD
 }, restoreState_:function() {
+=======
+};
+fb.core.PersistentConnection.prototype.restoreState_ = function() {
+>>>>>>> dev
   this.tryAuth();
   var self = this;
   goog.object.forEach(this.listens_, function(queries, pathString) {
@@ -11460,17 +11950,30 @@ fb.core.PersistentConnection = goog.defineClass(null, {constructor:function(repo
     var request = this.onDisconnectRequestQueue_.shift();
     this.sendOnDisconnect_(request.action, request.pathString, request.data, request.onComplete);
   }
+<<<<<<< HEAD
 }, sendConnectStats_:function() {
+=======
+};
+fb.core.PersistentConnection.prototype.sendConnectStats_ = function() {
+>>>>>>> dev
   var stats = {};
   stats["sdk.js." + CLIENT_VERSION.replace(/\./g, "-")] = 1;
   if (fb.login.util.environment.isMobileCordova()) {
     stats["framework.cordova"] = 1;
   }
   this.reportStats(stats);
+<<<<<<< HEAD
 }, shouldReconnect_:function() {
   var online = fb.core.util.OnlineMonitor.getInstance().currentlyOnline();
   return!this.killed_ && !this.interrupted_ && online;
 }});
+=======
+};
+fb.core.PersistentConnection.prototype.shouldReconnect_ = function() {
+  var online = fb.core.util.OnlineMonitor.getInstance().currentlyOnline();
+  return!this.killed_ && !this.interrupted_ && online;
+};
+>>>>>>> dev
 goog.provide("fb.api.INTERNAL");
 goog.require("fb.core.PersistentConnection");
 goog.require("fb.realtime.Connection");
@@ -11623,10 +12126,16 @@ goog.require("fb.login.AuthenticationManager");
 goog.require("fb.util.json");
 goog.require("fb.util.jwt");
 goog.require("goog.string");
+<<<<<<< HEAD
 fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestClient) {
   this.repoInfo_ = repoInfo;
   this.stats_ = fb.core.stats.StatsManager.getCollection(repoInfo);
   this.statsListener_ = null;
+=======
+fb.core.Repo = function(repoInfo, forceRestClient) {
+  this.repoInfo_ = repoInfo;
+  this.stats_ = fb.core.stats.StatsManager.getCollection(repoInfo);
+>>>>>>> dev
   this.eventQueue_ = new fb.core.view.EventQueue;
   this.nextWriteId_ = 1;
   this.persistentConnection_ = null;
@@ -11669,6 +12178,7 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
   }, stopListening:function(query, tag) {
     self.server_.unlisten(query, tag);
   }});
+<<<<<<< HEAD
 }, toString:function() {
   return(this.repoInfo_.secure ? "https://" : "http://") + this.repoInfo_.host;
 }, name:function() {
@@ -11680,6 +12190,24 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
 }, generateServerValues:function() {
   return fb.core.util.ServerValues.generateWithValues({"timestamp":this.serverTime()});
 }, onDataUpdate_:function(pathString, data, isMerge, tag) {
+=======
+};
+fb.core.Repo.prototype.toString = function() {
+  return(this.repoInfo_.secure ? "https://" : "http://") + this.repoInfo_.host;
+};
+fb.core.Repo.prototype.name = function() {
+  return this.repoInfo_.namespace;
+};
+fb.core.Repo.prototype.serverTime = function() {
+  var offsetNode = this.infoData_.getNode(new fb.core.util.Path(".info/serverTimeOffset"));
+  var offset = (offsetNode.val()) || 0;
+  return(new Date).getTime() + offset;
+};
+fb.core.Repo.prototype.generateServerValues = function() {
+  return fb.core.util.ServerValues.generateWithValues({"timestamp":this.serverTime()});
+};
+fb.core.Repo.prototype.onDataUpdate_ = function(pathString, data, isMerge, tag) {
+>>>>>>> dev
   this.dataUpdateCount++;
   var path = new fb.core.util.Path(pathString);
   data = this.interceptServerDataCallback_ ? this.interceptServerDataCallback_(pathString, data) : data;
@@ -11710,29 +12238,58 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
     affectedPath = this.rerunTransactions_(path);
   }
   this.eventQueue_.raiseEventsForChangedPath(affectedPath, events);
+<<<<<<< HEAD
 }, interceptServerData_:function(callback) {
   this.interceptServerDataCallback_ = callback;
 }, onConnectStatus_:function(connectStatus) {
+=======
+};
+fb.core.Repo.prototype.interceptServerData_ = function(callback) {
+  this.interceptServerDataCallback_ = callback;
+};
+fb.core.Repo.prototype.onConnectStatus_ = function(connectStatus) {
+>>>>>>> dev
   this.updateInfo_("connected", connectStatus);
   if (connectStatus === false) {
     this.runOnDisconnectEvents_();
   }
+<<<<<<< HEAD
 }, onServerInfoUpdate_:function(updates) {
+=======
+};
+fb.core.Repo.prototype.onServerInfoUpdate_ = function(updates) {
+>>>>>>> dev
   var self = this;
   fb.core.util.each(updates, function(value, key) {
     self.updateInfo_(key, value);
   });
+<<<<<<< HEAD
 }, onAuthStatus_:function(authStatus) {
   this.updateInfo_("authenticated", authStatus);
 }, updateInfo_:function(pathString, value) {
+=======
+};
+fb.core.Repo.prototype.onAuthStatus_ = function(authStatus) {
+  this.updateInfo_("authenticated", authStatus);
+};
+fb.core.Repo.prototype.updateInfo_ = function(pathString, value) {
+>>>>>>> dev
   var path = new fb.core.util.Path("/.info/" + pathString);
   var newNode = fb.core.snap.NodeFromJSON(value);
   this.infoData_.updateSnapshot(path, newNode);
   var events = this.infoSyncTree_.applyServerOverwrite(path, newNode);
   this.eventQueue_.raiseEventsForChangedPath(path, events);
+<<<<<<< HEAD
 }, getNextWriteId_:function() {
   return this.nextWriteId_++;
 }, setWithPriority:function(path, newVal, newPriority, onComplete) {
+=======
+};
+fb.core.Repo.prototype.getNextWriteId_ = function() {
+  return this.nextWriteId_++;
+};
+fb.core.Repo.prototype.setWithPriority = function(path, newVal, newPriority, onComplete) {
+>>>>>>> dev
   this.log_("set", {path:path.toString(), value:newVal, priority:newPriority});
   var serverValues = this.generateServerValues();
   var newNodeUnresolved = fb.core.snap.NodeFromJSON(newVal, newPriority);
@@ -11753,7 +12310,12 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
   var affectedPath = this.abortTransactions_(path);
   this.rerunTransactions_(affectedPath);
   this.eventQueue_.raiseEventsForChangedPath(affectedPath, []);
+<<<<<<< HEAD
 }, update:function(path, childrenToMerge, onComplete) {
+=======
+};
+fb.core.Repo.prototype.update = function(path, childrenToMerge, onComplete) {
+>>>>>>> dev
   this.log_("update", {path:path.toString(), value:childrenToMerge});
   var empty = true;
   var serverValues = this.generateServerValues();
@@ -11788,7 +12350,12 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
     fb.core.util.log("update() called with empty data.  Don't do anything.");
     this.callOnCompleteCallback(onComplete, "ok");
   }
+<<<<<<< HEAD
 }, runOnDisconnectEvents_:function() {
+=======
+};
+fb.core.Repo.prototype.runOnDisconnectEvents_ = function() {
+>>>>>>> dev
   this.log_("onDisconnectEvents");
   var self = this;
   var serverValues = this.generateServerValues();
@@ -11801,7 +12368,12 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
   });
   this.onDisconnect_ = new fb.core.SparseSnapshotTree;
   this.eventQueue_.raiseEventsForChangedPath(fb.core.util.Path.Empty, events);
+<<<<<<< HEAD
 }, onDisconnectCancel:function(path, onComplete) {
+=======
+};
+fb.core.Repo.prototype.onDisconnectCancel = function(path, onComplete) {
+>>>>>>> dev
   var self = this;
   this.server_.onDisconnectCancel(path.toString(), function(status, errorReason) {
     if (status === "ok") {
@@ -11809,7 +12381,12 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
     }
     self.callOnCompleteCallback(onComplete, status, errorReason);
   });
+<<<<<<< HEAD
 }, onDisconnectSet:function(path, value, onComplete) {
+=======
+};
+fb.core.Repo.prototype.onDisconnectSet = function(path, value, onComplete) {
+>>>>>>> dev
   var self = this;
   var newNode = fb.core.snap.NodeFromJSON(value);
   this.server_.onDisconnectPut(path.toString(), newNode.val(true), function(status, errorReason) {
@@ -11818,7 +12395,12 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
     }
     self.callOnCompleteCallback(onComplete, status, errorReason);
   });
+<<<<<<< HEAD
 }, onDisconnectSetWithPriority:function(path, value, priority, onComplete) {
+=======
+};
+fb.core.Repo.prototype.onDisconnectSetWithPriority = function(path, value, priority, onComplete) {
+>>>>>>> dev
   var self = this;
   var newNode = fb.core.snap.NodeFromJSON(value, priority);
   this.server_.onDisconnectPut(path.toString(), newNode.val(true), function(status, errorReason) {
@@ -11827,7 +12409,12 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
     }
     self.callOnCompleteCallback(onComplete, status, errorReason);
   });
+<<<<<<< HEAD
 }, onDisconnectUpdate:function(path, childrenToMerge, onComplete) {
+=======
+};
+fb.core.Repo.prototype.onDisconnectUpdate = function(path, childrenToMerge, onComplete) {
+>>>>>>> dev
   var empty = true;
   for (var childName in childrenToMerge) {
     empty = false;
@@ -11847,7 +12434,12 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
     }
     self.callOnCompleteCallback(onComplete, status, errorReason);
   });
+<<<<<<< HEAD
 }, addEventCallbackForQuery:function(query, eventRegistration) {
+=======
+};
+fb.core.Repo.prototype.addEventCallbackForQuery = function(query, eventRegistration) {
+>>>>>>> dev
   var events;
   if (query.path.getFront() === ".info") {
     events = this.infoSyncTree_.addEventRegistration(query, eventRegistration);
@@ -11855,7 +12447,12 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
     events = this.serverSyncTree_.addEventRegistration(query, eventRegistration);
   }
   this.eventQueue_.raiseEventsAtPath(query.path, events);
+<<<<<<< HEAD
 }, removeEventCallbackForQuery:function(query, eventRegistration) {
+=======
+};
+fb.core.Repo.prototype.removeEventCallbackForQuery = function(query, eventRegistration) {
+>>>>>>> dev
   var events;
   if (query.path.getFront() === ".info") {
     events = this.infoSyncTree_.removeEventRegistration(query, eventRegistration);
@@ -11863,6 +12460,7 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
     events = this.serverSyncTree_.removeEventRegistration(query, eventRegistration);
   }
   this.eventQueue_.raiseEventsAtPath(query.path, events);
+<<<<<<< HEAD
 }, interrupt:function() {
   if (this.persistentConnection_) {
     this.persistentConnection_.interrupt();
@@ -11872,6 +12470,20 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
     this.persistentConnection_.resume();
   }
 }, stats:function(showDelta) {
+=======
+};
+fb.core.Repo.prototype.interrupt = function() {
+  if (this.persistentConnection_) {
+    this.persistentConnection_.interrupt();
+  }
+};
+fb.core.Repo.prototype.resume = function() {
+  if (this.persistentConnection_) {
+    this.persistentConnection_.resume();
+  }
+};
+fb.core.Repo.prototype.stats = function(showDelta) {
+>>>>>>> dev
   if (typeof console === "undefined") {
     return;
   }
@@ -11894,16 +12506,30 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
     }
     console.log(stat + value);
   }
+<<<<<<< HEAD
 }, statsIncrementCounter:function(metric) {
   this.stats_.incrementCounter(metric);
   this.statsReporter_.includeStat(metric);
 }, log_:function(var_args) {
+=======
+};
+fb.core.Repo.prototype.statsIncrementCounter = function(metric) {
+  this.stats_.incrementCounter(metric);
+  this.statsReporter_.includeStat(metric);
+};
+fb.core.Repo.prototype.log_ = function(var_args) {
+>>>>>>> dev
   var prefix = "";
   if (this.persistentConnection_) {
     prefix = this.persistentConnection_.id + ":";
   }
   fb.core.util.log(prefix, arguments);
+<<<<<<< HEAD
 }, callOnCompleteCallback:function(callback, status, errorReason) {
+=======
+};
+fb.core.Repo.prototype.callOnCompleteCallback = function(callback, status, errorReason) {
+>>>>>>> dev
   if (callback) {
     fb.core.util.exceptionGuard(function() {
       if (status == "ok") {
@@ -11920,7 +12546,11 @@ fb.core.Repo = goog.defineClass(null, {constructor:function(repoInfo, forceRestC
       }
     });
   }
+<<<<<<< HEAD
 }});
+=======
+};
+>>>>>>> dev
 goog.provide("fb.core.Repo_transaction");
 goog.require("fb.core.Repo");
 goog.require("fb.core.snap.PriorityIndex");
@@ -12249,6 +12879,7 @@ goog.provide("fb.core.RepoManager");
 goog.require("fb.core.Repo");
 goog.require("fb.core.Repo_transaction");
 goog.require("fb.util.obj");
+<<<<<<< HEAD
 fb.core.RepoManager = goog.defineClass(null, {constructor:function() {
   this.repos_ = {};
   this.useRestClient_ = false;
@@ -12261,6 +12892,26 @@ fb.core.RepoManager = goog.defineClass(null, {constructor:function() {
     this.repos_[repo].resume();
   }
 }, getRepo:function(repoInfo) {
+=======
+fb.core.RepoManager = function() {
+  this.repos_ = {};
+  this.useRestClient_ = false;
+};
+goog.addSingletonGetter(fb.core.RepoManager);
+fb.core.RepoManager.prototype.interrupt = function() {
+  for (var repo in this.repos_) {
+    this.repos_[repo].interrupt();
+  }
+};
+goog.exportProperty(fb.core.RepoManager.prototype, "interrupt", fb.core.RepoManager.prototype.interrupt);
+fb.core.RepoManager.prototype.resume = function() {
+  for (var repo in this.repos_) {
+    this.repos_[repo].resume();
+  }
+};
+goog.exportProperty(fb.core.RepoManager.prototype, "resume", fb.core.RepoManager.prototype.resume);
+fb.core.RepoManager.prototype.getRepo = function(repoInfo) {
+>>>>>>> dev
   var repoHashString = repoInfo.toString();
   var repo = fb.util.obj.get(this.repos_, repoHashString);
   if (!repo) {
@@ -12268,12 +12919,19 @@ fb.core.RepoManager = goog.defineClass(null, {constructor:function() {
     this.repos_[repoHashString] = repo;
   }
   return repo;
+<<<<<<< HEAD
 }, forceRestClient:function() {
   this.useRestClient_ = true;
 }});
 goog.addSingletonGetter(fb.core.RepoManager);
 goog.exportProperty(fb.core.RepoManager.prototype, "interrupt", fb.core.RepoManager.prototype.interrupt);
 goog.exportProperty(fb.core.RepoManager.prototype, "resume", fb.core.RepoManager.prototype.resume);
+=======
+};
+fb.core.RepoManager.prototype.forceRestClient = function() {
+  this.useRestClient_ = true;
+};
+>>>>>>> dev
 goog.provide("fb.api.OnDisconnect");
 goog.require("fb.constants");
 goog.require("fb.core.Repo");
@@ -12338,12 +12996,21 @@ goog.require("fb.core.view.EventRegistration");
 goog.require("fb.core.view.QueryParams");
 goog.require("fb.util.json");
 goog.require("fb.util.validation");
+<<<<<<< HEAD
 fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryParams, orderByCalled) {
+=======
+fb.api.Query = function(repo, path, queryParams, orderByCalled) {
+>>>>>>> dev
   this.repo = repo;
   this.path = path;
   this.queryParams_ = queryParams;
   this.orderByCalled_ = orderByCalled;
+<<<<<<< HEAD
 }, validateQueryEndpoints_:function(params) {
+=======
+};
+fb.api.Query.prototype.validateQueryEndpoints_ = function(params) {
+>>>>>>> dev
   var startNode = null;
   var endNode = null;
   if (params.hasStart()) {
@@ -12387,6 +13054,7 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
       }
     }
   }
+<<<<<<< HEAD
 }, validateLimit_:function(params) {
   if (params.hasStart() && params.hasEnd() && params.hasLimit() && !params.hasAnchoredLimit()) {
     throw new Error("Query: Can't combine startAt(), endAt(), and limit(). Use limitToFirst() or limitToLast() instead.");
@@ -12401,6 +13069,28 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
   fb.util.validation.validateArgCount("Query.ref", 0, 0, arguments.length);
   return new Firebase(this.repo, this.path);
 }, on:function(eventType, callback, cancelCallbackOrContext, context) {
+=======
+};
+fb.api.Query.prototype.validateLimit_ = function(params) {
+  if (params.hasStart() && params.hasEnd() && params.hasLimit() && !params.hasAnchoredLimit()) {
+    throw new Error("Query: Can't combine startAt(), endAt(), and limit(). Use limitToFirst() or limitToLast() instead.");
+  }
+};
+fb.api.Query.prototype.validateNoPreviousOrderByCall_ = function(fnName) {
+  if (this.orderByCalled_ === true) {
+    throw new Error(fnName + ": You can't combine multiple orderBy calls.");
+  }
+};
+fb.api.Query.prototype.getQueryParams = function() {
+  return this.queryParams_;
+};
+fb.api.Query.prototype.ref = function() {
+  fb.util.validation.validateArgCount("Query.ref", 0, 0, arguments.length);
+  return new Firebase(this.repo, this.path);
+};
+goog.exportProperty(fb.api.Query.prototype, "ref", fb.api.Query.prototype.ref);
+fb.api.Query.prototype.on = function(eventType, callback, cancelCallbackOrContext, context) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.on", 2, 4, arguments.length);
   fb.core.util.validation.validateEventType("Query.on", 1, eventType, false);
   fb.util.validation.validateCallback("Query.on", 2, callback, false);
@@ -12413,6 +13103,7 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
     this.onChildEvent(callbacks, ret.cancel, ret.context);
   }
   return callback;
+<<<<<<< HEAD
 }, onValueEvent:function(callback, cancelCallback, context) {
   var container = new fb.core.view.ValueEventRegistration(callback, cancelCallback || null, context || null);
   this.repo.addEventCallbackForQuery(this, container);
@@ -12420,6 +13111,19 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
   var container = new fb.core.view.ChildEventRegistration(callbacks, cancelCallback, context);
   this.repo.addEventCallbackForQuery(this, container);
 }, off:function(eventType, callback, opt_context) {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "on", fb.api.Query.prototype.on);
+fb.api.Query.prototype.onValueEvent = function(callback, cancelCallback, context) {
+  var container = new fb.core.view.ValueEventRegistration(callback, cancelCallback || null, context || null);
+  this.repo.addEventCallbackForQuery(this, container);
+};
+fb.api.Query.prototype.onChildEvent = function(callbacks, cancelCallback, context) {
+  var container = new fb.core.view.ChildEventRegistration(callbacks, cancelCallback, context);
+  this.repo.addEventCallbackForQuery(this, container);
+};
+fb.api.Query.prototype.off = function(eventType, callback, opt_context) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.off", 0, 3, arguments.length);
   fb.core.util.validation.validateEventType("Query.off", 1, eventType, true);
   fb.util.validation.validateCallback("Query.off", 2, callback, true);
@@ -12439,7 +13143,13 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
     }
   }
   this.repo.removeEventCallbackForQuery(this, container);
+<<<<<<< HEAD
 }, once:function(eventType, userCallback) {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "off", fb.api.Query.prototype.off);
+fb.api.Query.prototype.once = function(eventType, userCallback) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.once", 2, 4, arguments.length);
   fb.core.util.validation.validateEventType("Query.once", 1, eventType, false);
   fb.util.validation.validateCallback("Query.once", 2, userCallback, false);
@@ -12458,7 +13168,13 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
       goog.bind(ret.cancel, ret.context)(err);
     }
   });
+<<<<<<< HEAD
 }, limit:function(limit) {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "once", fb.api.Query.prototype.once);
+fb.api.Query.prototype.limit = function(limit) {
+>>>>>>> dev
   fb.core.util.warn("Query.limit() being deprecated. " + "Please use Query.limitToFirst() or Query.limitToLast() instead.");
   fb.util.validation.validateArgCount("Query.limit", 1, 1, arguments.length);
   if (!goog.isNumber(limit) || Math.floor(limit) !== limit || limit <= 0) {
@@ -12470,7 +13186,13 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
   var newParams = this.queryParams_.limit(limit);
   this.validateLimit_(newParams);
   return new fb.api.Query(this.repo, this.path, newParams, this.orderByCalled_);
+<<<<<<< HEAD
 }, limitToFirst:function(limit) {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "limit", fb.api.Query.prototype.limit);
+fb.api.Query.prototype.limitToFirst = function(limit) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.limitToFirst", 1, 1, arguments.length);
   if (!goog.isNumber(limit) || Math.floor(limit) !== limit || limit <= 0) {
     throw new Error("Query.limitToFirst: First argument must be a positive integer.");
@@ -12479,7 +13201,13 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
     throw new Error("Query.limitToFirst: Limit was already set (by another call to limit, " + "limitToFirst, or limitToLast).");
   }
   return new fb.api.Query(this.repo, this.path, this.queryParams_.limitToFirst(limit), this.orderByCalled_);
+<<<<<<< HEAD
 }, limitToLast:function(limit) {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "limitToFirst", fb.api.Query.prototype.limitToFirst);
+fb.api.Query.prototype.limitToLast = function(limit) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.limitToLast", 1, 1, arguments.length);
   if (!goog.isNumber(limit) || Math.floor(limit) !== limit || limit <= 0) {
     throw new Error("Query.limitToLast: First argument must be a positive integer.");
@@ -12488,7 +13216,13 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
     throw new Error("Query.limitToLast: Limit was already set (by another call to limit, " + "limitToFirst, or limitToLast).");
   }
   return new fb.api.Query(this.repo, this.path, this.queryParams_.limitToLast(limit), this.orderByCalled_);
+<<<<<<< HEAD
 }, orderByChild:function(key) {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "limitToLast", fb.api.Query.prototype.limitToLast);
+fb.api.Query.prototype.orderByChild = function(key) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.orderByChild", 1, 1, arguments.length);
   if (key === "$key") {
     throw new Error('Query.orderByChild: "$key" is invalid.  Use Query.orderByKey() instead.');
@@ -12507,25 +13241,49 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
   var newParams = this.queryParams_.orderBy(index);
   this.validateQueryEndpoints_(newParams);
   return new fb.api.Query(this.repo, this.path, newParams, true);
+<<<<<<< HEAD
 }, orderByKey:function() {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "orderByChild", fb.api.Query.prototype.orderByChild);
+fb.api.Query.prototype.orderByKey = function() {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.orderByKey", 0, 0, arguments.length);
   this.validateNoPreviousOrderByCall_("Query.orderByKey");
   var newParams = this.queryParams_.orderBy(fb.core.snap.KeyIndex);
   this.validateQueryEndpoints_(newParams);
   return new fb.api.Query(this.repo, this.path, newParams, true);
+<<<<<<< HEAD
 }, orderByPriority:function() {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "orderByKey", fb.api.Query.prototype.orderByKey);
+fb.api.Query.prototype.orderByPriority = function() {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.orderByPriority", 0, 0, arguments.length);
   this.validateNoPreviousOrderByCall_("Query.orderByPriority");
   var newParams = this.queryParams_.orderBy(fb.core.snap.PriorityIndex);
   this.validateQueryEndpoints_(newParams);
   return new fb.api.Query(this.repo, this.path, newParams, true);
+<<<<<<< HEAD
 }, orderByValue:function() {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "orderByPriority", fb.api.Query.prototype.orderByPriority);
+fb.api.Query.prototype.orderByValue = function() {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.orderByValue", 0, 0, arguments.length);
   this.validateNoPreviousOrderByCall_("Query.orderByValue");
   var newParams = this.queryParams_.orderBy(fb.core.snap.ValueIndex);
   this.validateQueryEndpoints_(newParams);
   return new fb.api.Query(this.repo, this.path, newParams, true);
+<<<<<<< HEAD
 }, startAt:function(value, name) {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "orderByValue", fb.api.Query.prototype.orderByValue);
+fb.api.Query.prototype.startAt = function(value, name) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.startAt", 0, 2, arguments.length);
   fb.core.util.validation.validateFirebaseDataArg("Query.startAt", 1, value, this.path, true);
   fb.core.util.validation.validateKey("Query.startAt", 2, name, true);
@@ -12540,7 +13298,13 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
     name = null;
   }
   return new fb.api.Query(this.repo, this.path, newParams, this.orderByCalled_);
+<<<<<<< HEAD
 }, endAt:function(value, name) {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "startAt", fb.api.Query.prototype.startAt);
+fb.api.Query.prototype.endAt = function(value, name) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.endAt", 0, 2, arguments.length);
   fb.core.util.validation.validateFirebaseDataArg("Query.endAt", 1, value, this.path, true);
   fb.core.util.validation.validateKey("Query.endAt", 2, name, true);
@@ -12551,7 +13315,13 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
     throw new Error("Query.endAt: Ending point was already set (by another call to endAt or " + "equalTo).");
   }
   return new fb.api.Query(this.repo, this.path, newParams, this.orderByCalled_);
+<<<<<<< HEAD
 }, equalTo:function(value, name) {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "endAt", fb.api.Query.prototype.endAt);
+fb.api.Query.prototype.equalTo = function(value, name) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Query.equalTo", 1, 2, arguments.length);
   fb.core.util.validation.validateFirebaseDataArg("Query.equalTo", 1, value, this.path, false);
   fb.core.util.validation.validateKey("Query.equalTo", 2, name, true);
@@ -12562,6 +13332,7 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
     throw new Error("Query.equalTo: Ending point was already set (by another call to endAt or " + "equalTo).");
   }
   return this.startAt(value, name).endAt(value, name);
+<<<<<<< HEAD
 }, toString:function() {
   fb.util.validation.validateArgCount("Query.toString", 0, 0, arguments.length);
   return this.repo.toString() + this.path.toUrlEncodedString();
@@ -12572,6 +13343,24 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
   var id = fb.core.util.ObjectToUniqueKey(obj);
   return id === "{}" ? "default" : id;
 }, getCancelAndContextArgs_:function(fnName, cancelOrContext, context) {
+=======
+};
+goog.exportProperty(fb.api.Query.prototype, "equalTo", fb.api.Query.prototype.equalTo);
+fb.api.Query.prototype.toString = function() {
+  fb.util.validation.validateArgCount("Query.toString", 0, 0, arguments.length);
+  return this.repo.toString() + this.path.toUrlEncodedString();
+};
+goog.exportProperty(fb.api.Query.prototype, "toString", fb.api.Query.prototype.toString);
+fb.api.Query.prototype.queryObject = function() {
+  return this.queryParams_.getQueryObject();
+};
+fb.api.Query.prototype.queryIdentifier = function() {
+  var obj = this.queryObject();
+  var id = fb.core.util.ObjectToUniqueKey(obj);
+  return id === "{}" ? "default" : id;
+};
+fb.api.Query.prototype.getCancelAndContextArgs_ = function(fnName, cancelOrContext, context) {
+>>>>>>> dev
   var ret = {cancel:null, context:null};
   if (cancelOrContext && context) {
     ret.cancel = (cancelOrContext);
@@ -12592,6 +13381,7 @@ fb.api.Query = goog.defineClass(null, {constructor:function(repo, path, queryPar
     }
   }
   return ret;
+<<<<<<< HEAD
 }});
 goog.exportProperty(fb.api.Query.prototype, "ref", fb.api.Query.prototype.ref);
 goog.exportProperty(fb.api.Query.prototype, "on", fb.api.Query.prototype.on);
@@ -12608,6 +13398,9 @@ goog.exportProperty(fb.api.Query.prototype, "startAt", fb.api.Query.prototype.st
 goog.exportProperty(fb.api.Query.prototype, "endAt", fb.api.Query.prototype.endAt);
 goog.exportProperty(fb.api.Query.prototype, "equalTo", fb.api.Query.prototype.equalTo);
 goog.exportProperty(fb.api.Query.prototype, "toString", fb.api.Query.prototype.toString);
+=======
+};
+>>>>>>> dev
 goog.provide("fb.api.TEST_ACCESS");
 goog.require("fb.core.PersistentConnection");
 fb.api.TEST_ACCESS.DataConnection = fb.core.PersistentConnection;
@@ -12665,7 +13458,11 @@ goog.require("fb.core.util");
 goog.require("fb.core.util.nextPushId");
 goog.require("fb.core.util.validation");
 goog.require("goog.string");
+<<<<<<< HEAD
 Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathOrContext) {
+=======
+Firebase = function(urlOrRepo, pathOrContext) {
+>>>>>>> dev
   var repo, path, repoManager;
   if (urlOrRepo instanceof fb.core.Repo) {
     repo = urlOrRepo;
@@ -12692,6 +13489,7 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
     path = parsedUrl.path;
   }
   fb.api.Query.call(this, repo, path, fb.core.view.QueryParams.DEFAULT, false);
+<<<<<<< HEAD
 }, statics:{goOffline:function() {
   fb.util.validation.validateArgCount("Firebase.goOffline", 0, 0, arguments.length);
   fb.core.RepoManager.getInstance().interrupt();
@@ -12728,13 +13526,31 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
   fb.util.validation.validateArgCount("Firebase.name", 0, 0, arguments.length);
   return this.key();
 }, key:function() {
+=======
+};
+goog.inherits(Firebase, fb.api.Query);
+if (NODE_CLIENT) {
+  module["exports"] = Firebase;
+}
+Firebase.prototype.name = function() {
+  fb.core.util.warn("Firebase.name() being deprecated. Please use Firebase.key() instead.");
+  fb.util.validation.validateArgCount("Firebase.name", 0, 0, arguments.length);
+  return this.key();
+};
+Firebase.prototype.key = function() {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.key", 0, 0, arguments.length);
   if (this.path.isEmpty()) {
     return null;
   } else {
     return this.path.getBack();
   }
+<<<<<<< HEAD
 }, child:function(pathString) {
+=======
+};
+Firebase.prototype.child = function(pathString) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.child", 1, 1, arguments.length);
   if (goog.isNumber(pathString)) {
     pathString = String(pathString);
@@ -12748,24 +13564,44 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
     }
   }
   return new Firebase(this.repo, this.path.child(pathString));
+<<<<<<< HEAD
 }, parent:function() {
   fb.util.validation.validateArgCount("Firebase.parent", 0, 0, arguments.length);
   var parentPath = this.path.parent();
   return parentPath === null ? null : new Firebase(this.repo, parentPath);
 }, root:function() {
+=======
+};
+Firebase.prototype.parent = function() {
+  fb.util.validation.validateArgCount("Firebase.parent", 0, 0, arguments.length);
+  var parentPath = this.path.parent();
+  return parentPath === null ? null : new Firebase(this.repo, parentPath);
+};
+Firebase.prototype.root = function() {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.ref", 0, 0, arguments.length);
   var ref = this;
   while (ref.parent() !== null) {
     ref = ref.parent();
   }
   return ref;
+<<<<<<< HEAD
 }, set:function(newVal, onComplete) {
+=======
+};
+Firebase.prototype.set = function(newVal, onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.set", 1, 2, arguments.length);
   fb.core.util.validation.validateWritablePath("Firebase.set", this.path);
   fb.core.util.validation.validateFirebaseDataArg("Firebase.set", 1, newVal, this.path, false);
   fb.util.validation.validateCallback("Firebase.set", 2, onComplete, true);
   this.repo.setWithPriority(this.path, newVal, null, onComplete || null);
+<<<<<<< HEAD
 }, update:function(objectToMerge, onComplete) {
+=======
+};
+Firebase.prototype.update = function(objectToMerge, onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.update", 1, 2, arguments.length);
   fb.core.util.validation.validateWritablePath("Firebase.update", this.path);
   if (goog.isArray(objectToMerge)) {
@@ -12774,12 +13610,21 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
       newObjectToMerge["" + i] = objectToMerge[i];
     }
     objectToMerge = newObjectToMerge;
+<<<<<<< HEAD
     fb.core.util.warn("Passing an Array to Firebase.update() is deprecated. " + "Use set() if you want to overwrite the existing data, or " + "an Object with integer keys if you really do want to " + "only update some of the children.");
+=======
+    fb.core.util.warn("Passing an Array to Firebase.update() is deprecated. Use set() if you want to overwrite the existing data, or " + "an Object with integer keys if you really do want to only update some of the children.");
+>>>>>>> dev
   }
   fb.core.util.validation.validateFirebaseMergeDataArg("Firebase.update", 1, objectToMerge, this.path, false);
   fb.util.validation.validateCallback("Firebase.update", 2, onComplete, true);
   this.repo.update(this.path, objectToMerge, onComplete || null);
+<<<<<<< HEAD
 }, setWithPriority:function(newVal, newPriority, onComplete) {
+=======
+};
+Firebase.prototype.setWithPriority = function(newVal, newPriority, onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.setWithPriority", 2, 3, arguments.length);
   fb.core.util.validation.validateWritablePath("Firebase.setWithPriority", this.path);
   fb.core.util.validation.validateFirebaseDataArg("Firebase.setWithPriority", 1, newVal, this.path, false);
@@ -12789,12 +13634,22 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
     throw "Firebase.setWithPriority failed: " + this.key() + " is a read-only object.";
   }
   this.repo.setWithPriority(this.path, newVal, newPriority, onComplete || null);
+<<<<<<< HEAD
 }, remove:function(onComplete) {
+=======
+};
+Firebase.prototype.remove = function(onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.remove", 0, 1, arguments.length);
   fb.core.util.validation.validateWritablePath("Firebase.remove", this.path);
   fb.util.validation.validateCallback("Firebase.remove", 1, onComplete, true);
   this.set(null, onComplete);
+<<<<<<< HEAD
 }, transaction:function(transactionUpdate, onComplete, applyLocally) {
+=======
+};
+Firebase.prototype.transaction = function(transactionUpdate, onComplete, applyLocally) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.transaction", 1, 3, arguments.length);
   fb.core.util.validation.validateWritablePath("Firebase.transaction", this.path);
   fb.util.validation.validateCallback("Firebase.transaction", 1, transactionUpdate, false);
@@ -12807,13 +13662,23 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
     applyLocally = true;
   }
   this.repo.startTransaction(this.path, transactionUpdate, onComplete || null, applyLocally);
+<<<<<<< HEAD
 }, setPriority:function(priority, opt_onComplete) {
+=======
+};
+Firebase.prototype.setPriority = function(priority, opt_onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.setPriority", 1, 2, arguments.length);
   fb.core.util.validation.validateWritablePath("Firebase.setPriority", this.path);
   fb.core.util.validation.validatePriority("Firebase.setPriority", 1, priority, false);
   fb.util.validation.validateCallback("Firebase.setPriority", 2, opt_onComplete, true);
   this.repo.setWithPriority(this.path.child(".priority"), priority, null, opt_onComplete);
+<<<<<<< HEAD
 }, push:function(value, onComplete) {
+=======
+};
+Firebase.prototype.push = function(value, onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.push", 0, 2, arguments.length);
   fb.core.util.validation.validateWritablePath("Firebase.push", this.path);
   fb.core.util.validation.validateFirebaseDataArg("Firebase.push", 1, value, this.path, true);
@@ -12825,10 +13690,19 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
     pushedRef.set(value, onComplete);
   }
   return pushedRef;
+<<<<<<< HEAD
 }, onDisconnect:function() {
   fb.core.util.validation.validateWritablePath("Firebase.onDisconnect", this.path);
   return new fb.api.OnDisconnect(this.repo, this.path);
 }, auth:function(cred, opt_onComplete, opt_onCancel) {
+=======
+};
+Firebase.prototype.onDisconnect = function() {
+  fb.core.util.validation.validateWritablePath("Firebase.onDisconnect", this.path);
+  return new fb.api.OnDisconnect(this.repo, this.path);
+};
+Firebase.prototype.auth = function(cred, opt_onComplete, opt_onCancel) {
+>>>>>>> dev
   fb.core.util.warn("FirebaseRef.auth() being deprecated. " + "Please use FirebaseRef.authWithCustomToken() instead.");
   fb.util.validation.validateArgCount("Firebase.auth", 1, 3, arguments.length);
   fb.core.util.validation.validateCredential("Firebase.auth", 1, cred, false);
@@ -12837,6 +13711,7 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
   var clientOptions = {};
   clientOptions[fb.login.Constants.CLIENT_OPTION_SESSION_PERSISTENCE] = "none";
   this.repo.auth.authenticate(cred, {}, clientOptions, opt_onComplete, opt_onCancel);
+<<<<<<< HEAD
 }, unauth:function(opt_onComplete) {
   fb.util.validation.validateArgCount("Firebase.unauth", 0, 1, arguments.length);
   fb.util.validation.validateCallback("Firebase.unauth", 1, opt_onComplete, true);
@@ -12845,34 +13720,72 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
   fb.util.validation.validateArgCount("Firebase.getAuth", 0, 0, arguments.length);
   return this.repo.auth.getAuth();
 }, onAuth:function(callback, opt_context) {
+=======
+};
+Firebase.prototype.unauth = function(opt_onComplete) {
+  fb.util.validation.validateArgCount("Firebase.unauth", 0, 1, arguments.length);
+  fb.util.validation.validateCallback("Firebase.unauth", 1, opt_onComplete, true);
+  this.repo.auth.unauthenticate(opt_onComplete);
+};
+Firebase.prototype.getAuth = function() {
+  fb.util.validation.validateArgCount("Firebase.getAuth", 0, 0, arguments.length);
+  return this.repo.auth.getAuth();
+};
+Firebase.prototype.onAuth = function(callback, opt_context) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.onAuth", 1, 2, arguments.length);
   fb.util.validation.validateCallback("Firebase.onAuth", 1, callback, false);
   fb.util.validation.validateContextObject("Firebase.onAuth", 2, opt_context, true);
   this.repo.auth.on("auth_status", callback, opt_context);
+<<<<<<< HEAD
 }, offAuth:function(callback, opt_context) {
+=======
+};
+Firebase.prototype.offAuth = function(callback, opt_context) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.offAuth", 1, 2, arguments.length);
   fb.util.validation.validateCallback("Firebase.offAuth", 1, callback, false);
   fb.util.validation.validateContextObject("Firebase.offAuth", 2, opt_context, true);
   this.repo.auth.off("auth_status", callback, opt_context);
+<<<<<<< HEAD
 }, authWithCustomToken:function(token, onComplete, opt_options) {
+=======
+};
+Firebase.prototype.authWithCustomToken = function(token, onComplete, opt_options) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.authWithCustomToken", 2, 3, arguments.length);
   fb.core.util.validation.validateCredential("Firebase.authWithCustomToken", 1, token, false);
   fb.util.validation.validateCallback("Firebase.authWithCustomToken", 2, onComplete, false);
   fb.core.util.validation.validateObject("Firebase.authWithCustomToken", 3, opt_options, true);
   this.repo.auth.authenticate(token, {}, opt_options || {}, onComplete);
+<<<<<<< HEAD
 }, authWithOAuthPopup:function(provider, onComplete, opt_options) {
+=======
+};
+Firebase.prototype.authWithOAuthPopup = function(provider, onComplete, opt_options) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.authWithOAuthPopup", 2, 3, arguments.length);
   fb.core.util.validation.validateAuthProvider("Firebase.authWithOAuthPopup", 1, provider, false);
   fb.util.validation.validateCallback("Firebase.authWithOAuthPopup", 2, onComplete, false);
   fb.core.util.validation.validateObject("Firebase.authWithOAuthPopup", 3, opt_options, true);
   this.repo.auth.authWithPopup(provider, opt_options, onComplete);
+<<<<<<< HEAD
 }, authWithOAuthRedirect:function(provider, onErr, opt_options) {
+=======
+};
+Firebase.prototype.authWithOAuthRedirect = function(provider, onErr, opt_options) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.authWithOAuthRedirect", 2, 3, arguments.length);
   fb.core.util.validation.validateAuthProvider("Firebase.authWithOAuthRedirect", 1, provider, false);
   fb.util.validation.validateCallback("Firebase.authWithOAuthRedirect", 2, onErr, false);
   fb.core.util.validation.validateObject("Firebase.authWithOAuthRedirect", 3, opt_options, true);
   this.repo.auth.authWithRedirect(provider, opt_options, onErr);
+<<<<<<< HEAD
 }, authWithOAuthToken:function(provider, params, onComplete, opt_options) {
+=======
+};
+Firebase.prototype.authWithOAuthToken = function(provider, params, onComplete, opt_options) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.authWithOAuthToken", 3, 4, arguments.length);
   fb.core.util.validation.validateAuthProvider("Firebase.authWithOAuthToken", 1, provider, false);
   fb.util.validation.validateCallback("Firebase.authWithOAuthToken", 3, onComplete, false);
@@ -12884,12 +13797,22 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
     fb.core.util.validation.validateObject("Firebase.authWithOAuthToken", 2, params, false);
     this.repo.auth.authWithCredential(provider + "/token", params, opt_options, onComplete);
   }
+<<<<<<< HEAD
 }, authAnonymously:function(onComplete, opt_options) {
+=======
+};
+Firebase.prototype.authAnonymously = function(onComplete, opt_options) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.authAnonymously", 1, 2, arguments.length);
   fb.util.validation.validateCallback("Firebase.authAnonymously", 1, onComplete, false);
   fb.core.util.validation.validateObject("Firebase.authAnonymously", 2, opt_options, true);
   this.repo.auth.authWithCredential("anonymous", {}, opt_options, onComplete);
+<<<<<<< HEAD
 }, authWithPassword:function(params, onComplete, opt_options) {
+=======
+};
+Firebase.prototype.authWithPassword = function(params, onComplete, opt_options) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.authWithPassword", 2, 3, arguments.length);
   fb.core.util.validation.validateObject("Firebase.authWithPassword", 1, params, false);
   fb.core.util.validation.validateObjectContainsKey("Firebase.authWithPassword", 1, params, "email", false, "string");
@@ -12897,21 +13820,36 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
   fb.util.validation.validateCallback("Firebase.authWithPassword", 2, onComplete, false);
   fb.core.util.validation.validateObject("Firebase.authWithPassword", 3, opt_options, true);
   this.repo.auth.authWithCredential("password", params, opt_options, onComplete);
+<<<<<<< HEAD
 }, createUser:function(params, onComplete) {
+=======
+};
+Firebase.prototype.createUser = function(params, onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.createUser", 2, 2, arguments.length);
   fb.core.util.validation.validateObject("Firebase.createUser", 1, params, false);
   fb.core.util.validation.validateObjectContainsKey("Firebase.createUser", 1, params, "email", false, "string");
   fb.core.util.validation.validateObjectContainsKey("Firebase.createUser", 1, params, "password", false, "string");
   fb.util.validation.validateCallback("Firebase.createUser", 2, onComplete, false);
   this.repo.auth.createUser(params, onComplete);
+<<<<<<< HEAD
 }, removeUser:function(params, onComplete) {
+=======
+};
+Firebase.prototype.removeUser = function(params, onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.removeUser", 2, 2, arguments.length);
   fb.core.util.validation.validateObject("Firebase.removeUser", 1, params, false);
   fb.core.util.validation.validateObjectContainsKey("Firebase.removeUser", 1, params, "email", false, "string");
   fb.core.util.validation.validateObjectContainsKey("Firebase.removeUser", 1, params, "password", false, "string");
   fb.util.validation.validateCallback("Firebase.removeUser", 2, onComplete, false);
   this.repo.auth.removeUser(params, onComplete);
+<<<<<<< HEAD
 }, changePassword:function(params, onComplete) {
+=======
+};
+Firebase.prototype.changePassword = function(params, onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.changePassword", 2, 2, arguments.length);
   fb.core.util.validation.validateObject("Firebase.changePassword", 1, params, false);
   fb.core.util.validation.validateObjectContainsKey("Firebase.changePassword", 1, params, "email", false, "string");
@@ -12919,7 +13857,12 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
   fb.core.util.validation.validateObjectContainsKey("Firebase.changePassword", 1, params, "newPassword", false, "string");
   fb.util.validation.validateCallback("Firebase.changePassword", 2, onComplete, false);
   this.repo.auth.changePassword(params, onComplete);
+<<<<<<< HEAD
 }, changeEmail:function(params, onComplete) {
+=======
+};
+Firebase.prototype.changeEmail = function(params, onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.changeEmail", 2, 2, arguments.length);
   fb.core.util.validation.validateObject("Firebase.changeEmail", 1, params, false);
   fb.core.util.validation.validateObjectContainsKey("Firebase.changeEmail", 1, params, "oldEmail", false, "string");
@@ -12927,12 +13870,18 @@ Firebase = goog.defineClass(fb.api.Query, {constructor:function(urlOrRepo, pathO
   fb.core.util.validation.validateObjectContainsKey("Firebase.changeEmail", 1, params, "password", false, "string");
   fb.util.validation.validateCallback("Firebase.changeEmail", 2, onComplete, false);
   this.repo.auth.changeEmail(params, onComplete);
+<<<<<<< HEAD
 }, resetPassword:function(params, onComplete) {
+=======
+};
+Firebase.prototype.resetPassword = function(params, onComplete) {
+>>>>>>> dev
   fb.util.validation.validateArgCount("Firebase.resetPassword", 2, 2, arguments.length);
   fb.core.util.validation.validateObject("Firebase.resetPassword", 1, params, false);
   fb.core.util.validation.validateObjectContainsKey("Firebase.resetPassword", 1, params, "email", false, "string");
   fb.util.validation.validateCallback("Firebase.resetPassword", 2, onComplete, false);
   this.repo.auth.resetPassword(params, onComplete);
+<<<<<<< HEAD
 }});
 if (NODE_CLIENT) {
   module["exports"] = Firebase;
@@ -12941,4 +13890,51 @@ if (NODE_CLIENT) {
   }
   ns.wrapper(ns.goog, ns.fb);
 }({goog:{}, fb:{}}));
+=======
+};
+Firebase.goOffline = function() {
+  fb.util.validation.validateArgCount("Firebase.goOffline", 0, 0, arguments.length);
+  fb.core.RepoManager.getInstance().interrupt();
+};
+Firebase.goOnline = function() {
+  fb.util.validation.validateArgCount("Firebase.goOnline", 0, 0, arguments.length);
+  fb.core.RepoManager.getInstance().resume();
+};
+Firebase.enableLogging = function(logger, persistent) {
+  fb.core.util.assert(!persistent || (logger === true || logger === false), "Can't turn on custom loggers persistently.");
+  if (logger === true) {
+    if (typeof console !== "undefined") {
+      if (typeof console.log === "function") {
+        fb.core.util.logger = goog.bind(console.log, console);
+      } else {
+        if (typeof console.log === "object") {
+          fb.core.util.logger = function(message) {
+            console.log(message);
+          };
+        }
+      }
+    }
+    if (persistent) {
+      fb.core.storage.SessionStorage.set("logging_enabled", true);
+    }
+  } else {
+    if (logger) {
+      fb.core.util.logger = logger;
+    } else {
+      fb.core.util.logger = null;
+      fb.core.storage.SessionStorage.remove("logging_enabled");
+    }
+  }
+};
+Firebase.ServerValue = {"TIMESTAMP":{".sv":"timestamp"}};
+Firebase.SDK_VERSION = CLIENT_VERSION;
+Firebase.INTERNAL = fb.api.INTERNAL;
+Firebase.Context = fb.core.RepoManager;
+Firebase.TEST_ACCESS = fb.api.TEST_ACCESS;
+
+  }
+  ns.wrapper(ns.goog, ns.fb);
+}({goog:{}, fb:{}}));
+Firebase.SDK_VERSION = '2.2.7';
+>>>>>>> dev
 

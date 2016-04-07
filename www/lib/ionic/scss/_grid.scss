@@ -118,10 +118,24 @@
   @include flex(0, 0, 33.3333%);
   max-width: 33.3333%;
 }
+<<<<<<< HEAD
+=======
+.col-40 {
+  @include flex(0, 0, 40%);
+  max-width: 40%;
+}
+>>>>>>> dev
 .col-50 {
   @include flex(0, 0, 50%);
   max-width: 50%;
 }
+<<<<<<< HEAD
+=======
+.col-60 {
+  @include flex(0, 0, 60%);
+  max-width: 60%;
+}
+>>>>>>> dev
 .col-66, .col-67 {
   @include flex(0, 0, 66.6666%);
   max-width: 66.6666%;

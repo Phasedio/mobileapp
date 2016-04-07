@@ -1,0 +1,28 @@
+<ion-view title="Activity" hide-back-button="true">
+  <ion-content class="padding-top">
+    <div class="list">
+      <button class="item item-input-inset" style="color:lightgrey" ng-click="updateTask()">What are you doing?</button>
+    </div>
+    <a class="item item-avatar member" href="#/menu/tab/home/{{update.currentStatus.user}}" ng-repeat="update in team.members | orderMembers : 'lastUpdated' : true ">
+      <div class="row">
+        <div class="col-10" >
+          <img src="{{update.gravatar}}" class="avatarHome">
+        </div>
+        <div class="col-90">
+          <h4 class="upperCase" style="margin-top: 4px; margin-left: 4px;">{{update.name}}</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="" style="padding-top:5px;">
+          <p class="wrap">{{update.currentStatus.name}}</p>
+          <small style="font-size: 70%; color:#9a9a9a" class="" am-time-ago="update.currentStatus.time"></small>
+        </div>
+
+      </div>
+    </a>
+    <div class="" ng-if="!loadDone">
+      <ion-spinner class="spinner" style="width:35px; margin:3rem auto; display:block;"></ion-spinner>
+    </div>
+  </ion-content>
+</ion-view>

@@ -21,6 +21,14 @@
   background-repeat: no-repeat;
   -webkit-appearance: none;
 
+<<<<<<< HEAD
+=======
+  &::-moz-focus-outer {
+    /* hide the focus outline in Firefox */
+    border: 0;
+  }
+
+>>>>>>> dev
   &::-webkit-slider-thumb {
     position: relative;
     width: $range-slider-width;
@@ -54,6 +62,14 @@
     //background: red;
     //opacity: .5;
   }
+<<<<<<< HEAD
+=======
+   &::-ms-fill-lower{
+     height: $range-track-height;
+     background:$dark;
+   }
+  /*
+>>>>>>> dev
    &::-ms-track{
      background: transparent;
      border-color: transparent;
@@ -72,14 +88,21 @@
      margin-right:1px;
      outline:none;
    }
+<<<<<<< HEAD
    &::-ms-fill-lower{
      height: $range-track-height;
      background:$dark;
    }
+=======
+>>>>>>> dev
    &::-ms-fill-upper {
      height: $range-track-height;
      background:$range-default-track-bg;
    }
+<<<<<<< HEAD
+=======
+   */
+>>>>>>> dev
 }
 
 .range {
@@ -150,4 +173,8 @@
   .range input{
     height:auto;
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dev

@@ -519,3 +519,13 @@ ion-tabs {
   pointer-events: none;
 }
 
+<<<<<<< HEAD
+=======
+.nav-bar-tabs-top.hide ~ .view-container .tabs-top .tabs{
+  top: 0
+}
+.pane[hide-nav-bar="true"] .has-tabs-top{
+  top:$tabs-height
+}
+
+>>>>>>> dev

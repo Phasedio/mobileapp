@@ -3,7 +3,11 @@
 // --------------------------------------------------
 
 @mixin button-style($bg-color, $border-color, $active-bg-color, $active-border-color, $color) {
+<<<<<<< HEAD
   border-color: $border-color;
+=======
+  border-color: transparent;//$border-color;
+>>>>>>> dev
   background-color: $bg-color;
   color: $color;
 
@@ -14,9 +18,15 @@
   }
   &.active,
   &.activated {
+<<<<<<< HEAD
     border-color: $active-border-color;
     background-color: $active-bg-color;
     box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
+=======
+    //border-color: transparent;//$active-border-color;
+    background-color: $active-bg-color;
+    //box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
+>>>>>>> dev
   }
 }
 
@@ -100,6 +110,13 @@
 @mixin item-active-style($active-bg-color, $active-border-color) {
   border-color: $active-border-color;
   background-color: $active-bg-color;
+<<<<<<< HEAD
+=======
+  &.item-complex > .item-content {
+    border-color: $active-border-color;
+    background-color: $active-bg-color;
+  }
+>>>>>>> dev
 }
 
 
