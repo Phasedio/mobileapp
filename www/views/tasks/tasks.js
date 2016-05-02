@@ -118,116 +118,25 @@ angular.module('App').filter('orderObjectBy', function() {
   });
 angular.module('App').controller('TasksController', function ($scope, $rootScope, $state, $localStorage, $location,$http,$ionicPopup,$ionicModal, $firebaseObject, Auth, FURL, Utils,Phased) {
   var ref = new Firebase(FURL);
-
-  $scope.shouldShowDelete = false;
- $scope.shouldShowReorder = false;
- $scope.listCanSwipe = true
-
-  $scope.loadDone = false;
-  $scope.team = Phased.team;
-  $scope.Phased = Phased;
-  console.log('the team', $scope.team);
-  $scope.currentUser = Phased.user;
-  console.log('the current user is ', $scope.currentUser);
-  $scope.assignments = Phased.assignments;
-
-  $scope.activeStream = Phased.assignments.to_me;
-  console.log('the phased active', $scope.activeStream);
-
-  $scope.activeStreamName = 'assignments.to_me';
-  $scope.activeStatusFilter = '!1'; // not completed tasks
-  // $scope.filterView = $scope.activeStreamName;//for the select filter
-   $scope.taskPriorities = Phased.TASK_PRIORITIES; // in new task modal
-  $scope.taskStatuses = Phased.TASK_STATUSES; // in new task modal
-  $scope.taskPriorityID = Phased.TASK_PRIORITY_ID;
-  $scope.taskStatusID = Phased.TASK_STATUS_ID;
-  $scope.myID = Auth.user.uid;
-
-  //need to initailize what a task is:
-  $scope.task = {
-    name: "",
-    time: "",
-    created_by: "",
-    assigned_to: "",
-    assigned_by: "",
-    priority: "",
-    status: "",
-    deadline: "",
-    cat: ""
-  }
-
-    console.log('the priorities are', $scope.taskPriorities);
-  $scope.projects = Phased.team.projects;
-  console.log($scope.projects);
-
-  angular.forEach($scope.projects, function(value, key){
-    console.log(value, key);
-    $scope.columns = value.columns;
-
-    angular.forEach($scope.columns, function(value, key) {
-      console.log(value);
-      $scope.cards = value.cards;
-
-      angular.forEach($scope.cards, function(value, key) {
-        console.log(value);
-        $scope.loadDone = true;
-        $scope.tasks = value.tasks;
-        console.log($scope.tasks);
-        $rootScope.tasks = $scope.tasks;
-      })
-    })
+  $scope.activeButton = 'showTaskListView';
+  $scope.showTaskListView = true;
+  $scope.newTask = {};
+  
+  $scope.$on("$ionicView.enter", function(event, data){
+   // handle event
+    $scope.tasks = Phased.team.projects['0A'].columns['0A'].cards['0A'].tasks;
+    $scope.Phased = Phased;
+    console.log(Phased);
+    $scope.$apply();
   });
-
-
-  console.log($scope.tasks);
-
-  $scope.bgColor = function(task){
-    if(task.status == 1) {
-      $scope.status = "Complete";
-      return "#CC0000";
-    } else if(task.status == 0){
-      $scope.status = "In Progress";
-      return "#55c73b";
-    } else {
-      $scope.status = "Assigned";
-      return "#CC0000";
-    }
-  }
-
-  for(var taskId in $scope.activeStream){
-
-    console.log("User Id: " + taskId, $scope.activeStream);
-    $scope.taskId = taskId;
-  }
-
+  
   $scope.$on('Phased:setup', function() {
     $scope.loadDone = true;
+    $scope.tasks = Phased.team.projects['0A'].columns['0A'].cards['0A'].tasks;
     $scope.$apply();
-    //console.log(Phased);
+     console.log(Phased);
   });
 
-  $scope.$on('Phased:membersComplete', function() {
-    $scope.loadDone = true;
-    $scope.$apply();
-  });
-
-  // history retrieved
-  $scope.$on('Phased:historyComplete', function() {
-    $scope.loadDone = true;
-    $scope.$apply();
-    //console.log(Phased);
-  });
-
-  $scope.$watch('Phased.assignments', function(user){
-    $scope.assignments = Phased.assignments;
-    console.log('we are watching assingments', $scope.assignments);
-
-  });
-
-  //$scope.$watch('Phased.taskStatusID', function(task){
-  //  console.log('the task status changed')
-  //
-  //})
 
   //Add modal fucntions
   $ionicModal.fromTemplateUrl('views/tasks/new-task-modal.html', {
@@ -236,6 +145,7 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
   }).then(function(modal) {
     $scope.modal = modal;
   });
+  
   $scope.taskAdd = function() {
     console.log('will open up a modal to add a new task');
     $scope.modal.show();
@@ -247,16 +157,29 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
     var task = {
       name: task.name,
       time: Date.now(),
-      created_by: $scope.currentUser.uid,
-      assigned_to: $scope.currentUser.uid,
-      assigned_by: $scope.currentUser.uid,
+      created_by: Phased.user.uid,
+      assigned_to: Phased.user.uid,
+      assigned_by: Phased.user.uid,
       priority: 1,
       status: 2
     }
     console.log('the task to save is', task);
     Phased.addTask(task);
     $scope.closeModal();
-    //$scope.$apply();
+    
+  }
+  
+    $scope.bgColor = function(task){
+    if(task.status == 1) {
+      
+      return "#CC0000";
+    } else if(task.status == 0){
+       
+      return "#55c73b";
+    } else {
+      
+      return "#CC0000";
+    }
   }
 
   $scope.closeModal = function() {
@@ -275,114 +198,215 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
     // Execute action
   });
 
-  $scope.showTaskListView = true;
-  jQuery('.ion-ios-star').addClass('active');
 
-  $scope.showTaskList = function(){
-    jQuery('.ion-ios-star').addClass('active');
+//   $scope.shouldShowDelete = false;
+//  $scope.shouldShowReorder = false;
+//  $scope.listCanSwipe = true
 
-    jQuery('.ion-android-checkbox-outline').removeClass('active');
+//   $scope.loadDone = false;
+//   $scope.team = Phased.team;
+//   $scope.Phased = Phased;
+//   console.log('the team', $scope.team);
+//   $scope.currentUser = Phased.user;
+//   console.log('the current user is ', $scope.currentUser);
+//   $scope.assignments = Phased.assignments;
+
+//   $scope.activeStream = Phased.assignments.to_me;
+//   console.log('the phased active', $scope.activeStream);
+
+//   $scope.activeStreamName = 'assignments.to_me';
+//   $scope.activeStatusFilter = '!1'; // not completed tasks
+//   // $scope.filterView = $scope.activeStreamName;//for the select filter
+//    $scope.taskPriorities = Phased.TASK_PRIORITIES; // in new task modal
+//   $scope.taskStatuses = Phased.TASK_STATUSES; // in new task modal
+//   $scope.taskPriorityID = Phased.TASK_PRIORITY_ID;
+//   $scope.taskStatusID = Phased.TASK_STATUS_ID;
+//   $scope.myID = Auth.user.uid;
+
+//   //need to initailize what a task is:
+//   $scope.task = {
+//     name: "",
+//     time: "",
+//     created_by: "",
+//     assigned_to: "",
+//     assigned_by: "",
+//     priority: "",
+//     status: "",
+//     deadline: "",
+//     cat: ""
+//   }
+
+//     console.log('the priorities are', $scope.taskPriorities);
+//   $scope.projects = Phased.team.projects;
+//   console.log($scope.projects);
+
+//   angular.forEach($scope.projects, function(value, key){
+//     console.log(value, key);
+//     $scope.columns = value.columns;
+
+//     angular.forEach($scope.columns, function(value, key) {
+//       console.log(value);
+//       $scope.cards = value.cards;
+
+//       angular.forEach($scope.cards, function(value, key) {
+//         console.log(value);
+//         $scope.loadDone = true;
+//         $scope.tasks = value.tasks;
+//         console.log($scope.tasks);
+//         $rootScope.tasks = $scope.tasks;
+//       })
+//     })
+//   });
 
 
-    $scope.showTaskListView = true;
-    $scope.showCompletedTasksView = false;
-  };
-  $scope.showComplete = function(){
-    console.log('the tasks that are complted');
-    jQuery('.ion-android-checkbox-outline').addClass('active');
-    jQuery('.ion-ios-star').removeClass('active');
-
-    $scope.showTaskListView = false;
-    $scope.showCompletedTasksView = true;
-  };
-
-  $scope.taskView = function(taskID){
-    $scope.task = Phased.assignments.all[taskID];
-    $scope.openModal();
-  }
-
-  $scope.taskCompleted = function(id){
-    console.log('will check task off list then remove it', id);
-  }
-
-  //$scope.taskDetail = function(id){
-  //  console.log('will go to details for each task', id);
-  //  $scope.go('tab.{{id}}');
-  //};
-
-  $scope.delete = function(task){
-    console.log('delete was clicked for ', task)
-  }
+//   console.log($scope.tasks);
 
 
-  $scope.startTask = function(task) {
-      if (!task.user || task.unassigned)
-        Phased.takeTask(task.key);
-      Phased.activateTask(task.key);
 
-    }
+//   for(var taskId in $scope.activeStream){
 
-    $scope.moveToArchive = function(assignmentID) {
-      Phased.moveToFromArchive(assignmentID);
-      $scope.closeDetails();
+//     console.log("User Id: " + taskId, $scope.activeStream);
+//     $scope.taskId = taskId;
+//   }
 
-    }
+//   $scope.$on('Phased:setup', function() {
+//     $scope.loadDone = true;
+//     $scope.$apply();
+//     //console.log(Phased);
+//   });
 
-    $scope.moveFromArchive = function(assignmentID) {
-      Phased.moveToFromArchive(assignmentID, true);
+//   $scope.$on('Phased:membersComplete', function() {
+//     $scope.loadDone = true;
+//     $scope.$apply();
+//   });
 
-    }
+//   // history retrieved
+//   $scope.$on('Phased:historyComplete', function() {
+//     $scope.loadDone = true;
+//     $scope.$apply();
+//     //console.log(Phased);
+//   });
 
-    // gets archived tasks at address shows archive
-    $scope.getArchiveFor = function(address) {
-      Phased.getArchiveFor(address);
+//   $scope.$watch('Phased.assignments', function(user){
+//     $scope.assignments = Phased.assignments;
+//     console.log('we are watching assingments', $scope.assignments);
 
-    }
+//   });
 
-    $scope.taskFinish = function(taskid, task){
-      console.log('we will complete task', taskid, task);
-      Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.COMPLETE)
-    }
+//   //$scope.$watch('Phased.taskStatusID', function(task){
+//   //  console.log('the task status changed')
+//   //
+//   //})
 
-    $scope.setTaskCompleted = function(assignmentID) {
-      Phased.setAssignmentStatus(assignmentID, Phased.TASK_STATUS_ID.COMPLETE);
 
-    }
+//   $scope.showTaskListView = true;
+//   jQuery('.ion-ios-star').addClass('active');
 
-    //Broadcasts that user is working on Task
-    $scope.broadcastTask = function(task){
-      Phased.activateTask(task.key);
+//   $scope.showTaskList = function(){
+//     jQuery('.ion-ios-star').addClass('active');
 
-       //toaster.pop('success', "Success!", "Your task was posted");
-    }
+//     jQuery('.ion-android-checkbox-outline').removeClass('active');
 
-    $scope.getFilter = function(assignment){
-      //console.log(Phased.user.uid);
-      if (assignment.assigned_to == Phased.user.uid && assignment.status != Phased.task.STATUS_ID.COMPLETE) {
-        console.log(true);
-        return true;
-      }else{
-        return false;
-      }
-      $scope.$apply();
 
-      // if ($scope.filtersToShow == 'me') {
-      //   $scope.currentFilter = 'My Tasks';
-      //
-      // }
-      // }else if ($scope.filtersToShow == 'me_complete') {
-      //   $scope.currentFilter = "My Completed Tasks";
-      //   if (assignment.assigned_to == Phased.user.uid && assignment.status == Phased.task.STATUS_ID.COMPLETE) {
-      //
-      //     return true;
-      //   }else{
-      //     return false;
-      //   }
-      //
-      // }else{
-      //   $scope.currentFilter ="All Tasks";
-      //   return true;
-      // }
-    }
+//     $scope.showTaskListView = true;
+//     $scope.showCompletedTasksView = false;
+//   };
+//   $scope.showComplete = function(){
+//     console.log('the tasks that are complted');
+//     jQuery('.ion-android-checkbox-outline').addClass('active');
+//     jQuery('.ion-ios-star').removeClass('active');
+
+//     $scope.showTaskListView = false;
+//     $scope.showCompletedTasksView = true;
+//   };
+
+//   $scope.taskView = function(taskID){
+//     $scope.task = Phased.assignments.all[taskID];
+//     $scope.openModal();
+//   }
+
+//   $scope.taskCompleted = function(id){
+//     console.log('will check task off list then remove it', id);
+//   }
+
+//   //$scope.taskDetail = function(id){
+//   //  console.log('will go to details for each task', id);
+//   //  $scope.go('tab.{{id}}');
+//   //};
+
+//   $scope.delete = function(task){
+//     console.log('delete was clicked for ', task)
+//   }
+
+
+//   $scope.startTask = function(task) {
+//       if (!task.user || task.unassigned)
+//         Phased.takeTask(task.key);
+//       Phased.activateTask(task.key);
+
+//     }
+
+//     $scope.moveToArchive = function(assignmentID) {
+//       Phased.moveToFromArchive(assignmentID);
+//       $scope.closeDetails();
+
+//     }
+
+//     $scope.moveFromArchive = function(assignmentID) {
+//       Phased.moveToFromArchive(assignmentID, true);
+
+//     }
+
+//     // gets archived tasks at address shows archive
+//     $scope.getArchiveFor = function(address) {
+//       Phased.getArchiveFor(address);
+
+//     }
+
+//     $scope.taskFinish = function(taskid, task){
+//       console.log('we will complete task', taskid, task);
+//       Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.COMPLETE)
+//     }
+
+//     $scope.setTaskCompleted = function(assignmentID) {
+//       Phased.setAssignmentStatus(assignmentID, Phased.TASK_STATUS_ID.COMPLETE);
+
+//     }
+
+//     //Broadcasts that user is working on Task
+//     $scope.broadcastTask = function(task){
+//       Phased.activateTask(task.key);
+
+//        //toaster.pop('success', "Success!", "Your task was posted");
+//     }
+
+//     $scope.getFilter = function(assignment){
+//       //console.log(Phased.user.uid);
+//       if (assignment.assigned_to == Phased.user.uid && assignment.status != Phased.task.STATUS_ID.COMPLETE) {
+//         console.log(true);
+//         return true;
+//       }else{
+//         return false;
+//       }
+//       $scope.$apply();
+
+//       // if ($scope.filtersToShow == 'me') {
+//       //   $scope.currentFilter = 'My Tasks';
+//       //
+//       // }
+//       // }else if ($scope.filtersToShow == 'me_complete') {
+//       //   $scope.currentFilter = "My Completed Tasks";
+//       //   if (assignment.assigned_to == Phased.user.uid && assignment.status == Phased.task.STATUS_ID.COMPLETE) {
+//       //
+//       //     return true;
+//       //   }else{
+//       //     return false;
+//       //   }
+//       //
+//       // }else{
+//       //   $scope.currentFilter ="All Tasks";
+//       //   return true;
+//       // }
+//     }
 
 });

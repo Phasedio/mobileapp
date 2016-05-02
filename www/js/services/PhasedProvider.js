@@ -1500,10 +1500,10 @@ angular.module('App')
       }
 
       // 2. update history in DB
-      taskRef.child('history').push(data);
+      //taskRef.child('history').push(data);
 
       // 3. format and issue notification
-      issueTaskHistoryNotification(data);
+      //issueTaskHistoryNotification(data);
     }
 
     /**
@@ -2219,6 +2219,8 @@ angular.module('App')
           });
         }
       });
+      var statuesID = newStatusRef.key();
+      teamRef.child('members/' + PhasedProvider.user.uid ).child('currentStatusID').set(statuesID);
     }
 
 
@@ -2262,7 +2264,9 @@ angular.module('App')
 
       // 3. update history
       updateTaskHist({taskRef : newTaskRef, type : PhasedProvider.task.HISTORY_ID.CREATED, task : newTask }); // update new task's history
-    }
+      $rootScope.$apply();  
+  
+  }
 
     /**
      *

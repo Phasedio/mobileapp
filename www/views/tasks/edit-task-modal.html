@@ -10,21 +10,54 @@
   </ion-header-bar>
 
   <ion-content >
-    <textarea class="upperCase" type="text" ng-model="task.name" placeholder="{{task.name}}" style="width: 90%"></textarea>
-
-    <div class="row" style="background-image: url({{task.image}}); width: 100%; height: 200px; color: white;" ng-if= task.image>
-      <button class="button button-icon col col-center" ng-click="openCamera()">
-        <i class="ion-ios-camera-outline" style="color: white; font-size: 90px"></i>
-        <p style="color: white">Change the Image</p>
-      </button>
+    
+    
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Title</span>
+        <input type="text" placeholder="John"  ng-model="edit.name">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Description</span>
+        <textarea type="text" placeholder="Description here" ng-model="edit.description"></textarea>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Due Date</span>
+        <input type="date"  ng-model="edit.due">
+      </label>
+      <!--<label class="item item-input item-select">
+        <span class="input-label">Current Status</span>
+        <select ng-model="edit.status" >
+          <option value="2"  selected>Assigned</option>
+          <option value="1"  selected>In Progress</option>
+        </select>
+      </label>-->
+      <!--<label class="item item-input item-select">
+        <span class="input-label">Assigned to</span>
+        <select ng-model="edit.assigned_to" ng-options="option.name for option in team track by option.uid">
+            <option value="{{taskMembersSelected}}" label="Carol Louie" selected></option>
+          </select>
+      </label>
+      <label class="item item-input item-select">
+        <span class="input-label">Priority</span>
+        <select ng-model="task.priority" >
+          <option value="2"  selected>Low</option>
+          <option value="1"  selected>Medium</option>
+          <option value="0"  selected>High</option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <span class="input-label">Category</span>
+        <select ng-options="option.name for option in task.categories track by option.key" ng-model="edit.category" >
+            <option value="" selected></option>
+          </select>
+      </label>-->
     </div>
-
-    <div class="row" style="background-color: grey; width: 100%; height: 200px; color: white;" ng-if= !task.image>
-      <button class="button button-icon col col-center" ng-click="openCamera()">
-        <i class="ion-ios-camera-outline" style="color: white; font-size: 90px"></i>
-        <p>Add an Image</p>
-      </button>
-    </div>
+    <button class="button button-full button-positive" ng-click="save(edit)">
+      Save Edits
+    </button>
+    
+    <!--<textarea class="upperCase" type="text" ng-model="task.name" placeholder="{{task.name}}" style="width: 90%"></textarea>
 
     <div class="row">
       <div class="card taskDetail">
@@ -40,14 +73,14 @@
           </div>
         </div>
 
-        <!--if there is a due date then show it else show nothing-->
+       
         <label class="item item-input">
           <span class="input-label"><i class="ion-android-calendar"></i></span>
           <input type="date" value="task.date" ng-model="task.date">
 
         </label>
 
-        <!--if there is a started say in progress else say not started-->
+        
         <label class="item item-input item-select">
           <div class="input-label">
             Status:
@@ -61,8 +94,8 @@
           <div class="input-label">
             Assigned to:
           </div>
-          <select ng-model="task.members.selectedOption" ng-options="option.name for option in task.members track by option.uid">
-            <option value="{{task.members.selectedOption}}" label="Carol Louie" selected></option>
+          <select ng-model="taskMembersSelected" ng-options="option.name for option in team track by option.uid">
+            <option value="{{taskMembersSelected}}" label="Carol Louie" selected></option>
           </select>
 
         </label>
@@ -91,7 +124,7 @@
       <div class="row" style="width: 90%; margin-left: 5%">
         <button type="submit" ng-click="saveEdit(task)" class="button button-outline button-block button-balanced">Save </button>
       </div>
-    </div>
+    </div>-->
   </ion-content>
 
 </ion-modal-view>

@@ -5,17 +5,9 @@
   </ion-nav-buttons>
 
   <ion-content class="padding-top">
-    <h3 class="upperCase">{{task.name}}</h3>
+    <h3 class="upperCase" align="center">{{task.name}}</h3>
     <!--if there is an image then show it otherwise show an icon to upload a photo-->
-    <img ng-if=task.image ng-src="{{task.image}}" style="height:200px; width: 100%">
-
-    <div class="row" style="background-color: grey; width: 100%; height: 200px; color: white;" ng-if= !task.image>
-        <button class="button button-icon col col-center" ng-click="openCamera()">
-          <i class="ion-ios-camera-outline" style="color: white; font-size: 90px"></i>
-          <p style="color: white">Add an Image</p>
-
-        </button>
-    </div>
+    
 
     <div class="row">
       <div class="card taskDetail">
@@ -52,7 +44,7 @@
             <p>Assigned to:</p>
           </div>
           <div class="col col-20 assignee">
-            <img src="{{currentUser.gravatar}}">
+            <img src="{{user.profile.gravatar}}">
           </div>
           <div class="col col-50">Priority: {{priority}}</div>
         </div>
@@ -62,21 +54,11 @@
             <p class="font14">Category: <i class="ion-android-checkbox-blank" style="color: {{task.category.color}}"></i>&nbsp;{{task.category.name}}</p>
           </div>
         </div>
-
-        <div class="row">
-          <!--if started we will have  stop button otherwise we'll have a start button-->
-          <button class="button button-outline {{toggleClass}} upButton col" ng-click="toggle(taskid, task)" ng-class="{on: toggleState}"> {{toggleText}} </button>
-          <button class="button button-outline button-balanced col"  ng-click="taskEdit(taskid, task)">Edit</button>
-          <button class="button button-outline button-balanced col"  ng-click="taskFinish(taskid, task)">Finish</button>
-          <!-- <button class="button button-block button-outline button-balanced upButton col-45"  ng-click="taskComments(taskid, task)">Comment</button> -->
-        </div>
-        <div class="row">
-
-
-        </div>
-        <div class="row">
-
-        </div>
+          <button class="button button-outline button-block {{toggleClass}} upButton " ng-click="toggle(idTask, task)" ng-class="{on: toggleState}"> {{toggleText}} </button>
+          <button class="button button-outline button-block button-balanced "  ng-click="taskFinish(idTask, task)">Finish</button>
+          <button class="button button-outline button-block button-balanced "  ng-click="taskEdit(idTask, task)">Edit</button>
+          
+        
       </div>
     </div>
 

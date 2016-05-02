@@ -5,13 +5,13 @@
     </div>
     <h1 class="title"> Add a New Task </h1>
     <div class="buttons">
-      <button type="submit" ng-click="addTask(task)" class="button button-clear" style="color:#2fc2a3;">Add Task </button>
+      <button type="submit" ng-click="addTask(newTask)" class="button button-clear" style="color:#2fc2a3;">Add Task </button>
     </div>
   </ion-header-bar>
 
   <ion-content >
-    <form ng-submit="addTask(task)" novalidate>
-      <textarea rows="10" ng-model="task.name" focus-me="true" placeholder="What needs to be done?" autofocus style="width: 100%; padding: 12px; padding-top:15px"></textarea>
+    <form ng-submit="addTask(newTask)" novalidate>
+      <textarea rows="10" ng-model="newTask.name" focus-me="true" placeholder="What needs to be done?" autofocus style="width: 100%; padding: 12px; padding-top:15px"></textarea>
       <div class="list updateStatus">
         <!-- <div class="card">
           <label class="item item-input">

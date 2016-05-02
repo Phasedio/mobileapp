@@ -15,7 +15,7 @@
 
       <ion-list
         can-swipe="listCanSwipe">
-        <ion-item ng-repeat="task in tasks | orderObjectBy : 'time' :true | limitTo :25"
+        <ion-item ng-repeat="task in tasks | orderObjectBy : 'time' :true "
                   ng-if="task.assigned_to == Phased.user.uid && task.status != Phased.task.STATUS_ID.COMPLETE">
 
           <!--<img ng-src="">-->
@@ -28,7 +28,7 @@
               </div>
               <div class="col col-60">
                 <div class="upperCase">
-                  <p>{{status}}</p>
+                  <p>{{Phased.task.STATUS[task.status]}}</p>
                 </div>
               </div>
 

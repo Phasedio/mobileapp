@@ -55,7 +55,7 @@ angular.module('App').controller('homeController', function ($scope, $state, $lo
 
   $scope.$on('Phased:setup', function() {
     $scope.$apply();
-    //console.log(Phased);
+    console.log(Phased);
   });
 
   // ensure view updates when new members are added
@@ -63,12 +63,13 @@ angular.module('App').controller('homeController', function ($scope, $state, $lo
   $scope.$on('Phased:membersComplete', function() {
     $scope.loadDone = true;
     $scope.$apply();
+    console.log(Phased);
   });
 
   // history retrieved
   $scope.$on('Phased:historyComplete', function() {
     $scope.$apply();
-    //console.log(Phased);
+    console.log(Phased);
   });
 
 
