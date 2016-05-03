@@ -232,6 +232,7 @@ angular.module('App')
       PhasedProvider.setTaskPriority = _setTaskPriority;
       // activating / shuffling
       PhasedProvider.activateTask = _activateTask;
+      PhasedProvider.completeTask = _completeTask;
       PhasedProvider.takeTask = _takeTask;
 
       // NOTIFS
@@ -2307,6 +2308,35 @@ angular.module('App')
       ga('send', 'event', 'Update', 'submitted');
       ga('send', 'event', 'Task', 'activated');
     }
+     /*
+    *
+    * A user completes a task
+    *
+    * 1. set task status to complete
+    * 2. update own status
+    *
+    */
+    var _completeTask = function(taskID, task, prefix) {
+      var args = {
+        task : task,
+        prefix: 'Has completed task : ',
+        taskID : taskID
+      }
+      registerAsync(doCompleteTask, args);
+    }
+
+    var doCompleteTask = function(args) {
+      var task = angular.copy( args.task ),
+        taskID = args.taskID,
+        prefix = args.prefix || '';
+
+      _setTaskStatus(taskID, PhasedProvider.task.STATUS_ID.COMPLETE);
+      task.name = prefix + task.name;
+      _addStatus(task);
+
+      ga('send', 'event', 'Update', 'submitted');
+      ga('send', 'event', 'Task', 'completed');
+    }
 
     /**
      *
@@ -2343,6 +2373,7 @@ angular.module('App')
       // (we could probably also just check against the history snapshot and time)
       if (newStatus == PhasedProvider.task.STATUS_ID.COMPLETE)
         update.completeTime = new Date().getTime();
+        
 
       var taskRef = FBRef.child(find(taskID, 'task').FBAddr);
       taskRef.update(update);

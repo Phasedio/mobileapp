@@ -118,12 +118,14 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
       $scope.task.statusName = "Assigned";
       $scope.toggleClass = 'button-balanced';
       console.log('pausing the task', taskid, task);
-      Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.ASSIGNED)
+      Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.ASSIGNED);
+      
     } else {
       console.log('we will run the Stat task', taskid, task);
       $scope.task.statusName = "In Progress";
       $scope.toggleClass = 'button-dark';
-      Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.IN_PROGRESS);
+      //Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.IN_PROGRESS);
+      Phased.activateTask(taskid,task);
     }
   }
   
@@ -211,7 +213,8 @@ angular.module('App').controller('taskItemController', function ($scope, $state,
 
   $scope.taskFinish = function(taskid, task){
     console.log('we will complete task', taskid, task);
-    Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.COMPLETE);
+    //Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.COMPLETE);
+    Phased.completeTask(taskid,task,"Has completed task : ");
     $state.go('menu.tab.tasks');
   }
 

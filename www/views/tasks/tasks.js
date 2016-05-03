@@ -198,7 +198,13 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
     // Execute action
   });
 
-
+  $scope.taskFinish = function(taskid, task){
+    console.log('we will complete task', taskid, task);
+    //Phased.setTaskStatus(taskid, Phased.task.STATUS_ID.COMPLETE);
+    Phased.completeTask(taskid,task,"Has completed task : ");
+    $state.go('menu.tab.tasks');
+  }
+  
 //   $scope.shouldShowDelete = false;
 //  $scope.shouldShowReorder = false;
 //  $scope.listCanSwipe = true
@@ -302,23 +308,23 @@ angular.module('App').controller('TasksController', function ($scope, $rootScope
 //   $scope.showTaskListView = true;
 //   jQuery('.ion-ios-star').addClass('active');
 
-//   $scope.showTaskList = function(){
-//     jQuery('.ion-ios-star').addClass('active');
+  $scope.showTaskList = function(){
+    jQuery('.ion-ios-star').addClass('active');
 
-//     jQuery('.ion-android-checkbox-outline').removeClass('active');
+    jQuery('.ion-android-checkbox-outline').removeClass('active');
 
 
-//     $scope.showTaskListView = true;
-//     $scope.showCompletedTasksView = false;
-//   };
-//   $scope.showComplete = function(){
-//     console.log('the tasks that are complted');
-//     jQuery('.ion-android-checkbox-outline').addClass('active');
-//     jQuery('.ion-ios-star').removeClass('active');
+    $scope.showTaskListView = true;
+    $scope.showCompletedTasksView = false;
+  };
+  $scope.showComplete = function(){
+    console.log('the tasks that are complted');
+    jQuery('.ion-android-checkbox-outline').addClass('active');
+    jQuery('.ion-ios-star').removeClass('active');
 
-//     $scope.showTaskListView = false;
-//     $scope.showCompletedTasksView = true;
-//   };
+    $scope.showTaskListView = false;
+    $scope.showCompletedTasksView = true;
+  };
 
 //   $scope.taskView = function(taskID){
 //     $scope.task = Phased.assignments.all[taskID];
